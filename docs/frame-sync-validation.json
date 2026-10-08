@@ -1,0 +1,134 @@
+{
+  "version": "0.6.0-experimental",
+  "recordedAtUTC": "2026-09-24T10:59:28.159060+00:00",
+  "status": "HOST_CHECKS_PASS_NATIVE_UNVERIFIED",
+  "hostTests": {
+    "command": "npm test",
+    "passed": 331,
+    "failed": 0,
+    "skipped": 0,
+    "log": "frame-sync-logs/host-tests.log",
+    "logSHA256": "6fe0cadfc88d9cf7179f6a4819da23b25e77c1e0147d511b3ef56ec556bb65e1",
+    "scope": "Host JS algorithms, independently mirrored references, and non-executing WebGPU mocks. NOT native shader execution."
+  },
+  "staticChecks": {
+    "status": "PASS",
+    "javascriptModules": 60,
+    "shaderSources": 13,
+    "coreComputeEntries": 31,
+    "showcaseNodes": 202,
+    "log": "frame-sync-logs/static-checks.log",
+    "scope": "Syntax/source/resource-graph checks, NOT native shader compilation"
+  },
+  "typeCheck": {
+    "status": "PASS",
+    "command": "tsc --strict --noEmit --target es2022 --module nodenext --moduleResolution nodenext --lib es2023,dom tests/api-types.ts"
+  },
+  "independentChecks": {
+    "randomIntervalUnionCases": 10000,
+    "traceSyntheticAssertions": 8,
+    "traceScopingAndDuplicateRemoval": "PASS",
+    "sourceTraceReport": "frame-sync-trace-analysis.json",
+    "compiledPreservationReport": "frame-sync-preservation.json",
+    "fontSet": [
+      {
+        "family": "DejaVu Sans",
+        "weight": 400,
+        "style": "normal",
+        "glyphs": 6253
+      },
+      {
+        "family": "DejaVu Sans",
+        "weight": 700,
+        "style": "normal",
+        "glyphs": 6196
+      },
+      {
+        "family": "DejaVu Sans",
+        "weight": 400,
+        "style": "italic",
+        "glyphs": 5355
+      }
+    ],
+    "compiledArrays": {
+      "nodes": {
+        "equal": true,
+        "bytes": 58176,
+        "sha256": "fed20d01d84241dcb0f10d696cbc67c5e66ac357ccd6b9cd815e4bbf69f77d8a"
+      },
+      "state": {
+        "equal": true,
+        "bytes": 13184,
+        "sha256": "23175c647451c0379539e01966a399c56ebf58852e255ebb819eb12dad65bdb5"
+      },
+      "heap": {
+        "equal": true,
+        "bytes": 54960608,
+        "sha256": "c00c8cfa6b76ec6a7f824a06783536d8097d63d09464b2f81f856801d12f1962"
+      }
+    },
+    "protectedSourceFilesEqual": 19,
+    "additionalFontTrial": {
+      "fontFamily": "Clear Sans",
+      "status": "BASELINE_PARSE_REJECTION",
+      "reason": "Unchanged baseline parser rejected a truncated kern subtable. Not counted as passing."
+    }
+  },
+  "nativeGPU": {
+    "status": "UNVERIFIED",
+    "browser": {
+      "status": "FAIL",
+      "error": "Page.goto: net::ERR_BLOCKED_BY_ADMINISTRATOR at http://127.0.0.1:8123/tests/frame-sync.html?autorun\nCall log:\n  - navigating to \"http://127.0.0.1:8123/tests/frame-sync.html?autorun\", waiting until \"load\"\n"
+    },
+    "httpSourceAvailable": true,
+    "optionalDawnValidator": "UNAVAILABLE: npm registry name resolution returned EAI_AGAIN; no successful native check run.",
+    "scope": "No native WGSL execution, final-pixel comparison, hardware frame-time measurement or FPS gain is recorded.",
+    "providedGates": [
+      "tests/frame-sync.html",
+      "tests/metrics.html",
+      "tests/gpu.html",
+      "tests/text.html",
+      "tests/hud.html",
+      "tests/startup.html"
+    ]
+  },
+  "releaseContract": {
+    "defaultSubmission": "every delivered browser rAF, no completion gate (retained from 0.5.0)",
+    "asapDefault": false,
+    "timingDetailDefault": "frame",
+    "parallelGridDefault": true,
+    "hudScissorDefault": true,
+    "normalUploadBytes": "64 + 32 * queued command count per submitted frame",
+    "normalReadbackBytes": 0,
+    "compiledABI": 3,
+    "metricsSchema": 3,
+    "metricsBytes": 16384,
+    "displayListHeaderWords": 648,
+    "actualLayoutGlobalWord": 58,
+    "gpuStorageIncreaseBytes": 9248,
+    "hostFrameLogNumericStorageBytes": 15360,
+    "warmFrameProfiledPasses": 2,
+    "warmFrameTimestampWrites": 4,
+    "extraUntimedMetricsPass": true,
+    "datasetRows": 65536,
+    "viewNodes": 202,
+    "animations": 8,
+    "noQualityReductionRequestedOrApplied": true,
+    "fontFilesIncluded": false,
+    "clockSemantics": "GPU interval union/envelope/overlap are elapsed ranges, not hardware busy time; submission/rAF/GPU end rates are not scanout."
+  },
+  "build": {
+    "status": "PASS",
+    "commands": [
+      "npm run build",
+      "npm run check:build"
+    ],
+    "embeddedModules": 26,
+    "exactShaderSources": 13,
+    "exactSourceModuleComparison": true,
+    "exactWorkerEmbedding": true,
+    "standaloneBytes": 463297,
+    "standaloneSHA256": "8e19af209678d0ab1ab912659acff8902ec2a0caef7fa77dc447fde6e8e413ad",
+    "log": "frame-sync-logs/build-and-embedding.log"
+  }
+}

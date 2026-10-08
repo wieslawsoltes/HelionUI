@@ -1,0 +1,5 @@
+
+> @helion/ui@0.5.0-experimental build
+> node tools/build.mjs
+
+Built dist/ and dist/helion-standalone.html (442,048 bytes). Application code is embedded. Real fonts load at mount from configured sources or local files.

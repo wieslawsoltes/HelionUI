@@ -1,0 +1,95 @@
+{
+  "version": "0.5.0-experimental",
+  "checkedAt": "2026-09-24T08:53:38.382800+00:00",
+  "status": "HOST_CHECKS_PASS_NATIVE_UNVERIFIED",
+  "environment": {
+    "node": "v22.16.0",
+    "platform": "Linux authoring container"
+  },
+  "hostTests": {
+    "tests": 310,
+    "pass": 310,
+    "fail": 0,
+    "skipped": 0
+  },
+  "staticChecks": {
+    "passed": true,
+    "javaScriptModules": 56,
+    "shaderSources": 13,
+    "coreComputeEntries": 30,
+    "showcaseNodes": 202,
+    "nativeShaderCompilation": false
+  },
+  "typescript": {
+    "passed": true,
+    "command": "tsc --noEmit --strict --target ES2022 --module NodeNext --moduleResolution NodeNext tests/api-types.ts"
+  },
+  "build": {
+    "passed": true,
+    "standaloneBytes": 442048,
+    "embeddedModules": 25,
+    "exactShaderSources": 13,
+    "exactWorkerEmbedding": true
+  },
+  "qualityPreservation": {
+    "exactCompiledArrays": true,
+    "baseline": "0.4.1-experimental",
+    "rows": 65536,
+    "nodes": 202,
+    "animations": 8,
+    "fonts": "Same three privately loaded Noto Sans faces; no font data redistributed",
+    "coreTextStartupFilesUnchanged": 14,
+    "normalFramePayload": "64 bytes + 32 bytes per command",
+    "normalGpuReadback": false,
+    "nativePixelsVerified": false,
+    "details": "submission-core-comparison.json"
+  },
+  "submission": {
+    "defaultMode": "vsync",
+    "defaultVsyncAdmissionCap": 0,
+    "defaultAsapAdmissionCap": 8,
+    "asapDefaultEnabled": false,
+    "simulatedRafHz": [
+      60,
+      90,
+      120,
+      144,
+      165,
+      240
+    ],
+    "simulatedAllCallbacksSubmitted": true,
+    "realNodeMessageChannelTest": true,
+    "actualDisplayFpsMeasured": false,
+    "overloadWarning": "Default no-cap policy can accumulate work. ASAP and positive caps depend on acknowledgement delivery. Browser/driver presentation is not controlled."
+  },
+  "timing": {
+    "schema": 2,
+    "metricsBytes": 8192,
+    "queryCount": 16,
+    "normalCpuMapping": false,
+    "hudSample": "previous submitted GPU sample",
+    "timestamps": "u64 nanoseconds, unsigned borrow before float conversion, invalid gaps instead of fake zero",
+    "nativePassExecutionVerified": false,
+    "newRate": "GPU final-render-pass end-to-end Hz, not physical scanout",
+    "extraFixedBufferBytes": 13552
+  },
+  "nativeBrowser": {
+    "status": "BLOCKED_BEFORE_PAGE_LOAD",
+    "attempt": "submission-browser-attempt.json",
+    "reason": "net::ERR_BLOCKED_BY_ADMINISTRATOR"
+  },
+  "nativeValidator": {
+    "status": "NOT_RUN",
+    "reason": "Official optional Dawn webgpu binding unavailable; installation failed with EAI_AGAIN resolving registry.npmjs.org"
+  },
+  "notVerified": [
+    "Native shader/pipeline compilation",
+    "Native GPU execution",
+    "Actual rendered pixel correctness",
+    "Browser MessageChannel/task arbitration",
+    "Hardware FPS / sustained throughput",
+    "Input-to-photon latency / physical presentation",
+    "Profiling overhead / power / overload memory cost"
+  ],
+  "notes": "Host fakes and independent algorithm oracles are not native GPU performance results. Synthetic fixtures are test-only; no fake timings are inserted into the normal showcase."
+}

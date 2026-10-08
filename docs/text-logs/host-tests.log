@@ -1,0 +1,1334 @@
+
+> @helion/ui@0.3.0-experimental test
+> node --test tests/*.test.mjs
+
+TAP version 13
+# Subtest: analytic line integrals reproduce fractional rectangle coverage
+ok 1 - analytic line integrals reproduce fractional rectangle coverage
+  ---
+  duration_ms: 2.744176
+  type: 'test'
+  ...
+# Subtest: triangle analytical coverage and translation invariance
+ok 2 - triangle analytical coverage and translation invariance
+  ---
+  duration_ms: 0.230273
+  type: 'test'
+  ...
+# Subtest: random axis-aligned rectangles agree with exact overlap
+ok 3 - random axis-aligned rectangles agree with exact overlap
+  ---
+  duration_ms: 8.16188
+  type: 'test'
+  ...
+# Subtest: block-prefix compaction crosses 128-lane and maximum-table boundaries
+ok 4 - block-prefix compaction crosses 128-lane and maximum-table boundaries
+  ---
+  duration_ms: 26.54053
+  type: 'test'
+  ...
+# Subtest: stable bitonic row-key comparison matches sorted reference
+ok 5 - stable bitonic row-key comparison matches sorted reference
+  ---
+  duration_ms: 82.759054
+  type: 'test'
+  ...
+# Subtest: sparse strips collapse solid runs, omit empty tiles, retain boundary alpha
+ok 6 - sparse strips collapse solid runs, omit empty tiles, retain boundary alpha
+  ---
+  duration_ms: 0.845298
+  type: 'test'
+  ...
+# Subtest: random sparse-strip round trips are lossless for 8-bit coverage
+ok 7 - random sparse-strip round trips are lossless for 8-bit coverage
+  ---
+  duration_ms: 45.554174
+  type: 'test'
+  ...
+# Subtest: declarative tree packs a preorder, 288-byte node ABI and forward references
+ok 8 - declarative tree packs a preorder, 288-byte node ABI and forward references
+  ---
+  duration_ms: 118.532647
+  type: 'test'
+  ...
+# Subtest: size, margin, flags and responsive bounds pack correctly
+ok 9 - size, margin, flags and responsive bounds pack correctly
+  ---
+  duration_ms: 8.97881
+  type: 'test'
+  ...
+# Subtest: grid accepts pixel, Auto and weighted star tracks
+ok 10 - grid accepts pixel, Auto and weighted star tracks
+  ---
+  duration_ms: 7.86164
+  type: 'test'
+  ...
+# Subtest: text buffers encode code points, not UTF-16 surrogate halves
+ok 11 - text buffers encode code points, not UTF-16 surrogate halves
+  ---
+  duration_ms: 8.422643
+  type: 'test'
+  ...
+# Subtest: TextBox storage is mutable and never interned with another editor
+ok 12 - TextBox storage is mutable and never interned with another editor
+  ---
+  duration_ms: 9.795168
+  type: 'test'
+  ...
+# Subtest: immutable strings are interned
+ok 13 - immutable strings are interned
+  ---
+  duration_ms: 0.261439
+  type: 'test'
+  ...
+# Subtest: heap capacity refuses overflow before allocation
+ok 14 - heap capacity refuses overflow before allocation
+  ---
+  duration_ms: 0.681486
+  type: 'test'
+  ...
+# Subtest: path curves are retained unflattened at the CPU boundary
+ok 15 - path curves are retained unflattened at the CPU boundary
+  ---
+  duration_ms: 7.915921
+  type: 'test'
+  ...
+# Subtest: relative path coordinates and closure
+ok 16 - relative path coordinates and closure
+  ---
+  duration_ms: 0.421867
+  type: 'test'
+  ...
+# Subtest: implicit line segments and scientific notation
+ok 17 - implicit line segments and scientific notation
+  ---
+  duration_ms: 0.361385
+  type: 'test'
+  ...
+# Subtest: path bounds contain all source control points
+ok 18 - path bounds contain all source control points
+  ---
+  duration_ms: 0.852099
+  type: 'test'
+  ...
+# Subtest: original vector alphabet has finite geometry and retained curves
+ok 19 - original vector alphabet has finite geometry and retained curves
+  ---
+  duration_ms: 1.41159
+  type: 'test'
+  ...
+# Subtest: animation targets pack as composition slots and retain speed binding
+ok 20 - animation targets pack as composition slots and retain speed binding
+  ---
+  duration_ms: 5.515512
+  type: 'test'
+  ...
+# Subtest: DataGrid allocates padded resident rows and stable identity indexes
+ok 21 - DataGrid allocates padded resident rows and stable identity indexes
+  ---
+  duration_ms: 9.67968
+  type: 'test'
+  ...
+# Subtest: custom row data packs text and numeric cells once
+ok 22 - custom row data packs text and numeric cells once
+  ---
+  duration_ms: 7.653342
+  type: 'test'
+  ...
+# Subtest: complete showcase fits capacity, has five pages and one GPU table
+ok 23 - complete showcase fits capacity, has five pages and one GPU table
+  ---
+  duration_ms: 43.074272
+  type: 'test'
+  ...
+# Subtest: HTML adapter produces equivalent declarations without a DOM renderer
+ok 24 - HTML adapter produces equivalent declarations without a DOM renderer
+  ---
+  duration_ms: 6.938609
+  type: 'test'
+  ...
+# Subtest: colors pack as little-endian RGBA
+ok 25 - colors pack as little-endian RGBA
+  ---
+  duration_ms: 0.16325
+  type: 'test'
+  ...
+# Subtest: rejects unknown view type
+ok 26 - rejects unknown view type
+  ---
+  duration_ms: 0.093724
+  type: 'test'
+  ...
+# Subtest: rejects prototype view name
+ok 27 - rejects prototype view name
+  ---
+  duration_ms: 0.071147
+  type: 'test'
+  ...
+# Subtest: rejects unknown property
+ok 28 - rejects unknown property
+  ---
+  duration_ms: 0.119624
+  type: 'test'
+  ...
+# Subtest: rejects duplicate id
+ok 29 - rejects duplicate id
+  ---
+  duration_ms: 0.165621
+  type: 'test'
+  ...
+# Subtest: rejects missing action target
+ok 30 - rejects missing action target
+  ---
+  duration_ms: 5.967376
+  type: 'test'
+  ...
+# Subtest: rejects invalid alignment
+ok 31 - rejects invalid alignment
+  ---
+  duration_ms: 8.76697
+  type: 'test'
+  ...
+# Subtest: rejects invalid min max
+ok 32 - rejects invalid min max
+  ---
+  duration_ms: 5.951526
+  type: 'test'
+  ...
+# Subtest: rejects non-finite size
+ok 33 - rejects non-finite size
+  ---
+  duration_ms: 5.378959
+  type: 'test'
+  ...
+# Subtest: rejects unrepresentable f32
+ok 34 - rejects unrepresentable f32
+  ---
+  duration_ms: 5.005559
+  type: 'test'
+  ...
+# Subtest: rejects out-of-range grid span
+ok 35 - rejects out-of-range grid span
+  ---
+  duration_ms: 5.419252
+  type: 'test'
+  ...
+# Subtest: rejects zero star weight
+ok 36 - rejects zero star weight
+  ---
+  duration_ms: 0.168096
+  type: 'test'
+  ...
+# Subtest: rejects too many tracks
+ok 37 - rejects too many tracks
+  ---
+  duration_ms: 0.197012
+  type: 'test'
+  ...
+# Subtest: rejects too many rows
+ok 38 - rejects too many rows
+  ---
+  duration_ms: 6.732909
+  type: 'test'
+  ...
+# Subtest: rejects fractional row count
+ok 39 - rejects fractional row count
+  ---
+  duration_ms: 4.371729
+  type: 'test'
+  ...
+# Subtest: rejects tiny row height
+ok 40 - rejects tiny row height
+  ---
+  duration_ms: 3.205403
+  type: 'test'
+  ...
+# Subtest: rejects custom generator schema
+ok 41 - rejects custom generator schema
+  ---
+  duration_ms: 4.013539
+  type: 'test'
+  ...
+# Subtest: rejects multiple tables
+ok 42 - rejects multiple tables
+  ---
+  duration_ms: 5.746672
+  type: 'test'
+  ...
+# Subtest: rejects wrong filter control
+ok 43 - rejects wrong filter control
+  ---
+  duration_ms: 5.484196
+  type: 'test'
+  ...
+# Subtest: rejects text overflow
+ok 44 - rejects text overflow
+  ---
+  duration_ms: 5.965177
+  type: 'test'
+  ...
+# Subtest: rejects conflicting animations
+ok 45 - rejects conflicting animations
+  ---
+  duration_ms: 6.042323
+  type: 'test'
+  ...
+# Subtest: rejects layout animation
+ok 46 - rejects layout animation
+  ---
+  duration_ms: 7.102751
+  type: 'test'
+  ...
+# Subtest: rejects zero duration
+ok 47 - rejects zero duration
+  ---
+  duration_ms: 6.127515
+  type: 'test'
+  ...
+# Subtest: rejects unsupported arc
+ok 48 - rejects unsupported arc
+  ---
+  duration_ms: 0.260749
+  type: 'test'
+  ...
+# Subtest: rejects missing coordinate
+ok 49 - rejects missing coordinate
+  ---
+  duration_ms: 0.220445
+  type: 'test'
+  ...
+# Subtest: rejects invalid segment array
+ok 50 - rejects invalid segment array
+  ---
+  duration_ms: 0.16392
+  type: 'test'
+  ...
+# Subtest: rejects unknown limit
+ok 51 - rejects unknown limit
+  ---
+  duration_ms: 0.196928
+  type: 'test'
+  ...
+# Subtest: rejects node limit
+ok 52 - rejects node limit
+  ---
+  duration_ms: 0.163564
+  type: 'test'
+  ...
+# Subtest: rejects negative stroke
+ok 53 - rejects negative stroke
+  ---
+  duration_ms: 5.583956
+  type: 'test'
+  ...
+# Subtest: rejects prototype alignment
+ok 54 - rejects prototype alignment
+  ---
+  duration_ms: 12.387841
+  type: 'test'
+  ...
+# Subtest: rejects prototype animation
+ok 55 - rejects prototype animation
+  ---
+  duration_ms: 3.454009
+  type: 'test'
+  ...
+# Subtest: rejects invalid orientation
+ok 56 - rejects invalid orientation
+  ---
+  duration_ms: 3.127421
+  type: 'test'
+  ...
+# Subtest: rejects invalid fill rule
+ok 57 - rejects invalid fill rule
+  ---
+  duration_ms: 5.334144
+  type: 'test'
+  ...
+# Subtest: rejects invalid easing
+ok 58 - rejects invalid easing
+  ---
+  duration_ms: 4.592257
+  type: 'test'
+  ...
+# Subtest: rejects unrepresentable animation duration
+ok 59 - rejects unrepresentable animation duration
+  ---
+  duration_ms: 6.213785
+  type: 'test'
+  ...
+# Subtest: HTML supports custom table JSON and explicit path bounds
+ok 60 - HTML supports custom table JSON and explicit path bounds
+  ---
+  duration_ms: 14.30702
+  type: 'test'
+  ...
+# Subtest: every native entry is discoverable and within eight storage-buffer bindings
+ok 61 - every native entry is discoverable and within eight storage-buffer bindings
+  ---
+  duration_ms: 28.740744
+  type: 'test'
+  ...
+# Subtest: indirect consumers never simultaneously bind arguments as writable storage
+ok 62 - indirect consumers never simultaneously bind arguments as writable storage
+  ---
+  duration_ms: 7.441232
+  type: 'test'
+  ...
+# Subtest: entry call graph ignores comments and recursively discovers resources
+ok 63 - entry call graph ignores comments and recursively discovers resources
+  ---
+  duration_ms: 1.310248
+  type: 'test'
+  ...
+# Subtest: runtime render method contains no mapping or CPU layout implementation
+ok 64 - runtime render method contains no mapping or CPU layout implementation
+  ---
+  duration_ms: 0.351155
+  type: 'test'
+  ...
+# Subtest: development server serves modules, WGSL, HEAD and explicit errors
+ok 65 - development server serves modules, WGSL, HEAD and explicit errors
+  ---
+  duration_ms: 63.296161
+  type: 'test'
+  ...
+# Subtest: pixel and weighted-star tracks arrange expected rectangles
+ok 66 - pixel and weighted-star tracks arrange expected rectangles
+  ---
+  duration_ms: 135.253045
+  type: 'test'
+  ...
+# Subtest: auto tracks derive child desired size and share remainder with stars
+ok 67 - auto tracks derive child desired size and share remainder with stars
+  ---
+  duration_ms: 10.605416
+  type: 'test'
+  ...
+# Subtest: margins, padding, alignment, spans and canvas offsets have independent goldens
+ok 68 - margins, padding, alignment, spans and canvas offsets have independent goldens
+  ---
+  duration_ms: 10.441404
+  type: 'test'
+  ...
+# Subtest: stack skips hidden children and resolves horizontal orientation
+ok 69 - stack skips hidden children and resolves horizontal orientation
+  ---
+  duration_ms: 8.473247
+  type: 'test'
+  ...
+# Subtest: wrapped text grows under a constrained star-track measure
+ok 70 - wrapped text grows under a constrained star-track measure
+  ---
+  duration_ms: 11.748665
+  type: 'test'
+  ...
+# Subtest: responsive visibility removes Auto-track inspector allocation
+ok 71 - responsive visibility removes Auto-track inspector allocation
+  ---
+  duration_ms: 8.550632
+  type: 'test'
+  ...
+# Subtest: showcase CPU-oracle finite layout 390x844 page 0
+ok 72 - showcase CPU-oracle finite layout 390x844 page 0
+  ---
+  duration_ms: 71.634481
+  type: 'test'
+  ...
+# Subtest: showcase CPU-oracle finite layout 390x844 page 1
+ok 73 - showcase CPU-oracle finite layout 390x844 page 1
+  ---
+  duration_ms: 57.347709
+  type: 'test'
+  ...
+# Subtest: showcase CPU-oracle finite layout 390x844 page 2
+ok 74 - showcase CPU-oracle finite layout 390x844 page 2
+  ---
+  duration_ms: 48.183222
+  type: 'test'
+  ...
+# Subtest: showcase CPU-oracle finite layout 390x844 page 3
+ok 75 - showcase CPU-oracle finite layout 390x844 page 3
+  ---
+  duration_ms: 57.631455
+  type: 'test'
+  ...
+# Subtest: showcase CPU-oracle finite layout 1024x768 page 0
+ok 76 - showcase CPU-oracle finite layout 1024x768 page 0
+  ---
+  duration_ms: 38.759393
+  type: 'test'
+  ...
+# Subtest: showcase CPU-oracle finite layout 1024x768 page 1
+ok 77 - showcase CPU-oracle finite layout 1024x768 page 1
+  ---
+  duration_ms: 43.351123
+  type: 'test'
+  ...
+# Subtest: showcase CPU-oracle finite layout 1024x768 page 2
+ok 78 - showcase CPU-oracle finite layout 1024x768 page 2
+  ---
+  duration_ms: 53.877977
+  type: 'test'
+  ...
+# Subtest: showcase CPU-oracle finite layout 1024x768 page 3
+ok 79 - showcase CPU-oracle finite layout 1024x768 page 3
+  ---
+  duration_ms: 115.885437
+  type: 'test'
+  ...
+# Subtest: showcase CPU-oracle finite layout 1440x900 page 0
+ok 80 - showcase CPU-oracle finite layout 1440x900 page 0
+  ---
+  duration_ms: 47.333682
+  type: 'test'
+  ...
+# Subtest: showcase CPU-oracle finite layout 1440x900 page 1
+ok 81 - showcase CPU-oracle finite layout 1440x900 page 1
+  ---
+  duration_ms: 67.495341
+  type: 'test'
+  ...
+# Subtest: showcase CPU-oracle finite layout 1440x900 page 2
+ok 82 - showcase CPU-oracle finite layout 1440x900 page 2
+  ---
+  duration_ms: 45.088144
+  type: 'test'
+  ...
+# Subtest: showcase CPU-oracle finite layout 1440x900 page 3
+ok 83 - showcase CPU-oracle finite layout 1440x900 page 3
+  ---
+  duration_ms: 62.927226
+  type: 'test'
+  ...
+# Subtest: merge mirror: 0 finite numeric rows, both directions, stable duplicates and padding
+ok 84 - merge mirror: 0 finite numeric rows, both directions, stable duplicates and padding
+  ---
+  duration_ms: 39.053004
+  type: 'test'
+  ...
+# Subtest: merge mirror: 1 finite numeric rows, both directions, stable duplicates and padding
+ok 85 - merge mirror: 1 finite numeric rows, both directions, stable duplicates and padding
+  ---
+  duration_ms: 11.205223
+  type: 'test'
+  ...
+# Subtest: merge mirror: 2 finite numeric rows, both directions, stable duplicates and padding
+ok 86 - merge mirror: 2 finite numeric rows, both directions, stable duplicates and padding
+  ---
+  duration_ms: 10.170854
+  type: 'test'
+  ...
+# Subtest: merge mirror: 127 finite numeric rows, both directions, stable duplicates and padding
+ok 87 - merge mirror: 127 finite numeric rows, both directions, stable duplicates and padding
+  ---
+  duration_ms: 30.874051
+  type: 'test'
+  ...
+# Subtest: merge mirror: 128 finite numeric rows, both directions, stable duplicates and padding
+ok 88 - merge mirror: 128 finite numeric rows, both directions, stable duplicates and padding
+  ---
+  duration_ms: 5.902512
+  type: 'test'
+  ...
+# Subtest: merge mirror: 129 finite numeric rows, both directions, stable duplicates and padding
+ok 89 - merge mirror: 129 finite numeric rows, both directions, stable duplicates and padding
+  ---
+  duration_ms: 5.822363
+  type: 'test'
+  ...
+# Subtest: merge mirror: 255 finite numeric rows, both directions, stable duplicates and padding
+ok 90 - merge mirror: 255 finite numeric rows, both directions, stable duplicates and padding
+  ---
+  duration_ms: 5.330296
+  type: 'test'
+  ...
+# Subtest: merge mirror: 256 finite numeric rows, both directions, stable duplicates and padding
+ok 91 - merge mirror: 256 finite numeric rows, both directions, stable duplicates and padding
+  ---
+  duration_ms: 6.006
+  type: 'test'
+  ...
+# Subtest: merge mirror: 257 finite numeric rows, both directions, stable duplicates and padding
+ok 92 - merge mirror: 257 finite numeric rows, both directions, stable duplicates and padding
+  ---
+  duration_ms: 11.428157
+  type: 'test'
+  ...
+# Subtest: merge mirror: 511 finite numeric rows, both directions, stable duplicates and padding
+ok 93 - merge mirror: 511 finite numeric rows, both directions, stable duplicates and padding
+  ---
+  duration_ms: 11.218057
+  type: 'test'
+  ...
+# Subtest: merge mirror: 512 finite numeric rows, both directions, stable duplicates and padding
+ok 94 - merge mirror: 512 finite numeric rows, both directions, stable duplicates and padding
+  ---
+  duration_ms: 11.032013
+  type: 'test'
+  ...
+# Subtest: merge mirror: 513 finite numeric rows, both directions, stable duplicates and padding
+ok 95 - merge mirror: 513 finite numeric rows, both directions, stable duplicates and padding
+  ---
+  duration_ms: 23.231497
+  type: 'test'
+  ...
+# Subtest: merge mirror: 1023 finite numeric rows, both directions, stable duplicates and padding
+ok 96 - merge mirror: 1023 finite numeric rows, both directions, stable duplicates and padding
+  ---
+  duration_ms: 38.757265
+  type: 'test'
+  ...
+# Subtest: merge mirror: 4097 finite numeric rows, both directions, stable duplicates and padding
+ok 97 - merge mirror: 4097 finite numeric rows, both directions, stable duplicates and padding
+  ---
+  duration_ms: 171.302884
+  type: 'test'
+  ...
+# Subtest: merge mirror: 65535 finite numeric rows, both directions, stable duplicates and padding
+ok 98 - merge mirror: 65535 finite numeric rows, both directions, stable duplicates and padding
+  ---
+  duration_ms: 1423.039416
+  type: 'test'
+  ...
+# Subtest: merge mirror: 65536 finite numeric rows, both directions, stable duplicates and padding
+ok 99 - merge mirror: 65536 finite numeric rows, both directions, stable duplicates and padding
+  ---
+  duration_ms: 1386.029492
+  type: 'test'
+  ...
+# Subtest: merge mirror: 5 case-insensitive strings retain identity ties
+ok 100 - merge mirror: 5 case-insensitive strings retain identity ties
+  ---
+  duration_ms: 25.942378
+  type: 'test'
+  ...
+# Subtest: merge mirror: 257 case-insensitive strings retain identity ties
+ok 101 - merge mirror: 257 case-insensitive strings retain identity ties
+  ---
+  duration_ms: 24.082746
+  type: 'test'
+  ...
+# Subtest: merge mirror: 1025 case-insensitive strings retain identity ties
+ok 102 - merge mirror: 1025 case-insensitive strings retain identity ties
+  ---
+  duration_ms: 122.091819
+  type: 'test'
+  ...
+# Subtest: 65,536-row sort has nine dispatches; cached filtering needs no sort execution
+ok 103 - 65,536-row sort has nine dispatches; cached filtering needs no sort execution
+  ---
+  duration_ms: 0.619817
+  type: 'test'
+  ...
+# Subtest: compiler allocates independent retained order, merge scratch and visible indexes
+ok 104 - compiler allocates independent retained order, merge scratch and visible indexes
+  ---
+  duration_ms: 162.461367
+  type: 'test'
+  ...
+# Subtest: frame gate admits at most 1 incomplete frames
+ok 105 - frame gate admits at most 1 incomplete frames
+  ---
+  duration_ms: 0.480098
+  type: 'test'
+  ...
+# Subtest: frame gate admits at most 2 incomplete frames
+ok 106 - frame gate admits at most 2 incomplete frames
+  ---
+  duration_ms: 0.071418
+  type: 'test'
+  ...
+# Subtest: frame gate admits at most 3 incomplete frames
+ok 107 - frame gate admits at most 3 incomplete frames
+  ---
+  duration_ms: 0.054
+  type: 'test'
+  ...
+# Subtest: invalid queue-depth configurations fail explicitly
+ok 108 - invalid queue-depth configurations fail explicitly
+  ---
+  duration_ms: 0.186811
+  type: 'test'
+  ...
+# Subtest: wheel bursts coalesce without losing accumulated distance
+ok 109 - wheel bursts coalesce without losing accumulated distance
+  ---
+  duration_ms: 1.054425
+  type: 'test'
+  ...
+# Subtest: wheel reversals, different positions and discrete barriers retain FIFO
+ok 110 - wheel reversals, different positions and discrete barriers retain FIFO
+  ---
+  duration_ms: 0.325518
+  type: 'test'
+  ...
+# Subtest: text packets do not encode layout or pointer hit tests
+ok 111 - text packets do not encode layout or pointer hit tests
+  ---
+  duration_ms: 0.229906
+  type: 'test'
+  ...
+# Subtest: explicit-target pointer commands skip GPU hit discovery
+ok 112 - explicit-target pointer commands skip GPU hit discovery
+  ---
+  duration_ms: 0.125425
+  type: 'test'
+  ...
+# Subtest: damage storage is separate from bins; both display lists include node-head headers
+ok 113 - damage storage is separate from bins; both display lists include node-head headers
+  ---
+  duration_ms: 0.204978
+  type: 'test'
+  ...
+# Subtest: reverse compositor equals painter-over with opaque early exits
+ok 114 - reverse compositor equals painter-over with opaque early exits
+  ---
+  duration_ms: 1.779293
+  type: 'test'
+  ...
+# Subtest: timestamp low-word rollover is subtracted before floating-point conversion
+ok 115 - timestamp low-word rollover is subtracted before floating-point conversion
+  ---
+  duration_ms: 0.284988
+  type: 'test'
+  ...
+# Subtest: new shader paths retain uniform barriers and exact primitive comparison
+ok 116 - new shader paths retain uniform barriers and exact primitive comparison
+  ---
+  duration_ms: 25.143139
+  type: 'test'
+  ...
+# Subtest: performance histories use GPU storage, not CPU readback or Canvas 2D
+ok 117 - performance histories use GPU storage, not CPU readback or Canvas 2D
+  ---
+  duration_ms: 2.266564
+  type: 'test'
+  ...
+# Subtest: 32-byte ABI preserves integer and float lanes
+ok 118 - 32-byte ABI preserves integer and float lanes
+  ---
+  duration_ms: 1.90235
+  type: 'test'
+  ...
+# Subtest: only consecutive moves to the same target coalesce
+ok 119 - only consecutive moves to the same target coalesce
+  ---
+  duration_ms: 0.374188
+  type: 'test'
+  ...
+# Subtest: bounded packets retain FIFO ordering over queue growth
+ok 120 - bounded packets retain FIFO ordering over queue growth
+  ---
+  duration_ms: 22.579574
+  type: 'test'
+  ...
+# Subtest: backpressure throws without silently dropping discrete events
+ok 121 - backpressure throws without silently dropping discrete events
+  ---
+  duration_ms: 0.680266
+  type: 'test'
+  ...
+# Subtest: 32-bit sequence wraps in transmitted representation
+ok 122 - 32-bit sequence wraps in transmitted representation
+  ---
+  duration_ms: 0.37689
+  type: 'test'
+  ...
+# Subtest: empty packets do not transfer; motion/wheel do not request layout/query encoding
+ok 123 - empty packets do not transfer; motion/wheel do not request layout/query encoding
+  ---
+  duration_ms: 0.148038
+  type: 'test'
+  ...
+# Subtest: reject invalid packet {"x":null}
+ok 124 - reject invalid packet {"x":null}
+  ---
+  duration_ms: 0.28983
+  type: 'test'
+  ...
+# Subtest: reject invalid packet {"a":null}
+ok 125 - reject invalid packet {"a":null}
+  ---
+  duration_ms: 0.105784
+  type: 'test'
+  ...
+# Subtest: reject invalid packet {"b":1e+100}
+ok 126 - reject invalid packet {"b":1e+100}
+  ---
+  duration_ms: 0.358802
+  type: 'test'
+  ...
+# Subtest: reject invalid packet {"target":-1}
+ok 127 - reject invalid packet {"target":-1}
+  ---
+  duration_ms: 0.30806
+  type: 'test'
+  ...
+# Subtest: reject invalid packet {"target":1.1}
+ok 128 - reject invalid packet {"target":1.1}
+  ---
+  duration_ms: 0.141265
+  type: 'test'
+  ...
+# Subtest: reject invalid packet {"c":4294967296}
+ok 129 - reject invalid packet {"c":4294967296}
+  ---
+  duration_ms: 0.074992
+  type: 'test'
+  ...
+# Subtest: reject unsupported opcodes and packet capacities
+ok 130 - reject unsupported opcodes and packet capacities
+  ---
+  duration_ms: 0.283592
+  type: 'test'
+  ...
+# Subtest: runtime host: gate refuses stale submissions before draining or uploading input
+ok 131 - runtime host: gate refuses stale submissions before draining or uploading input
+  ---
+  duration_ms: 196.398781
+  type: 'test'
+  ...
+# Subtest: runtime host: typing omits Measure/Arrange and pointer discovery
+ok 132 - runtime host: typing omits Measure/Arrange and pointer discovery
+  ---
+  duration_ms: 66.708575
+  type: 'test'
+  ...
+# Subtest: runtime host: scrolling omits layout, query and sort graphs
+ok 133 - runtime host: scrolling omits layout, query and sort graphs
+  ---
+  duration_ms: 65.830631
+  type: 'test'
+  ...
+# Subtest: runtime host: timestamps resolve directly into GPU storage, zero readback
+ok 134 - runtime host: timestamps resolve directly into GPU storage, zero readback
+  ---
+  duration_ms: 130.09291
+  type: 'test'
+  ...
+# Subtest: runtime host: unsupported timestamps select explicitly labelled CPU fallback
+ok 135 - runtime host: unsupported timestamps select explicitly labelled CPU fallback
+  ---
+  duration_ms: 73.948581
+  type: 'test'
+  ...
+# Subtest: runtime host: display-list ping-pong reads previous and writes distinct current storage
+ok 136 - runtime host: display-list ping-pong reads previous and writes distinct current storage
+  ---
+  duration_ms: 57.064025
+  type: 'test'
+  ...
+# Subtest: runtime host: hidden HUD stops timing work and preserves 64-byte frame packets
+ok 137 - runtime host: hidden HUD stops timing work and preserves 64-byte frame packets
+  ---
+  duration_ms: 52.597953
+  type: 'test'
+  ...
+# Subtest: runtime host: optional full-render reference sets damage flag without forcing layout
+ok 138 - runtime host: optional full-render reference sets damage flag without forcing layout
+  ---
+  duration_ms: 52.385865
+  type: 'test'
+  ...
+# Subtest: runtime host: real-font cache stages keep the 64-byte frame payload and never map
+ok 139 - runtime host: real-font cache stages keep the 64-byte frame payload and never map
+  ---
+  duration_ms: 64.520455
+  type: 'test'
+  ...
+# Subtest: runtime host: exact-font reference mode omits cache dispatches without changing renderer quality settings
+ok 140 - runtime host: exact-font reference mode omits cache dispatches without changing renderer quality settings
+  ---
+  duration_ms: 50.685774
+  type: 'test'
+  ...
+# Subtest: source mapping preserves the exact native WGSL text and section boundaries
+ok 141 - source mapping preserves the exact native WGSL text and section boundaries
+  ---
+  duration_ms: 6.847178
+  type: 'test'
+  ...
+# Subtest: source mapping includes constants and rejects missing shader parts
+ok 142 - source mapping includes constants and rejects missing shader parts
+  ---
+  duration_ms: 0.878045
+  type: 'test'
+  ...
+# Subtest: DataGrid comparator explicitly groups relational select arguments (reported line-642 regression)
+ok 143 - DataGrid comparator explicitly groups relational select arguments (reported line-642 regression)
+  ---
+  duration_ms: 0.418043
+  type: 'test'
+  ...
+# Subtest: native error diagnostics identify the original comparator source and caret
+ok 144 - native error diagnostics identify the original comparator source and caret
+  ---
+  duration_ms: 0.965035
+  type: 'test'
+  ...
+# Subtest: diagnostics without a source position retain their native message
+ok 145 - diagnostics without a source position retain their native message
+  ---
+  duration_ms: 0.370769
+  type: 'test'
+  ...
+# Subtest: presentation shader diagnostics retain their own file and line
+ok 146 - presentation shader diagnostics retain their own file and line
+  ---
+  duration_ms: 0.275719
+  type: 'test'
+  ...
+# Subtest: checked-module success returns the native module, allowing warnings
+ok 147 - checked-module success returns the native module, allowing warnings
+  ---
+  duration_ms: 0.813519
+  type: 'test'
+  ...
+# Subtest: checked-module failure prioritizes detailed compilation info over generic validation text
+ok 148 - checked-module failure prioritizes detailed compilation info over generic validation text
+  ---
+  duration_ms: 0.819815
+  type: 'test'
+  ...
+# Subtest: a captured native validation error is never treated as successful compilation
+ok 149 - a captured native validation error is never treated as successful compilation
+  ---
+  duration_ms: 0.624493
+  type: 'test'
+  ...
+# Subtest: empty captured validation messages still produce an actionable error
+ok 150 - empty captured validation messages still produce an actionable error
+  ---
+  duration_ms: 0.595024
+  type: 'test'
+  ...
+# Subtest: native module creation exceptions cannot leak the error scope
+ok 151 - native module creation exceptions cannot leak the error scope
+  ---
+  duration_ms: 0.340091
+  type: 'test'
+  ...
+# Subtest: native compilation-info rejections cannot leak the error scope
+ok 152 - native compilation-info rejections cannot leak the error scope
+  ---
+  duration_ms: 0.210977
+  type: 'test'
+  ...
+# Subtest: font loader reads static TrueType metrics and named family
+ok 153 - font loader reads static TrueType metrics and named family
+  ---
+  duration_ms: 18.293271
+  type: 'test'
+  ...
+# Subtest: cmap uses Unicode scalar pages, including astral codepoints without byte clamping
+ok 154 - cmap uses Unicode scalar pages, including astral codepoints without byte clamping
+  ---
+  duration_ms: 96.471954
+  type: 'test'
+  ...
+# Subtest: quadratic outline conversion keeps implicit on-curve midpoints and contour closure
+ok 155 - quadratic outline conversion keeps implicit on-curve midpoints and contour closure
+  ---
+  duration_ms: 0.741645
+  type: 'test'
+  ...
+# Subtest: simple outline Y inversion and normalized bounds use the font em
+ok 156 - simple outline Y inversion and normalized bounds use the font em
+  ---
+  duration_ms: 1.312096
+  type: 'test'
+  ...
+# Subtest: compound TrueType glyphs combine translated contours and USE_MY_METRICS
+ok 157 - compound TrueType glyphs combine translated contours and USE_MY_METRICS
+  ---
+  duration_ms: 1.570829
+  type: 'test'
+  ...
+# Subtest: compound TrueType 2x2 transform uses all four matrix entries
+ok 158 - compound TrueType 2x2 transform uses all four matrix entries
+  ---
+  duration_ms: 1.308035
+  type: 'test'
+  ...
+# Subtest: compound point-number attachment aligns actual parent and child points
+ok 159 - compound point-number attachment aligns actual parent and child points
+  ---
+  duration_ms: 1.353913
+  type: 'test'
+  ...
+# Subtest: TrueType alternate encoding {"shortLoca":true} is outline-identical
+ok 160 - TrueType alternate encoding {"shortLoca":true} is outline-identical
+  ---
+  duration_ms: 2.635971
+  type: 'test'
+  ...
+# Subtest: TrueType alternate encoding {"repeatedFlags":true} is outline-identical
+ok 161 - TrueType alternate encoding {"repeatedFlags":true} is outline-identical
+  ---
+  duration_ms: 4.058124
+  type: 'test'
+  ...
+# Subtest: TrueType collection selects its indexed face with absolute table offsets
+ok 162 - TrueType collection selects its indexed face with absolute table offsets
+  ---
+  duration_ms: 3.343302
+  type: 'test'
+  ...
+# Subtest: WOFF1 uncompressed tables reconstruct the same font
+ok 163 - WOFF1 uncompressed tables reconstruct the same font
+  ---
+  duration_ms: 3.125906
+  type: 'test'
+  ...
+# Subtest: WOFF1 deflated tables reconstruct the same font
+ok 164 - WOFF1 deflated tables reconstruct the same font
+  ---
+  duration_ms: 107.70819
+  type: 'test'
+  ...
+# Subtest: font loader accepts typed-array views with nonzero offsets
+ok 165 - font loader accepts typed-array views with nonzero offsets
+  ---
+  duration_ms: 1.760074
+  type: 'test'
+  ...
+# Subtest: font loader has no hidden font-face downloads when prepared fonts are supplied
+ok 166 - font loader has no hidden font-face downloads when prepared fonts are supplied
+  ---
+  duration_ms: 1.373417
+  type: 'test'
+  ...
+# Subtest: GPOS explicit-pair kerning changes AV advance by the font-specified amount
+ok 167 - GPOS explicit-pair kerning changes AV advance by the font-specified amount
+  ---
+  duration_ms: 4.87179
+  type: 'test'
+  ...
+# Subtest: GPOS class-pair kerning matches explicit-pair measurements
+ok 168 - GPOS class-pair kerning matches explicit-pair measurements
+  ---
+  duration_ms: 2.584827
+  type: 'test'
+  ...
+# Subtest: GPOS extension lookup resolves the embedded pair-positioning subtable
+ok 169 - GPOS extension lookup resolves the embedded pair-positioning subtable
+  ---
+  duration_ms: 3.321195
+  type: 'test'
+  ...
+# Subtest: legacy kern table is used when the script has no GPOS kerning plan
+ok 170 - legacy kern table is used when the script has no GPOS kerning plan
+  ---
+  duration_ms: 2.227148
+  type: 'test'
+  ...
+# Subtest: kerning can be disabled independently of ligature substitution
+ok 171 - kerning can be disabled independently of ligature substitution
+  ---
+  duration_ms: 2.934909
+  type: 'test'
+  ...
+# Subtest: GSUB standard ligature emits the substituted glyph with its own advance
+ok 172 - GSUB standard ligature emits the substituted glyph with its own advance
+  ---
+  duration_ms: 1.597138
+  type: 'test'
+  ...
+# Subtest: ligature disabling retains individual glyphs and leaves kerning enabled
+ok 173 - ligature disabling retains individual glyphs and leaves kerning enabled
+  ---
+  duration_ms: 2.213358
+  type: 'test'
+  ...
+# Subtest: decomposed accents use retained canonical composition when the glyph exists
+ok 174 - decomposed accents use retained canonical composition when the glyph exists
+  ---
+  duration_ms: 2.322082
+  type: 'test'
+  ...
+# Subtest: GPOS mark-to-base anchor uses baseline-relative X/Y offsets
+ok 175 - GPOS mark-to-base anchor uses baseline-relative X/Y offsets
+  ---
+  duration_ms: 1.573778
+  type: 'test'
+  ...
+# Subtest: GPOS mark-to-mark anchor chains accents instead of moving the text advance
+ok 176 - GPOS mark-to-mark anchor chains accents instead of moving the text advance
+  ---
+  duration_ms: 2.54763
+  type: 'test'
+  ...
+# Subtest: caret interpolation across a ligature uses component advances
+ok 177 - caret interpolation across a ligature uses component advances
+  ---
+  duration_ms: 1.852108
+  type: 'test'
+  ...
+# Subtest: caret uses full-string kerning context instead of isolated prefix measurement
+ok 178 - caret uses full-string kerning context instead of isolated prefix measurement
+  ---
+  duration_ms: 1.390157
+  type: 'test'
+  ...
+# Subtest: combining sequence caret boundaries agree with composed glyph advance
+ok 179 - combining sequence caret boundaries agree with composed glyph advance
+  ---
+  duration_ms: 3.188921
+  type: 'test'
+  ...
+# Subtest: font line height uses ascent/descent/gap; explicit lineHeight overrides it
+ok 180 - font line height uses ascent/descent/gap; explicit lineHeight overrides it
+  ---
+  duration_ms: 5.087054
+  type: 'test'
+  ...
+# Subtest: tabs advance to four-space stops without rendering a replacement glyph
+ok 181 - tabs advance to four-space stops without rendering a replacement glyph
+  ---
+  duration_ms: 1.458103
+  type: 'test'
+  ...
+# Subtest: letter spacing is resolved as a pixel distance, not scaled font units
+ok 182 - letter spacing is resolved as a pixel distance, not scaled font units
+  ---
+  duration_ms: 1.407139
+  type: 'test'
+  ...
+# Subtest: word wrapping trims soft-break spaces and preserves hard newlines/CRLF
+ok 183 - word wrapping trims soft-break spaces and preserves hard newlines/CRLF
+  ---
+  duration_ms: 2.326571
+  type: 'test'
+  ...
+# Subtest: long unbroken words wrap at shaped cluster boundaries
+ok 184 - long unbroken words wrap at shaped cluster boundaries
+  ---
+  duration_ms: 1.535515
+  type: 'test'
+  ...
+# Subtest: soft wrapped lines do not apply kerning against a glyph on the next line
+ok 185 - soft wrapped lines do not apply kerning against a glyph on the next line
+  ---
+  duration_ms: 2.912274
+  type: 'test'
+  ...
+# Subtest: declarative font family, size, weight and features inherit through containers
+ok 186 - declarative font family, size, weight and features inherit through containers
+  ---
+  duration_ms: 4.073909
+  type: 'test'
+  ...
+# Subtest: per-glyph fallback uses another loaded family without stealing a primary glyph
+ok 187 - per-glyph fallback uses another loaded family without stealing a primary glyph
+  ---
+  duration_ms: 3.28292
+  type: 'test'
+  ...
+# Subtest: font face selection favors matching styles and closest real weights without synthesis
+ok 188 - font face selection favors matching styles and closest real weights without synthesis
+  ---
+  duration_ms: 0.850982
+  type: 'test'
+  ...
+# Subtest: HTML declarations preserve typography features and booleans
+ok 189 - HTML declarations preserve typography features and booleans
+  ---
+  duration_ms: 2.523688
+  type: 'test'
+  ...
+# Subtest: invalid typography style rejected: {"fontWeight":0}
+ok 190 - invalid typography style rejected: {"fontWeight":0}
+  ---
+  duration_ms: 1.836363
+  type: 'test'
+  ...
+# Subtest: invalid typography style rejected: {"fontStyle":"synthetic"}
+ok 191 - invalid typography style rejected: {"fontStyle":"synthetic"}
+  ---
+  duration_ms: 1.345883
+  type: 'test'
+  ...
+# Subtest: invalid typography style rejected: {"lineHeight":-1}
+ok 192 - invalid typography style rejected: {"lineHeight":-1}
+  ---
+  duration_ms: 1.632291
+  type: 'test'
+  ...
+# Subtest: invalid typography style rejected: {"letterSpacing":null}
+ok 193 - invalid typography style rejected: {"letterSpacing":null}
+  ---
+  duration_ms: 2.225755
+  type: 'test'
+  ...
+# Subtest: invalid typography style rejected: {"fontSize":0}
+ok 194 - invalid typography style rejected: {"fontSize":0}
+  ---
+  duration_ms: 2.229327
+  type: 'test'
+  ...
+# Subtest: invalid typography style rejected: {"textDecoration":"sparkle"}
+ok 195 - invalid typography style rejected: {"textDecoration":"sparkle"}
+  ---
+  duration_ms: 3.010212
+  type: 'test'
+  ...
+# Subtest: invalid typography style rejected: {"textAlignment":"justify"}
+ok 196 - invalid typography style rejected: {"textAlignment":"justify"}
+  ---
+  duration_ms: 2.322271
+  type: 'test'
+  ...
+# Subtest: invalid typography style rejected: {"kerning":"false"}
+ok 197 - invalid typography style rejected: {"kerning":"false"}
+  ---
+  duration_ms: 3.0595
+  type: 'test'
+  ...
+# Subtest: invalid typography style rejected: {"ligatures":1}
+ok 198 - invalid typography style rejected: {"ligatures":1}
+  ---
+  duration_ms: 2.810555
+  type: 'test'
+  ...
+# Subtest: cached glyph arena is fixed and its footprint is explicit
+ok 199 - cached glyph arena is fixed and its footprint is explicit
+  ---
+  duration_ms: 0.592147
+  type: 'test'
+  ...
+# Subtest: invalid glyph cache capacity 0 is rejected
+ok 200 - invalid glyph cache capacity 0 is rejected
+  ---
+  duration_ms: 0.234091
+  type: 'test'
+  ...
+# Subtest: invalid glyph cache capacity 3 is rejected
+ok 201 - invalid glyph cache capacity 3 is rejected
+  ---
+  duration_ms: 0.227118
+  type: 'test'
+  ...
+# Subtest: invalid glyph cache capacity 16384 is rejected
+ok 202 - invalid glyph cache capacity 16384 is rejected
+  ---
+  duration_ms: 0.091741
+  type: 'test'
+  ...
+# Subtest: real font resources are marked as fills, while diagnostic compile is explicit
+ok 203 - real font resources are marked as fills, while diagnostic compile is explicit
+  ---
+  duration_ms: 12.734032
+  type: 'test'
+  ...
+# Subtest: font format failures are explicit, never a successful placeholder substitution
+ok 204 - font format failures are explicit, never a successful placeholder substitution
+  ---
+  duration_ms: 1.905444
+  type: 'test'
+  ...
+# Subtest: malformed head/12 is rejected before GPU upload
+ok 205 - malformed head/12 is rejected before GPU upload
+  ---
+  duration_ms: 2.395387
+  type: 'test'
+  ...
+# Subtest: malformed head/18 is rejected before GPU upload
+ok 206 - malformed head/18 is rejected before GPU upload
+  ---
+  duration_ms: 1.012743
+  type: 'test'
+  ...
+# Subtest: malformed head/50 is rejected before GPU upload
+ok 207 - malformed head/50 is rejected before GPU upload
+  ---
+  duration_ms: 0.966879
+  type: 'test'
+  ...
+# Subtest: malformed hhea/34 is rejected before GPU upload
+ok 208 - malformed hhea/34 is rejected before GPU upload
+  ---
+  duration_ms: 0.950143
+  type: 'test'
+  ...
+# Subtest: malformed loca/4 is rejected before GPU upload
+ok 209 - malformed loca/4 is rejected before GPU upload
+  ---
+  duration_ms: 0.968409
+  type: 'test'
+  ...
+# Subtest: malformed maxp/4 is rejected before GPU upload
+ok 210 - malformed maxp/4 is rejected before GPU upload
+  ---
+  duration_ms: 1.500994
+  type: 'test'
+  ...
+# Subtest: duplicate SFNT table directory entries are rejected
+ok 211 - duplicate SFNT table directory entries are rejected
+  ---
+  duration_ms: 1.136282
+  type: 'test'
+  ...
+# Subtest: truncated SFNT and cyclic composite glyphs are rejected
+ok 212 - truncated SFNT and cyclic composite glyphs are rejected
+  ---
+  duration_ms: 2.149073
+  type: 'test'
+  ...
+# Subtest: configured font byte/outline point limits are enforced
+ok 213 - configured font byte/outline point limits are enforced
+  ---
+  duration_ms: 2.596705
+  type: 'test'
+  ...
+# Subtest: unsupported CFF  font is rejected explicitly
+ok 214 - unsupported CFF  font is rejected explicitly
+  ---
+  duration_ms: 1.055958
+  type: 'test'
+  ...
+# Subtest: unsupported CFF2 font is rejected explicitly
+ok 215 - unsupported CFF2 font is rejected explicitly
+  ---
+  duration_ms: 1.260068
+  type: 'test'
+  ...
+# Subtest: unsupported fvar font is rejected explicitly
+ok 216 - unsupported fvar font is rejected explicitly
+  ---
+  duration_ms: 0.947796
+  type: 'test'
+  ...
+# Subtest: malformed WOFF length and inflated output declaration cannot be accepted
+ok 217 - malformed WOFF length and inflated output declaration cannot be accepted
+  ---
+  duration_ms: 54.039324
+  type: 'test'
+  ...
+# Subtest: font runtime has no Canvas text rasterization or per-frame CPU shaping API
+ok 218 - font runtime has no Canvas text rasterization or per-frame CPU shaping API
+  ---
+  duration_ms: 5.761771
+  type: 'test'
+  ...
+# Subtest: zero-contour TrueType glyph may end at its ten-byte header
+ok 219 - zero-contour TrueType glyph may end at its ten-byte header
+  ---
+  duration_ms: 0.943002
+  type: 'test'
+  ...
+# Subtest: WOFF1 rejects undersized SFNT headers and nonzero reserved fields
+ok 220 - WOFF1 rejects undersized SFNT headers and nonzero reserved fields
+  ---
+  duration_ms: 25.217383
+  type: 'test'
+  ...
+1..220
+# tests 220
+# suites 0
+# pass 220
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 3915.360586

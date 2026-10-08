@@ -1,0 +1,162 @@
+{
+  "scope": "Exact initial scene and listed unchanged components. NOT shader execution, rendered pixels, latency or performance.",
+  "baselineVersion": "0.10.0-experimental",
+  "currentVersion": "0.11.0-experimental",
+  "fontFilesIncluded": false,
+  "fontSet": [
+    {
+      "family": "Noto Sans",
+      "weight": 400,
+      "style": "normal",
+      "glyphs": 3317
+    },
+    {
+      "family": "Noto Sans",
+      "weight": 600,
+      "style": "normal",
+      "glyphs": 3317
+    },
+    {
+      "family": "Noto Sans",
+      "weight": 400,
+      "style": "italic",
+      "glyphs": 3327
+    }
+  ],
+  "sceneDeclarationEqual": true,
+  "buffers": {
+    "nodes": {
+      "equal": true,
+      "bytes": 58176,
+      "sha256": "239019363e4dfa0e1d4457ce39e639622f9a4571cff318ceb9a83933793d072e"
+    },
+    "state": {
+      "equal": true,
+      "bytes": 13184,
+      "sha256": "3f305f612b77265699d3702b5c7fa4d23c85b2f65d9d81729d59eadc7a9748ce"
+    },
+    "heap": {
+      "equal": true,
+      "bytes": 32344544,
+      "sha256": "ea7dced624b386bb75447bbd6d4dd87b8ec8e7b718a33f7c2cdc435a85b8939e"
+    }
+  },
+  "components": [
+    {
+      "path": "src/text/opentype.js",
+      "equal": true,
+      "sha256": "7e066665d9a8d20ab876239416e26a45995fa30f1e4d6ad6e94d30caa224a9c7"
+    },
+    {
+      "path": "src/text/fonts.js",
+      "equal": true,
+      "sha256": "7046904b5396cb898a33d65ac92ab04720916a2065671ee8cd4d3634a0e23245"
+    },
+    {
+      "path": "shaders/text.wgsl",
+      "equal": true,
+      "sha256": "4d006344386482d80d5316e4a6367b048d4d2b4d0baaaf6ab6cddb11cfad8b3b"
+    },
+    {
+      "path": "shaders/flatten.wgsl",
+      "equal": true,
+      "sha256": "34ee7bf4e9181546f88bce5585e3c6f8e72847f24fa82bff8fd19d8ff8d683aa"
+    },
+    {
+      "path": "shaders/layout.wgsl",
+      "equal": true,
+      "sha256": "0da580d7142c9b6677f493ba8351338515f8ce21a9f2f7eaef9735e8700e1458"
+    },
+    {
+      "path": "shaders/data.wgsl",
+      "equal": true,
+      "sha256": "ddac892514846b5376ae5b269f45b856e0e31d269d31e3e88fe6d80684cd6ea2"
+    },
+    {
+      "path": "shaders/data-source.wgsl",
+      "equal": true,
+      "sha256": "d8fcdaebd57708a3622f7aab0c964ce4690c15c69bad1cccef7f80386adb2439"
+    },
+    {
+      "path": "shaders/editor.wgsl",
+      "equal": true,
+      "sha256": "d57ace26ec45c9758edb8feb5b5b02e5d2c4c7343e764c2cc8626f18ea47e762"
+    },
+    {
+      "path": "shaders/editor-render.wgsl",
+      "equal": true,
+      "sha256": "8447098678c24fa9ce96713d1cb9f441c67e49bfbd604d2cd03a6373d151119e"
+    },
+    {
+      "path": "src/gpu/frame-sync.js",
+      "equal": true,
+      "sha256": "5dfbbf5b6fc0b2c162cf472e726d82d3b270b89a8019be389a7476c56e3460f9"
+    },
+    {
+      "path": "src/gpu/cadence.js",
+      "equal": true,
+      "sha256": "d37e28f590e6c48cb421ef89771dc3d41e7cd21bd5e84125e0c9f42100de3200"
+    },
+    {
+      "path": "src/gpu/frame-gate.js",
+      "equal": true,
+      "sha256": "e0e4d385292ddd0073d281711d0c60d80d9dd99fa9417184017ae9ca287b9d90"
+    },
+    {
+      "path": "src/gpu/queue-progress.js",
+      "equal": true,
+      "sha256": "47d0e7388e46fad5eda01216ca27fa9d70b9e05e519f4d8718a28667c85fd8e1"
+    },
+    {
+      "path": "src/gpu/submission.js",
+      "equal": true,
+      "sha256": "30295b062da3f0028a5dd9b21927abdb261a9803cdf18c5798b9d6add0d1d52e"
+    },
+    {
+      "path": "src/gpu/performance.js",
+      "equal": true,
+      "sha256": "d884edd73b694604eeccf5ec350f6223054277827104c17c1e7833fc1b494a20"
+    },
+    {
+      "path": "shaders/metrics.wgsl",
+      "equal": true,
+      "sha256": "60472f5eadb0ef8444e3abe30ad0eef51da5eff75a503faa12b20da9ffb4d455"
+    }
+  ],
+  "views": 202,
+  "rows": 65536,
+  "animations": 8,
+  "note": "Source-curve coverage, clipped glyph pixels, pixel allocation, HUD compute composition, preview sampling and cache revision were deliberately changed. Those components are NOT claimed byte-identical.",
+  "baselineLimits": {
+    "maxHeapWords": 16777216,
+    "maxNodes": 512,
+    "maxDepth": 24,
+    "maxRows": 65536,
+    "maxColumns": 8,
+    "textCapacity": 256,
+    "maxPrimitives": 16384,
+    "maxJobs": 131072,
+    "maxStrips": 262144,
+    "maxAlphaTiles": 196608,
+    "maxTileEntries": 256,
+    "maxDimension": 2048,
+    "glyphCacheSlots": 2048
+  },
+  "currentLimits": {
+    "maxHeapWords": 16777216,
+    "maxNodes": 512,
+    "maxDepth": 24,
+    "maxRows": 65536,
+    "maxColumns": 8,
+    "textCapacity": 256,
+    "maxPrimitives": 16384,
+    "maxJobs": 131072,
+    "maxStrips": 262144,
+    "maxAlphaTiles": 196608,
+    "maxTileEntries": 256,
+    "maxDimension": 8192,
+    "maxRenderTiles": 65536,
+    "glyphCacheSlots": 2048
+  },
+  "status": "PASS_EXPLICIT_PRESERVATION_SCOPE"
+}

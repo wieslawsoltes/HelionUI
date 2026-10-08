@@ -1,0 +1,15 @@
+<!doctype html><html lang="en"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Helion native vsync pacing comparison</title>
+<style>body{margin:0;background:#101a23;color:#dce9f1;font:14px/1.6 system-ui}header{padding:18px 24px}h1{margin:0;font-size:23px}p{max-width:1050px;color:#aec1d0}button,select,input{font:inherit;padding:7px;border:1px solid #496173;border-radius:5px;background:#1b2b38;color:inherit}label{display:inline-block;margin:6px 16px 6px 0}canvas{display:block;width:100%;height:660px;max-height:75vh}pre{padding:20px;white-space:pre-wrap;overflow-wrap:anywhere}button:disabled{opacity:.5}</style>
+<header><h1>Vsync pacing: same GPU workload, different admission policies</h1>
+<p>This runs three continuous phases in the same mounted surface: paced → unbounded → paced (or reversed). Fonts, pixels, resolution, data and shaders are unchanged between arms. No per-frame fence waits or GPU readback occurs during a phase. Measurements distinguish rAF callbacks, actual submissions and capacity deferrals. Neither callback cadence nor queue notifications measure physical scanout or compositor dropped frames.</p>
+<label>Workload <select id="workload"><option value="showcase">Full 65,536-row real-font showcase</option><option value="small">Small original-fixture scheduling probe</option></select></label>
+<label>Phase <select id="duration"><option value="3000">3 seconds</option><option selected value="6000">6 seconds</option></select></label>
+<label>GPU timing <select id="timing"><option selected value="frame">Frame ranges</option><option value="off">Off (CPU-labelled HUD, no timestamp writes)</option><option value="stages">Detailed stages</option></select></label>
+<label><input type="checkbox" id="hud" checked> Same HUD in all arms</label>
+<label><input type="checkbox" id="reverse"> Reverse arm order</label>
+<label>Local font files <input type="file" id="fonts" accept=".ttf,.otf,.ttc,.woff" multiple></label><br>
+<button id="run">Run native comparison</button> <button id="save" disabled>Save JSON</button>
+<p>Keep this tab visible and the viewport unchanged. Unbounded reference mode can intentionally build a queue. A timeout, GPU error, resize, or arena overflow invalidates the run; it is not counted as an improvement. Record a repeat without DevTools recording for a separate observation—do not conflate it with the recorded run.</p></header>
+<canvas id="pacing-surface"></canvas><pre id="log">Not run. No measured FPS result is supplied with the source.</pre>
+<script type="module" src="./pacing-browser.js"></script></html>

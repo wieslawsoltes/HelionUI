@@ -1,0 +1,122 @@
+{
+  "version": "0.12.2-experimental",
+  "recordedAtUTC": "2026-09-26T05:36:20.810158+00:00",
+  "status": "HOST_AND_BUILD_PASS_NATIVE_UNVERIFIED",
+  "hostTests": {
+    "passed": 805,
+    "failed": 0,
+    "skipped": 0,
+    "baselinePassed": 766,
+    "newTests": 39
+  },
+  "static": {
+    "javascriptModules": 149,
+    "wgslFiles": 25,
+    "allCoreEntries": 45
+  },
+  "embedding": {
+    "modules": 76,
+    "shaderSources": 25,
+    "standaloneApps": 3,
+    "workerKinds": 2,
+    "exportTemplate": "losslessly compressed; inflated bytes independently checked"
+  },
+  "checks": {
+    "hostTests": {
+      "command": "npm test",
+      "exitCode": 0,
+      "status": "PASS",
+      "log": "startup-repair-logs/final-host-tests.log",
+      "logSHA256": "36e868a44782b2622482a97a688884f642ed698f5648222ee08ab4ff9b9857d3"
+    },
+    "static": {
+      "command": "npm run check",
+      "exitCode": 0,
+      "status": "PASS",
+      "log": "startup-repair-logs/final-static.log",
+      "logSHA256": "ce1cc3999e152ed678e9da7e16052d8f0ae7abc622aeae185a468d3ad1446bb3"
+    },
+    "types": {
+      "command": "tsc --strict --noEmit --target es2022 --module nodenext --moduleResolution nodenext --lib es2023,dom tests/api-types.ts tests/designer-api.ts",
+      "exitCode": 0,
+      "status": "PASS",
+      "log": "startup-repair-logs/final-types.log",
+      "logSHA256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "build": {
+      "command": "npm run build",
+      "exitCode": 0,
+      "status": "PASS",
+      "log": "startup-repair-logs/final-build.log",
+      "logSHA256": "9972bf61d3337faaebb46e2ec7ff69c422dbb98f2a993e9219855e778a388806"
+    },
+    "bundle": {
+      "command": "npm run check:build",
+      "exitCode": 0,
+      "status": "PASS",
+      "log": "startup-repair-logs/final-bundle.log",
+      "logSHA256": "862d52c28f2ff2b3463dc592d0462d4e7e4c33d61b0fbcd292e8a437c25eb6a4"
+    },
+    "sourceAudit": {
+      "command": "node tools/audit-startup-repair.mjs --baseline=<0.12.1-source> --output=docs/startup-repair-audit.json",
+      "exitCode": 0,
+      "status": "PASS",
+      "log": "startup-repair-logs/audit.log",
+      "logSHA256": "a507ad1a1f3f2895a4031c21908a9607fe0c748a911688e9c92a9ff6cb7d9ed7"
+    },
+    "keyboardDifferential": {
+      "command": "test-only baseline/current scalar editor adapter differential",
+      "exitCode": 0,
+      "status": "PASS",
+      "log": "startup-repair-logs/key-differential.log",
+      "logSHA256": "1311227b0c3dcd221380c59358ba24538838ffba7e7a6fc95aacd56a72f467b9"
+    },
+    "nativeCompiler": {
+      "command": "npm run check:native",
+      "exitCode": 1,
+      "status": "UNVERIFIED",
+      "log": "startup-repair-logs/native-node.log",
+      "logSHA256": "3de81c0d81017071b032e1ccac2f43819afc80f2cf914d9dd5e3f3dcf0611502"
+    },
+    "nativeBrowser": {
+      "command": "Playwright navigation to served tests/shaders.html and tests/designer.html",
+      "exitCode": null,
+      "status": "UNVERIFIED",
+      "log": "startup-repair-logs/native-browser.log",
+      "logSHA256": "ba9792dfa9a25ce8684e4ce35b96c6e56f8682b8c999fbe0b142405d23646caa"
+    }
+  },
+  "scope": "Host algorithms, scalar shader-body adapters and non-executing GPU fakes. Not native type validation, GPU execution, browser performance, first-frame completion or final pixels.",
+  "native": {
+    "version": "0.12.2-experimental",
+    "recordedAtUTC": "2026-09-26T05:34:18.241838+00:00",
+    "status": "UNVERIFIED",
+    "shaderExecution": false,
+    "nativePixels": false,
+    "hardwarePerformance": false,
+    "pages": [
+      {
+        "url": "http://127.0.0.1:8135/tests/shaders.html?autorun",
+        "serverStatus": 200,
+        "navigation": "BLOCKED_OR_FAILED",
+        "error": "Page.goto: net::ERR_BLOCKED_BY_ADMINISTRATOR at http://127.0.0.1:8135/tests/shaders.html?autorun\nCall log:\n  - navigating to \"http://127.0.0.1:8135/tests/shaders.html?autorun\", waiting until \"load\"\n"
+      },
+      {
+        "url": "http://127.0.0.1:8135/tests/designer.html?autorun",
+        "serverStatus": 200,
+        "navigation": "BLOCKED_OR_FAILED",
+        "error": "Page.goto: net::ERR_BLOCKED_BY_ADMINISTRATOR at http://127.0.0.1:8135/tests/designer.html?autorun\nCall log:\n  - navigating to \"http://127.0.0.1:8135/tests/designer.html?autorun\", waiting until \"load\"\n"
+      }
+    ]
+  },
+  "preservation": {
+    "sceneCount": 5,
+    "allInitialBuffersEqual": true,
+    "protectedFilesEqual": 23,
+    "typefaceFilesIncluded": false
+  },
+  "keyboardDifferentialCases": 2000,
+  "firstFrameMeasured": false,
+  "startupSpeedupMeasured": false,
+  "hardwareHangResolvedVerified": false
+}

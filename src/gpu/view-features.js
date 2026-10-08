@@ -1,0 +1,21 @@
+/** Startup specialization uses declarations only; no mutable CPU state is retained. */
+export function viewFeatures(view, options={}) {
+ if(view?.nodes)return ((view.shapedTexts?.length||view.presenters?.length)?256:0)|((view.templateSystem||view.presenters?.length)?128:0)| (view.editors?.length?1:0)|(view.docks?.length?2:0)|(view.models?.length?4:0)|(view.lists?.length?8:0)|(view.presenters?.length?16:0)|(view.designers?.length?32:0)|((view.tables?.length||view.presenters?.length)?64:0);
+ let flags=(options.textShaping==='opentype'?256:0)|(options.theme||options.templates||options.themes?128:0);const seen=new Set();const visit=v=>{if(!v||typeof v!=='object'||seen.has(v))return;seen.add(v);if(Object.values(v.props??{}).some(p=>p?.kind==='themeResource')||v.props?.template||v.props?.Template||v.props?.theme||v.props?.Theme||v.props?.templates||v.props?.Templates||v.props?.controlThemes||v.props?.ControlThemes||v.props?.action?.type==='template')flags|=128;if(seen.size>512)return;
+ if(v.type==='TextBox'||v.type==='NativeContentPresenter'||v.type==='SurfacePresenter'||v.props?.textShaping==='opentype'||v.props?.TextShaping==='opentype'||v.props?.fontFeatures||v.props?.FontFeatures||v.props?.fontScript||v.props?.fontLanguage||v.props?.FontLanguage||v.props?.FontScript||v.props?.flowDirection||v.props?.FlowDirection||v.props?.templateExpressions?.text||v.props?.textCapacity!=null||v.props?.TextCapacity!=null||/[^\u0000-\u007f]/u.test(String(v.props?.text??v.props?.Text??''))||v.type==='Drawing')flags|=256;
+ if(v.type==='DataGrid'||v.type==='SurfacePresenter')flags|=64;if(v.type==='SurfacePresenter')flags|=128;if(v.type==='DesignSurface'){flags|=288;if(v.props?.designDocument?.templates?.length)flags|=128;}if(v.type==='SurfacePresenter')flags|=16;if(v.type==='TextEditor'||v.type==='CodeEditor')flags|=1;if(v.type==='ListBox'||v.type==='TreeView')flags|=8;if(v.type==='DockWorkspace'||v.type==='DockItem')flags|=2;if(v.props?.models||v.props?.Models||v.props?.styles||v.props?.Styles||v.props?.resources||v.props?.Resources)flags|=4;for(const c of v.children??[])visit(c);if(v.props?.template?.root)visit(v.props.template.root);if(v.props?.Template?.root)visit(v.props.Template.root);for(const t of Object.values(v.props?.templates??v.props?.Templates??{}))if(t?.root)visit(t.root);scanStyles(v.props?.styles??v.props?.Styles);};
+ const scanStyles=styles=>{if(!styles)return;if(typeof styles==='string'){if(/\b(?:template|controlThemes|theme)\s*:/i.test(styles))flags|=128;if(/\b(?:textShaping|fontFeatures|fontScript|fontLanguage|flowDirection|textCapacity)\s*:/i.test(styles))flags|=256;return;}for(const rule of Array.isArray(styles)?styles:[styles]){if(typeof rule==='string'){scanStyles(rule);continue;}const setters=rule?.setters??{};if(['textShaping','TextShaping','fontFeatures','FontFeatures','fontScript','FontScript','fontLanguage','FontLanguage','flowDirection','FlowDirection','textCapacity','TextCapacity'].some(k=>setters[k]!=null))flags|=256;if(Object.values(setters).some(x=>x?.kind==='themeResource')||setters.template||setters.Template||setters.controlThemes||setters.ControlThemes)flags|=128;const t=setters.template??setters.Template;if(t?.root)visit(t.root);}};visit(view);for(const t of Object.values(options.templates??{}))if(t?.root)visit(t.root);scanStyles(options.styles);
+ // Styles can author model declarations; conservatively retain that optional family.
+ if(options.styles||options.resources)flags|=4;return flags;
+}
+export function entryEnabled(entry, flags=511){
+ if(['shapeTextRuns','layoutTextRuns'].includes(entry))return !!(flags&256);
+ if(['resolveTemplateLayout','resolveTemplateVisuals','rankTemplateTree'].includes(entry))return !!(flags&128);
+ if(['initializeData','filterScan','scanBlocks','scatterRows','sortBlocks','mergeRows','resolveSelection','emitGridParts'].includes(entry))return !!(flags&64);
+ if(['synchronizeDesigners','animateDesigners'].includes(entry))return !!(flags&32);
+ if(entry==='preparePresenterFrame')return !!(flags&16);
+ if(['layoutLists','emitListParts'].includes(entry))return !!(flags&8);
+ if(['analyzeEditors','layoutEditors','emitEditorParts'].includes(entry))return !!(flags&1);
+ if(['pullModels','evaluateModels','pushModels'].includes(entry))return !!(flags&4);
+ return true;
+}

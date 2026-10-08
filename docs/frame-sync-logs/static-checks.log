@@ -1,0 +1,6 @@
+
+> @helion/ui@0.6.0-experimental check
+> node tools/check.mjs
+
+Static checks passed: 60 JS modules, 13 WGSL sources, 31 compute entries, 202 showcase nodes.
+These checks are NOT native shader compilation or GPU execution. Run tests/gpu.html for those gates.

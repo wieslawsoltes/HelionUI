@@ -1,0 +1,34 @@
+name: Validate source and build
+on: [push, pull_request, workflow_dispatch]
+permissions:
+  contents: read
+jobs:
+  host-tests:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - run: npm run check
+      - run: npm test
+      - run: npm run build
+      - run: npm run check:build
+      - uses: actions/upload-artifact@v4
+        with:
+          name: helion-site
+          path: dist/
+  native-shaders:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Install optional native validator (no runtime dependency)
+        run: npm install --no-save --package-lock=false webgpu@0.6.1
+      - name: Validate WGSL and all pipeline interfaces with Dawn
+        run: npm run check:native
+# The native-shaders job uses Dawn's null backend: validation, NOT GPU execution.
+# Actual browser/GPU qualification remains tests/gpu.html or tools/gpu-test.py.
+# No remote run of this new job was performed in the authoring environment.

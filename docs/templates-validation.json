@@ -1,0 +1,132 @@
+{
+  "version": "0.13.0-experimental",
+  "baselineVersion": "0.12.3-experimental",
+  "recordedAtUTC": "2026-09-26T13:40:06.830330+00:00",
+  "status": "HOST_AND_BUILD_CHECKS_PASS_NATIVE_GPU_UNVERIFIED",
+  "hostTests": {
+    "tests": 897,
+    "pass": 897,
+    "fail": 0,
+    "skipped": 0,
+    "cancelled": 0
+  },
+  "newTemplateTests": 57,
+  "baselineHostTests": 839,
+  "newPlaygroundExampleTests": 1,
+  "static": {
+    "javascriptModules": 168,
+    "shaderSources": 26,
+    "coreComputeEntries": 48,
+    "showcaseNodes": 202
+  },
+  "bundle": {
+    "embeddedModules": 87,
+    "shaderSources": 26,
+    "startupWorker": "EXACT",
+    "authoringWorker": "EXACT",
+    "appExportTemplate": "EXACT",
+    "standaloneApps": 3
+  },
+  "checks": {
+    "host-tests": {
+      "command": "npm test",
+      "exitCode": 0,
+      "status": "PASS",
+      "log": "templates-release-logs/host-tests.log",
+      "logSHA256": "85f376453d967f4a8ccc85578fe16b65fffb87d438af547d83aa2e68dde3a3f8"
+    },
+    "static": {
+      "command": "npm run check",
+      "exitCode": 0,
+      "status": "PASS",
+      "log": "templates-release-logs/static.log",
+      "logSHA256": "b9e64e6670a4f9a11e2dec80aef51504a7db115b9c201541f047469ab0b67478"
+    },
+    "types": {
+      "command": "tsc --strict --noEmit --target es2022 --module nodenext --moduleResolution nodenext --lib es2023,dom tests/api-types.ts tests/designer-api.ts tests/templates-api.ts",
+      "exitCode": 0,
+      "status": "PASS",
+      "log": "templates-release-logs/types.log",
+      "logSHA256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "build": {
+      "command": "npm run build",
+      "exitCode": 0,
+      "status": "PASS",
+      "log": "templates-release-logs/build.log",
+      "logSHA256": "946ca7c52d6b6a572ee3b43dda804312716e189c24249a0bc9491a47e1e583d0"
+    },
+    "bundle": {
+      "command": "npm run check:build",
+      "exitCode": 0,
+      "status": "PASS",
+      "log": "templates-release-logs/bundle.log",
+      "logSHA256": "43d0f31ce8fc9c5640eddb1bf14c25f0518ed65f3a50aa68538383fb483779e2"
+    },
+    "preservation": {
+      "command": "node tools/audit-templates.mjs --baseline=/path/to/0.12.3/helion-ui --font=/your/NotoSans-Regular.ttf --output=preservation.json",
+      "exitCode": 0,
+      "status": "PASS",
+      "log": "templates-release-logs/preservation.log",
+      "logSHA256": "70ab9bd6a51f931a1b38ad493683040de8bc8d450e843b0490d80e3926d5d7d8"
+    },
+    "template-browser": {
+      "command": "python3 tools/check-template-browser.py --output=template-browser.json",
+      "exitCode": 2,
+      "status": "UNVERIFIED_NATIVE_GATE",
+      "log": "templates-release-logs/template-browser.log",
+      "logSHA256": "0e228a009fefc8e6ccde0882073b1eccb3513bd6138f32d606bd267772416ad6"
+    },
+    "browser-host": {
+      "command": "python3 tools/check-browser-host.py --output=browser-host.json",
+      "exitCode": 2,
+      "status": "UNVERIFIED_NATIVE_GATE",
+      "log": "templates-release-logs/browser-host.log",
+      "logSHA256": "071f5b4f801dfbdef7beb855660071762dd328d639a67300800ba91e57e9c225"
+    },
+    "native-compiler": {
+      "command": "npm run check:native",
+      "exitCode": 1,
+      "status": "UNVERIFIED_NATIVE_GATE",
+      "log": "templates-release-logs/native-compiler.log",
+      "logSHA256": "560c2a632b7715139844419437c6ffa250e1654872af581b41d083bfa7f1a2a3"
+    }
+  },
+  "nativeGPU": {
+    "status": "UNVERIFIED",
+    "servedBrowser": "ERR_BLOCKED_BY_ADMINISTRATOR before page load",
+    "optionalCompiler": "Official Dawn Node binding absent; command exits nonzero",
+    "shaderExecution": false,
+    "pixelComparison": false,
+    "hardwarePerformanceMeasured": false,
+    "providedGates": [
+      "tests/templates.html",
+      "tests/shaders.html",
+      "tests/designer.html"
+    ]
+  },
+  "isolatedBrowserHost": {
+    "status": "PASS_FOR_LISTED_HOST_CHECKS_ONLY",
+    "browser": "Chromium 144.0.7559.96",
+    "observed": [
+      "Native watchdog timer lifecycle",
+      "Classic Blob worker preparation and cancellation",
+      "Two templated scene workers with byte-identical nodes/state/heap and template manifests"
+    ],
+    "templateWorkerReport": "template-browser.json",
+    "timerWorkerReport": "templates-host-browser.json",
+    "notEstablished": [
+      "WGSL compiler acceptance",
+      "GPU execution",
+      "final pixels",
+      "source-hosted module workers",
+      "secure-context authoring sandbox",
+      "hardware speed"
+    ],
+    "originOrCSPBypass": false
+  },
+  "preservation": "templates-preservation.json",
+  "featureContract": "TEMPLATES.md",
+  "qualification": "Connected bounded template runtime, Studio and original themes; not complete WPF/WinUI/macOS parity. No performance improvement or native rendering pass claimed.",
+  "packageVerification": "See external helion-ui-templates-manifest.json for exact hashes and fresh extraction/retest/rebuild results. It is created only after packages exist."
+}

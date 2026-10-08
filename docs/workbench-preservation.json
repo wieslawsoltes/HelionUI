@@ -1,0 +1,125 @@
+{
+  "scope": "CPU source/initial-buffer comparison, NOT native pixels or FPS. No font assets included.",
+  "baselineVersion": "0.8.0-experimental",
+  "currentVersion": "0.9.0-experimental",
+  "baseline": {
+    "nodes": 202,
+    "rows": 65536,
+    "animations": 8,
+    "fonts": [
+      {
+        "family": "DejaVu Sans",
+        "weight": 400,
+        "style": "normal",
+        "glyphs": 6253
+      },
+      {
+        "family": "DejaVu Sans",
+        "weight": 700,
+        "style": "normal",
+        "glyphs": 6196
+      },
+      {
+        "family": "DejaVu Sans",
+        "weight": 400,
+        "style": "italic",
+        "glyphs": 5355
+      }
+    ],
+    "arrays": {
+      "nodes": {
+        "bytes": 58176,
+        "sha256": "fed20d01d84241dcb0f10d696cbc67c5e66ac357ccd6b9cd815e4bbf69f77d8a"
+      },
+      "state": {
+        "bytes": 13184,
+        "sha256": "23175c647451c0379539e01966a399c56ebf58852e255ebb819eb12dad65bdb5"
+      },
+      "heap": {
+        "bytes": 54960608,
+        "sha256": "c00c8cfa6b76ec6a7f824a06783536d8097d63d09464b2f81f856801d12f1962"
+      }
+    }
+  },
+  "current": {
+    "nodes": 202,
+    "rows": 65536,
+    "animations": 8,
+    "fonts": [
+      {
+        "family": "DejaVu Sans",
+        "weight": 400,
+        "style": "normal",
+        "glyphs": 6253
+      },
+      {
+        "family": "DejaVu Sans",
+        "weight": 700,
+        "style": "normal",
+        "glyphs": 6196
+      },
+      {
+        "family": "DejaVu Sans",
+        "weight": 400,
+        "style": "italic",
+        "glyphs": 5355
+      }
+    ],
+    "arrays": {
+      "nodes": {
+        "bytes": 58176,
+        "sha256": "fed20d01d84241dcb0f10d696cbc67c5e66ac357ccd6b9cd815e4bbf69f77d8a"
+      },
+      "state": {
+        "bytes": 13184,
+        "sha256": "23175c647451c0379539e01966a399c56ebf58852e255ebb819eb12dad65bdb5"
+      },
+      "heap": {
+        "bytes": 54960608,
+        "sha256": "c00c8cfa6b76ec6a7f824a06783536d8097d63d09464b2f81f856801d12f1962"
+      }
+    }
+  },
+  "arrayEquality": {
+    "nodes": true,
+    "state": true,
+    "heap": true
+  },
+  "sourceComparisons": [
+    {
+      "file": "shaders/text.wgsl",
+      "equal": true,
+      "sha256": "4d006344386482d80d5316e4a6367b048d4d2b4d0baaaf6ab6cddb11cfad8b3b"
+    },
+    {
+      "file": "shaders/flatten.wgsl",
+      "equal": true,
+      "sha256": "34ee7bf4e9181546f88bce5585e3c6f8e72847f24fa82bff8fd19d8ff8d683aa"
+    },
+    {
+      "file": "shaders/glyph-cache.wgsl",
+      "equal": true,
+      "sha256": "cb9bbc5086997ad7871b3a93e0b2f28aea34c3aa47251d24f3e2fa8d2c1072a7"
+    },
+    {
+      "file": "src/text/opentype.js",
+      "equal": true,
+      "sha256": "7e066665d9a8d20ab876239416e26a45995fa30f1e4d6ad6e94d30caa224a9c7"
+    },
+    {
+      "file": "src/gpu/frame-gate.js",
+      "equal": true,
+      "sha256": "e0e4d385292ddd0073d281711d0c60d80d9dd99fa9417184017ae9ca287b9d90"
+    },
+    {
+      "file": "src/gpu/queue-progress.js",
+      "equal": true,
+      "sha256": "47d0e7388e46fad5eda01216ca27fa9d70b9e05e519f4d8718a28667c85fd8e1"
+    },
+    {
+      "file": "src/gpu/performance.js",
+      "equal": true,
+      "sha256": "d884edd73b694604eeccf5ec350f6223054277827104c17c1e7833fc1b494a20"
+    }
+  ]
+}

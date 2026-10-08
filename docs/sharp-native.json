@@ -1,0 +1,9 @@
+{
+  "url": "http://127.0.0.1:8089/tests/quality.html?autorun",
+  "httpStatus": 200,
+  "status": "BLOCKED",
+  "gpuExecutionVerified": false,
+  "visualPixelsVerified": false,
+  "performanceMeasured": false,
+  "error": "Page.goto: net::ERR_BLOCKED_BY_ADMINISTRATOR at http://127.0.0.1:8089/tests/quality.html?autorun\nCall log:\n  - navigating to \"http://127.0.0.1:8089/tests/quality.html?autorun\", waiting until \"load\"\n"
+}

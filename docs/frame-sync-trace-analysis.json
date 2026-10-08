@@ -1,0 +1,207 @@
+{
+  "schema": 1,
+  "scope": "Source trace event analysis, NOT an updated-engine benchmark or hardware GPU busy-time measurement",
+  "recordingStartUTC": "2026-09-24T10:11:00.862Z",
+  "hostDPR": 2,
+  "traceEvents": 79806,
+  "windowMicroseconds": {
+    "start": 1138316924596,
+    "end": 1138324366701,
+    "duration": 7442105
+  },
+  "rendererPID": 1615,
+  "rendererProcessName": "Renderer",
+  "requestAnimationFrameEvents": 396,
+  "animationFrameCallbacks": 396,
+  "callbacksPerRecordingSecond": 53.21075152796151,
+  "callbackIntervalMs": {
+    "count": 395,
+    "min": 8.671,
+    "median": 19.443,
+    "p95": 20.532799999999998,
+    "max": 27.339,
+    "mean": 18.78414430379747
+  },
+  "callbackHostDurationMs": {
+    "count": 396,
+    "min": 0.07,
+    "median": 0.112,
+    "p95": 0.146,
+    "max": 2.93,
+    "mean": 0.1255
+  },
+  "compositorBeginFrameEvents": 923,
+  "compositorBeginFrameIntervalMs": {
+    "count": 922,
+    "min": 0.002,
+    "median": 8.333,
+    "p95": 9.27995,
+    "max": 9.8,
+    "mean": 8.061015184381779
+  },
+  "droppedFrameMarkers": 527,
+  "drawFrameEvents": 396,
+  "animationFramePresentationEvents": 391,
+  "animationFramePresentationIntervalMs": {
+    "count": 390,
+    "min": 13.558,
+    "median": 16.666,
+    "p95": 25.018,
+    "max": 25.528,
+    "mean": 18.824284615384617
+  },
+  "gpuTask": {
+    "count": 834,
+    "recordedHostDurationMs": {
+      "count": 834,
+      "min": 0.002,
+      "median": 0.0505,
+      "p95": 0.3813499999999999,
+      "max": 0.984,
+      "mean": 0.17966786570743404
+    },
+    "threads": [
+      "CrGpuMain"
+    ],
+    "interpretation": "GPUTask marks GPU-process command-processing CPU tasks; it is not the complete application shader duration."
+  },
+  "compositorPipelineStages": {
+    "SendBeginMainFrameToCommit": {
+      "rawPairedCount": 391,
+      "duplicateIntervalsRemoved": 0,
+      "durationMs": {
+        "count": 391,
+        "min": 0.175,
+        "median": 0.315,
+        "p95": 0.3995,
+        "max": 10.52,
+        "mean": 0.3496751918158568
+      }
+    },
+    "EndActivateToSubmitCompositorFrame": {
+      "rawPairedCount": 782,
+      "duplicateIntervalsRemoved": 0,
+      "durationMs": {
+        "count": 782,
+        "min": 0.007,
+        "median": 3.8115,
+        "p95": 19.84665,
+        "max": 26.99,
+        "mean": 9.242687979539642
+      }
+    },
+    "SubmitCompositorFrameToPresentationCompositorFrame": {
+      "rawPairedCount": 783,
+      "duplicateIntervalsRemoved": 391,
+      "durationMs": {
+        "count": 392,
+        "min": 61.397,
+        "median": 69.963,
+        "p95": 76.4927,
+        "max": 78.057,
+        "mean": 69.95251275510203
+      }
+    },
+    "SubmitToReceiveCompositorFrame": {
+      "rawPairedCount": 783,
+      "duplicateIntervalsRemoved": 391,
+      "durationMs": {
+        "count": 392,
+        "min": 0.023,
+        "median": 0.066,
+        "p95": 0.09845,
+        "max": 0.237,
+        "mean": 0.0670969387755102
+      }
+    },
+    "ReceiveCompositorFrameToStartDraw": {
+      "rawPairedCount": 783,
+      "duplicateIntervalsRemoved": 391,
+      "durationMs": {
+        "count": 392,
+        "min": 11.982,
+        "median": 19.3565,
+        "p95": 20.171599999999998,
+        "max": 27.26,
+        "mean": 18.674882653061225
+      }
+    },
+    "StartDrawToSwapStart": {
+      "rawPairedCount": 785,
+      "duplicateIntervalsRemoved": 392,
+      "durationMs": {
+        "count": 393,
+        "min": 30.049,
+        "median": 38.56,
+        "p95": 39.855599999999995,
+        "max": 41.111,
+        "mean": 37.13489312977099
+      }
+    },
+    "BufferAvailableToBufferReady": {
+      "rawPairedCount": 789,
+      "duplicateIntervalsRemoved": 394,
+      "durationMs": {
+        "count": 395,
+        "min": 0.001,
+        "median": 0.002,
+        "p95": 0.003,
+        "max": 0.012,
+        "mean": 0.002111392405063291
+      }
+    },
+    "BufferReadyToLatch": {
+      "rawPairedCount": 789,
+      "duplicateIntervalsRemoved": 394,
+      "durationMs": {
+        "count": 395,
+        "min": 0.027,
+        "median": 0.046,
+        "p95": 0.055,
+        "max": 0.408,
+        "mean": 0.04736708860759494
+      }
+    },
+    "LatchToSwapEnd": {
+      "rawPairedCount": 789,
+      "duplicateIntervalsRemoved": 394,
+      "durationMs": {
+        "count": 395,
+        "min": 0.095,
+        "median": 0.132,
+        "p95": 0.18789999999999987,
+        "max": 3.446,
+        "mean": 0.14982784810126581
+      }
+    },
+    "SwapEndToPresentationCompositorFrame": {
+      "rawPairedCount": 789,
+      "duplicateIntervalsRemoved": 394,
+      "durationMs": {
+        "count": 395,
+        "min": 8.209,
+        "median": 13.958,
+        "p95": 17.5691,
+        "max": 17.988,
+        "mean": 13.863296202531647
+      }
+    }
+  },
+  "pipelineReporterStates": {
+    "STATE_DROPPED": 527,
+    "STATE_PRESENTED_PARTIAL": 390,
+    "STATE_PRESENTED_ALL": 390
+  },
+  "pairing": {
+    "unmatchedEndsAcrossTrace": 0,
+    "method": "Paired async b/e events by process, async ID, name and scope. Fully contained intervals only. Exact duplicate process/start/end stage intervals removed to avoid counting forked reporters twice."
+  },
+  "qualifications": [
+    "BeginFrame cadence and DroppedFrame markers are compositor trace events, not independent measurements of physical scanout.",
+    "Presentation-stage elapsed times may include queuing and waiting. Do not sum stage medians or equate them to kernel busy time.",
+    "Whole-recording callback rate and short moving-window HUD rates need not match.",
+    "This analyzer does not reconstruct Helion GPU query buffers; obtain raw timestamp/frame provenance through the explicit diagnostics button.",
+    "No website URLs, screenshot image bytes, JS profiles, font files or user input contents are exported."
+  ],
+  "sourceSHA256": "412cd016d9044d2723847a35da132469a294eeaee6643aea50061035619f479f"
+}

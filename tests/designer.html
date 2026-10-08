@@ -1,0 +1,7 @@
+<!doctype html><html lang="en"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Helion Studio — native designer gate</title>
+<style>:root{font:14px system-ui;color-scheme:dark;background:#101b28;color:#cbdce9}body{margin:20px}p{max-width:1000px;line-height:1.6}button{font:inherit;background:#25455b;color:inherit;border:1px solid #537489;border-radius:5px;padding:10px 16px;cursor:pointer}canvas{display:block;margin:18px 0;width:1120px;height:760px;max-width:100%;outline:1px solid #294a60}pre{padding:16px;background:#09141f;white-space:pre-wrap;overflow-wrap:anywhere}</style>
+<h1>Native compute-designer correctness gate</h1><p>Runs actual WebGPU kernels: dynamic native controls, canvas selection and drag, history, hierarchy, Grid, states, keyframes, live controls, export/restore, and retained/full pixels. The font is an original synthetic fixture, not a UI font. The test serializes frames and explicitly reads buffers; it is <strong>not a frame-rate benchmark</strong>. No result is pre-populated as passing.</p>
+<button id="run">Run native checks</button> <button id="save">Save result JSON</button> <a href="../designer/">Open real-font designer</a>
+<canvas id="surface" aria-label="GPU designer correctness test"></canvas><pre id="result">Ready — native checks have not run.</pre>
+<script type="module" src="./designer-gpu.js"></script></html>

@@ -1,0 +1,130 @@
+{
+  "version": "0.4.1-experimental",
+  "date": "2026-09-24T07:52:49.059988+00:00",
+  "status": "HOST_CHECKS_PASS_NATIVE_UNVERIFIED",
+  "hostTests": {
+    "tests": 279,
+    "pass": 279,
+    "fail": 0,
+    "skipped": 0
+  },
+  "newTests": 19,
+  "staticChecks": {
+    "status": "PASS",
+    "javaScriptModules": 51,
+    "wgslSourceFiles": 13,
+    "coreComputeEntries": 30,
+    "hudComputeEntries": 2,
+    "historyComputeEntries": 1,
+    "presentationPipelines": 1,
+    "nativeCompilationImplied": false
+  },
+  "typeScriptAPI": {
+    "status": "PASS",
+    "command": "tsc --noEmit --strict --target ES2022 --lib ES2022,DOM --module NodeNext --moduleResolution NodeNext tests/api-types.ts"
+  },
+  "build": {
+    "status": "PASS",
+    "exactShaderSourceCount": 13,
+    "embeddedJSModules": 23,
+    "workerEmbedding": "exact same source graph",
+    "standaloneBytes": 421049,
+    "standaloneSha256": "e2309c84d52b2402227e01e26e2fdf69e1778291e3e69099453078bdd4b4a18a"
+  },
+  "regressionComparison": {
+    "status": "PASS",
+    "baseline": "0.4.0-experimental",
+    "arrayBytes": {
+      "nodes": 58176,
+      "state": 13184,
+      "heap": 32344544
+    },
+    "arrayHashes": {
+      "nodes": "239019363e4dfa0e1d4457ce39e639622f9a4571cff318ceb9a83933793d072e",
+      "state": "3f305f612b77265699d3702b5c7fa4d23c85b2f65d9d81729d59eadc7a9748ce",
+      "heap": "ea7dced624b386bb75447bbd6d4dd87b8ec8e7b718a33f7c2cdc435a85b8939e"
+    },
+    "unchangedFiles": [
+      "shaders/common.wgsl",
+      "shaders/text.wgsl",
+      "shaders/layout.wgsl",
+      "shaders/input.wgsl",
+      "shaders/data.wgsl",
+      "shaders/flatten.wgsl",
+      "shaders/emit.wgsl",
+      "shaders/strips.wgsl",
+      "shaders/glyph-cache.wgsl",
+      "shaders/metrics.wgsl",
+      "src/core/compiler.js",
+      "src/text/fonts.js",
+      "src/text/opentype.js",
+      "src/startup/prepare.js",
+      "src/startup/prepare-worker.js",
+      "src/startup/prepare-core.js",
+      "src/startup/cache.js",
+      "src/gpu/cadence.js",
+      "src/gpu/frame-gate.js",
+      "examples/showcase.js"
+    ],
+    "fontsDistributed": false
+  },
+  "hud": {
+    "nativeResolutionFontMasks": true,
+    "fontMaskBytes": 784384,
+    "glyphAndBinBytes": 49496,
+    "additionalBytes": 833880,
+    "glyphSlots": 190,
+    "glyphCellSize": [
+      64,
+      64
+    ],
+    "labelEmCss": 12,
+    "numberEmCss": 26,
+    "maxGlyphInstances": 512,
+    "binGrid": [
+      27,
+      18
+    ],
+    "binCapacity": 16,
+    "logicalSizeCss": [
+      420,
+      274
+    ],
+    "historySamples": 120,
+    "plotRangeMs": [
+      0,
+      50
+    ],
+    "frameUploadBytes": 64,
+    "commandUploadBytes": 32,
+    "normalCPUReadback": false,
+    "temporalGraphSmoothing": false,
+    "standaloneFontFilesEmbedded": false,
+    "hudCostsIncludedInUIRenderTiming": false
+  },
+  "native": {
+    "shaderCompilation": "NOT RUN: optional Dawn binding unavailable",
+    "browser": {
+      "status": "FAIL",
+      "error": "Page.goto: net::ERR_BLOCKED_BY_ADMINISTRATOR at http://127.0.0.1:8080/tests/hud.html?autorun\nCall log:\n  - navigating to \"http://127.0.0.1:8080/tests/hud.html?autorun\", waiting until \"load\"\n"
+    },
+    "gpuExecutionVerified": false,
+    "gpuVisualsVerified": false,
+    "performanceMeasured": false,
+    "browserPolicyModified": false,
+    "pipOptionalWgpu": "No matching distribution available"
+  },
+  "visualLayoutReview": {
+    "method": "Private CPU layout-only rendering with real Noto Sans for spacing review",
+    "nativeGPU": false,
+    "distributedAsActualScreenshot": false
+  },
+  "reproduce": [
+    "npm test",
+    "npm run check",
+    "npm run build",
+    "npm run check:build",
+    "npm start; open /tests/hud.html",
+    "npm run check:native (requires optional webgpu@0.6.1)"
+  ]
+}

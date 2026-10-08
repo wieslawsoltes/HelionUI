@@ -1,0 +1,18 @@
+{
+  "status": "UNVERIFIED",
+  "scope": "Native WGSL execution, final GPU pixels and browser interaction",
+  "recordedAtUTC": "2026-09-25T21:05:32Z",
+  "httpSource": {
+    "status": 200,
+    "bytes": 1410
+  },
+  "browser": {
+    "status": "BLOCKED_OR_FAILED",
+    "error": "Page.goto: net::ERR_BLOCKED_BY_ADMINISTRATOR at http://127.0.0.1:8172/tests/designer.html?autorun\nCall log:\n  - navigating to \"http://127.0.0.1:8172/tests/designer.html?autorun\", waiting until \"load\"\n"
+  },
+  "optionalNativeValidator": {
+    "exitCode": 1,
+    "output": "\n> @helion/ui@0.12.0-experimental check:native\n> node tools/check-native.mjs\n\nNative shader validation did not run. Install the optional official Dawn binding with: npm install --no-save --package-lock=false webgpu@0.6.1\n",
+    "gpuExecutionTest": false
+  }
+}

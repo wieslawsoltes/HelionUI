@@ -1,0 +1,207 @@
+{
+  "status": "PASS",
+  "scope": "Private host metadata and exact compiled-byte comparison; not native shader execution or a frame-rate benchmark",
+  "baseline": "0.4.0-experimental",
+  "version": "0.4.1-experimental",
+  "arrays": {
+    "nodes": {
+      "bytes": 58176,
+      "sha256": "239019363e4dfa0e1d4457ce39e639622f9a4571cff318ceb9a83933793d072e",
+      "baselineSha256": "239019363e4dfa0e1d4457ce39e639622f9a4571cff318ceb9a83933793d072e",
+      "identical": true
+    },
+    "state": {
+      "bytes": 13184,
+      "sha256": "3f305f612b77265699d3702b5c7fa4d23c85b2f65d9d81729d59eadc7a9748ce",
+      "baselineSha256": "3f305f612b77265699d3702b5c7fa4d23c85b2f65d9d81729d59eadc7a9748ce",
+      "identical": true
+    },
+    "heap": {
+      "bytes": 32344544,
+      "sha256": "ea7dced624b386bb75447bbd6d4dd87b8ec8e7b718a33f7c2cdc435a85b8939e",
+      "baselineSha256": "ea7dced624b386bb75447bbd6d4dd87b8ec8e7b718a33f7c2cdc435a85b8939e",
+      "identical": true
+    }
+  },
+  "files": {
+    "shaders/common.wgsl": {
+      "identical": true,
+      "sha256": "d5711ae91390f2bdfc6fb31d41005d56ce451e40d7028551c0a715389a01287d"
+    },
+    "shaders/text.wgsl": {
+      "identical": true,
+      "sha256": "4d006344386482d80d5316e4a6367b048d4d2b4d0baaaf6ab6cddb11cfad8b3b"
+    },
+    "shaders/layout.wgsl": {
+      "identical": true,
+      "sha256": "8e8a1789c08c8fb056e23a4e6566accd89a4f4b6fb299e2f97bf39079c138d7e"
+    },
+    "shaders/input.wgsl": {
+      "identical": true,
+      "sha256": "4e49721b4db6be5f4ac419c6030559f8cbaf4633f9984ad0f7172535de99c142"
+    },
+    "shaders/data.wgsl": {
+      "identical": true,
+      "sha256": "74f91a67926faedc6ada9a2bb518b3269f26614f662b9ad34306bcbc68a8b571"
+    },
+    "shaders/flatten.wgsl": {
+      "identical": true,
+      "sha256": "34ee7bf4e9181546f88bce5585e3c6f8e72847f24fa82bff8fd19d8ff8d683aa"
+    },
+    "shaders/emit.wgsl": {
+      "identical": true,
+      "sha256": "9adbe1d8cad062f588ff0a7ac614295a1d06f393de417d896137c23a57f1cee2"
+    },
+    "shaders/strips.wgsl": {
+      "identical": true,
+      "sha256": "ebd7c94e7c40b5b6ce13536fa46c89633cf59433c3a67e6c680d72217bd23255"
+    },
+    "shaders/glyph-cache.wgsl": {
+      "identical": true,
+      "sha256": "b5092f4b945300882b0c17c24c299cc8cc6407f2f1353d1c7af90073d0c6c387"
+    },
+    "shaders/metrics.wgsl": {
+      "identical": true,
+      "sha256": "ba2efb85b80ccf56828f1dd2cc6ee5042c968b18f80d43480afd24f4dd7616e4"
+    },
+    "src/core/compiler.js": {
+      "identical": true,
+      "sha256": "1328151db19e184ce2ba700cf1839080e416f1cbae31fe1d3c6900095e235768"
+    },
+    "src/text/fonts.js": {
+      "identical": true,
+      "sha256": "7046904b5396cb898a33d65ac92ab04720916a2065671ee8cd4d3634a0e23245"
+    },
+    "src/text/opentype.js": {
+      "identical": true,
+      "sha256": "7e066665d9a8d20ab876239416e26a45995fa30f1e4d6ad6e94d30caa224a9c7"
+    },
+    "src/startup/prepare.js": {
+      "identical": true,
+      "sha256": "378e406f287fac40d86c158b45eb16158a84e2e9f238edd002578ae20feae83a"
+    },
+    "src/startup/prepare-worker.js": {
+      "identical": true,
+      "sha256": "4b63faae27ea0a555b28e340b008b03d5e21f17213cf83dca27a70b2eff6d25e"
+    },
+    "src/startup/prepare-core.js": {
+      "identical": true,
+      "sha256": "85db3ee74bb129798429144f5f3fbf1b8cc38a894e78235afa2c9d9094cba82f"
+    },
+    "src/startup/cache.js": {
+      "identical": true,
+      "sha256": "1f347a7a78ff1edeb4c15943f9a2fca5104ffa57602d9b2a2ff11be8b043dec3"
+    },
+    "src/gpu/cadence.js": {
+      "identical": true,
+      "sha256": "1314b58758fc992b111be9294fa6c2d86236a333e60b600135404f59d057aa03"
+    },
+    "src/gpu/frame-gate.js": {
+      "identical": true,
+      "sha256": "561e1bd034872091e98e5121b685a50cf6882d6e615aad1659d8b8ba3bc20b89"
+    },
+    "examples/showcase.js": {
+      "identical": true,
+      "sha256": "7e1ce708a0038b255fecdc06f0f25256490cf8de1be40d230ec47cd5f4ebd246"
+    }
+  },
+  "fontMetadata": [
+    {
+      "ratio": 0.7,
+      "fontSize": 12,
+      "glyphs": 95,
+      "drawable": 94,
+      "cached": 94,
+      "maxExtent": 12,
+      "oversized": []
+    },
+    {
+      "ratio": 0.7,
+      "fontSize": 26,
+      "glyphs": 95,
+      "drawable": 94,
+      "cached": 94,
+      "maxExtent": 21,
+      "oversized": []
+    },
+    {
+      "ratio": 1,
+      "fontSize": 12,
+      "glyphs": 95,
+      "drawable": 94,
+      "cached": 94,
+      "maxExtent": 15,
+      "oversized": []
+    },
+    {
+      "ratio": 1,
+      "fontSize": 26,
+      "glyphs": 95,
+      "drawable": 94,
+      "cached": 94,
+      "maxExtent": 29,
+      "oversized": []
+    },
+    {
+      "ratio": 1.25,
+      "fontSize": 12,
+      "glyphs": 95,
+      "drawable": 94,
+      "cached": 94,
+      "maxExtent": 18,
+      "oversized": []
+    },
+    {
+      "ratio": 1.25,
+      "fontSize": 26,
+      "glyphs": 95,
+      "drawable": 94,
+      "cached": 94,
+      "maxExtent": 35,
+      "oversized": []
+    },
+    {
+      "ratio": 1.5,
+      "fontSize": 12,
+      "glyphs": 95,
+      "drawable": 94,
+      "cached": 94,
+      "maxExtent": 21,
+      "oversized": []
+    },
+    {
+      "ratio": 1.5,
+      "fontSize": 26,
+      "glyphs": 95,
+      "drawable": 94,
+      "cached": 94,
+      "maxExtent": 42,
+      "oversized": []
+    },
+    {
+      "ratio": 2,
+      "fontSize": 12,
+      "glyphs": 95,
+      "drawable": 94,
+      "cached": 94,
+      "maxExtent": 27,
+      "oversized": []
+    },
+    {
+      "ratio": 2,
+      "fontSize": 26,
+      "glyphs": 95,
+      "drawable": 94,
+      "cached": 94,
+      "maxExtent": 55,
+      "oversized": []
+    }
+  ],
+  "scene": {
+    "nodes": 202,
+    "rows": 65536,
+    "paths": 9868,
+    "fonts": 3
+  },
+  "fontsDistributed": false
+}

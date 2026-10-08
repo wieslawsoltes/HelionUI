@@ -1,0 +1,30 @@
+{
+  "status": "PASS",
+  "scope": "signed-area, horizontal advance and character-map aggregates only; not contour/pixel/shaping/GPU equivalence",
+  "results": [
+    {
+      "fontLabel": "Go-Regular.ttf",
+      "family": "Go",
+      "glyphCount": 666,
+      "mappedScalars": 663,
+      "glyphMismatches": 0,
+      "cmapMismatches": 0,
+      "cmapComparison": "bidirectional",
+      "maxSignedAreaDeltaEm2": 0.0,
+      "maxAdvanceDeltaEm": 0.0,
+      "sampleMismatches": []
+    },
+    {
+      "fontLabel": "DejaVuSans.ttf",
+      "family": "DejaVu Sans",
+      "glyphCount": 6253,
+      "mappedScalars": 5918,
+      "glyphMismatches": 0,
+      "cmapMismatches": 0,
+      "cmapComparison": "bidirectional",
+      "maxSignedAreaDeltaEm2": 1.6653345369377348e-16,
+      "maxAdvanceDeltaEm": 0.0,
+      "sampleMismatches": []
+    }
+  ]
+}

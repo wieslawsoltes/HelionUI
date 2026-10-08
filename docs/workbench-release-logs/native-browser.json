@@ -1,0 +1,8 @@
+{
+  "requestedPage": "http://127.0.0.1:8080/tests/editor.html?autorun",
+  "startedUTC": "2026-09-25T09:28:48.793067+00:00",
+  "scope": "Native browser navigation/execution attempt, not a host-test simulation",
+  "browserVersion": "144.0.7559.96",
+  "status": "NOT_VERIFIED",
+  "error": "Page.goto: net::ERR_BLOCKED_BY_ADMINISTRATOR at http://127.0.0.1:8080/tests/editor.html?autorun\nCall log:\n  - navigating to \"http://127.0.0.1:8080/tests/editor.html?autorun\", waiting until \"load\"\n"
+}

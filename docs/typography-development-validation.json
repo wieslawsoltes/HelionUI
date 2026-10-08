@@ -1,0 +1,24 @@
+{
+  "status": "DEVELOPMENT_SNAPSHOT_NOT_FINISHED",
+  "baseline": "0.14.0-experimental",
+  "nativeGPU": "UNVERIFIED",
+  "frameworkTextIntegration": "NOT_COMPLETED",
+  "checks": {
+    "bundle-checks": {
+      "exitCode": 0,
+      "status": "PASS"
+    },
+    "build": {
+      "exitCode": 0,
+      "status": "PASS"
+    },
+    "host-tests": {
+      "exitCode": 0,
+      "status": "PASS"
+    },
+    "static-checks": {
+      "exitCode": 1,
+      "status": "FAIL"
+    }
+  }
+}

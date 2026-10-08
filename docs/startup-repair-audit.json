@@ -1,0 +1,455 @@
+{
+  "baselineVersion": "0.12.1-experimental",
+  "currentVersion": "0.12.2-experimental",
+  "scope": "Exact CPU source and compiled initial-buffer audit using original diagnostic glyph fixtures. No font files. No native shader compilation, GPU pixels, browser startup milliseconds or FPS measurements.",
+  "scenes": [
+    {
+      "name": "showcase",
+      "views": 202,
+      "rows": 65536,
+      "animations": 8,
+      "arrays": {
+        "nodes": {
+          "bytes": 58176,
+          "sha256": "a7dc142f4727138bf7dfaf22ad3992e4aa6eb75602c3a93a130ddbfd4f460055",
+          "equal": true
+        },
+        "state": {
+          "bytes": 13184,
+          "sha256": "7b57354e1bb3f55b48a23393f8fa36035d11551603d4987cd8c6e0c6f854b1c6",
+          "equal": true
+        },
+        "heap": {
+          "bytes": 3586760,
+          "sha256": "9fd521e2342e5ac3395d54583f7b77e1fa57e46583705a005dcc0e8931cb2c2e",
+          "equal": true
+        }
+      }
+    },
+    {
+      "name": "playground",
+      "views": 130,
+      "rows": 4,
+      "animations": 0,
+      "arrays": {
+        "nodes": {
+          "bytes": 37440,
+          "sha256": "7dce5f0f98968c8a48ae72337c4fbe25ce22606a16bd777224847b072afa61dd",
+          "equal": true
+        },
+        "state": {
+          "bytes": 8576,
+          "sha256": "24f6e802cbea09b189d85828d1e47a872171dafc9f33d2f288e0917b81f86b5c",
+          "equal": true
+        },
+        "heap": {
+          "bytes": 18252260,
+          "sha256": "e7f2e57e7da899674c25877b9429ae1725ddeda4f06a91f7c582883182a38756",
+          "equal": true
+        }
+      }
+    },
+    {
+      "name": "designer-0",
+      "views": 266,
+      "rows": 0,
+      "animations": 0,
+      "arrays": {
+        "nodes": {
+          "bytes": 76608,
+          "sha256": "c17249c82aa756dc5da9b2b38296cd5ccd4a7b17c07de19db97272d7ec7197e5",
+          "equal": true
+        },
+        "state": {
+          "bytes": 17280,
+          "sha256": "f0aca2f785c77832b33cf2c0154a0c702b2dbeb4112bbe63c9b4a2fe35093ea4",
+          "equal": true
+        },
+        "heap": {
+          "bytes": 25522164,
+          "sha256": "baf50a18eb0106e2240d85bc4ad793112e1bed89d8fe4b1fda04ed56e2243088",
+          "equal": true
+        }
+      }
+    },
+    {
+      "name": "designer-1",
+      "views": 266,
+      "rows": 0,
+      "animations": 0,
+      "arrays": {
+        "nodes": {
+          "bytes": 76608,
+          "sha256": "5336354e9e9d5c774816533c123a69e48fd12c26a5755f2f57186bdd83151d00",
+          "equal": true
+        },
+        "state": {
+          "bytes": 17280,
+          "sha256": "f5c1a0539843343307303387bafc1cfbf9f26e44127708b85890c00ffc15b434",
+          "equal": true
+        },
+        "heap": {
+          "bytes": 25519676,
+          "sha256": "2e55a6d943235860e54ed94b047ae5deb4e9f9a826e9ccc3249bb32869181978",
+          "equal": true
+        }
+      }
+    },
+    {
+      "name": "designer-2",
+      "views": 266,
+      "rows": 0,
+      "animations": 0,
+      "arrays": {
+        "nodes": {
+          "bytes": 76608,
+          "sha256": "b09cd677559dd72e9e9c0c88dda011b96a3d1a3e776b303365a82eda06cae4a8",
+          "equal": true
+        },
+        "state": {
+          "bytes": 17280,
+          "sha256": "d468459b3b5ba124b7992a3d1719d4163dab911b966f51f1d7cbd744a785bc5e",
+          "equal": true
+        },
+        "heap": {
+          "bytes": 25518256,
+          "sha256": "949ce700d848dd86e13188b1db7d1f2203e724a3f485bf1f87bbe79e2659b4fd",
+          "equal": true
+        }
+      }
+    }
+  ],
+  "protectedFiles": [
+    {
+      "file": "src/core/compiler.js",
+      "equal": true,
+      "sha256": "362600a354924b81c0155c07d5b176fc7d5ab65796f2614a0b47e7856dc9a0cb"
+    },
+    {
+      "file": "src/core/schema.js",
+      "equal": true,
+      "sha256": "6e88096d1f220a1192fe73e9624fc7969fbba683889004095f756ecedc3036f3"
+    },
+    {
+      "file": "src/designer/pack.js",
+      "equal": true,
+      "sha256": "f99b51463ff612287131144c00e6f94189de1a639b31fca046b059cf94dd3e6b"
+    },
+    {
+      "file": "src/designer/workbench.js",
+      "equal": true,
+      "sha256": "de9c51d8bf0726c3887e8f646b950095a1b3ebe31511b06ed75e542f20ab2fbd"
+    },
+    {
+      "file": "src/gpu/arena-layout.js",
+      "equal": true,
+      "sha256": "e9c2f78578f7a57375f92fba4adf8ab94b4e718246a8af4f0c7dcf95d18e6e92"
+    },
+    {
+      "file": "src/gpu/viewport.js",
+      "equal": true,
+      "sha256": "f22063fde102c005834041b432ea94883f100146fda003ca54e6f5792a8850cd"
+    },
+    {
+      "file": "src/gpu/frame-gate.js",
+      "equal": true,
+      "sha256": "e0e4d385292ddd0073d281711d0c60d80d9dd99fa9417184017ae9ca287b9d90"
+    },
+    {
+      "file": "src/gpu/queue-progress.js",
+      "equal": true,
+      "sha256": "47d0e7388e46fad5eda01216ca27fa9d70b9e05e519f4d8718a28667c85fd8e1"
+    },
+    {
+      "file": "src/gpu/cadence.js",
+      "equal": true,
+      "sha256": "d37e28f590e6c48cb421ef89771dc3d41e7cd21bd5e84125e0c9f42100de3200"
+    },
+    {
+      "file": "src/gpu/submission.js",
+      "equal": true,
+      "sha256": "30295b062da3f0028a5dd9b21927abdb261a9803cdf18c5798b9d6add0d1d52e"
+    },
+    {
+      "file": "src/gpu/performance.js",
+      "equal": true,
+      "sha256": "d884edd73b694604eeccf5ec350f6223054277827104c17c1e7833fc1b494a20"
+    },
+    {
+      "file": "src/text/opentype.js",
+      "equal": true,
+      "sha256": "7e066665d9a8d20ab876239416e26a45995fa30f1e4d6ad6e94d30caa224a9c7"
+    },
+    {
+      "file": "src/text/fonts.js",
+      "equal": true,
+      "sha256": "7046904b5396cb898a33d65ac92ab04720916a2065671ee8cd4d3634a0e23245"
+    },
+    {
+      "file": "shaders/curve-coverage.wgsl",
+      "equal": true,
+      "sha256": "e1eda6ef0ef8c70a532276a82f2320e9158acfe647bed91e797594fcb8db44da"
+    },
+    {
+      "file": "shaders/glyph-cache.wgsl",
+      "equal": true,
+      "sha256": "f11c52c8c456be9fbf529516a9530112cf18fb47797c9649067b1a91241284d4"
+    },
+    {
+      "file": "shaders/text.wgsl",
+      "equal": true,
+      "sha256": "4d006344386482d80d5316e4a6367b048d4d2b4d0baaaf6ab6cddb11cfad8b3b"
+    },
+    {
+      "file": "shaders/flatten.wgsl",
+      "equal": true,
+      "sha256": "34ee7bf4e9181546f88bce5585e3c6f8e72847f24fa82bff8fd19d8ff8d683aa"
+    },
+    {
+      "file": "shaders/strips.wgsl",
+      "equal": true,
+      "sha256": "71ab04bcdc1f83513c53bc8e18d31fc6822378a84916bdad991fbd97388a11b3"
+    },
+    {
+      "file": "shaders/hud.wgsl",
+      "equal": true,
+      "sha256": "2996d5652075631046258e0904a096dba7d36c1062970127adaf1a5e835b56e9"
+    },
+    {
+      "file": "shaders/hud-common.wgsl",
+      "equal": true,
+      "sha256": "c8303847975fbb520b3cf065958e6701603b6f440e9f7a6d6e30184e0debf2e2"
+    },
+    {
+      "file": "shaders/present.wgsl",
+      "equal": true,
+      "sha256": "e0c6c25f4a98bc5b0e2865f1be6e3b5dbe57b202c360b6913d95415579a241f6"
+    },
+    {
+      "file": "shaders/metrics.wgsl",
+      "equal": true,
+      "sha256": "60472f5eadb0ef8444e3abe30ad0eef51da5eff75a503faa12b20da9ffb4d455"
+    },
+    {
+      "file": "shaders/data.wgsl",
+      "equal": true,
+      "sha256": "ddac892514846b5376ae5b269f45b856e0e31d269d31e3e88fe6d80684cd6ea2"
+    }
+  ],
+  "compilerInput": {
+    "beforeFullProgramBytes": 278584,
+    "afterFullProgramBytes": 280503,
+    "beforeEnabledCorePipelines": 44,
+    "afterEnabledCorePipelines": 36,
+    "omittedUnusedPipelines": [
+      "initializeData",
+      "filterScan",
+      "scanBlocks",
+      "scatterRows",
+      "sortBlocks",
+      "mergeRows",
+      "resolveSelection",
+      "emitGridParts"
+    ],
+    "afterGroups": [
+      {
+        "name": "designer-state",
+        "bytes": 13556,
+        "functions": 26,
+        "entries": [
+          "synchronizeDesigners",
+          "animateDesigners"
+        ]
+      },
+      {
+        "name": "layoutLists",
+        "bytes": 6626,
+        "functions": 11,
+        "entries": [
+          "layoutLists"
+        ]
+      },
+      {
+        "name": "emitListParts",
+        "bytes": 21126,
+        "functions": 44,
+        "entries": [
+          "emitListParts"
+        ]
+      },
+      {
+        "name": "editor-analysis",
+        "bytes": 16014,
+        "functions": 38,
+        "entries": [
+          "analyzeEditors",
+          "layoutEditors"
+        ]
+      },
+      {
+        "name": "emitEditorParts",
+        "bytes": 29963,
+        "functions": 63,
+        "entries": [
+          "emitEditorParts"
+        ]
+      },
+      {
+        "name": "models",
+        "bytes": 9950,
+        "functions": 17,
+        "entries": [
+          "pullModels",
+          "evaluateModels",
+          "pushModels"
+        ]
+      },
+      {
+        "name": "schedule",
+        "bytes": 9212,
+        "functions": 17,
+        "entries": [
+          "clearFrame",
+          "schedule",
+          "finishGlyphRequests",
+          "prepareDraws",
+          "prepareJobs",
+          "prepareStrips",
+          "finishWork",
+          "finishFrame"
+        ]
+      },
+      {
+        "name": "input",
+        "bytes": 144853,
+        "functions": 227,
+        "entries": [
+          "hitTest",
+          "input"
+        ]
+      },
+      {
+        "name": "composition",
+        "bytes": 9249,
+        "functions": 13,
+        "entries": [
+          "resolveStyles",
+          "animate"
+        ]
+      },
+      {
+        "name": "layout",
+        "bytes": 31502,
+        "functions": 58,
+        "entries": [
+          "measure",
+          "constraints",
+          "arrange",
+          "compose"
+        ]
+      },
+      {
+        "name": "flatten",
+        "bytes": 6071,
+        "functions": 4,
+        "entries": [
+          "flatten"
+        ]
+      },
+      {
+        "name": "emit",
+        "bytes": 58662,
+        "functions": 102,
+        "entries": [
+          "emit"
+        ]
+      },
+      {
+        "name": "damage",
+        "bytes": 6392,
+        "functions": 3,
+        "entries": [
+          "damage"
+        ]
+      },
+      {
+        "name": "glyph-cache",
+        "bytes": 16761,
+        "functions": 18,
+        "entries": [
+          "collectGlyphRequests",
+          "prepareGlyphCache",
+          "rasterGlyphCache"
+        ]
+      },
+      {
+        "name": "raster",
+        "bytes": 27408,
+        "functions": 39,
+        "entries": [
+          "buildJobs",
+          "makeStrips",
+          "binStrips",
+          "composite"
+        ]
+      }
+    ],
+    "caveat": "Each partition preserves its reachable original function tokens and all non-function declarations. Total frontend bytes across modules can increase; source size is not native compiler time or generated ISA size."
+  },
+  "callSites": [
+    {
+      "caller": "editorKey",
+      "callee": "editorCommand",
+      "before": 10,
+      "after": 1
+    },
+    {
+      "caller": "dsKey",
+      "callee": "dsCommand",
+      "before": 3,
+      "after": 1
+    },
+    {
+      "caller": "handleKey",
+      "callee": "activate",
+      "before": 2,
+      "after": 1
+    },
+    {
+      "caller": "dsDecimal",
+      "callee": "glyph",
+      "before": 4,
+      "after": 1
+    },
+    {
+      "caller": "dsHexText",
+      "callee": "glyph",
+      "before": 2,
+      "after": 1
+    }
+  ],
+  "status": "PASS",
+  "standaloneFiles": [
+    {
+      "file": "helion-designer.html",
+      "baselineBytes": 2359684,
+      "currentBytes": 1713323,
+      "reductionPercent": 27.391845687812435,
+      "sha256": "fc66d6138d5fe194673085c594592eb6b9d68a81aae8dcdbc8a34c1fd9d02d71"
+    },
+    {
+      "file": "helion-playground.html",
+      "baselineBytes": 1252814,
+      "currentBytes": 1274730,
+      "reductionPercent": -1.7493418815562434,
+      "sha256": "09841c7a95c74997ff32f750b04a55e9534c0af7138cdb36b6791b6f09115db7"
+    },
+    {
+      "file": "helion-standalone.html",
+      "baselineBytes": 1179853,
+      "currentBytes": 1201769,
+      "reductionPercent": -1.857519538450969,
+      "sha256": "14c49a88a0b42efff11767b4d3ebbceb2631dd2d336134250bd58bebab753fa3"
+    }
+  ]
+}

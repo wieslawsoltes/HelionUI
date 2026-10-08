@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="helion-version" content="0.15.0-experimental">
+<title>Helion GPU Playground — dynamic data and applications</title>
+<link rel="stylesheet" href="./playground.css"></head><body>
+<canvas id="workbench" aria-label="Helion GPU playground. Canvas controls do not yet expose a full accessibility tree."></canvas>
+<div id="boot" role="status"><strong>HELION / GPU PLAYGROUND</strong><p id="boot-detail">Preparing the retained workspace…</p><small>WebGPU and a real font are required. Ctrl/Cmd+Alt+F selects local fonts.<br>This startup/error notice is replaced by the GPU workspace after initialization.</small></div>
+<input id="open-file" type="file" accept=".json,.js,.txt" hidden>
+<input id="layout-file" type="file" accept=".json" hidden>
+<input id="font-files" type="file" accept=".ttf,.otf,.ttc,.woff" multiple hidden>
+<a href="../index.html" hidden aria-hidden="true" tabindex="-1">Showcase</a>
+<script data-helion-launch>(function launchApplication(entry, {version, standalone = false, path = '/'} = {}) {
+  const notice = document.getElementById('boot');
+  const detail = document.getElementById('boot-detail') || notice;
+  const show = (title, message) => {
+    if (notice) {
+      notice.hidden = false;
+      notice.classList.add('failed');
+      notice.setAttribute('role', 'alert');
+    }
+    const heading = document.getElementById('boot-title');
+    if (heading) heading.textContent = title;
+    if (detail) { detail.style.whiteSpace = 'pre-wrap'; detail.style.overflowWrap = 'anywhere'; detail.style.maxHeight = '45vh'; detail.style.overflow = 'auto'; detail.textContent = message; }
+    const hint = document.getElementById('boot-hint');
+    if (hint) hint.textContent = 'Use the complete package on localhost or HTTPS. Browser security stays enabled.';
+  };
+  const protocol = globalThis.location?.protocol;
+  if (protocol === 'file:' || protocol === 'data:') {
+    const filename = standalone && protocol === 'file:'
+      ? (new URL(globalThis.location.href).pathname.split('/').pop() || 'helion-standalone.html')
+      : 'helion-standalone.html';
+    const target = standalone ? '/' + filename : path;
+    const instructions = standalone
+      ? 'Extract the complete ZIP and run its start-helion launcher.\nOr, in the folder containing this HTML file, run:\n\npython3 -m http.server 8080 --bind 127.0.0.1'
+      : 'From the extracted helion-ui project root, run:\n\nnpm start';
+    show('Open Helion through localhost',
+      `This ${protocol} document has an isolated browser origin. Direct file opening is not supported.\n\n${instructions}\n\nThen open:\nhttp://127.0.0.1:8080${target}\n\nBuild: ${version}.\nBrowser security remains enabled; no worker or GPU startup was attempted.`);
+    const tip = notice?.querySelector?.('small');
+    if (tip) tip.textContent = 'Start the local server first; keyboard/font commands become available after the app loads.';
+    globalThis.__HELION_LAUNCH_STATUS__ = 'needs-server';
+    return false;
+  }
+  globalThis.__HELION_LAUNCH_STATUS__ = 'loading';
+  // Dynamic import keeps the local-file check ahead of all module evaluation.
+  return import(entry).then(() => {
+    globalThis.__HELION_LAUNCH_STATUS__ = 'module-loaded';
+    return true; // Application GPU readiness is reported by the app, not here.
+  }, error => {
+    globalThis.__HELION_LAUNCH_STATUS__ = 'module-error';
+    show('Helion could not load its application', `${error.message}\n\nBuild: ${version}.\nUse the complete replacement package on localhost or HTTPS; do not mix release files.`);
+    console.error(error);
+    return false;
+  });
+})("./app.js",{"version":"0.15.0-experimental","path":"/playground/"});</script></body></html>

@@ -1,0 +1,258 @@
+{
+  "version": "0.15.0-experimental",
+  "createdAtUTC": "2026-09-26T21:02:09.652824+00:00",
+  "status": "HOST_AND_WORKER_CHECKS_PASS_NATIVE_GPU_UNVERIFIED",
+  "scope": "Implemented bounded typography integration and standalone module; not full Unicode/OpenType/editor parity or a hardware performance result.",
+  "hostTests": {
+    "passed": 1012,
+    "failed": 0,
+    "skipped": 0,
+    "scope": "Actual JS, fixtures, source-translated WGSL/scalar references and non-executing GPU test doubles."
+  },
+  "staticChecks": {
+    "javascriptModules": 192,
+    "shaderSources": 31,
+    "frameworkComputeEntries": 50,
+    "standaloneTypographyEntries": 2,
+    "scope": "Source/function/resource/grouping checks, not native WGSL acceptance."
+  },
+  "bundleChecks": {
+    "embeddedModules": 99,
+    "exactShaderSources": 31,
+    "standaloneApplications": 4,
+    "workerBundles": 2,
+    "status": "PASS"
+  },
+  "independentModule": {
+    "status": "PASS",
+    "hostTestsPassed": 3,
+    "typescript": "PASS",
+    "runtimeDependencies": 0,
+    "publishedToNpm": false
+  },
+  "differential": {
+    "scope": "Actual WGSL bodies translated into scalar JavaScript versus independent native HarfBuzz/ICU. NOT GPU execution or a full conformance corpus.",
+    "harfbuzzVersion": "10.2.0",
+    "unicodeVersion": "16.0.0",
+    "font": "DejaVu Sans",
+    "counts": {
+      "shape": {
+        "passed": 104,
+        "failed": 0
+      },
+      "bidi": {
+        "passed": 1200,
+        "failed": 0
+      },
+      "grapheme": {
+        "passed": 1200,
+        "failed": 0
+      }
+    },
+    "failures": []
+  },
+  "browser": {
+    "version": "0.15.0-experimental",
+    "headless": true,
+    "containerLaunchArgs": [
+      "--no-sandbox"
+    ],
+    "scope": "Native browser host/worker serialization only unless a served GPU gate actually passes. No hardware performance claim.",
+    "served": [
+      {
+        "path": "/tests/typography.html?autorun",
+        "status": "UNVERIFIED",
+        "error": "Page.goto: net::ERR_BLOCKED_BY_ADMINISTRATOR at http://127.0.0.1:8137/tests/typography.html?autorun\nCall log:\n  - navigating to \"http://127.0.0.1:8137/tests/typography.html?autorun\", waiting until \"domcontentloaded\"\n"
+      },
+      {
+        "path": "/tests/shaders.html?autorun",
+        "status": "UNVERIFIED",
+        "error": "Page.goto: net::ERR_BLOCKED_BY_ADMINISTRATOR at http://127.0.0.1:8137/tests/shaders.html?autorun\nCall log:\n  - navigating to \"http://127.0.0.1:8137/tests/shaders.html?autorun\", waiting until \"domcontentloaded\"\n"
+      }
+    ],
+    "browser": "144.0.7559.96",
+    "originOrCSPBypass": false,
+    "isolatedTypographyWorker": {
+      "status": "PASS",
+      "scope": "Actual classic Blob worker, complete initial buffers, template and shaping manifests. No WGSL execution.",
+      "checks": [
+        {
+          "themeContrast": "high",
+          "controlDensity": "compact",
+          "accentColor": 4294941881,
+          "nodes": 17,
+          "templates": 3,
+          "shapedRuns": 4,
+          "heapBytes": 1071056,
+          "status": "PASS"
+        },
+        {
+          "themeContrast": "high",
+          "controlDensity": "compact",
+          "accentColor": 4288730473,
+          "nodes": 32,
+          "templates": 1,
+          "shapedRuns": 11,
+          "heapBytes": 2778656,
+          "status": "PASS"
+        }
+      ]
+    }
+  },
+  "nativeCompiler": {
+    "name": "native-compiler",
+    "command": "npm run check:native",
+    "exitCode": 1,
+    "status": "UNVERIFIED",
+    "elapsedSeconds": 0.215,
+    "log": "native-compiler.log",
+    "logSHA256": "d0021c025f2cc40890995c1bd7ad02602eaa8bd06ef78aed9bcd397ba23f4118"
+  },
+  "nativeGPU": {
+    "status": "UNVERIFIED",
+    "compilerAcceptance": false,
+    "shaderExecution": false,
+    "pixelEquality": false,
+    "hardwarePerformance": false,
+    "reason": "Served pages blocked before load; optional native compiler dependency unavailable. No security/origin bypass used.",
+    "providedGates": [
+      "tests/typography.html?autorun",
+      "tests/shaders.html?autorun"
+    ]
+  },
+  "frameworkIntegration": {
+    "status": "IMPLEMENTED_FOR_DOCUMENTED_SUBSET",
+    "textPaths": [
+      "ShapedText/TextBlock retained measurement and drawing",
+      "TextBox caret/navigation/selection, including template native content",
+      "DrawingContext text",
+      "explicit OpenType DataGrid headers and rolling visible text rows",
+      "Studio mutable control slots and template-part storage"
+    ],
+    "notMigrated": [
+      "fixed-cell TextEditor/CodeEditor paragraph/bidi rendering",
+      "specialized numeric counters and many list/tree/chrome strings",
+      "simple static-ASCII opt-out/lightweight paths"
+    ],
+    "graphemeEditorChanges": "Unicode16 gap-buffer non-word navigation/deletion; not full editor text shaping"
+  },
+  "remaining": [
+    "complete complex-script shapers and full UAX14 line breaking",
+    "line-boundary contextual reshaping",
+    "variable/CFF/CFF2/WOFF2/color-font rendering",
+    "full editor paragraph/bidi, IME and accessibility",
+    "native GPU/pixel/hardware qualification"
+  ],
+  "preservation": {
+    "report": "typography-preservation.json",
+    "initialSceneBuffers": "EXPECTED_DIFFERENT: retained font lookup/run/paragraph storage added",
+    "fontFilesDistributed": 0
+  },
+  "checks": [
+    {
+      "name": "host-release",
+      "command": "npm test",
+      "exitCode": 0,
+      "status": "PASS",
+      "elapsedSeconds": 7.578,
+      "log": "host-release.log",
+      "logSHA256": "8ddd9c6c3293aa1baef2a66cf6b8d6f5047bf15571243196bd49310bc04c3ab5"
+    },
+    {
+      "name": "static-release",
+      "command": "npm run check",
+      "exitCode": 0,
+      "status": "PASS",
+      "elapsedSeconds": 4.954,
+      "log": "static-release.log",
+      "logSHA256": "2e28c311cb0939531b7c55c55a19a47d85cfb9f7a219ac13076bdaa5a397e494"
+    },
+    {
+      "name": "types-release",
+      "command": "tsc --strict --noEmit --target es2022 --module nodenext --moduleResolution nodenext --lib es2023,dom tests/api-types.ts tests/designer-api.ts tests/templates-api.ts tests/typography-api.ts",
+      "exitCode": 0,
+      "status": "PASS",
+      "elapsedSeconds": 1.07,
+      "log": "types-release.log",
+      "logSHA256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "module-build",
+      "command": "node tools/package-typography.mjs --out=/mnt/data/helion-typography-module-work",
+      "exitCode": 0,
+      "status": "PASS",
+      "elapsedSeconds": 0.064,
+      "log": "module-build.log",
+      "logSHA256": "9feb318839612c4ef5b4816b38a0b8c7680c9ea3fddbb6d31b01d3aeb2e1a980"
+    },
+    {
+      "name": "module-tests",
+      "command": "npm test",
+      "exitCode": 0,
+      "status": "PASS",
+      "elapsedSeconds": 0.217,
+      "log": "module-tests.log",
+      "logSHA256": "c8120a0ca056420131521b9751537ae0914f0489a48083dea26786de4633015e"
+    },
+    {
+      "name": "module-types",
+      "command": "tsc --strict --noEmit --target es2022 --module nodenext --moduleResolution nodenext --lib es2023,dom tests/module-api.ts",
+      "exitCode": 0,
+      "status": "PASS",
+      "elapsedSeconds": 0.831,
+      "log": "module-types.log",
+      "logSHA256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "build-release",
+      "command": "npm run build",
+      "exitCode": 0,
+      "status": "PASS",
+      "elapsedSeconds": 0.515,
+      "log": "build-release.log",
+      "logSHA256": "914386d5e3edd9acfa5e73bef773f2dd07b8b0a4f7c4d0e6b9e99139ad743afe"
+    },
+    {
+      "name": "bundle-release",
+      "command": "npm run check:build",
+      "exitCode": 0,
+      "status": "PASS",
+      "elapsedSeconds": 0.315,
+      "log": "bundle-release.log",
+      "logSHA256": "5312a10101af4e587807726aac6f6c2cf3f084d4be6b559a98d2626c7ba391bc"
+    }
+  ],
+  "sourceFiles": {
+    "shaders/blit.wgsl": "e06d0ea086add289f4258eccbc3bed820e22f0bbea625b9ddfb74e26b8c8d131",
+    "shaders/common.wgsl": "0ff800f4ef91464c779b3675f08c7f4d813c06f650c4c32cdd63740cd96fc0ae",
+    "shaders/controls.wgsl": "ee5c8e86ab73380c2e00a6753c1aaa5fc1f1d49cef775a4b88b9a4ffa5510931",
+    "shaders/curve-coverage.wgsl": "e1eda6ef0ef8c70a532276a82f2320e9158acfe647bed91e797594fcb8db44da",
+    "shaders/data-source.wgsl": "d8fcdaebd57708a3622f7aab0c964ce4690c15c69bad1cccef7f80386adb2439",
+    "shaders/data.wgsl": "ddac892514846b5376ae5b269f45b856e0e31d269d31e3e88fe6d80684cd6ea2",
+    "shaders/designer-render.wgsl": "384515e83227dd8f4e9e1e0568f31916ae78c15ab2984f18a4b490117cec9a01",
+    "shaders/designer.wgsl": "9bf4b3559655cd0f19637a3032cc505aa312a57a3bb8b3523001129da76c8b19",
+    "shaders/docking.wgsl": "2ebf578c04e45b874951fb9d65257f0bf654767939af713b667fd175dcbdbac4",
+    "shaders/editor-render.wgsl": "8447098678c24fa9ce96713d1cb9f441c67e49bfbd604d2cd03a6373d151119e",
+    "shaders/editor.wgsl": "38e4ea7f38a535ad2c9b9474ff3bbf96d0adbbdadf4d65cb3a3a368a3366e2e4",
+    "shaders/emit.wgsl": "bcab94f8fd19d26826327f7223dbe15fce94fc7aff6e4e94466771c9ec5d3576",
+    "shaders/flatten.wgsl": "34ee7bf4e9181546f88bce5585e3c6f8e72847f24fa82bff8fd19d8ff8d683aa",
+    "shaders/glyph-cache.wgsl": "f11c52c8c456be9fbf529516a9530112cf18fb47797c9649067b1a91241284d4",
+    "shaders/hud-common.wgsl": "c8303847975fbb520b3cf065958e6701603b6f440e9f7a6d6e30184e0debf2e2",
+    "shaders/hud-viewport.wgsl": "f5f60c7cc3697f65ff0f9f57909b69205b19357a0702ed3498c1f1d293403483",
+    "shaders/hud.wgsl": "2996d5652075631046258e0904a096dba7d36c1062970127adaf1a5e835b56e9",
+    "shaders/input.wgsl": "9b65f1605ca6e0aec767d538c0d94a458b32d54085a46008ba6d94f0551bb47d",
+    "shaders/layout.wgsl": "a588512943fa86f10d546bd38f1e04fa416c3b6b5d9aa706851568793df63f37",
+    "shaders/metrics.wgsl": "60472f5eadb0ef8444e3abe30ad0eef51da5eff75a503faa12b20da9ffb4d455",
+    "shaders/models.wgsl": "6f510acf10014ce10d416d8367d1ddfad61184af90233b4c5ad7e28e71e839ac",
+    "shaders/paragraph.wgsl": "db75839255a870217c308f8d3c4b66bc47bf39d47852f0e59f9831ab509e7f2f",
+    "shaders/present.wgsl": "e0c6c25f4a98bc5b0e2865f1be6e3b5dbe57b202c360b6913d95415579a241f6",
+    "shaders/presenter.wgsl": "10b1873102fb29aa9471df3c1fbf39dce9750114d8223bc5541136f323be6c48",
+    "shaders/shaping-bidi.wgsl": "4699a56f8790abb5c6ec60b54849d8581cf6d06d9d7c28c670f5b57631a61477",
+    "shaders/shaping.wgsl": "8159f1054120f2a5100c25681d8bf7cd9305b88f52c84b48c58e73935a929f47",
+    "shaders/strips.wgsl": "71ab04bcdc1f83513c53bc8e18d31fc6822378a84916bdad991fbd97388a11b3",
+    "shaders/templates.wgsl": "c13a38c7813eb2d2366581d03c730783ca8c5deb652a100220cc40cad0d3f87b",
+    "shaders/text.wgsl": "0648667f17d3ce3add488aa2190ec9fe03989c53256db0c5645be386a991e1c3",
+    "shaders/typography-ui.wgsl": "a9a79ddae2275b7ce806da6ebb78688eed309ae970c7209a248e27e84b3e5078",
+    "shaders/unicode.wgsl": "9e515da51fc9d7e82da5374437c6b38ca2ec62f7d7dca412bd063f4c2ed1636b"
+  }
+}

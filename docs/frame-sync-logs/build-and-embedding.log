@@ -1,0 +1,11 @@
+
+> @helion/ui@0.6.0-experimental build
+> node tools/build.mjs
+
+Built dist/ and dist/helion-standalone.html (463,297 bytes). Application code is embedded. Real fonts load at mount from configured sources or local files.
+
+> @helion/ui@0.6.0-experimental check:build
+> node tools/check-build.mjs
+
+Standalone closure check passed: 26 embedded modules, 13 exact shader sources, no external script/style assets.
+Exact standalone startup-worker embedding and independent module closure verified.

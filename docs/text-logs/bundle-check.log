@@ -1,0 +1,5 @@
+
+> @helion/ui@0.3.0-experimental check:build
+> node tools/check-build.mjs
+
+Standalone closure check passed: 17 embedded modules, 11 exact shader sources, no external script/style assets.

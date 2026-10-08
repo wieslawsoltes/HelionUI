@@ -1,0 +1,44 @@
+// Retained selectable lists, trees, dynamic labels, and explicitly bridged host actions.
+fn isList(i:u32)->bool{return i!=NONE&&i<frame.counts.x&&(nodes[i].info.x==27u||nodes[i].info.x==28u);}
+fn actionEventToken(i:u32,token:u32,argument:f32,key:u32){let d=state[9u];if(d==0u){return;}let count=heap[d];if(count>=520u){heap[d+1u]++;return;}let at=d+4u+count*6u;heap[at]=token;heap[at+1u]=i;heap[at+2u]=state[31u];heap[at+3u]=bitcast<u32>(argument);heap[at+4u]=key;heap[at+5u]=frame.counts.z;heap[d]=count+1u;}
+fn actionEvent(i:u32,argument:f32,key:u32){actionEventToken(i,nodes[i].action.y,argument,key);}
+fn notifyEditorChanges(){for(var k=0u;k<state[61u];k++){let i=heap[state[60u]+k];let d=ed(i);let revision=heap[d+5u];if(heap[d+77u]!=0u&&heap[d+78u]!=revision){heap[d+78u]=revision;actionEventToken(i,heap[d+77u],f32(revision),NONE);}}}
+fn controlsCommand(i:u32,code:u32,length:u32){if(i>=frame.counts.x){return;}let n=nodes[i];
+ if(code==1u){if((n.info.x!=5u&&n.info.x!=6u&&n.info.x!=7u&&n.info.x!=9u)||n.aux.x==0u||length>n.aux.x||length>state[40u]){state[43u]++;return;}for(var k=0u;k<length;k++){heap[n.text.z+k]=heap[state[23u]+k];}nodes[i].text.w=length;if(n.info.x==9u){state[cs(i)+4u]=length;state[cs(i)+5u]=length;state[cs(i)+6u]=length;invalidateText(i);}else{state[3u]=1u;}return;}
+ if(!isList(i)){return;}let d=n.aux.x;let src=heap[d+10u];
+ if(code==3u||code==4u){let key=heap[src];for(var k=0u;k<heap[d];k++){let at=heap[d+2u]+k*8u;if(heap[at]==key){if(code==3u){heap[d+9u]=key;setf(cs(i),f32(k));}else if((heap[at+5u]&1u)!=0u){heap[at+5u]^=2u;heap[d+13u]=1u;}break;}}return;}
+ if(code!=2u||length<4u||length>heap[d+11u]||heap[src]!=1u||heap[src+1u]>heap[d+1u]||heap[src+2u]>heap[d+4u]||heap[src+3u]!=length){heap[d+17u]++;return;}
+ let count=heap[src+1u];let textStart=4u+count*8u;if(textStart+heap[src+2u]!=length){heap[d+17u]++;return;}
+ for(var k=0u;k<count;k++){let at=src+4u+k*8u;if(heap[at+1u]<textStart||heap[at+1u]>length||heap[at+2u]>length-heap[at+1u]||(heap[at+3u]!=NONE&&heap[at+3u]>=k)||heap[at+4u]>31u){heap[d+17u]++;return;}}
+ var selected=NONE;for(var k=0u;k<count;k++){let inputAt=src+4u+k*8u;let out=heap[d+2u]+k*8u;for(var w=0u;w<8u;w++){heap[out+w]=heap[inputAt+w];}heap[out+1u]=heap[d+3u]+heap[inputAt+1u]-textStart;if(heap[out]==heap[d+9u]){selected=k;}}
+ for(var k=0u;k<heap[src+2u];k++){heap[heap[d+3u]+k]=heap[src+textStart+k];}heap[d]=count;heap[d+13u]=1u;heap[d+14u]++;if(selected==NONE){heap[d+9u]=NONE;setf(cs(i),-1.0);}else{setf(cs(i),f32(selected));}
+}
+fn listMatch(i:u32,item:u32)->bool {let d=nodes[i].aux.x;let filterNode=heap[d+8u];if(filterNode==NONE){return true;}let len=textLength(filterNode);if(len==0u){return true;}let q=nodes[filterNode].text.z;let at=heap[d+2u]+item*8u;let size=heap[at+2u];if(len>size){return false;}for(var start=0u;start+len<=size;start++){var matchesItem=true;for(var c=0u;c<len;c++){if(lower(heap[heap[at+1u]+start+c])!=lower(heap[q+c])){matchesItem=false;break;}}if(matchesItem){return true;}}return false;}
+@compute @workgroup_size(1)
+fn layoutLists(@builtin(global_invocation_id) gid:vec3<u32>){if(gid.x>=state[44u]){return;}let i=heap[state[14u]+gid.x];let d=nodes[i].aux.x;if(heap[d+13u]==0u){return;}var count=0u;
+ for(var k=0u;k<heap[d];k++){let at=heap[d+2u]+k*8u;var visibleItem=listMatch(i,k);var parent=heap[at+3u];for(var depth=0u;depth<32u&&parent!=NONE;depth++){let p=heap[d+2u]+parent*8u;if((heap[p+5u]&2u)==0u){visibleItem=false;break;}parent=heap[p+3u];}if(visibleItem){heap[heap[d+5u]+count]=k;count++;}}
+ heap[d+7u]=count;heap[d+13u]=0u;let r=contentRect(nodes[i]);setf(cs(i)+1u,clamp(sf(cs(i)+1u),0.0,max(0.0,f32(count)*hf(d+6u)-r.w)));
+}
+fn listSelectedVisible(i:u32)->u32{let d=nodes[i].aux.x;for(var k=0u;k<heap[d+7u];k++){let item=heap[heap[d+5u]+k];if(heap[heap[d+2u]+item*8u]==heap[d+9u]){return k;}}return NONE;}
+fn listChoose(i:u32,vr:u32,activateItem:bool){let d=nodes[i].aux.x;if(vr>=heap[d+7u]){return;}let item=heap[heap[d+5u]+vr];let at=heap[d+2u]+item*8u;if((heap[at+5u]&4u)!=0u){return;}heap[d+9u]=heap[at];setf(cs(i),f32(item));if(activateItem&&nodes[i].action.x==13u){actionEvent(i,f32(item),heap[at]);}}
+fn listDrag(i:u32,p:vec2<f32>){let r=contentRect(nodes[i]);let d=nodes[i].aux.x;let full=f32(heap[d+7u])*hf(d+6u);let thumb=max(18.0,r.w*r.w/max(1.0,full));setf(cs(i)+1u,clamp((p.y-r.y-sf(28u))/max(1.0,r.w-thumb)*max(0.0,full-r.w),0.0,max(0.0,full-r.w)));}
+fn emitListChrome(i:u32,order:ptr<function,u32>){let n=nodes[i];let r=contentRect(n);let d=n.aux.x;let full=f32(heap[d+7u])*hf(d+6u);if(full<=r.w||r.w<=0.0){return;}let thumb=max(18.0,r.w*r.w/full);let y=r.y+sf(cs(i)+1u)/(full-r.w)*max(0.0,r.w-thumb);box(i,vec4<f32>(r.x+r.z-9.0,y,6.0,min(r.w,thumb)),decodeColor(0xff766049u),3.0,0.0,n.clip,order);}
+fn listPointer(i:u32,p:vec2<f32>,up:bool){let n=nodes[i];let d=n.aux.x;let r=contentRect(n);
+ if(up&&state[30u]==6u){return;}let full=f32(heap[d+7u])*hf(d+6u);
+ if(!up&&full>r.w&&p.x>=r.x+r.z-12.0){let thumb=max(18.0,r.w*r.w/full);let y=r.y+sf(cs(i)+1u)/(full-r.w)*max(0.0,r.w-thumb);setf(28u,select(thumb*.5,p.y-y,p.y>=y&&p.y<=y+thumb));state[30u]=6u;listDrag(i,p);return;}
+let vr=u32(max(0.0,p.y-r.y+sf(cs(i)+1u))/hf(d+6u));if(vr>=heap[d+7u]){return;}let item=heap[heap[d+5u]+vr];let at=heap[d+2u]+item*8u;if(!up){if(n.info.x==28u&&(heap[at+5u]&1u)!=0u&&p.x-r.x<f32(heap[at+4u])*16.0+24.0){heap[at+5u]^=2u;heap[d+13u]=1u;state[30u]=5u;}else{listChoose(i,vr,false);}}else if(state[30u]!=5u){listChoose(i,vr,true);}}
+fn listKey(i:u32,key:u32){let d=nodes[i].aux.x;let count=heap[d+7u];if(count==0u){return;}var row=listSelectedVisible(i);let previous=row;if(row==NONE){row=0u;}let page=max(1u,u32(contentRect(nodes[i]).w/hf(d+6u)));switch key{case 38u:{row=select(0u,row-1u,row>0u);}case 40u:{row=select(min(row+1u,count-1u),0u,previous==NONE);}case 36u:{row=0u;}case 35u:{row=count-1u;}case 33u:{row=u32(max(0i,i32(row)-i32(page)));}case 34u:{row=min(row+page,count-1u);}case 13u:{listChoose(i,row,true);return;}case 37u,39u:{let item=heap[heap[d+5u]+row];let at=heap[d+2u]+item*8u;if((heap[at+5u]&1u)!=0u){heap[at+5u]=(heap[at+5u]&~2u)|select(0u,2u,key==39u);heap[d+13u]=1u;}return;}default:{return;}}
+ let backwards=key==38u||key==33u||key==35u;
+ var found=false;for(var tries=0u;tries<count;tries++){let item=heap[heap[d+5u]+row];if((heap[heap[d+2u]+item*8u+5u]&4u)==0u){found=true;break;}if(backwards){if(row==0u){break;}row--;}else{if(row+1u>=count){break;}row++;}}
+ if(!found){return;}listChoose(i,row,false);let y=f32(row)*hf(d+6u);let s=cs(i)+1u;let height=contentRect(nodes[i]).w;setf(s,clamp(sf(s),max(0.0,y+hf(d+6u)-height),y));
+}
+@compute @workgroup_size(32)
+fn emitListParts(@builtin(global_invocation_id) gid:vec3<u32>){if(gid.y>=state[44u]||gid.x>=128u){return;}let i=heap[state[14u]+gid.y];let n=nodes[i];if(n.translation.z<=.001){return;}let d=n.aux.x;let r=contentRect(n);let height=hf(d+6u);let row=u32(floor(sf(cs(i)+1u)/height))+gid.x;if(row>=heap[d+7u]||f32(gid.x)*height>r.w+height){return;}
+ emissionHead=1684u+gid.y*128u+gid.x;emissionRemaining=32768u;var order=paintNode(i)*8388608u+(gid.x+1u)*32768u;let clip=intersection(n.clip,transformedBounds(n.matrix,n.translation.xy,boundsOf(vec4<f32>(r.xy,max(0.0,r.z-12.0),r.w))));let item=heap[heap[d+5u]+row];let at=heap[d+2u]+item*8u;let y=r.y+f32(row)*height-sf(cs(i)+1u);let selected=heap[at]==heap[d+9u];if(selected){box(i,vec4<f32>(r.x,y,max(0.0,r.z-12.0),height),decodeColor(0xff533d22u),3.0,0.0,clip,&order);}let indent=select(0.0,f32(heap[at+4u])*16.0+16.0,n.info.x==28u);let fg=decodeColor(select(n.paint.y,0xffa08973u,(heap[at+5u]&4u)!=0u));
+ if(n.info.x==28u&&(heap[at+5u]&1u)!=0u){let x=r.x+indent-6.0;let yy=y+height*.5;if((heap[at+5u]&2u)!=0u){line(i,vec2<f32>(x-3.0,yy-2.0),vec2<f32>(x,yy+2.0),fg,1.3,clip,&order);line(i,vec2<f32>(x,yy+2.0),vec2<f32>(x+3.0,yy-2.0),fg,1.3,clip,&order);}else{line(i,vec2<f32>(x-2.0,yy-3.0),vec2<f32>(x+2.0,yy),fg,1.3,clip,&order);line(i,vec2<f32>(x+2.0,yy),vec2<f32>(x-2.0,yy+3.0),fg,1.3,clip,&order);}}
+ _=drawText(i,heap[at+1u],heap[at+2u],vec2<f32>(r.x+8.0+indent,y+(height-fontLineHeight(i,n.misc.z))*.5),n.misc.z,fg,clip,0.0,&order);
+}
+
+fn activeModal()->u32{if(state[42u]==0u){return NONE;}return heap[state[42u]+1u];}
+fn modalOwns(i:u32)->bool{let root=activeModal();if(root==NONE){return true;}var at=i;for(var depth=0u;depth<32u&&at!=NONE;depth++){if(at==root){return true;}at=nodes[at].info.y;}return false;}
+fn updateModal(){let d=state[42u];if(d==0u){return;}var modalNode=NONE;for(var j=0u;j<heap[d];j++){let candidate=heap[d+3u+j];if(visible(candidate)){modalNode=candidate;}}if(modalNode!=heap[d+1u]){if(modalNode!=NONE){if(heap[d+1u]==NONE){heap[d+2u]=state[0u];}state[0u]=modalNode;}else{let old=heap[d+2u];state[0u]=NONE;if(old!=NONE&&visible(old)&&enabled(old)){state[0u]=old;}}state[2u]=NONE;state[1u]=NONE;heap[d+1u]=modalNode;}}

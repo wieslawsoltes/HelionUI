@@ -1,0 +1,8 @@
+
+> @helion/ui@0.12.2-experimental check:build
+> node tools/check-build.mjs
+
+Standalone closure check passed: 76 embedded modules, 25 exact shader sources, no external script/style assets.
+Exact standalone startup-worker embedding and independent module closure verified.
+Exact playground runtime, 25 shaders, preparation/authoring workers, stylesheet, and reciprocal standalone links verified.
+Designer and app-export template closure, exact source/shader/worker identity, data-only injection and sample exports verified.

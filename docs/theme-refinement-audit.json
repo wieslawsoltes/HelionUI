@@ -1,0 +1,872 @@
+{
+  "version": "0.14.0-experimental",
+  "scope": "Host palette math, test-only translated scalar WGSL and source/count audit; no native shader execution, screenshots, accessibility conformance or hardware benchmark.",
+  "palettes": [
+    {
+      "theme": "fluent",
+      "variant": "dark",
+      "themeContrast": "standard",
+      "textPairs": [
+        {
+          "fg": "text",
+          "bg": "control",
+          "ratio": 12.63465434445799
+        },
+        {
+          "fg": "text",
+          "bg": "controlHover",
+          "ratio": 11.201788790415135
+        },
+        {
+          "fg": "text",
+          "bg": "controlPressed",
+          "ratio": 14.5481984654954
+        },
+        {
+          "fg": "text",
+          "bg": "field",
+          "ratio": 16.857588663262874
+        },
+        {
+          "fg": "text",
+          "bg": "fieldHover",
+          "ratio": 15.328417894601541
+        },
+        {
+          "fg": "text",
+          "bg": "canvas",
+          "ratio": 16.29325535858735
+        },
+        {
+          "fg": "text",
+          "bg": "surface",
+          "ratio": 14.938418916797357
+        },
+        {
+          "fg": "accentText",
+          "bg": "accent",
+          "ratio": 7.295141883703596
+        },
+        {
+          "fg": "accentText",
+          "bg": "accentHover",
+          "ratio": 8.258519836107256
+        },
+        {
+          "fg": "accentText",
+          "bg": "accentPressed",
+          "ratio": 6.0324040117355375
+        },
+        {
+          "fg": "dangerText",
+          "bg": "danger",
+          "ratio": 9.501113639609127
+        },
+        {
+          "fg": "dangerText",
+          "bg": "dangerHover",
+          "ratio": 10.894541530128434
+        },
+        {
+          "fg": "dangerText",
+          "bg": "dangerPressed",
+          "ratio": 7.884110708562641
+        }
+      ],
+      "focusPairs": [
+        {
+          "fg": "focus",
+          "bg": "control",
+          "ratio": 8.22720597772788
+        },
+        {
+          "fg": "focus",
+          "bg": "field",
+          "ratio": 10.977020062389663
+        }
+      ]
+    },
+    {
+      "theme": "fluent",
+      "variant": "dark",
+      "themeContrast": "high",
+      "textPairs": [
+        {
+          "fg": "text",
+          "bg": "control",
+          "ratio": 21
+        },
+        {
+          "fg": "text",
+          "bg": "controlHover",
+          "ratio": 16.29325535858735
+        },
+        {
+          "fg": "text",
+          "bg": "controlPressed",
+          "ratio": 13.19811185826915
+        },
+        {
+          "fg": "text",
+          "bg": "field",
+          "ratio": 21
+        },
+        {
+          "fg": "text",
+          "bg": "fieldHover",
+          "ratio": 17.9278402530276
+        },
+        {
+          "fg": "text",
+          "bg": "canvas",
+          "ratio": 21
+        },
+        {
+          "fg": "text",
+          "bg": "surface",
+          "ratio": 21
+        },
+        {
+          "fg": "accentText",
+          "bg": "accent",
+          "ratio": 16.77884725043698
+        },
+        {
+          "fg": "accentText",
+          "bg": "accentHover",
+          "ratio": 18.22364834669823
+        },
+        {
+          "fg": "accentText",
+          "bg": "accentPressed",
+          "ratio": 14.798372086832453
+        },
+        {
+          "fg": "dangerText",
+          "bg": "danger",
+          "ratio": 12.368558141558616
+        },
+        {
+          "fg": "dangerText",
+          "bg": "dangerHover",
+          "ratio": 14.799972059073616
+        },
+        {
+          "fg": "dangerText",
+          "bg": "dangerPressed",
+          "ratio": 10.339803962815704
+        }
+      ],
+      "focusPairs": [
+        {
+          "fg": "focus",
+          "bg": "control",
+          "ratio": 16.748
+        },
+        {
+          "fg": "focus",
+          "bg": "field",
+          "ratio": 16.748
+        }
+      ]
+    },
+    {
+      "theme": "fluent",
+      "variant": "light",
+      "themeContrast": "standard",
+      "textPairs": [
+        {
+          "fg": "text",
+          "bg": "control",
+          "ratio": 17.224382887077635
+        },
+        {
+          "fg": "text",
+          "bg": "controlHover",
+          "ratio": 15.798838034779152
+        },
+        {
+          "fg": "text",
+          "bg": "controlPressed",
+          "ratio": 14.448302469496035
+        },
+        {
+          "fg": "text",
+          "bg": "field",
+          "ratio": 17.224382887077635
+        },
+        {
+          "fg": "text",
+          "bg": "fieldHover",
+          "ratio": 16.359990137598086
+        },
+        {
+          "fg": "text",
+          "bg": "canvas",
+          "ratio": 15.522767292214983
+        },
+        {
+          "fg": "text",
+          "bg": "surface",
+          "ratio": 17.224382887077635
+        },
+        {
+          "fg": "accentText",
+          "bg": "accent",
+          "ratio": 5.673753670293826
+        },
+        {
+          "fg": "accentText",
+          "bg": "accentHover",
+          "ratio": 6.8082588816036385
+        },
+        {
+          "fg": "accentText",
+          "bg": "accentPressed",
+          "ratio": 8.479313970541805
+        },
+        {
+          "fg": "dangerText",
+          "bg": "danger",
+          "ratio": 6.57428861557707
+        },
+        {
+          "fg": "dangerText",
+          "bg": "dangerHover",
+          "ratio": 8.33026795656627
+        },
+        {
+          "fg": "dangerText",
+          "bg": "dangerPressed",
+          "ratio": 10.607441484552451
+        }
+      ],
+      "focusPairs": [
+        {
+          "fg": "focus",
+          "bg": "control",
+          "ratio": 7.103737825965273
+        },
+        {
+          "fg": "focus",
+          "bg": "field",
+          "ratio": 7.103737825965273
+        }
+      ]
+    },
+    {
+      "theme": "fluent",
+      "variant": "light",
+      "themeContrast": "high",
+      "textPairs": [
+        {
+          "fg": "text",
+          "bg": "control",
+          "ratio": 21
+        },
+        {
+          "fg": "text",
+          "bg": "controlHover",
+          "ratio": 18.427342383975944
+        },
+        {
+          "fg": "text",
+          "bg": "controlPressed",
+          "ratio": 15.908084190807749
+        },
+        {
+          "fg": "text",
+          "bg": "field",
+          "ratio": 21
+        },
+        {
+          "fg": "text",
+          "bg": "fieldHover",
+          "ratio": 18.427342383975944
+        },
+        {
+          "fg": "text",
+          "bg": "canvas",
+          "ratio": 21
+        },
+        {
+          "fg": "text",
+          "bg": "surface",
+          "ratio": 21
+        },
+        {
+          "fg": "accentText",
+          "bg": "accent",
+          "ratio": 10.861064530659608
+        },
+        {
+          "fg": "accentText",
+          "bg": "accentHover",
+          "ratio": 13.376659982748494
+        },
+        {
+          "fg": "accentText",
+          "bg": "accentPressed",
+          "ratio": 16.06829656030231
+        },
+        {
+          "fg": "dangerText",
+          "bg": "danger",
+          "ratio": 10.51414638785178
+        },
+        {
+          "fg": "dangerText",
+          "bg": "dangerHover",
+          "ratio": 12.433768680110342
+        },
+        {
+          "fg": "dangerText",
+          "bg": "dangerPressed",
+          "ratio": 15.148684818112308
+        }
+      ],
+      "focusPairs": [
+        {
+          "fg": "focus",
+          "bg": "control",
+          "ratio": 12.060250452916224
+        },
+        {
+          "fg": "focus",
+          "bg": "field",
+          "ratio": 12.060250452916224
+        }
+      ]
+    },
+    {
+      "theme": "macos26",
+      "variant": "dark",
+      "themeContrast": "standard",
+      "textPairs": [
+        {
+          "fg": "text",
+          "bg": "control",
+          "ratio": 9.558967771086712
+        },
+        {
+          "fg": "text",
+          "bg": "controlHover",
+          "ratio": 7.263087308645376
+        },
+        {
+          "fg": "text",
+          "bg": "controlPressed",
+          "ratio": 11.593556505034298
+        },
+        {
+          "fg": "text",
+          "bg": "field",
+          "ratio": 14.365410949703431
+        },
+        {
+          "fg": "text",
+          "bg": "fieldHover",
+          "ratio": 12.091396603394793
+        },
+        {
+          "fg": "text",
+          "bg": "canvas",
+          "ratio": 16.08015688668869
+        },
+        {
+          "fg": "text",
+          "bg": "surface",
+          "ratio": 13.062388149841436
+        },
+        {
+          "fg": "accentText",
+          "bg": "accent",
+          "ratio": 8.133743886641042
+        },
+        {
+          "fg": "accentText",
+          "bg": "accentHover",
+          "ratio": 9.601738646530064
+        },
+        {
+          "fg": "accentText",
+          "bg": "accentPressed",
+          "ratio": 6.747627985526604
+        },
+        {
+          "fg": "dangerText",
+          "bg": "danger",
+          "ratio": 9.501113639609127
+        },
+        {
+          "fg": "dangerText",
+          "bg": "dangerHover",
+          "ratio": 10.894541530128434
+        },
+        {
+          "fg": "dangerText",
+          "bg": "dangerPressed",
+          "ratio": 7.884110708562641
+        }
+      ],
+      "focusPairs": [
+        {
+          "fg": "focus",
+          "bg": "control",
+          "ratio": 6.346527264163485
+        },
+        {
+          "fg": "focus",
+          "bg": "field",
+          "ratio": 9.537690097561732
+        }
+      ]
+    },
+    {
+      "theme": "macos26",
+      "variant": "dark",
+      "themeContrast": "high",
+      "textPairs": [
+        {
+          "fg": "text",
+          "bg": "control",
+          "ratio": 21
+        },
+        {
+          "fg": "text",
+          "bg": "controlHover",
+          "ratio": 16.29325535858735
+        },
+        {
+          "fg": "text",
+          "bg": "controlPressed",
+          "ratio": 13.19811185826915
+        },
+        {
+          "fg": "text",
+          "bg": "field",
+          "ratio": 21
+        },
+        {
+          "fg": "text",
+          "bg": "fieldHover",
+          "ratio": 17.9278402530276
+        },
+        {
+          "fg": "text",
+          "bg": "canvas",
+          "ratio": 21
+        },
+        {
+          "fg": "text",
+          "bg": "surface",
+          "ratio": 21
+        },
+        {
+          "fg": "accentText",
+          "bg": "accent",
+          "ratio": 16.77884725043698
+        },
+        {
+          "fg": "accentText",
+          "bg": "accentHover",
+          "ratio": 18.22364834669823
+        },
+        {
+          "fg": "accentText",
+          "bg": "accentPressed",
+          "ratio": 14.798372086832453
+        },
+        {
+          "fg": "dangerText",
+          "bg": "danger",
+          "ratio": 12.368558141558616
+        },
+        {
+          "fg": "dangerText",
+          "bg": "dangerHover",
+          "ratio": 14.799972059073616
+        },
+        {
+          "fg": "dangerText",
+          "bg": "dangerPressed",
+          "ratio": 10.339803962815704
+        }
+      ],
+      "focusPairs": [
+        {
+          "fg": "focus",
+          "bg": "control",
+          "ratio": 16.748
+        },
+        {
+          "fg": "focus",
+          "bg": "field",
+          "ratio": 16.748
+        }
+      ]
+    },
+    {
+      "theme": "macos26",
+      "variant": "light",
+      "themeContrast": "standard",
+      "textPairs": [
+        {
+          "fg": "text",
+          "bg": "control",
+          "ratio": 15.853272308031313
+        },
+        {
+          "fg": "text",
+          "bg": "controlHover",
+          "ratio": 14.738828645921306
+        },
+        {
+          "fg": "text",
+          "bg": "controlPressed",
+          "ratio": 12.671640935104985
+        },
+        {
+          "fg": "text",
+          "bg": "field",
+          "ratio": 15.853272308031313
+        },
+        {
+          "fg": "text",
+          "bg": "fieldHover",
+          "ratio": 15.181044162076365
+        },
+        {
+          "fg": "text",
+          "bg": "canvas",
+          "ratio": 14.127588379431808
+        },
+        {
+          "fg": "text",
+          "bg": "surface",
+          "ratio": 15.853272308031313
+        },
+        {
+          "fg": "accentText",
+          "bg": "accent",
+          "ratio": 5.287409196547012
+        },
+        {
+          "fg": "accentText",
+          "bg": "accentHover",
+          "ratio": 6.692191500803398
+        },
+        {
+          "fg": "accentText",
+          "bg": "accentPressed",
+          "ratio": 8.445637429745448
+        },
+        {
+          "fg": "dangerText",
+          "bg": "danger",
+          "ratio": 6.57428861557707
+        },
+        {
+          "fg": "dangerText",
+          "bg": "dangerHover",
+          "ratio": 8.33026795656627
+        },
+        {
+          "fg": "dangerText",
+          "bg": "dangerPressed",
+          "ratio": 10.607441484552451
+        }
+      ],
+      "focusPairs": [
+        {
+          "fg": "focus",
+          "bg": "control",
+          "ratio": 7.15412685460513
+        },
+        {
+          "fg": "focus",
+          "bg": "field",
+          "ratio": 7.15412685460513
+        }
+      ]
+    },
+    {
+      "theme": "macos26",
+      "variant": "light",
+      "themeContrast": "high",
+      "textPairs": [
+        {
+          "fg": "text",
+          "bg": "control",
+          "ratio": 21
+        },
+        {
+          "fg": "text",
+          "bg": "controlHover",
+          "ratio": 18.427342383975944
+        },
+        {
+          "fg": "text",
+          "bg": "controlPressed",
+          "ratio": 15.908084190807749
+        },
+        {
+          "fg": "text",
+          "bg": "field",
+          "ratio": 21
+        },
+        {
+          "fg": "text",
+          "bg": "fieldHover",
+          "ratio": 18.427342383975944
+        },
+        {
+          "fg": "text",
+          "bg": "canvas",
+          "ratio": 21
+        },
+        {
+          "fg": "text",
+          "bg": "surface",
+          "ratio": 21
+        },
+        {
+          "fg": "accentText",
+          "bg": "accent",
+          "ratio": 10.861064530659608
+        },
+        {
+          "fg": "accentText",
+          "bg": "accentHover",
+          "ratio": 13.376659982748494
+        },
+        {
+          "fg": "accentText",
+          "bg": "accentPressed",
+          "ratio": 16.06829656030231
+        },
+        {
+          "fg": "dangerText",
+          "bg": "danger",
+          "ratio": 10.51414638785178
+        },
+        {
+          "fg": "dangerText",
+          "bg": "dangerHover",
+          "ratio": 12.433768680110342
+        },
+        {
+          "fg": "dangerText",
+          "bg": "dangerPressed",
+          "ratio": 15.148684818112308
+        }
+      ],
+      "focusPairs": [
+        {
+          "fg": "focus",
+          "bg": "control",
+          "ratio": 12.060250452916224
+        },
+        {
+          "fg": "focus",
+          "bg": "field",
+          "ratio": 12.060250452916224
+        }
+      ]
+    }
+  ],
+  "customAccent": {
+    "sampleCount": 4096,
+    "worst": {
+      "ratio": 4.5803937421294405,
+      "color": 4281428385,
+      "role": "accent",
+      "foreground": 4278190080
+    },
+    "scalarComparison": "PASS; f64 host/scalar math is not proof of native f32 luminance decisions"
+  },
+  "stateProbes": [
+    {
+      "template": "Button",
+      "groups": 2,
+      "propertyPlans": 17,
+      "oldStrategyStateSearchesForThesePlans": 6,
+      "actualCachedSearchesAcrossTwoStages": 4,
+      "note": "Same current template graph; counts only, not a version-to-version GPU-time comparison."
+    },
+    {
+      "template": "ToggleButton",
+      "groups": 3,
+      "propertyPlans": 17,
+      "oldStrategyStateSearchesForThesePlans": 15,
+      "actualCachedSearchesAcrossTwoStages": 6,
+      "note": "Same current template graph; counts only, not a version-to-version GPU-time comparison."
+    }
+  ],
+  "shaders": [
+    {
+      "file": "shaders/blit.wgsl",
+      "equal": true,
+      "bytes": 1977,
+      "sha256": "e06d0ea086add289f4258eccbc3bed820e22f0bbea625b9ddfb74e26b8c8d131"
+    },
+    {
+      "file": "shaders/common.wgsl",
+      "equal": true,
+      "bytes": 10749,
+      "sha256": "0ff800f4ef91464c779b3675f08c7f4d813c06f650c4c32cdd63740cd96fc0ae"
+    },
+    {
+      "file": "shaders/controls.wgsl",
+      "equal": true,
+      "bytes": 8805,
+      "sha256": "ee5c8e86ab73380c2e00a6753c1aaa5fc1f1d49cef775a4b88b9a4ffa5510931"
+    },
+    {
+      "file": "shaders/curve-coverage.wgsl",
+      "equal": true,
+      "bytes": 3448,
+      "sha256": "e1eda6ef0ef8c70a532276a82f2320e9158acfe647bed91e797594fcb8db44da"
+    },
+    {
+      "file": "shaders/data-source.wgsl",
+      "equal": true,
+      "bytes": 6208,
+      "sha256": "d8fcdaebd57708a3622f7aab0c964ce4690c15c69bad1cccef7f80386adb2439"
+    },
+    {
+      "file": "shaders/data.wgsl",
+      "equal": true,
+      "bytes": 6178,
+      "sha256": "ddac892514846b5376ae5b269f45b856e0e31d269d31e3e88fe6d80684cd6ea2"
+    },
+    {
+      "file": "shaders/designer-render.wgsl",
+      "equal": true,
+      "bytes": 21101,
+      "sha256": "384515e83227dd8f4e9e1e0568f31916ae78c15ab2984f18a4b490117cec9a01"
+    },
+    {
+      "file": "shaders/designer.wgsl",
+      "equal": false,
+      "bytes": 67563,
+      "sha256": "9bf4b3559655cd0f19637a3032cc505aa312a57a3bb8b3523001129da76c8b19"
+    },
+    {
+      "file": "shaders/docking.wgsl",
+      "equal": true,
+      "bytes": 10456,
+      "sha256": "2ebf578c04e45b874951fb9d65257f0bf654767939af713b667fd175dcbdbac4"
+    },
+    {
+      "file": "shaders/editor-render.wgsl",
+      "equal": true,
+      "bytes": 7973,
+      "sha256": "8447098678c24fa9ce96713d1cb9f441c67e49bfbd604d2cd03a6373d151119e"
+    },
+    {
+      "file": "shaders/editor.wgsl",
+      "equal": true,
+      "bytes": 34517,
+      "sha256": "2202f50460cdd55af59c3a4360f3dfedd8fc7a311f15796e0e5164a147cb423f"
+    },
+    {
+      "file": "shaders/emit.wgsl",
+      "equal": true,
+      "bytes": 22000,
+      "sha256": "08630c1b4e81ce7e2ac07be7e8a2d2f955f9d0b03eb091f04614a3163024949c"
+    },
+    {
+      "file": "shaders/flatten.wgsl",
+      "equal": true,
+      "bytes": 1338,
+      "sha256": "34ee7bf4e9181546f88bce5585e3c6f8e72847f24fa82bff8fd19d8ff8d683aa"
+    },
+    {
+      "file": "shaders/glyph-cache.wgsl",
+      "equal": true,
+      "bytes": 8273,
+      "sha256": "f11c52c8c456be9fbf529516a9530112cf18fb47797c9649067b1a91241284d4"
+    },
+    {
+      "file": "shaders/hud-common.wgsl",
+      "equal": true,
+      "bytes": 5382,
+      "sha256": "c8303847975fbb520b3cf065958e6701603b6f440e9f7a6d6e30184e0debf2e2"
+    },
+    {
+      "file": "shaders/hud-viewport.wgsl",
+      "equal": true,
+      "bytes": 1275,
+      "sha256": "f5f60c7cc3697f65ff0f9f57909b69205b19357a0702ed3498c1f1d293403483"
+    },
+    {
+      "file": "shaders/hud.wgsl",
+      "equal": true,
+      "bytes": 11745,
+      "sha256": "2996d5652075631046258e0904a096dba7d36c1062970127adaf1a5e835b56e9"
+    },
+    {
+      "file": "shaders/input.wgsl",
+      "equal": true,
+      "bytes": 21013,
+      "sha256": "caebcb7b7722bce8eabdfa3fb94c0937764c7b115ed15f5234d7287959dca583"
+    },
+    {
+      "file": "shaders/layout.wgsl",
+      "equal": true,
+      "bytes": 17941,
+      "sha256": "ce57fcb72f4e9bcba461d16bb1aaf58ca6aedcf3f12496fbbabe45b50b08ea3c"
+    },
+    {
+      "file": "shaders/metrics.wgsl",
+      "equal": true,
+      "bytes": 7440,
+      "sha256": "60472f5eadb0ef8444e3abe30ad0eef51da5eff75a503faa12b20da9ffb4d455"
+    },
+    {
+      "file": "shaders/models.wgsl",
+      "equal": true,
+      "bytes": 4092,
+      "sha256": "6f510acf10014ce10d416d8367d1ddfad61184af90233b4c5ad7e28e71e839ac"
+    },
+    {
+      "file": "shaders/present.wgsl",
+      "equal": true,
+      "bytes": 8378,
+      "sha256": "e0c6c25f4a98bc5b0e2865f1be6e3b5dbe57b202c360b6913d95415579a241f6"
+    },
+    {
+      "file": "shaders/presenter.wgsl",
+      "equal": true,
+      "bytes": 5805,
+      "sha256": "10b1873102fb29aa9471df3c1fbf39dce9750114d8223bc5541136f323be6c48"
+    },
+    {
+      "file": "shaders/strips.wgsl",
+      "equal": true,
+      "bytes": 16882,
+      "sha256": "71ab04bcdc1f83513c53bc8e18d31fc6822378a84916bdad991fbd97388a11b3"
+    },
+    {
+      "file": "shaders/templates.wgsl",
+      "equal": false,
+      "bytes": 17864,
+      "sha256": "c13a38c7813eb2d2366581d03c730783ca8c5deb652a100220cc40cad0d3f87b"
+    },
+    {
+      "file": "shaders/text.wgsl",
+      "equal": true,
+      "bytes": 8530,
+      "sha256": "4d006344386482d80d5316e4a6367b048d4d2b4d0baaaf6ab6cddb11cfad8b3b"
+    }
+  ],
+  "resourceBank": {
+    "variantsPerTheme": 8,
+    "themes": 2,
+    "referencedKeys": 12,
+    "bytesPerNumericKey": 64,
+    "note": "Only referenced keys are packed. Existing reserved headers/group words reused. String values can have additional heap records."
+  },
+  "status": "PASS"
+}

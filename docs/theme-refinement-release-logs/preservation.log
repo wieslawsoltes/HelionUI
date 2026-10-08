@@ -1,0 +1,60 @@
+{
+  "status": "PASS",
+  "versions": [
+    "0.13.0-experimental",
+    "0.14.0-experimental"
+  ],
+  "showcase": {
+    "views": 202,
+    "rows": 65536,
+    "animations": 8,
+    "compiledArrays": {
+      "nodes": {
+        "equal": true,
+        "bytes": 58176,
+        "sha256": "7c85e63a21a351cb11b594b479f3694ac4c6a6d492af11cace99b1da789d2ded"
+      },
+      "state": {
+        "equal": true,
+        "bytes": 13184,
+        "sha256": "0738a5dd94d258b13507c011e32742767d360a34e6785d0ad0b9a0756705d1ab"
+      },
+      "heap": {
+        "equal": true,
+        "bytes": 20272572,
+        "sha256": "a30ad8fbbcf411723e4b531b11f2e29d96be7414fa643686a737a6154d7845ed"
+      }
+    }
+  },
+  "studio": {
+    "before": {
+      "nodes": 440,
+      "nodeBytes": 126720,
+      "stateBytes": 28416,
+      "heapBytes": 47136792,
+      "templateInstances": 7,
+      "templatePlans": 68,
+      "templateNestingLevels": 1,
+      "templateLayout": true,
+      "designers": 1,
+      "editors": 5,
+      "dockWorkspaces": 1
+    },
+    "after": {
+      "nodes": 480,
+      "nodeBytes": 138240,
+      "stateBytes": 30976,
+      "heapBytes": 47193728,
+      "templateInstances": 7,
+      "templatePlans": 84,
+      "templateNestingLevels": 1,
+      "templateLayout": true,
+      "designers": 1,
+      "editors": 5,
+      "dockWorkspaces": 1
+    },
+    "note": "Studio changes are intentional; no initial-buffer or pixel equivalence claimed for the expanded workspace."
+  },
+  "protectedFiles": 23,
+  "changedProtected": []
+}

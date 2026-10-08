@@ -1,0 +1,6 @@
+{
+  "page": "/tests/pacing.html",
+  "status": "UNVERIFIED",
+  "hardwareFPSMeasured": false,
+  "error": "Page.goto: net::ERR_BLOCKED_BY_ADMINISTRATOR at http://127.0.0.1:8080/tests/pacing.html\nCall log:\n  - navigating to \"http://127.0.0.1:8080/tests/pacing.html\", waiting until \"load\"\n"
+}

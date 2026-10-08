@@ -1,0 +1,16 @@
+<!doctype html><html lang="en"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Helion startup and refresh-cadence qualification</title>
+<style>body{margin:0;background:#0e1720;color:#dbe8f4;font:14px/1.6 system-ui}header{padding:18px 24px}h1{font-size:22px;margin:0}p{margin:8px 0;max-width:1100px;color:#a3b3c2}button,select,input{padding:8px;border:1px solid #486072;border-radius:6px;background:#203241;color:#e0e9f0}button{cursor:pointer}label{display:inline-block;margin:6px 14px 6px 0}canvas{display:block;width:100%;height:640px;max-height:75vh}pre{white-space:pre-wrap;overflow-wrap:anywhere;padding:20px}button:disabled{opacity:.5;cursor:wait}</style>
+<header><h1>Startup and continuous browser-refresh cadence</h1>
+<p>Two starts with the same full 65,536-row scene and real fonts: first after an optional cache clear, then a repeat start. The measured idle and scroll phases use the selected continuous rAF or yielding ASAP loop, with <strong>no per-frame await of GPU completion</strong>. No font, raster-quality or resolution reduction. This does not measure physical scanout or guarantee monitor-rate rendering.</p>
+<p>Use the default 2 for paced vsync and 0 for an explicitly unbounded reference comparison. Per-frame acknowledgements are independent, not chained. ASAP has its own limit of eight submissions, independent of this vsync limit. Change order and repeat runs. Driver shader caches and HTTP caches are not cleared. An IndexedDB miss or worker restriction is reported, not assumed away. Selecting local fonts disables persistent scene caching.</p>
+<label>Acknowledgement limit <select id="credits"><option selected value="2">2 — paced (default)</option><option value="0">0 — unbounded reference</option><option value="1">1 — strict</option><option value="3">3</option></select></label>
+<label>Submission <select id="mode"><option value="vsync">Vsync / paced</option><option value="asap">As fast as possible</option></select></label>
+<label>Timing <select id="timing-detail"><option value="off">Off — FPS / CPU timings, no GPU timestamp writes</option><option selected value="frame">Frame ranges (default)</option><option value="stages">Stage ranges (extra pass boundaries)</option></select></label>
+<label><input id="serial-grid" type="checkbox"> Serial-row reference</label><label><input id="full-hud" type="checkbox"> Fullscreen HUD reference</label>
+<label>Phase length <select id="duration"><option value="4000">4 seconds</option><option value="8000">8 seconds</option></select></label>
+<label>Local fonts <input id="fonts" type="file" accept=".ttf,.otf,.ttc,.woff" multiple></label><br>
+<label><input id="clear" type="checkbox" checked> Clear Helion's one-record initial-scene cache before the first start</label>
+<button id="run">Run two starts + cadence phases</button> <button id="save" disabled>Save JSON</button>
+</header><canvas id="test-surface"></canvas><pre id="log">Not run. Native browser/GPU results are required; host test simulations are not display benchmarks.</pre>
+<script type="module" src="./startup-browser.js"></script></html>

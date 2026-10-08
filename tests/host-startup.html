@@ -1,0 +1,5 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Helion — browser timer and worker regression checks</title>
+<style>body{font:16px/1.5 system-ui;max-width:960px;margin:32px auto;padding:0 24px;background:#101923;color:#e0e9f0}pre{white-space:pre-wrap;overflow-wrap:anywhere}button{padding:10px 18px}</style></head><body>
+<h1>Native browser startup checks</h1><p>This test requests no GPU device, font download or canvas rendering. It checks native timers, real preparation workers, identical compiled scene arrays, cancellation, and the unchanged authoring sandbox.</p>
+<p>Source checkout: run <code>npm run build</code>, then <code>npm start</code>, and open <code>/dist/tests/host-startup.html</code>. Prebuilt static site: open <code>/tests/host-startup.html</code>.</p>
+<button id="run">Run browser checks</button><pre id="result">Not run.</pre><script type="module" src="./host-startup.js"></script></body></html>

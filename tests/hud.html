@@ -1,0 +1,14 @@
+<!doctype html>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Helion — native HUD validation</title>
+<style>
+:root{color-scheme:dark;font:14px system-ui;background:#0e1720;color:#dce8f0}body{max-width:1100px;margin:24px auto;padding:0 20px}h1{font-size:23px}p{line-height:1.6;color:#a4b7c4}button,input{font:inherit;padding:9px 12px;margin:4px;border:1px solid #354b5c;border-radius:6px;background:#172734;color:inherit}button:disabled{opacity:.5}canvas{display:block;width:min(100%,640px);height:480px;max-width:none;background:#102030;margin:20px 0;border:1px solid #304452}pre{white-space:pre-wrap;background:#101c27;padding:18px;border-radius:8px}a{color:#7fd5e8}
+</style>
+<h1>GPU-resident HUD: font and chart validation</h1>
+<p>The native checks use an original geometric fixture font to validate pixel coverage numerically. Its triangles are <strong>not</strong> the showcase typeface. The real-font preview uses the app's Noto Sans source, or a local font you select. Files stay in this page.</p>
+<button id="run-hud">Run native checks</button><button id="preview-hud">Preview real fonts</button>
+<input id="hud-font-file" type="file" accept=".ttf,.otf,.woff,.ttc" aria-label="Optional local font for preview">
+<p>The preview uses synthetic 120-frame timing data so spikes and the refresh-budget line can be inspected. <strong>It is not a benchmark.</strong> The normal showcase always uses live timing data.</p>
+<canvas id="hud-canvas"></canvas>
+<pre id="hud-log">Ready. Tests explicitly read GPU buffers and pixels. The normal application HUD does not.</pre>
+<script type="module" src="./hud-gpu.js"></script>

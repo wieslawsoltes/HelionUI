@@ -1,0 +1,455 @@
+{
+  "scope": "Fresh-process Node CPU preparation only; local font reads/parse, scene packing and shader resource analysis. Excludes module-import time, network, workers/IndexedDB, native compilation, GPU execution and display FPS.",
+  "runtime": "v22.16.0",
+  "unicode": "16.0",
+  "platform": "linux",
+  "arch": "x64",
+  "fonts": [
+    {
+      "file": "NotoSans-Regular.ttf",
+      "sha256": "89c3c497f618fdaa0b2d1e98fef93582f28c71debd2c4a8cdf41f190ced2909d"
+    },
+    {
+      "file": "NotoSans-SemiBold.ttf",
+      "sha256": "68543590a7c3185d69ad16664c46df28832beeb72621d2470e86b04099eb4efb"
+    },
+    {
+      "file": "NotoSans-Italic.ttf",
+      "sha256": "5d7618dda819443fd07301c84adcee9fe8960c873ea5e5e1f0f59db384b78082"
+    }
+  ],
+  "samplesPerVersion": 5,
+  "baseline": [
+    {
+      "fontParseMs": 257.109235,
+      "compileMs": 1752.7137719999998,
+      "shaderResourceAnalysisMs": 15.830912000000126,
+      "hostPreparationMs": 2025.653919,
+      "peakRSSMiB": 358.8515625,
+      "nodeCount": 202,
+      "rowCount": 65536,
+      "paths": 9868,
+      "heapBytes": 32344544,
+      "nodesSHA256": "239019363e4dfa0e1d4457ce39e639622f9a4571cff318ceb9a83933793d072e",
+      "stateSHA256": "3f305f612b77265699d3702b5c7fa4d23c85b2f65d9d81729d59eadc7a9748ce",
+      "heapSHA256": "ea7dced624b386bb75447bbd6d4dd87b8ec8e7b718a33f7c2cdc435a85b8939e",
+      "fonts": [
+        {
+          "family": "Noto Sans",
+          "weight": 400,
+          "style": "normal",
+          "glyphs": 3317,
+          "sourceBytes": 512672
+        },
+        {
+          "family": "Noto Sans",
+          "weight": 600,
+          "style": "normal",
+          "glyphs": 3317,
+          "sourceBytes": 515204
+        },
+        {
+          "family": "Noto Sans",
+          "weight": 400,
+          "style": "italic",
+          "glyphs": 3327,
+          "sourceBytes": 530120
+        }
+      ]
+    },
+    {
+      "fontParseMs": 237.07841000000002,
+      "compileMs": 1275.905794,
+      "shaderResourceAnalysisMs": 16.585829000000103,
+      "hostPreparationMs": 1529.5700330000002,
+      "peakRSSMiB": 355.921875,
+      "nodeCount": 202,
+      "rowCount": 65536,
+      "paths": 9868,
+      "heapBytes": 32344544,
+      "nodesSHA256": "239019363e4dfa0e1d4457ce39e639622f9a4571cff318ceb9a83933793d072e",
+      "stateSHA256": "3f305f612b77265699d3702b5c7fa4d23c85b2f65d9d81729d59eadc7a9748ce",
+      "heapSHA256": "ea7dced624b386bb75447bbd6d4dd87b8ec8e7b718a33f7c2cdc435a85b8939e",
+      "fonts": [
+        {
+          "family": "Noto Sans",
+          "weight": 400,
+          "style": "normal",
+          "glyphs": 3317,
+          "sourceBytes": 512672
+        },
+        {
+          "family": "Noto Sans",
+          "weight": 600,
+          "style": "normal",
+          "glyphs": 3317,
+          "sourceBytes": 515204
+        },
+        {
+          "family": "Noto Sans",
+          "weight": 400,
+          "style": "italic",
+          "glyphs": 3327,
+          "sourceBytes": 530120
+        }
+      ]
+    },
+    {
+      "fontParseMs": 218.94747600000002,
+      "compileMs": 1132.398186,
+      "shaderResourceAnalysisMs": 15.837842000000137,
+      "hostPreparationMs": 1367.183504,
+      "peakRSSMiB": 357.6875,
+      "nodeCount": 202,
+      "rowCount": 65536,
+      "paths": 9868,
+      "heapBytes": 32344544,
+      "nodesSHA256": "239019363e4dfa0e1d4457ce39e639622f9a4571cff318ceb9a83933793d072e",
+      "stateSHA256": "3f305f612b77265699d3702b5c7fa4d23c85b2f65d9d81729d59eadc7a9748ce",
+      "heapSHA256": "ea7dced624b386bb75447bbd6d4dd87b8ec8e7b718a33f7c2cdc435a85b8939e",
+      "fonts": [
+        {
+          "family": "Noto Sans",
+          "weight": 400,
+          "style": "normal",
+          "glyphs": 3317,
+          "sourceBytes": 512672
+        },
+        {
+          "family": "Noto Sans",
+          "weight": 600,
+          "style": "normal",
+          "glyphs": 3317,
+          "sourceBytes": 515204
+        },
+        {
+          "family": "Noto Sans",
+          "weight": 400,
+          "style": "italic",
+          "glyphs": 3327,
+          "sourceBytes": 530120
+        }
+      ]
+    },
+    {
+      "fontParseMs": 219.283191,
+      "compileMs": 1267.9805020000001,
+      "shaderResourceAnalysisMs": 18.129065000000082,
+      "hostPreparationMs": 1505.3927580000002,
+      "peakRSSMiB": 356.03125,
+      "nodeCount": 202,
+      "rowCount": 65536,
+      "paths": 9868,
+      "heapBytes": 32344544,
+      "nodesSHA256": "239019363e4dfa0e1d4457ce39e639622f9a4571cff318ceb9a83933793d072e",
+      "stateSHA256": "3f305f612b77265699d3702b5c7fa4d23c85b2f65d9d81729d59eadc7a9748ce",
+      "heapSHA256": "ea7dced624b386bb75447bbd6d4dd87b8ec8e7b718a33f7c2cdc435a85b8939e",
+      "fonts": [
+        {
+          "family": "Noto Sans",
+          "weight": 400,
+          "style": "normal",
+          "glyphs": 3317,
+          "sourceBytes": 512672
+        },
+        {
+          "family": "Noto Sans",
+          "weight": 600,
+          "style": "normal",
+          "glyphs": 3317,
+          "sourceBytes": 515204
+        },
+        {
+          "family": "Noto Sans",
+          "weight": 400,
+          "style": "italic",
+          "glyphs": 3327,
+          "sourceBytes": 530120
+        }
+      ]
+    },
+    {
+      "fontParseMs": 202.963627,
+      "compileMs": 1146.123753,
+      "shaderResourceAnalysisMs": 19.220010000000002,
+      "hostPreparationMs": 1368.3073900000002,
+      "peakRSSMiB": 361.41796875,
+      "nodeCount": 202,
+      "rowCount": 65536,
+      "paths": 9868,
+      "heapBytes": 32344544,
+      "nodesSHA256": "239019363e4dfa0e1d4457ce39e639622f9a4571cff318ceb9a83933793d072e",
+      "stateSHA256": "3f305f612b77265699d3702b5c7fa4d23c85b2f65d9d81729d59eadc7a9748ce",
+      "heapSHA256": "ea7dced624b386bb75447bbd6d4dd87b8ec8e7b718a33f7c2cdc435a85b8939e",
+      "fonts": [
+        {
+          "family": "Noto Sans",
+          "weight": 400,
+          "style": "normal",
+          "glyphs": 3317,
+          "sourceBytes": 512672
+        },
+        {
+          "family": "Noto Sans",
+          "weight": 600,
+          "style": "normal",
+          "glyphs": 3317,
+          "sourceBytes": 515204
+        },
+        {
+          "family": "Noto Sans",
+          "weight": 400,
+          "style": "italic",
+          "glyphs": 3327,
+          "sourceBytes": 530120
+        }
+      ]
+    }
+  ],
+  "optimized": [
+    {
+      "fontParseMs": 232.28565,
+      "compileMs": 258.91879100000006,
+      "shaderResourceAnalysisMs": 4.3082070000000385,
+      "hostPreparationMs": 495.5126480000001,
+      "peakRSSMiB": 239.74609375,
+      "nodeCount": 202,
+      "rowCount": 65536,
+      "paths": 9868,
+      "heapBytes": 32344544,
+      "nodesSHA256": "239019363e4dfa0e1d4457ce39e639622f9a4571cff318ceb9a83933793d072e",
+      "stateSHA256": "3f305f612b77265699d3702b5c7fa4d23c85b2f65d9d81729d59eadc7a9748ce",
+      "heapSHA256": "ea7dced624b386bb75447bbd6d4dd87b8ec8e7b718a33f7c2cdc435a85b8939e",
+      "fonts": [
+        {
+          "family": "Noto Sans",
+          "weight": 400,
+          "style": "normal",
+          "glyphs": 3317,
+          "sourceBytes": 512672
+        },
+        {
+          "family": "Noto Sans",
+          "weight": 600,
+          "style": "normal",
+          "glyphs": 3317,
+          "sourceBytes": 515204
+        },
+        {
+          "family": "Noto Sans",
+          "weight": 400,
+          "style": "italic",
+          "glyphs": 3327,
+          "sourceBytes": 530120
+        }
+      ]
+    },
+    {
+      "fontParseMs": 236.54815,
+      "compileMs": 262.625968,
+      "shaderResourceAnalysisMs": 5.6714150000000245,
+      "hostPreparationMs": 504.84553300000005,
+      "peakRSSMiB": 240.8515625,
+      "nodeCount": 202,
+      "rowCount": 65536,
+      "paths": 9868,
+      "heapBytes": 32344544,
+      "nodesSHA256": "239019363e4dfa0e1d4457ce39e639622f9a4571cff318ceb9a83933793d072e",
+      "stateSHA256": "3f305f612b77265699d3702b5c7fa4d23c85b2f65d9d81729d59eadc7a9748ce",
+      "heapSHA256": "ea7dced624b386bb75447bbd6d4dd87b8ec8e7b718a33f7c2cdc435a85b8939e",
+      "fonts": [
+        {
+          "family": "Noto Sans",
+          "weight": 400,
+          "style": "normal",
+          "glyphs": 3317,
+          "sourceBytes": 512672
+        },
+        {
+          "family": "Noto Sans",
+          "weight": 600,
+          "style": "normal",
+          "glyphs": 3317,
+          "sourceBytes": 515204
+        },
+        {
+          "family": "Noto Sans",
+          "weight": 400,
+          "style": "italic",
+          "glyphs": 3327,
+          "sourceBytes": 530120
+        }
+      ]
+    },
+    {
+      "fontParseMs": 283.838108,
+      "compileMs": 275.67475999999994,
+      "shaderResourceAnalysisMs": 5.424562000000037,
+      "hostPreparationMs": 564.93743,
+      "peakRSSMiB": 243.59375,
+      "nodeCount": 202,
+      "rowCount": 65536,
+      "paths": 9868,
+      "heapBytes": 32344544,
+      "nodesSHA256": "239019363e4dfa0e1d4457ce39e639622f9a4571cff318ceb9a83933793d072e",
+      "stateSHA256": "3f305f612b77265699d3702b5c7fa4d23c85b2f65d9d81729d59eadc7a9748ce",
+      "heapSHA256": "ea7dced624b386bb75447bbd6d4dd87b8ec8e7b718a33f7c2cdc435a85b8939e",
+      "fonts": [
+        {
+          "family": "Noto Sans",
+          "weight": 400,
+          "style": "normal",
+          "glyphs": 3317,
+          "sourceBytes": 512672
+        },
+        {
+          "family": "Noto Sans",
+          "weight": 600,
+          "style": "normal",
+          "glyphs": 3317,
+          "sourceBytes": 515204
+        },
+        {
+          "family": "Noto Sans",
+          "weight": 400,
+          "style": "italic",
+          "glyphs": 3327,
+          "sourceBytes": 530120
+        }
+      ]
+    },
+    {
+      "fontParseMs": 236.999331,
+      "compileMs": 238.51859000000007,
+      "shaderResourceAnalysisMs": 4.41051200000004,
+      "hostPreparationMs": 479.92843300000015,
+      "peakRSSMiB": 235.1015625,
+      "nodeCount": 202,
+      "rowCount": 65536,
+      "paths": 9868,
+      "heapBytes": 32344544,
+      "nodesSHA256": "239019363e4dfa0e1d4457ce39e639622f9a4571cff318ceb9a83933793d072e",
+      "stateSHA256": "3f305f612b77265699d3702b5c7fa4d23c85b2f65d9d81729d59eadc7a9748ce",
+      "heapSHA256": "ea7dced624b386bb75447bbd6d4dd87b8ec8e7b718a33f7c2cdc435a85b8939e",
+      "fonts": [
+        {
+          "family": "Noto Sans",
+          "weight": 400,
+          "style": "normal",
+          "glyphs": 3317,
+          "sourceBytes": 512672
+        },
+        {
+          "family": "Noto Sans",
+          "weight": 600,
+          "style": "normal",
+          "glyphs": 3317,
+          "sourceBytes": 515204
+        },
+        {
+          "family": "Noto Sans",
+          "weight": 400,
+          "style": "italic",
+          "glyphs": 3327,
+          "sourceBytes": 530120
+        }
+      ]
+    },
+    {
+      "fontParseMs": 260.722964,
+      "compileMs": 242.55389099999996,
+      "shaderResourceAnalysisMs": 4.485741999999959,
+      "hostPreparationMs": 507.7625969999999,
+      "peakRSSMiB": 237.6796875,
+      "nodeCount": 202,
+      "rowCount": 65536,
+      "paths": 9868,
+      "heapBytes": 32344544,
+      "nodesSHA256": "239019363e4dfa0e1d4457ce39e639622f9a4571cff318ceb9a83933793d072e",
+      "stateSHA256": "3f305f612b77265699d3702b5c7fa4d23c85b2f65d9d81729d59eadc7a9748ce",
+      "heapSHA256": "ea7dced624b386bb75447bbd6d4dd87b8ec8e7b718a33f7c2cdc435a85b8939e",
+      "fonts": [
+        {
+          "family": "Noto Sans",
+          "weight": 400,
+          "style": "normal",
+          "glyphs": 3317,
+          "sourceBytes": 512672
+        },
+        {
+          "family": "Noto Sans",
+          "weight": 600,
+          "style": "normal",
+          "glyphs": 3317,
+          "sourceBytes": 515204
+        },
+        {
+          "family": "Noto Sans",
+          "weight": 400,
+          "style": "italic",
+          "glyphs": 3327,
+          "sourceBytes": 530120
+        }
+      ]
+    }
+  ],
+  "summary": {
+    "baseline": {
+      "fontParseMs": {
+        "median": 219.283191,
+        "min": 202.963627,
+        "max": 257.109235
+      },
+      "compileMs": {
+        "median": 1267.9805020000001,
+        "min": 1132.398186,
+        "max": 1752.7137719999998
+      },
+      "shaderResourceAnalysisMs": {
+        "median": 16.585829000000103,
+        "min": 15.830912000000126,
+        "max": 19.220010000000002
+      },
+      "hostPreparationMs": {
+        "median": 1505.3927580000002,
+        "min": 1367.183504,
+        "max": 2025.653919
+      },
+      "peakRSSMiB": {
+        "median": 357.6875,
+        "min": 355.921875,
+        "max": 361.41796875
+      }
+    },
+    "optimized": {
+      "fontParseMs": {
+        "median": 236.999331,
+        "min": 232.28565,
+        "max": 283.838108
+      },
+      "compileMs": {
+        "median": 258.91879100000006,
+        "min": 238.51859000000007,
+        "max": 275.67475999999994
+      },
+      "shaderResourceAnalysisMs": {
+        "median": 4.485741999999959,
+        "min": 4.3082070000000385,
+        "max": 5.6714150000000245
+      },
+      "hostPreparationMs": {
+        "median": 504.84553300000005,
+        "min": 479.92843300000015,
+        "max": 564.93743
+      },
+      "peakRSSMiB": {
+        "median": 239.74609375,
+        "min": 235.1015625,
+        "max": 243.59375
+      }
+    }
+  },
+  "exactCompiledBytes": true,
+  "compileSpeedup": 4.897213126566776,
+  "hostPreparationSpeedup": 2.9818878440982464
+}

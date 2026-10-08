@@ -1,0 +1,8 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Helion — native shader compilation check</title>
+<style>body{max-width:960px;margin:40px auto;padding:0 20px;font:16px/1.5 system-ui;background:#101923;color:#deebf4}button,a{font:inherit;margin-right:16px}pre{white-space:pre-wrap;overflow-wrap:anywhere;padding:20px;background:#192735}</style></head>
+<body><h1>Native shader compilation check</h1>
+<p>This check compiles all UI, designer, editor, text and HUD pipelines. It uses no fonts and submits no rendering work. A pass establishes shader and pipeline acceptance, not rendering correctness or performance.</p>
+<button id="run">Compile all shaders</button><button id="save" disabled>Save result JSON</button><a href="../designer/">Designer</a>
+<pre id="result">Not run.</pre><script type="module" src="./shaders-gpu.js"></script></body></html>

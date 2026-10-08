@@ -1,0 +1,13 @@
+import test from 'node:test';
+import assert from 'node:assert/strict';
+import { h, compile } from '../src/core/compiler.js';
+import { layoutReference } from './layout-reference.mjs';
+import { createShowcase } from '../examples/showcase.js';
+const near = (a,b) => { assert.equal(a.length,b.length); a.forEach((v,i)=>assert.ok(Math.abs(v-b[i])<.02,`${a} != ${b}`)); };
+test('pixel and weighted-star tracks arrange expected rectangles',()=>{const c=compile(h('Grid',{columns:'100 * 2*',gap:10},h('Border',{id:'a'}),h('Border',{id:'b',column:1}),h('Border',{id:'c',column:2})));const n=layoutReference(c,420,100);near(n[1].rect,[0,0,100,100]);near(n[2].rect,[110,0,100,100]);near(n[3].rect,[220,0,200,100]);});
+test('auto tracks derive child desired size and share remainder with stars',()=>{const c=compile(h('Grid',{columns:'Auto *',gap:8},h('Border',{width:70}),h('Border',{column:1})));const n=layoutReference(c,300,120);near(n[1].rect,[0,0,70,120]);near(n[2].rect,[78,0,222,120]);});
+test('margins, padding, alignment, spans and canvas offsets have independent goldens',()=>{const c=compile(h('Grid',{columns:'* *',rows:'* *',padding:10,gap:4},h('Border',{columnSpan:2,height:20,verticalAlignment:'center',margin:2}),h('Canvas',{row:1,columnSpan:2},h('Border',{x:7,y:9,width:10,height:12}))));const n=layoutReference(c,224,144);near(n[1].rect,[12,30,200,20]);near(n[3].rect,[17,83,10,12]);});
+test('stack skips hidden children and resolves horizontal orientation',()=>{const c=compile(h('StackPanel',{orientation:'horizontal',gap:5},h('Border',{width:10}),h('Border',{width:100,hidden:true}),h('Border',{width:20})));const n=layoutReference(c,300,50);near(n[1].rect,[0,0,10,50]);near(n[2].rect,[0,0,0,0]);near(n[3].rect,[15,0,20,50]);});
+test('wrapped text grows under a constrained star-track measure',()=>{const c=compile(h('Grid',{},h('TextBlock',{text:'abcdefghijklmnopqrstuvwxyz',fontSize:12,wrap:true})));const wide=layoutReference(c,400,300)[1],narrow=layoutReference(c,40,300)[1];assert.ok(narrow.av[3]>wide.av[3]*3);});
+test('responsive visibility removes Auto-track inspector allocation',()=>{const c=compile(h('Grid',{columns:'* Auto',gap:0},h('Border',{}),h('Border',{column:1,width:100,minViewportWidth:600})));near(layoutReference(c,500,100)[1].rect,[0,0,500,100]);near(layoutReference(c,700,100)[1].rect,[0,0,600,100]);});
+for(const [width,height] of [[390,844],[1024,768],[1440,900]]) for(let page=0;page<4;page++) test(`showcase CPU-oracle finite layout ${width}x${height} page ${page}`,()=>{const c=compile(createShowcase());const n=layoutReference(c,width,height,page);for(const node of n){assert.ok(node.rect.every(Number.isFinite));assert.ok(node.av.every(Number.isFinite));assert.ok(node.rect[2]>=0&&node.rect[3]>=0);}});

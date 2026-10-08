@@ -1,0 +1,23 @@
+<!doctype html><html lang="en"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Helion declarative HTML</title>
+<style>html,body{margin:0;height:100%;background:#0e1720;color:#cdddde;font:14px system-ui}canvas{display:block;width:100%;height:100%;touch-action:none}#error{position:fixed;inset:20px;white-space:pre-wrap;pointer-events:none}</style>
+<canvas id="gpu"></canvas><pre id="error"></pre>
+<template id="view">
+  <ui-grid rows="72 48 * 42" padding="20" gap="12" background="#0e1720">
+    <ui-text font-size="25" text="HTML declaration. GPU execution."></ui-text>
+    <ui-grid row="1" columns="* 140" gap="14">
+      <ui-textbox id="query" radius="8" font-size="14"></ui-textbox>
+      <ui-checkbox id="ready" column="1" text="Ready only" font-size="13"></ui-checkbox>
+    </ui-grid>
+    <ui-data-grid row="2" id="table" row-count="4096" filter="query" active-only="ready" background="#14212c"></ui-data-grid>
+    <ui-grid row="3" columns="140 140 *" gap="14">
+      <ui-button text="Clear query" action='{"type":"clear","target":"query"}' radius="7"></ui-button>
+      <ui-button column="1" text="Show bounds" action="bounds" radius="7"></ui-button>
+      <ui-text column="2" text="Matches: " bind='{"metric":"matched"}' vertical-alignment="center"></ui-text>
+    </ui-grid>
+  </ui-grid>
+</template>
+<script type="module">
+import { HelionSurface } from '../src/index.js';
+try { globalThis.helion = await HelionSurface.mount(document.querySelector('#gpu'), document.querySelector('#view')); }
+catch (error) { document.querySelector('#error').textContent = error.message; }
+</script></html>

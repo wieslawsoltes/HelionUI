@@ -1,0 +1,194 @@
+TAP version 13
+# Subtest: DataGrid comparator explicitly groups relational select arguments (reported line-642 regression)
+not ok 1 - DataGrid comparator explicitly groups relational select arguments (reported line-642 regression)
+  ---
+  duration_ms: 2.15587
+  type: 'test'
+  location: '/mnt/data/helion-work/helion-ui/tests/shader-diagnostics.test.mjs:28:1'
+  failureType: 'testCodeFailure'
+  error: |-
+    The input did not match the regular expression /return select\(\(compare < 0i\), \(compare > 0i\), heap\[t\+12u\] != 0u\);/. Input:
+    
+    '@compute @workgroup_size(128)\n' +
+      'fn initializeData(@builtin(global_invocation_id) id:vec3<u32>) {\n' +
+      ' let t=tableMeta(); if(t==0u || heap[t+21u]==0u || id.x>=heap[t]) { return; }\n' +
+      ' let i=id.x; let at=heap[t+3u]+i*8u; let dictionary=heap[t+20u];\n' +
+      ' let h=(i*1664525u+1013904223u)^(i>>3u);\n' +
+      ' heap[at]=heap[dictionary+i%12u]; heap[at+1u]=heap[dictionary+12u+(i/7u)%4u];\n' +
+      ' hsetf(at+2u,f32((i/11u)%3u)); hsetf(at+3u,f32(h%2400u)/10.0+0.2);\n' +
+      ' hsetf(at+4u,f32(1200u+h%84000u)); hsetf(at+5u,f32(h%1000u)/1000.0);\n' +
+      ' hsetf(at+6u,0.0); hsetf(at+7u,0.0);\n' +
+      '}\n' +
+      'fn lower(ch:u32)->u32 { return select(ch,ch+32u,ch>=65u && ch<=90u); }\n' +
+      'fn matches(row:u32,t:u32)->bool {\n' +
+      ' let at=heap[t+3u]+row*8u; let activeNode=heap[t+14u];\n' +
+      ' if(activeNode!=NONE && sf(cs(activeNode))>0.5) {\n' +
+      '  for(var k=0u;k<heap[t+2u];k++) { if(heap[heap[t+9u]+k*8u+2u]==2u && hf(at+k)!=0.0) { return false; } }\n' +
+      ' }\n' +
+      ' let filterNode=heap[t+13u]; if(filterNode==NONE) { return true; }\n' +
+      ' let len=state[cs(filterNode)+4u]; if(len==0u) { return true; } let needle=nodes[filterNode].text.z;\n' +
+      ' // Match any text column. All strings and query codepoints remain GPU-resident.\n' +
+      ' for(var col=0u;col<heap[t+2u];col++) {\n' +
+      '  if(heap[heap[t+9u]+col*8u+2u]!=0u) { continue; }\n' +
+      '  let text=heap[at+col]; let length=heap[text]; if(length<len) { continue; }\n' +
+      '  for(var start=0u;start<=length-len;start++) {\n' +
+      '   var same=true; for(var j=0u;j<len;j++) { if(lower(heap[text+1u+start+j])!=lower(heap[needle+j])) { same=false; break; } }\n' +
+      '   if(same) { return true; }\n' +
+      '  }\n' +
+      ' }\n' +
+      ' return false;\n' +
+      '}\n' +
+      'var<workgroup> prefixWork:array<u32,128>;\n' +
+      '@compute @workgroup_size(128)\n' +
+      'fn filterScan(@builtin(global_invocation_id) id:vec3<u32>,@builtin(local_invocation_index) lane:u32,@builtin(workgroup_id) group:vec3<u32>) {\n' +
+      ' let t=tableMeta(); let i=id.x; let count=heap[t]; let padded=heap[t+1u];\n' +
+      ' var keep=0u; if(i<count) { keep=select(0u,1u,matches(i,t)); }\n' +
+      ' prefixWork[lane]=keep; workgroupBarrier();\n' +
+      ' // Inclusive Hillis–Steele scan; uniform barriers, no cross-workgroup assumptions.\n' +
+      ' for(var shift=1u;shift<128u;shift*=2u) {\n' +
+      '  var add=0u; if(lane>=shift) { add=prefixWork[lane-shift]; } workgroupBarrier();\n' +
+      '  prefixWork[lane]+=add; workgroupBarrier();\n' +
+      ' }\n' +
+      ' if(i<padded) { heap[heap[t+5u]+i]=keep; heap[heap[t+6u]+i]=prefixWork[lane]-keep; heap[heap[t+4u]+i]=NONE; }\n' +
+      ' if(lane==127u) { heap[heap[t+7u]+group.x]=prefixWork[127u]; }\n' +
+      '}\n' +
+      '@compute @workgroup_size(1)\n' +
+      'fn scanBlocks() {\n' +
+      ' let t=tableMeta(); let blocks=(heap[t+1u]+127u)/128u; var sum=0u;\n' +
+      ' for(var j=0u;j<blocks;j++) { heap[heap[t+8u]+j]=sum; sum+=heap[heap[t+7u]+j]; }\n' +
+      ' heap[t+10u]=sum; heap[t+16u]=NONE;\n' +
+      ' // Keep identity separate from visible position. Sort/filterNode restoration happens in resolveSelection.\n' +
+      ' setf(cs(state[25])+1u,min(sf(cs(state[25])+1u),maxScroll(state[25])));\n' +
+      '}\n' +
+      '@compute @workgroup_size(128)\n' +
+      'fn scatterRows(@builtin(global_invocation_id) id:vec3<u32>) {\n' +
+      ' let t=tableMeta(); let i=id.x; if(i>=heap[t+1u] || heap[heap[t+5u]+i]==0u) { return; }\n' +
+      ' let at=heap[heap[t+6u]+i]+heap[heap[t+8u]+i/128u]; heap[heap[t+4u]+at]=i;\n' +
+      '}\n' +
+      'fn lessRow(a:u32,b:u32,t:u32)->bool {\n' +
+      ' if(a==NONE) { return false; } if(b==NONE) { return true; }\n' +
+      ' let col=heap[t+11u]; let kind=heap[heap[t+9u]+col*8u+2u];\n' +
+      ' let va=heap[heap[t+3u]+a*8u+col]; let vb=heap[heap[t+3u]+b*8u+col]; var compare=0i;\n' +
+      ' if(kind==0u) {\n' +
+      '  let la=heap[va]; let lb=heap[vb]; let len=min(la,lb);\n' +
+      '  for(var k=0u;k<len;k++) { let ca=lower(heap[va+1u+k]); let cb=lower(heap[vb+1u+k]); if(ca<cb) { compare=-1; break; } if(ca>cb) { compare=1; break; } }\n' +
+      '  if(compare==0) { if(la<lb) { compare=-1; } if(la>lb) { compare=1; } }\n' +
+      ' } else { let fa=bitcast<f32>(va); let fb=bitcast<f32>(vb); if(fa<fb) { compare=-1; } if(fa>fb) { compare=1; } }\n' +
+      ' if(compare==0) { return a<b; }\n' +
+      ' // Parentheses disambiguate relational operators from WGSL template lists.\n' +
+      ' return select(compare<0,compare>0,heap[t+12u]!=0u);\n' +
+      '}\n' +
+      '@compute @workgroup_size(128)\n' +
+      'fn bitonic(@builtin(global_invocation_id) id:vec3<u32>) {\n' +
+      ' let t=tableMeta(); let i=id.x; let other=i^stage.p.y; if(other<=i || other>=heap[t+1u]) { return; }\n' +
+      ' let base=heap[t+4u]; let a=heap[base+i]; let b=heap[base+other]; let ascending=(i&stage.p.x)==0u;\n' +
+      ' if(select(lessRow(a,b,t),lessRow(b,a,t),ascending)) { heap[base+i]=b; heap[base+other]=a; }\n' +
+      '}\n' +
+      '@compute @workgroup_size(128)\n' +
+      'fn resolveSelection(@builtin(global_invocation_id) id:vec3<u32>) {\n' +
+      ' let t=tableMeta(); let i=id.x; if(i>=heap[t+10u]) { return; }\n' +
+      ' if(heap[heap[t+4u]+i]==heap[t+17u]) { heap[t+16u]=i; }\n' +
+      '}\n'
+    
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected:
+  actual: |-
+    @compute @workgroup_size(128)
+    fn initializeData(@builtin(global_invocation_id) id:vec3<u32>) {
+     let t=tableMeta(); if(t==0u || heap[t+21u]==0u || id.x>=heap[t]) { return; }
+     let i=id.x; let at=heap[t+3u]+i*8u; let dictionary=heap[t+20u];
+     let h=(i*1664525u+1013904223u)^(i>>3u);
+     heap[at]=heap[dictionary+i%12u]; heap[at+1u]=heap[dictionary+12u+(i/7u)%4u];
+     hsetf(at+2u,f32((i/11u)%3u)); hsetf(at+3u,f32(h%2400u)/10.0+0.2);
+     hsetf(at+4u,f32(1200u+h%84000u)); hsetf(at+5u,f32(h%1000u)/1000.0);
+     hsetf(at+6u,0.0); hsetf(at+7u,0.0);
+    }
+    fn lower(ch:u32)->u32 { return select(ch,ch+32u,ch>=65u && ch<=90u); }
+    fn matches(row:u32,t:u32)->bool {
+     let at=heap[t+3u]+row*8u; let activeNode=heap[t+14u];
+     if(activeNode!=NONE && sf(cs(activeNode))>0.5) {
+      for(var k=0u;k<heap[t+2u];k++) { if(heap[heap[t+9u]+k*8u+2u]==2u && hf(at+k)!=0.0) { return false; } }
+     }
+     let filterNode=heap[t+13u]; if(filterNode==NONE) { return true; }
+     let len=state[cs(filterNode)+4u]; if(len==0u) { return true; } let needle=nodes[filterNode].text.z;
+     // Match any text column. All strings and query codepoints remain GPU-resident.
+     for(var col=0u;col<heap[t+2u];col++) {
+      if(heap[heap[t+9u]+col*8u+2u]!=0u) { continue; }
+      let text=heap[at+col]; let length=heap[text]; if(length<len) { continue; }
+      for(var start=0u;start<=length-len;start++) {
+       var same=true; for(var j=0u;j<len;j++) { if(lower(heap[text+1u+start+j])!=lower(heap[needle+j])) { same=false; break; } }
+       if(same) { return true; }
+      }
+     }
+     return false;
+    }
+    var<workgroup> prefixWork:array<u32,128>;
+    @compute @workgroup_size(128)
+    fn filterScan(@builtin(global_invocation_id) id:vec3<u32>,@builtin(local_invocation_index) lane:u32,@builtin(workgroup_id) group:vec3<u32>) {
+     let t=tableMeta(); let i=id.x; let count=heap[t]; let padded=heap[t+1u];
+     var keep=0u; if(i<count) { keep=select(0u,1u,matches(i,t)); }
+     prefixWork[lane]=keep; workgroupBarrier();
+     // Inclusive Hillis–Steele scan; uniform barriers, no cross-workgroup assumptions.
+     for(var shift=1u;shift<128u;shift*=2u) {
+      var add=0u; if(lane>=shift) { add=prefixWork[lane-shift]; } workgroupBarrier();
+      prefixWork[lane]+=add; workgroupBarrier();
+     }
+     if(i<padded) { heap[heap[t+5u]+i]=keep; heap[heap[t+6u]+i]=prefixWork[lane]-keep; heap[heap[t+4u]+i]=NONE; }
+     if(lane==127u) { heap[heap[t+7u]+group.x]=prefixWork[127u]; }
+    }
+    @compute @workgroup_size(1)
+    fn scanBlocks() {
+     let t=tableMeta(); let blocks=(heap[t+1u]+127u)/128u; var sum=0u;
+     for(var j=0u;j<blocks;j++) { heap[heap[t+8u]+j]=sum; sum+=heap[heap[t+7u]+j]; }
+     heap[t+10u]=sum; heap[t+16u]=NONE;
+     // Keep identity separate from visible position. Sort/filterNode restoration happens in resolveSelection.
+     setf(cs(state[25])+1u,min(sf(cs(state[25])+1u),maxScroll(state[25])));
+    }
+    @compute @workgroup_size(128)
+    fn scatterRows(@builtin(global_invocation_id) id:vec3<u32>) {
+     let t=tableMeta(); let i=id.x; if(i>=heap[t+1u] || heap[heap[t+5u]+i]==0u) { return; }
+     let at=heap[heap[t+6u]+i]+heap[heap[t+8u]+i/128u]; heap[heap[t+4u]+at]=i;
+    }
+    fn lessRow(a:u32,b:u32,t:u32)->bool {
+     if(a==NONE) { return false; } if(b==NONE) { return true; }
+     let col=heap[t+11u]; let kind=heap[heap[t+9u]+col*8u+2u];
+     let va=heap[heap[t+3u]+a*8u+col]; let vb=heap[heap[t+3u]+b*8u+col]; var compare=0i;
+     if(kind==0u) {
+      let la=heap[va]; let lb=heap[vb]; let len=min(la,lb);
+      for(var k=0u;k<len;k++) { let ca=lower(heap[va+1u+k]); let cb=lower(heap[vb+1u+k]); if(ca<cb) { compare=-1; break; } if(ca>cb) { compare=1; break; } }
+      if(compare==0) { if(la<lb) { compare=-1; } if(la>lb) { compare=1; } }
+     } else { let fa=bitcast<f32>(va); let fb=bitcast<f32>(vb); if(fa<fb) { compare=-1; } if(fa>fb) { compare=1; } }
+     if(compare==0) { return a<b; }
+     // Parentheses disambiguate relational operators from WGSL template lists.
+     return select(compare<0,compare>0,heap[t+12u]!=0u);
+    }
+    @compute @workgroup_size(128)
+    fn bitonic(@builtin(global_invocation_id) id:vec3<u32>) {
+     let t=tableMeta(); let i=id.x; let other=i^stage.p.y; if(other<=i || other>=heap[t+1u]) { return; }
+     let base=heap[t+4u]; let a=heap[base+i]; let b=heap[base+other]; let ascending=(i&stage.p.x)==0u;
+     if(select(lessRow(a,b,t),lessRow(b,a,t),ascending)) { heap[base+i]=b; heap[base+other]=a; }
+    }
+    @compute @workgroup_size(128)
+    fn resolveSelection(@builtin(global_invocation_id) id:vec3<u32>) {
+     let t=tableMeta(); let i=id.x; if(i>=heap[t+10u]) { return; }
+     if(heap[heap[t+4u]+i]==heap[t+17u]) { heap[t+16u]=i; }
+    }
+    
+  operator: 'match'
+  stack: |-
+    TestContext.<anonymous> (file:///mnt/data/helion-work/helion-ui/tests/shader-diagnostics.test.mjs:29:10)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    Test.start (node:internal/test_runner/test:944:17)
+    startSubtestAfterBootstrap (node:internal/test_runner/harness:296:17)
+  ...
+1..1
+# tests 1
+# suites 0
+# pass 0
+# fail 1
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 61.989563

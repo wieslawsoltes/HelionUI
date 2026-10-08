@@ -1,0 +1,202 @@
+[
+  {
+    "file": "blit.wgsl",
+    "before": [],
+    "after": [],
+    "byteIdentical": true
+  },
+  {
+    "file": "common.wgsl",
+    "before": [],
+    "after": [],
+    "byteIdentical": true
+  },
+  {
+    "file": "controls.wgsl",
+    "before": [],
+    "after": [],
+    "byteIdentical": true
+  },
+  {
+    "file": "curve-coverage.wgsl",
+    "before": [],
+    "after": [],
+    "byteIdentical": true
+  },
+  {
+    "file": "data-source.wgsl",
+    "before": [],
+    "after": [],
+    "byteIdentical": true
+  },
+  {
+    "file": "data.wgsl",
+    "before": [],
+    "after": [],
+    "byteIdentical": true
+  },
+  {
+    "file": "designer-render.wgsl",
+    "before": [],
+    "after": [],
+    "byteIdentical": true
+  },
+  {
+    "file": "designer.wgsl",
+    "before": [
+      {
+        "file": "shaders/designer.wgsl",
+        "line": 28,
+        "column": 67,
+        "offset": 2061,
+        "message": "mixing '&&' and '||' requires parentheses"
+      },
+      {
+        "file": "shaders/designer.wgsl",
+        "line": 67,
+        "column": 35,
+        "offset": 7528,
+        "message": "mixing '&&' and '||' requires parentheses"
+      },
+      {
+        "file": "shaders/designer.wgsl",
+        "line": 71,
+        "column": 389,
+        "offset": 8372,
+        "message": "mixing '&&' and '||' requires parentheses"
+      },
+      {
+        "file": "shaders/designer.wgsl",
+        "line": 72,
+        "column": 165,
+        "offset": 8560,
+        "message": "mixing '&&' and '||' requires parentheses"
+      },
+      {
+        "file": "shaders/designer.wgsl",
+        "line": 219,
+        "column": 36,
+        "offset": 40770,
+        "message": "mixing '&&' and '||' requires parentheses"
+      },
+      {
+        "file": "shaders/designer.wgsl",
+        "line": 270,
+        "column": 37,
+        "offset": 53267,
+        "message": "mixing '&&' and '||' requires parentheses"
+      },
+      {
+        "file": "shaders/designer.wgsl",
+        "line": 308,
+        "column": 640,
+        "offset": 60846,
+        "message": "mixing '&&' and '||' requires parentheses"
+      }
+    ],
+    "after": [],
+    "byteIdentical": false
+  },
+  {
+    "file": "docking.wgsl",
+    "before": [],
+    "after": [],
+    "byteIdentical": true
+  },
+  {
+    "file": "editor-render.wgsl",
+    "before": [],
+    "after": [],
+    "byteIdentical": true
+  },
+  {
+    "file": "editor.wgsl",
+    "before": [],
+    "after": [],
+    "byteIdentical": true
+  },
+  {
+    "file": "emit.wgsl",
+    "before": [],
+    "after": [],
+    "byteIdentical": true
+  },
+  {
+    "file": "flatten.wgsl",
+    "before": [],
+    "after": [],
+    "byteIdentical": true
+  },
+  {
+    "file": "glyph-cache.wgsl",
+    "before": [],
+    "after": [],
+    "byteIdentical": true
+  },
+  {
+    "file": "hud-common.wgsl",
+    "before": [],
+    "after": [],
+    "byteIdentical": true
+  },
+  {
+    "file": "hud-viewport.wgsl",
+    "before": [],
+    "after": [],
+    "byteIdentical": true
+  },
+  {
+    "file": "hud.wgsl",
+    "before": [],
+    "after": [],
+    "byteIdentical": true
+  },
+  {
+    "file": "input.wgsl",
+    "before": [],
+    "after": [],
+    "byteIdentical": true
+  },
+  {
+    "file": "layout.wgsl",
+    "before": [],
+    "after": [],
+    "byteIdentical": true
+  },
+  {
+    "file": "metrics.wgsl",
+    "before": [],
+    "after": [],
+    "byteIdentical": true
+  },
+  {
+    "file": "models.wgsl",
+    "before": [],
+    "after": [],
+    "byteIdentical": true
+  },
+  {
+    "file": "present.wgsl",
+    "before": [],
+    "after": [],
+    "byteIdentical": true
+  },
+  {
+    "file": "presenter.wgsl",
+    "before": [],
+    "after": [],
+    "byteIdentical": true
+  },
+  {
+    "file": "strips.wgsl",
+    "before": [],
+    "after": [],
+    "byteIdentical": true
+  },
+  {
+    "file": "text.wgsl",
+    "before": [],
+    "after": [],
+    "byteIdentical": true
+  }
+]

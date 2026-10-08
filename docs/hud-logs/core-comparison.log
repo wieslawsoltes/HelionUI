@@ -1,0 +1,121 @@
+{
+  "status": "PASS",
+  "arrays": {
+    "nodes": {
+      "bytes": 58176,
+      "sha256": "239019363e4dfa0e1d4457ce39e639622f9a4571cff318ceb9a83933793d072e",
+      "baselineSha256": "239019363e4dfa0e1d4457ce39e639622f9a4571cff318ceb9a83933793d072e",
+      "identical": true
+    },
+    "state": {
+      "bytes": 13184,
+      "sha256": "3f305f612b77265699d3702b5c7fa4d23c85b2f65d9d81729d59eadc7a9748ce",
+      "baselineSha256": "3f305f612b77265699d3702b5c7fa4d23c85b2f65d9d81729d59eadc7a9748ce",
+      "identical": true
+    },
+    "heap": {
+      "bytes": 32344544,
+      "sha256": "ea7dced624b386bb75447bbd6d4dd87b8ec8e7b718a33f7c2cdc435a85b8939e",
+      "baselineSha256": "ea7dced624b386bb75447bbd6d4dd87b8ec8e7b718a33f7c2cdc435a85b8939e",
+      "identical": true
+    }
+  },
+  "scene": {
+    "nodes": 202,
+    "rows": 65536,
+    "paths": 9868,
+    "fonts": 3
+  },
+  "fontCacheMetadata": [
+    {
+      "ratio": 0.7,
+      "fontSize": 12,
+      "glyphs": 95,
+      "drawable": 94,
+      "cached": 94,
+      "maxExtent": 12,
+      "oversized": []
+    },
+    {
+      "ratio": 0.7,
+      "fontSize": 26,
+      "glyphs": 95,
+      "drawable": 94,
+      "cached": 94,
+      "maxExtent": 21,
+      "oversized": []
+    },
+    {
+      "ratio": 1,
+      "fontSize": 12,
+      "glyphs": 95,
+      "drawable": 94,
+      "cached": 94,
+      "maxExtent": 15,
+      "oversized": []
+    },
+    {
+      "ratio": 1,
+      "fontSize": 26,
+      "glyphs": 95,
+      "drawable": 94,
+      "cached": 94,
+      "maxExtent": 29,
+      "oversized": []
+    },
+    {
+      "ratio": 1.25,
+      "fontSize": 12,
+      "glyphs": 95,
+      "drawable": 94,
+      "cached": 94,
+      "maxExtent": 18,
+      "oversized": []
+    },
+    {
+      "ratio": 1.25,
+      "fontSize": 26,
+      "glyphs": 95,
+      "drawable": 94,
+      "cached": 94,
+      "maxExtent": 35,
+      "oversized": []
+    },
+    {
+      "ratio": 1.5,
+      "fontSize": 12,
+      "glyphs": 95,
+      "drawable": 94,
+      "cached": 94,
+      "maxExtent": 21,
+      "oversized": []
+    },
+    {
+      "ratio": 1.5,
+      "fontSize": 26,
+      "glyphs": 95,
+      "drawable": 94,
+      "cached": 94,
+      "maxExtent": 42,
+      "oversized": []
+    },
+    {
+      "ratio": 2,
+      "fontSize": 12,
+      "glyphs": 95,
+      "drawable": 94,
+      "cached": 94,
+      "maxExtent": 27,
+      "oversized": []
+    },
+    {
+      "ratio": 2,
+      "fontSize": 26,
+      "glyphs": 95,
+      "drawable": 94,
+      "cached": 94,
+      "maxExtent": 55,
+      "oversized": []
+    }
+  ]
+}

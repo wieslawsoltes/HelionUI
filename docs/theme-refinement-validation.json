@@ -1,0 +1,175 @@
+{
+  "version": "0.14.0-experimental",
+  "createdAtUTC": "2026-09-26T16:47:58.162393+00:00",
+  "baselineVersion": "0.13.0-experimental",
+  "status": "HOST_BUILD_CHECKS_PASS_NATIVE_GPU_UNVERIFIED",
+  "baselineArchiveSHA256": "e244050e91908477b5c7284e5c72fd95d9eecd2cf54de572acfeaa8364660b3c",
+  "hostTests": {
+    "tests": 946,
+    "pass": 946,
+    "fail": 0,
+    "skipped": 0,
+    "cancelled": 0,
+    "baselinePassed": 897,
+    "newRegressionTests": 48,
+    "newPlaygroundExampleCases": 1,
+    "scope": "Host JS algorithms, initial compilation, test-only CPU-translated WGSL and non-executing WebGPU mocks. Not native shader execution."
+  },
+  "checks": {
+    "tests": {
+      "command": "npm test",
+      "status": "PASS",
+      "exitCode": 0,
+      "log": "theme-refinement-release-logs/tests.log",
+      "logSHA256": "a253fb3572284aacf636098696ebb7b94691380b506566aac35c52e0a4a4656e"
+    },
+    "check": {
+      "command": "npm run check",
+      "status": "PASS",
+      "exitCode": 0,
+      "log": "theme-refinement-release-logs/check.log",
+      "logSHA256": "5270b3ba96e22f8f5dd5ba48ff23d8e3ed75976560fb7380328ea46f2a56eae4"
+    },
+    "types": {
+      "command": "tsc --strict --noEmit --target es2022 --module nodenext --moduleResolution nodenext --lib es2023,dom tests/api-types.ts tests/designer-api.ts tests/templates-api.ts",
+      "status": "PASS",
+      "exitCode": 0,
+      "log": "theme-refinement-release-logs/types.log",
+      "logSHA256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "build": {
+      "command": "npm run build",
+      "status": "PASS",
+      "exitCode": 0,
+      "log": "theme-refinement-release-logs/build.log",
+      "logSHA256": "172442f6b02ef5c9c82f59b824ebac653906f9a38289b12a130967adda9e9e0d"
+    },
+    "bundle-check": {
+      "command": "npm run check:build",
+      "status": "PASS",
+      "exitCode": 0,
+      "log": "theme-refinement-release-logs/bundle-check.log",
+      "logSHA256": "6dce846ff85c0fb81beddbb69bf088d3e4a632b272cd15b1c535f1c5a86dbd86"
+    },
+    "audit": {
+      "command": "node tools/audit-theme-refinement.mjs --baseline=<0.13-source> --output=<report>",
+      "status": "PASS",
+      "exitCode": 0,
+      "log": "theme-refinement-release-logs/audit.log",
+      "logSHA256": "819c2412a109b582896e422edfddefa899930d08c37c56ab39ea6a0d1d853975"
+    },
+    "preservation": {
+      "command": "node tools/audit-templates.mjs --baseline=<0.13-source> --font=<private-DejaVuSans.ttf> --output=<report>",
+      "status": "PASS",
+      "exitCode": 0,
+      "log": "theme-refinement-release-logs/preservation.log",
+      "logSHA256": "2e772396f797322bdad349f17fbf5c24d2e98385b1ec428c6bcb54abed011fb3"
+    },
+    "browser": {
+      "command": "python3 tools/check-template-browser.py --output=<report>",
+      "status": "NATIVE_UNVERIFIED",
+      "exitCode": 2,
+      "log": "theme-refinement-release-logs/browser.log",
+      "logSHA256": "4c8a9f9a79d9a991539a969b1558ff5a94089706748b908f95faff1e32256adc"
+    },
+    "native": {
+      "command": "npm run check:native",
+      "status": "NATIVE_UNVERIFIED",
+      "exitCode": 1,
+      "log": "theme-refinement-release-logs/native.log",
+      "logSHA256": "0363aa23ced2beffa11a04f226b88968479ebd5b36fdc879aa4590c2a2eab828"
+    }
+  },
+  "static": {
+    "javascriptModules": 171,
+    "shaderFiles": 26,
+    "coreComputeEntries": 48,
+    "showcaseNodes": 202
+  },
+  "bundle": {
+    "embeddedModules": 88,
+    "exactShaderSources": 26,
+    "startupWorker": "exact",
+    "authoringWorker": "exact",
+    "appExportTemplate": "exact gzip roundtrip/embedded runtime"
+  },
+  "browser": {
+    "version": "0.14.0-experimental",
+    "headless": true,
+    "containerLaunchArgs": [
+      "--no-sandbox"
+    ],
+    "scope": "Native browser host/worker serialization only unless a served GPU gate actually passes. No hardware performance claim.",
+    "served": [
+      {
+        "path": "/tests/templates.html?autorun",
+        "status": "UNVERIFIED",
+        "error": "Page.goto: net::ERR_BLOCKED_BY_ADMINISTRATOR at http://127.0.0.1:8123/tests/templates.html?autorun\nCall log:\n  - navigating to \"http://127.0.0.1:8123/tests/templates.html?autorun\", waiting until \"domcontentloaded\"\n"
+      },
+      {
+        "path": "/tests/shaders.html?autorun",
+        "status": "UNVERIFIED",
+        "error": "Page.goto: net::ERR_BLOCKED_BY_ADMINISTRATOR at http://127.0.0.1:8123/tests/shaders.html?autorun\nCall log:\n  - navigating to \"http://127.0.0.1:8123/tests/shaders.html?autorun\", waiting until \"domcontentloaded\"\n"
+      }
+    ],
+    "browser": "144.0.7559.96",
+    "originOrCSPBypass": false,
+    "isolatedTemplateWorker": {
+      "status": "PASS",
+      "scope": "Actual classic Blob worker, complete initial buffers and template manifests. No WGSL execution.",
+      "checks": [
+        {
+          "themeContrast": "high",
+          "controlDensity": "compact",
+          "accentColor": 4294941881,
+          "nodes": 17,
+          "templates": 3,
+          "heapBytes": 154308,
+          "status": "PASS"
+        },
+        {
+          "themeContrast": "high",
+          "controlDensity": "compact",
+          "accentColor": 4288730473,
+          "nodes": 32,
+          "templates": 1,
+          "heapBytes": 460536,
+          "status": "PASS"
+        }
+      ]
+    }
+  },
+  "nativeGPU": {
+    "status": "UNVERIFIED",
+    "reason": "Served pages blocked before navigation; optional native Dawn binding absent. No origin/CSP/admin bypass used.",
+    "shaderExecution": false,
+    "visualPixels": false,
+    "themeFidelity": false,
+    "hardwarePerformance": false
+  },
+  "audits": {
+    "themeMath": "theme-refinement-audit.json",
+    "preservation": "theme-refinement-preservation.json",
+    "scope": "Palette math/counts and source/initial-buffer equality, not visual or hardware-performance measurements."
+  },
+  "github": {
+    "connectedQueries": [
+      {
+        "query": "Helion (installed repositories)",
+        "returnedRepositories": 0
+      },
+      {
+        "query": "user:wieslawsoltes Helion",
+        "returnedRepositories": 0
+      }
+    ],
+    "remoteChanges": false
+  },
+  "limitations": [
+    "Independent original Fluent/macOS-inspired themes, not native OS materials or platform parity.",
+    "Contrast tests cover specified opaque pairs, not accessibility compliance or all rendered pixels.",
+    "Theme/density affects tokenized properties, not authored literals or all legacy chrome.",
+    "Studio preview masks do not simulate actual input or modify checked/enabled/focus values.",
+    "Native GPU compilation, rendering, UI behavior and performance unverified."
+  ]
+}

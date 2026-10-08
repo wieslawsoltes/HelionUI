@@ -1,0 +1,48 @@
+
+> @helion/ui@0.14.0-experimental check
+> node tools/check.mjs
+
+./shaders/shaping.wgsl: reserved WGSL word set
+./shaders/shaping.wgsl: reserved WGSL word set
+./shaders/shaping.wgsl: reserved WGSL word set
+./shaders/shaping.wgsl: reserved WGSL word set
+./shaders/shaping.wgsl: reserved WGSL word set
+./shaders/shaping.wgsl: reserved WGSL word from
+./shaders/shaping.wgsl: reserved WGSL word from
+./shaders/shaping.wgsl: reserved WGSL word set
+./shaders/shaping.wgsl: reserved WGSL word set
+./shaders/shaping.wgsl: reserved WGSL word set
+./shaders/shaping.wgsl: reserved WGSL word set
+./shaders/shaping.wgsl: reserved WGSL word set
+./shaders/shaping.wgsl: reserved WGSL word set
+./shaders/shaping.wgsl: reserved WGSL word set
+./shaders/shaping.wgsl: reserved WGSL word set
+./shaders/shaping.wgsl: reserved WGSL word set
+./shaders/shaping.wgsl: reserved WGSL word set
+./shaders/shaping.wgsl: reserved WGSL word target
+./shaders/shaping.wgsl: reserved WGSL word set
+./shaders/shaping.wgsl: reserved WGSL word target
+./shaders/shaping.wgsl: reserved WGSL word target
+./shaders/shaping.wgsl: reserved WGSL word set
+./shaders/shaping.wgsl: reserved WGSL word set
+./shaders/shaping.wgsl: reserved WGSL word set
+./shaders/shaping.wgsl: reserved WGSL word set
+./shaders/shaping.wgsl: reserved WGSL word set
+./shaders/shaping.wgsl: reserved WGSL word set
+./shaders/shaping.wgsl: reserved WGSL word set
+./shaders/shaping.wgsl: reserved WGSL word filter
+./shaders/shaping.wgsl: reserved WGSL word filter
+./shaders/shaping.wgsl: reserved WGSL word filter
+./shaders/shaping.wgsl: reserved WGSL word filter
+./shaders/shaping.wgsl: reserved WGSL word type
+./shaders/shaping.wgsl: reserved WGSL word type
+./shaders/shaping.wgsl: reserved WGSL word type
+./shaders/shaping.wgsl: reserved WGSL word type
+./shaders/shaping.wgsl: reserved WGSL word type
+./shaders/shaping.wgsl: reserved WGSL word type
+./shaders/shaping.wgsl: reserved WGSL word type
+./shaders/shaping.wgsl: reserved WGSL word type
+./shaders/shaping.wgsl: reserved WGSL word type
+./shaders/shaping.wgsl: reserved WGSL word type
+./shaders/shaping.wgsl: reserved WGSL word type
+./shaders/shaping.wgsl: reserved WGSL word type

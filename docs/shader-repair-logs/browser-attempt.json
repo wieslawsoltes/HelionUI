@@ -1,0 +1,10 @@
+{
+  "version": "0.12.1-experimental",
+  "status": "UNVERIFIED",
+  "url": "http://127.0.0.1:34041/tests/shaders.html",
+  "shaderCompilationExecuted": false,
+  "gpuExecutionVerified": false,
+  "httpStatus": 200,
+  "servedPageSHA256": "5817b15806bf3b45f391b840597e5faa777c3164e315399b4cb6431067ed7d9b",
+  "navigation": "Page.goto: net::ERR_BLOCKED_BY_ADMINISTRATOR at http://127.0.0.1:34041/tests/shaders.html?autorun\nCall log:\n  - navigating to \"http://127.0.0.1:34041/tests/shaders.html?autorun\", waiting until \"load\"\n"
+}

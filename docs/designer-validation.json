@@ -1,0 +1,78 @@
+{
+  "version": "0.12.0-experimental",
+  "recordedAtUTC": "2026-09-25T21:09:17Z",
+  "scope": "Host/source/build checks. Passing results do NOT establish native shader validation, GPU pixels or device performance.",
+  "checks": {
+    "host-tests": {
+      "command": "npm test",
+      "status": "PASS",
+      "exitCode": 0,
+      "elapsedSeconds": 7.489,
+      "log": "designer-release-logs/host-tests.log",
+      "logSHA256": "c907fdcf8062f040a27173fc0ef946e4172711770d77809d9fcb009d1fc16d45",
+      "tests": 731,
+      "pass": 731,
+      "fail": 0,
+      "skipped": 0
+    },
+    "static": {
+      "command": "npm run check",
+      "status": "PASS",
+      "exitCode": 0,
+      "elapsedSeconds": 4.195,
+      "log": "designer-release-logs/static.log",
+      "logSHA256": "3673fe94b708db56334fb2c86bc64979d66de60d2623fbd000442ddf818ff906"
+    },
+    "types": {
+      "command": "tsc --strict --noEmit --target es2022 --module nodenext --moduleResolution nodenext --lib es2023,dom tests/api-types.ts tests/designer-api.ts",
+      "status": "PASS",
+      "exitCode": 0,
+      "elapsedSeconds": 1.465,
+      "log": "designer-release-logs/types.log",
+      "logSHA256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "build": {
+      "command": "npm run build",
+      "status": "PASS",
+      "exitCode": 0,
+      "elapsedSeconds": 0.443,
+      "log": "designer-release-logs/build.log",
+      "logSHA256": "6b7d4d635d9758fd7afee39f8d64b405aa62b8727d189a68a96aacb503ec5eb4"
+    },
+    "bundle": {
+      "command": "npm run check:build",
+      "status": "PASS",
+      "exitCode": 0,
+      "elapsedSeconds": 0.275,
+      "log": "designer-release-logs/bundle.log",
+      "logSHA256": "52ef5474bcb2af56b622436c56241c30870017c6a05d5e2c018189229a33fa43"
+    }
+  },
+  "status": "HOST_AND_BUILD_PASS_NATIVE_UNVERIFIED",
+  "native": {
+    "status": "UNVERIFIED",
+    "scope": "Native WGSL execution, final GPU pixels and browser interaction",
+    "recordedAtUTC": "2026-09-25T21:05:32Z",
+    "httpSource": {
+      "status": 200,
+      "bytes": 1410
+    },
+    "browser": {
+      "status": "BLOCKED_OR_FAILED",
+      "error": "Page.goto: net::ERR_BLOCKED_BY_ADMINISTRATOR at http://127.0.0.1:8172/tests/designer.html?autorun\nCall log:\n  - navigating to \"http://127.0.0.1:8172/tests/designer.html?autorun\", waiting until \"load\"\n"
+    },
+    "optionalNativeValidator": {
+      "exitCode": 1,
+      "output": "\n> @helion/ui@0.12.0-experimental check:native\n> node tools/check-native.mjs\n\nNative shader validation did not run. Install the optional official Dawn binding with: npm install --no-save --package-lock=false webgpu@0.6.1\n",
+      "gpuExecutionTest": false
+    }
+  },
+  "preservation": "PASS",
+  "fontAssetsIncluded": false,
+  "limitations": [
+    "No executed native shader, pointer-gesture, rendered-pixel or FPS result.",
+    "Scalar WGSL test adapter is not a GPU or WGSL validator.",
+    "First three-face DejaVu designer memory trial exceeded the bounded heap; workspace allocation audit uses one DejaVu Sans face. Original-showcase preservation uses all three faces.",
+    "Standalone apps embed code/shaders/workers, not runtime font assets."
+  ]
+}

@@ -1,0 +1,82 @@
+{
+  "scope": "Native browser host APIs only; no shader compilation, GPU execution or application performance measurement.",
+  "browser": "144.0.7559.96",
+  "browserLaunch": {
+    "headless": true,
+    "containerArgs": [
+      "--no-sandbox"
+    ],
+    "originOrCSPBypass": false
+  },
+  "servedPage": {
+    "status": "UNVERIFIED",
+    "error": "Page.goto: net::ERR_BLOCKED_BY_ADMINISTRATOR at http://127.0.0.1:8123/dist/tests/host-startup.html?autorun\nCall log:\n  - navigating to \"http://127.0.0.1:8123/dist/tests/host-startup.html?autorun\", waiting until \"domcontentloaded\"\n"
+  },
+  "isolated": {
+    "status": "PARTIAL",
+    "scope": "Browser timers, preparation workers, sandbox transport and array equality only. No WebGPU execution.",
+    "checks": [
+      {
+        "name": "Native watchdog arm, cancel, suspend, resume and stall",
+        "status": "PASS",
+        "detail": {
+          "reports": 1,
+          "acknowledged": 1
+        }
+      },
+      {
+        "name": "Embedded classic Blob worker compiles identical scene",
+        "status": "PASS",
+        "detail": {
+          "nodes": 864,
+          "state": 448,
+          "heap": 143468
+        }
+      },
+      {
+        "name": "Embedded worker cancellation rejects without fallback",
+        "status": "PASS",
+        "detail": "Abort propagated"
+      },
+      {
+        "name": "Opaque-origin authoring sandbox",
+        "status": "UNVERIFIED",
+        "reason": "This isolated document is not a secure context and does not expose crypto.randomUUID. The unchanged sandbox must be checked from localhost/HTTPS."
+      }
+    ],
+    "context": "New about:blank document with exact built import-map modules; not a loaded application page or source-module-worker test."
+  },
+  "baselineWatchdog": {
+    "error": "TypeError: Illegal invocation"
+  },
+  "isolatedWorkerRouteProbe": {
+    "module": {
+      "error": null,
+      "rejected": true
+    },
+    "classic": {
+      "ok": true
+    }
+  },
+  "fileLaunchGuards": [
+    {
+      "app": "designer",
+      "status": "needs-server",
+      "visible": true,
+      "text": "This file: document has an isolated browser origin. Direct file opening is not supported.\n\nExtract the complete ZIP and run its start-helion launcher.\nOr, in the folder containing this HTML file, run:\n\npython3 -m http.server 8080 --bind 127.0.0.1\n\nThen open:\nhttp://127.0.0.1:8080/helion-designer.html\n\nBuild: 0.12.3-experimental.\nBrowser security remains enabled; no worker or GPU startup was attempted."
+    },
+    {
+      "app": "playground",
+      "status": "needs-server",
+      "visible": true,
+      "text": "This file: document has an isolated browser origin. Direct file opening is not supported.\n\nExtract the complete ZIP and run its start-helion launcher.\nOr, in the folder containing this HTML file, run:\n\npython3 -m http.server 8080 --bind 127.0.0.1\n\nThen open:\nhttp://127.0.0.1:8080/helion-playground.html\n\nBuild: 0.12.3-experimental.\nBrowser security remains enabled; no worker or GPU startup was attempted."
+    },
+    {
+      "app": "standalone",
+      "status": "needs-server",
+      "visible": true,
+      "text": "This file: document has an isolated browser origin. Direct file opening is not supported.\n\nExtract the complete ZIP and run its start-helion launcher.\nOr, in the folder containing this HTML file, run:\n\npython3 -m http.server 8080 --bind 127.0.0.1\n\nThen open:\nhttp://127.0.0.1:8080/helion-standalone.html\n\nBuild: 0.12.3-experimental.\nBrowser security remains enabled; no worker or GPU startup was attempted."
+    }
+  ],
+  "console": []
+}

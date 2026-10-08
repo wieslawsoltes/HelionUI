@@ -1,0 +1,92 @@
+[
+  {
+    "name": "showcase",
+    "nodes": 202,
+    "buffers": {
+      "nodes": {
+        "bytes": 58176,
+        "sha256": "a7dc142f4727138bf7dfaf22ad3992e4aa6eb75602c3a93a130ddbfd4f460055"
+      },
+      "state": {
+        "bytes": 13184,
+        "sha256": "7b57354e1bb3f55b48a23393f8fa36035d11551603d4987cd8c6e0c6f854b1c6"
+      },
+      "heap": {
+        "bytes": 3586760,
+        "sha256": "9fd521e2342e5ac3395d54583f7b77e1fa57e46583705a005dcc0e8931cb2c2e"
+      }
+    }
+  },
+  {
+    "name": "playground",
+    "nodes": 130,
+    "buffers": {
+      "nodes": {
+        "bytes": 37440,
+        "sha256": "7dce5f0f98968c8a48ae72337c4fbe25ce22606a16bd777224847b072afa61dd"
+      },
+      "state": {
+        "bytes": 8576,
+        "sha256": "24f6e802cbea09b189d85828d1e47a872171dafc9f33d2f288e0917b81f86b5c"
+      },
+      "heap": {
+        "bytes": 18252260,
+        "sha256": "37ad434217dc625bb49c0934c8c9adf6bd5debe6502a5cee507c372d0a04dc44"
+      }
+    }
+  },
+  {
+    "name": "designer: Aurora / product landing",
+    "nodes": 266,
+    "buffers": {
+      "nodes": {
+        "bytes": 76608,
+        "sha256": "c17249c82aa756dc5da9b2b38296cd5ccd4a7b17c07de19db97272d7ec7197e5"
+      },
+      "state": {
+        "bytes": 17280,
+        "sha256": "f0aca2f785c77832b33cf2c0154a0c702b2dbeb4112bbe63c9b4a2fe35093ea4"
+      },
+      "heap": {
+        "bytes": 25522164,
+        "sha256": "baf50a18eb0106e2240d85bc4ad793112e1bed89d8fe4b1fda04ed56e2243088"
+      }
+    }
+  },
+  {
+    "name": "designer: Layout / adaptive dashboard",
+    "nodes": 266,
+    "buffers": {
+      "nodes": {
+        "bytes": 76608,
+        "sha256": "5336354e9e9d5c774816533c123a69e48fd12c26a5755f2f57186bdd83151d00"
+      },
+      "state": {
+        "bytes": 17280,
+        "sha256": "f5c1a0539843343307303387bafc1cfbf9f26e44127708b85890c00ffc15b434"
+      },
+      "heap": {
+        "bytes": 25519676,
+        "sha256": "2e55a6d943235860e54ed94b047ae5deb4e9f9a826e9ccc3249bb32869181978"
+      }
+    }
+  },
+  {
+    "name": "designer: Motion / states and keyframes",
+    "nodes": 266,
+    "buffers": {
+      "nodes": {
+        "bytes": 76608,
+        "sha256": "b09cd677559dd72e9e9c0c88dda011b96a3d1a3e776b303365a82eda06cae4a8"
+      },
+      "state": {
+        "bytes": 17280,
+        "sha256": "d468459b3b5ba124b7992a3d1719d4163dab911b966f51f1d7cbd744a785bc5e"
+      },
+      "heap": {
+        "bytes": 25518256,
+        "sha256": "949ce700d848dd86e13188b1db7d1f2203e724a3f485bf1f87bbe79e2659b4fd"
+      }
+    }
+  }
+]

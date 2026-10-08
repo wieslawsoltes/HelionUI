@@ -1,0 +1,119 @@
+{
+  "version": "0.11.0-experimental",
+  "recordedAtUTC": "2026-09-25T18:15:31.858829+00:00",
+  "status": "HOST_VALIDATED_NATIVE_UNVERIFIED",
+  "baseline": "0.10.0-experimental",
+  "hostTests": {
+    "command": "npm test",
+    "passed": 681,
+    "failed": 0,
+    "skipped": 0,
+    "baselinePassed": 658,
+    "newRegressionTests": 23,
+    "scope": "Host algorithms, mathematical oracles and non-executing WebGPU mocks; not GPU shader execution."
+  },
+  "checks": {
+    "static": {
+      "status": "PASS",
+      "command": "npm run check",
+      "javascriptModules": 123,
+      "shaderSources": 23,
+      "coreComputeEntries": 43
+    },
+    "types": {
+      "status": "PASS",
+      "command": "tsc --strict --noEmit --target es2022 --module nodenext --moduleResolution nodenext --lib es2023,dom tests/api-types.ts"
+    },
+    "build": {
+      "status": "PASS",
+      "command": "npm run build"
+    },
+    "standaloneClosure": {
+      "status": "PASS",
+      "command": "npm run check:build",
+      "embeddedModules": 62,
+      "exactShaders": 23,
+      "startupWorkerExact": true,
+      "authoringWorkerExact": true
+    }
+  },
+  "numericalExperiment": {
+    "status": "PASS",
+    "file": "sharp-numerical.json",
+    "cases": 1280,
+    "maxAbsoluteAreaError": 6.682262939788908e-06,
+    "scope": "Double-precision host mirror against independently clipped, densely flattened original synthetic contours; not native f32/pixel evidence."
+  },
+  "preservation": {
+    "status": "PASS_EXPLICIT_PRESERVATION_SCOPE",
+    "file": "sharp-preservation.json",
+    "entireInitialBuffersEqual": true,
+    "fontFilesIncluded": false
+  },
+  "native": {
+    "status": "NOT_VERIFIED",
+    "browser": {
+      "url": "http://127.0.0.1:8089/tests/quality.html?autorun",
+      "httpStatus": 200,
+      "status": "BLOCKED",
+      "gpuExecutionVerified": false,
+      "visualPixelsVerified": false,
+      "performanceMeasured": false,
+      "error": "Page.goto: net::ERR_BLOCKED_BY_ADMINISTRATOR at http://127.0.0.1:8089/tests/quality.html?autorun\nCall log:\n  - navigating to \"http://127.0.0.1:8089/tests/quality.html?autorun\", waiting until \"load\"\n"
+    },
+    "optionalValidator": {
+      "command": "npm run check:native",
+      "exitCode": 1,
+      "status": "DID_NOT_RUN_DEPENDENCY_UNAVAILABLE",
+      "detail": "Official Dawn Node binding is not installed; npm registry lookup failed with EAI_AGAIN in this environment."
+    },
+    "providedGate": "tests/quality.html",
+    "hardwareFPSMeasured": false
+  },
+  "costs": {
+    "file": "sharp-memory.json",
+    "additionalDefaultScratchPerSurfaceMiB": 48.375,
+    "additionalNormalFrameUploadBytes": 0,
+    "additionalHUDComputeDispatchesWhenVisible": 1,
+    "unchangedFPSClaim": false
+  },
+  "packageVerification": "See the separately generated helion-ui-sharp-manifest.json for fresh extraction/retest/rebuild and final artifact hashes.",
+  "logs": {
+    "host-tests": {
+      "path": "sharp-release-logs/host-tests.log",
+      "sha256": "5640716b75ac4589ca3b20ac14a31d66f79ed40c80d2ba0ed413ec76e5355bfb"
+    },
+    "static-checks": {
+      "path": "sharp-release-logs/static-checks.log",
+      "sha256": "71f9e4ec022e34e941339f617ea46be65b67b7ff700bdff55fefc95115f17cef"
+    },
+    "types": {
+      "path": "sharp-release-logs/types.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "build": {
+      "path": "sharp-release-logs/build.log",
+      "sha256": "54d398c59b027c39b64b5ad839cceba746903d881545c5a1f14547feedaba182"
+    },
+    "bundle": {
+      "path": "sharp-release-logs/bundle.log",
+      "sha256": "bc99e12f168315aa93b70bb2554b732251129a2e73281cb76c4f18fca8960c67"
+    },
+    "numerical": {
+      "path": "sharp-release-logs/numerical.log",
+      "sha256": "b4a7e19050fe1238a655a6fed8ceaac8caac658a082e51aa7d473ac77e5dcc8c"
+    },
+    "preservation": {
+      "path": "sharp-release-logs/preservation.log",
+      "sha256": "885ad1f3db91b5b7a8c8eca872fc5f0a68573574d7184e0492d92b70bd9ac100"
+    },
+    "browser": {
+      "path": "sharp-release-logs/browser.log",
+      "sha256": "03e72ef98d39a4ec876ee0aad871658fe60087c7193e028d2fb73f75394f672d"
+    },
+    "native-validator": {
+      "path": "sharp-release-logs/native-validator.log",
+      "sha256": "b2b5ec04932a468d7da9de10b499bf9e86e2ef3889cdc5fbd27197e04d74d3a3"
+    }
+  }
+}

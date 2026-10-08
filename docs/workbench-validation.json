@@ -1,0 +1,100 @@
+{
+  "version": "0.9.0-experimental",
+  "recordedAtUTC": "2026-09-25T09:30:36.364097+00:00",
+  "status": "HOST_CHECKS_PASS_NATIVE_UNVERIFIED",
+  "baseline": "Actual helion-ui-framework-source.zip (0.8.0), not the retracted editor artifacts",
+  "hostTests": {
+    "command": "npm test",
+    "passed": 583,
+    "failed": 0,
+    "skipped": 0,
+    "scope": "Actual JS and isolated Node workers, scalar WGSL-body-to-JS adapters, and nonexecuting GPU-host mocks. NOT native WGSL/GPU execution."
+  },
+  "staticChecks": {
+    "status": "PASS",
+    "javascriptModules": 106,
+    "shaderSources": 18,
+    "coreComputeEntries": 40,
+    "scope": "Source/lexical/resource/call-graph checks, not native shader compilation"
+  },
+  "typeCheck": {
+    "status": "PASS",
+    "command": "tsc --strict --noEmit --target es2022 --module nodenext --moduleResolution nodenext --lib es2023,dom tests/api-types.ts"
+  },
+  "nativeGPU": {
+    "status": "UNVERIFIED",
+    "browser": {
+      "requestedPage": "http://127.0.0.1:8080/tests/editor.html?autorun",
+      "startedUTC": "2026-09-25T09:28:48.793067+00:00",
+      "scope": "Native browser navigation/execution attempt, not a host-test simulation",
+      "browserVersion": "144.0.7559.96",
+      "status": "NOT_VERIFIED",
+      "error": "Page.goto: net::ERR_BLOCKED_BY_ADMINISTRATOR at http://127.0.0.1:8080/tests/editor.html?autorun\nCall log:\n  - navigating to \"http://127.0.0.1:8080/tests/editor.html?autorun\", waiting until \"load\"\n"
+    },
+    "optionalValidatorExitCode": 1,
+    "reason": "Optional webgpu package unavailable; browser blocked before load",
+    "hardwarePerformanceMeasured": false
+  },
+  "preservation": {
+    "report": "workbench-preservation.json",
+    "initialShowcaseBuffersByteIdentical": true,
+    "nodes": 202,
+    "rows": 65536,
+    "animations": 8
+  },
+  "implementedContract": "EDITOR-WORKBENCH.md",
+  "featureCompleteIDE": false,
+  "fontAssetsIncluded": false,
+  "logs": [
+    {
+      "path": "workbench-release-logs/host-tests.log",
+      "sha256": "4d43352259a2b86aa8595dcd98899558544832a4c11771b88f4def63cbd172e2"
+    },
+    {
+      "path": "workbench-release-logs/static-checks.log",
+      "sha256": "3bcb740c3122a83de482578e11705cb16b1d75279d993aebf07211e1748fbbc2"
+    },
+    {
+      "path": "workbench-release-logs/types.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "workbench-release-logs/native-check.log",
+      "sha256": "f3e0d48a91375c5a0538c58e2deb82c89ca5452ab9b18f83ecfa4e7c2b4f4461"
+    },
+    {
+      "path": "workbench-release-logs/native-browser.json",
+      "sha256": "e9f400462a68519bb09da80f2a119a72ee339ac62937eacb17a5738903266c1b"
+    },
+    {
+      "path": "workbench-release-logs/build.log",
+      "sha256": "5c782a38e4407d4da0e0d02dbdc700e25316d993de7a54ad4dc123dc879fdd73"
+    },
+    {
+      "path": "workbench-release-logs/build-check.log",
+      "sha256": "93f09c4ba4c9742a22c21251055ffe1f88e7459c28b2c19e05a26517c0580390"
+    }
+  ],
+  "build": {
+    "status": "PASS",
+    "commands": [
+      "npm run build",
+      "npm run check:build"
+    ],
+    "embeddedModules": 55,
+    "exactShaderSources": 18,
+    "startupWorkerExact": true,
+    "authoringWorkerExact": true,
+    "noVisibleDOMTextareaInPlayground": true,
+    "outputs": {
+      "helion-playground.html": {
+        "bytes": 878075,
+        "sha256": "4e5b851b714a55d5ee879c0495b036ea65647b01aad75fb4904c93e99e115637"
+      },
+      "helion-standalone.html": {
+        "bytes": 804110,
+        "sha256": "3c6d7b59820f1d5944d1d8fc417762c77d5853d86597213b4340efe401226ad7"
+      }
+    }
+  }
+}

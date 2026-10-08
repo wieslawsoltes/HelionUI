@@ -1,0 +1,146 @@
+{
+  "version": "0.4.0-experimental",
+  "compiledABI": 3,
+  "dateUTC": "2026-09-24T06:24:11.920548+00:00",
+  "host": {
+    "status": "PASS",
+    "tests": {
+      "tests": 260,
+      "pass": 260,
+      "fail": 0,
+      "skipped": 0
+    },
+    "commands": [
+      {
+        "name": "host-tests",
+        "command": "npm test",
+        "exitCode": 0,
+        "log": "startup-logs/host-tests.log"
+      },
+      {
+        "name": "static-checks",
+        "command": "npm run check",
+        "exitCode": 0,
+        "log": "startup-logs/static-checks.log"
+      },
+      {
+        "name": "typescript",
+        "command": "tsc --noEmit --strict --target ES2022 --module NodeNext --moduleResolution NodeNext --lib ES2022,DOM tests/api-types.ts",
+        "exitCode": 0,
+        "log": "startup-logs/typescript.log"
+      },
+      {
+        "name": "build",
+        "command": "npm run build",
+        "exitCode": 0,
+        "log": "startup-logs/build.log"
+      },
+      {
+        "name": "bundle-check",
+        "command": "npm run check:build",
+        "exitCode": 0,
+        "log": "startup-logs/bundle-check.log"
+      }
+    ],
+    "worker": "Actual isolated Node worker execution with exact arrays and manifest. Browser Worker/CSP integration not executed.",
+    "indexedDB": "Fake-database cold/hit/revision/corruption tests, not browser storage qualification.",
+    "framePacing": "Non-executing GPU test fake. Simulated 60/90/120/144/165/240 Hz with delayed acknowledgements/overload; not native FPS."
+  },
+  "cpuBenchmark": {
+    "status": "MEASURED",
+    "report": "startup-host-benchmark.json",
+    "samplesPerVersion": 5,
+    "scope": "Fresh-process Node CPU preparation; excludes browser/native compilation/GPU/display."
+  },
+  "qualityPreservation": {
+    "allComparedCompiledArraysIdentical": true,
+    "unchangedCoreShaderFiles": [
+      "flatten.wgsl",
+      "input.wgsl",
+      "layout.wgsl",
+      "glyph-cache.wgsl",
+      "emit.wgsl",
+      "data.wgsl",
+      "text.wgsl",
+      "common.wgsl",
+      "strips.wgsl"
+    ],
+    "changedOnlyDiagnosticShaderFiles": [
+      "metrics.wgsl",
+      "present.wgsl"
+    ],
+    "fontParserUnchanged": true,
+    "shaderChecksums": {
+      "metrics.wgsl": {
+        "unchangedFrom030": false,
+        "sha256": "ba2efb85b80ccf56828f1dd2cc6ee5042c968b18f80d43480afd24f4dd7616e4"
+      },
+      "flatten.wgsl": {
+        "unchangedFrom030": true,
+        "sha256": "34ee7bf4e9181546f88bce5585e3c6f8e72847f24fa82bff8fd19d8ff8d683aa"
+      },
+      "input.wgsl": {
+        "unchangedFrom030": true,
+        "sha256": "4e49721b4db6be5f4ac419c6030559f8cbaf4633f9984ad0f7172535de99c142"
+      },
+      "layout.wgsl": {
+        "unchangedFrom030": true,
+        "sha256": "8e8a1789c08c8fb056e23a4e6566accd89a4f4b6fb299e2f97bf39079c138d7e"
+      },
+      "glyph-cache.wgsl": {
+        "unchangedFrom030": true,
+        "sha256": "b5092f4b945300882b0c17c24c299cc8cc6407f2f1353d1c7af90073d0c6c387"
+      },
+      "present.wgsl": {
+        "unchangedFrom030": false,
+        "sha256": "1358150adcb43b1cfd0cb2d0c7493c32a70dc4c71071ed18d7ba581e44832e2e"
+      },
+      "emit.wgsl": {
+        "unchangedFrom030": true,
+        "sha256": "9adbe1d8cad062f588ff0a7ac614295a1d06f393de417d896137c23a57f1cee2"
+      },
+      "data.wgsl": {
+        "unchangedFrom030": true,
+        "sha256": "74f91a67926faedc6ada9a2bb518b3269f26614f662b9ad34306bcbc68a8b571"
+      },
+      "text.wgsl": {
+        "unchangedFrom030": true,
+        "sha256": "4d006344386482d80d5316e4a6367b048d4d2b4d0baaaf6ab6cddb11cfad8b3b"
+      },
+      "common.wgsl": {
+        "unchangedFrom030": true,
+        "sha256": "d5711ae91390f2bdfc6fb31d41005d56ce451e40d7028551c0a715389a01287d"
+      },
+      "strips.wgsl": {
+        "unchangedFrom030": true,
+        "sha256": "ebd7c94e7c40b5b6ce13536fa46c89633cf59433c3a67e6c680d72217bd23255"
+      }
+    },
+    "nativePixelComparison": "NOT RUN"
+  },
+  "native": {
+    "status": "NOT VERIFIED",
+    "shaderCompiler": "UNAVAILABLE: optional Dawn Node binding not installed",
+    "browser": {
+      "status": "FAIL",
+      "error": "Page.goto: net::ERR_BLOCKED_BY_ADMINISTRATOR at http://127.0.0.1:8080/tests/text.html?autorun\nCall log:\n  - navigating to \"http://127.0.0.1:8080/tests/text.html?autorun\", waiting until \"load\"\n"
+    },
+    "gpuExecution": "NOT RUN",
+    "visualCorrectness": "NOT RUN",
+    "browserWorkerIndexedDB": "NOT RUN",
+    "endToEndStartupSpeedup": "NOT MEASURED",
+    "deviceVsyncOrScanout": "NOT MEASURED"
+  },
+  "protocol": {
+    "frameBytes": 64,
+    "commandBytes": 32,
+    "maxCommandsPerFrame": 256,
+    "defaultMaxFramesInFlight": 2,
+    "normalFrameBufferMapping": false
+  },
+  "distribution": {
+    "thirdPartyFontAssetsIncluded": false,
+    "fontSource": "Runtime pinned Noto Sans URLs or user-selected local static faces",
+    "remoteGitHubOrPagesPublication": "NOT REQUESTED / NOT PERFORMED"
+  }
+}

@@ -1,0 +1,7 @@
+<!doctype html><html lang="en"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Helion framework native correctness</title>
+<style>body{margin:24px;background:#101820;color:#d9e8f4;font:14px/1.6 system-ui}h1{font-size:24px}p{max-width:1000px}button{padding:10px 18px;font:inherit}canvas{display:block;width:640px;height:420px;margin-top:20px}pre{white-space:pre-wrap;overflow-wrap:anywhere;font-size:12px}a{color:#62ddec}</style>
+<h1>Layout / styles / drawing / composition — native gate</h1>
+<p>Checks actual WGSL execution, GPU-computed rectangles, transitions, animation control, gradient/image pixels, and a rotated rectangular clip. Uses original test glyph geometry, not an embedded third-party font. These deliberately fence-separated, explicit-readback checks are correctness tests, not frame-rate benchmarks. <a href="../playground/index.html">Open the playground</a>.</p>
+<button id="run">Run native checks</button><canvas id="canvas"></canvas><pre id="log">Not run. Passing host tests is not native shader validation.</pre>
+<script type="module" src="./framework-gpu.js"></script></html>

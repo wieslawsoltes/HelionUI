@@ -1,0 +1,8 @@
+{
+  "recordedAtUTC": "2026-09-25T17:12:28.904625+00:00",
+  "url": "http://127.0.0.1:8123/tests/dynamic.html?autorun",
+  "status": "BLOCKED_BEFORE_VALIDATION",
+  "scope": "Native browser gate; a navigation failure is not shader validation.",
+  "browserVersion": "144.0.7559.96",
+  "error": "Page.goto: net::ERR_BLOCKED_BY_ADMINISTRATOR at http://127.0.0.1:8123/tests/dynamic.html?autorun\nCall log:\n  - navigating to \"http://127.0.0.1:8123/tests/dynamic.html?autorun\", waiting until \"load\"\n"
+}

@@ -1,0 +1,8 @@
+<!doctype html><html lang="en"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Helion GPU editor / docking / model validation</title>
+<style>body{margin:24px;background:#101923;color:#dce9f3;font:14px/1.6 system-ui}h1{font-size:24px}p{max-width:950px}button{font:inherit;padding:8px 16px}canvas{display:block;width:760px;height:520px;margin:16px 0;border:1px solid #344b5e}pre{white-space:pre-wrap;overflow-wrap:anywhere;font-size:12px}a{color:#65d6d3}</style>
+<h1>Editor / docking / models — native WebGPU gate</h1>
+<p>Runs real shader compilation and GPU operations with an original fixture font. It checks text transactions, history, snippets, search, typed models, docking-state preservation, and dirty/full-render pixels. Reads and fences are explicit test operations; this is not a sustained FPS benchmark. <a href="../playground/">Open the playground</a>.</p>
+<button id="run">Run native checks</button> <button id="save">Save result JSON</button>
+<canvas id="canvas"></canvas><pre id="log">Not run. Host tests do not establish native shader correctness.</pre>
+<script type="module" src="./editor-gpu.js"></script></html>

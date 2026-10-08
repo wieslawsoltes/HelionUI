@@ -1,0 +1,48 @@
+{
+  "version": "0.15.0-experimental",
+  "headless": true,
+  "containerLaunchArgs": [
+    "--no-sandbox"
+  ],
+  "scope": "Native browser host/worker serialization only unless a served GPU gate actually passes. No hardware performance claim.",
+  "served": [
+    {
+      "path": "/tests/typography.html?autorun",
+      "status": "UNVERIFIED",
+      "error": "Page.goto: net::ERR_BLOCKED_BY_ADMINISTRATOR at http://127.0.0.1:8137/tests/typography.html?autorun\nCall log:\n  - navigating to \"http://127.0.0.1:8137/tests/typography.html?autorun\", waiting until \"domcontentloaded\"\n"
+    },
+    {
+      "path": "/tests/shaders.html?autorun",
+      "status": "UNVERIFIED",
+      "error": "Page.goto: net::ERR_BLOCKED_BY_ADMINISTRATOR at http://127.0.0.1:8137/tests/shaders.html?autorun\nCall log:\n  - navigating to \"http://127.0.0.1:8137/tests/shaders.html?autorun\", waiting until \"domcontentloaded\"\n"
+    }
+  ],
+  "browser": "144.0.7559.96",
+  "originOrCSPBypass": false,
+  "isolatedTypographyWorker": {
+    "status": "PASS",
+    "scope": "Actual classic Blob worker, complete initial buffers, template and shaping manifests. No WGSL execution.",
+    "checks": [
+      {
+        "themeContrast": "high",
+        "controlDensity": "compact",
+        "accentColor": 4294941881,
+        "nodes": 17,
+        "templates": 3,
+        "shapedRuns": 4,
+        "heapBytes": 1071056,
+        "status": "PASS"
+      },
+      {
+        "themeContrast": "high",
+        "controlDensity": "compact",
+        "accentColor": 4288730473,
+        "nodes": 32,
+        "templates": 1,
+        "shapedRuns": 11,
+        "heapBytes": 2778656,
+        "status": "PASS"
+      }
+    ]
+  }
+}

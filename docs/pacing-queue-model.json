@@ -1,0 +1,149 @@
+{
+  "scope": "Deterministic scheduling regression model. NOT measured hardware FPS, latency or dropped display frames.",
+  "scenarios": [
+    {
+      "policy": "unbounded",
+      "modelOnly": true,
+      "assumptions": {
+        "hz": 120,
+        "durationMs": 3000,
+        "gpuServiceMs": 0.3,
+        "notificationMs": 13,
+        "queue": "serial nonpreemptive; ideal periodic rAF; no browser compositor, driver, DVFS, or scanout model"
+      },
+      "callbacks": 360,
+      "submissions": 360,
+      "deferrals": 0,
+      "completedByEnd": 360,
+      "unacknowledgedAtEnd": 7,
+      "peakUnacknowledged": 17,
+      "peakUnfinishedModelFrames": 1,
+      "modelSubmitToGpuEndMs": {
+        "median": 0.2999999999999545,
+        "p95": 0.3000000000001819,
+        "max": 0.3000000000001819
+      },
+      "checkpoints": 23
+    },
+    {
+      "policy": "legacy-chained",
+      "modelOnly": true,
+      "assumptions": {
+        "hz": 120,
+        "durationMs": 3000,
+        "gpuServiceMs": 0.3,
+        "notificationMs": 13,
+        "queue": "serial nonpreemptive; ideal periodic rAF; no browser compositor, driver, DVFS, or scanout model"
+      },
+      "callbacks": 360,
+      "submissions": 232,
+      "deferrals": 128,
+      "completedByEnd": 232,
+      "unacknowledgedAtEnd": 2,
+      "peakUnacknowledged": 2,
+      "peakUnfinishedModelFrames": 1,
+      "modelSubmitToGpuEndMs": {
+        "median": 0.2999999999999545,
+        "p95": 0.3000000000001819,
+        "max": 0.3000000000001819
+      },
+      "checkpoints": 231
+    },
+    {
+      "policy": "paced",
+      "modelOnly": true,
+      "assumptions": {
+        "hz": 120,
+        "durationMs": 3000,
+        "gpuServiceMs": 0.3,
+        "notificationMs": 13,
+        "queue": "serial nonpreemptive; ideal periodic rAF; no browser compositor, driver, DVFS, or scanout model"
+      },
+      "callbacks": 360,
+      "submissions": 360,
+      "deferrals": 0,
+      "completedByEnd": 360,
+      "unacknowledgedAtEnd": 1,
+      "peakUnacknowledged": 2,
+      "peakUnfinishedModelFrames": 1,
+      "modelSubmitToGpuEndMs": {
+        "median": 0.2999999999999545,
+        "p95": 0.3000000000001819,
+        "max": 0.3000000000001819
+      },
+      "checkpoints": 360
+    },
+    {
+      "policy": "unbounded",
+      "modelOnly": true,
+      "assumptions": {
+        "hz": 120,
+        "durationMs": 3000,
+        "gpuServiceMs": 12,
+        "notificationMs": 1,
+        "queue": "serial nonpreemptive; ideal periodic rAF; no browser compositor, driver, DVFS, or scanout model"
+      },
+      "callbacks": 360,
+      "submissions": 360,
+      "deferrals": 0,
+      "completedByEnd": 250,
+      "unacknowledgedAtEnd": 138,
+      "peakUnacknowledged": 167,
+      "peakUnfinishedModelFrames": 111,
+      "modelSubmitToGpuEndMs": {
+        "median": 668.3333333333333,
+        "p95": 1262.333333333333,
+        "max": 1328.333333333333
+      },
+      "checkpoints": 9
+    },
+    {
+      "policy": "legacy-chained",
+      "modelOnly": true,
+      "assumptions": {
+        "hz": 120,
+        "durationMs": 3000,
+        "gpuServiceMs": 12,
+        "notificationMs": 1,
+        "queue": "serial nonpreemptive; ideal periodic rAF; no browser compositor, driver, DVFS, or scanout model"
+      },
+      "callbacks": 360,
+      "submissions": 251,
+      "deferrals": 109,
+      "completedByEnd": 250,
+      "unacknowledgedAtEnd": 2,
+      "peakUnacknowledged": 2,
+      "peakUnfinishedModelFrames": 2,
+      "modelSubmitToGpuEndMs": {
+        "median": 19,
+        "p95": 22.666666666666515,
+        "max": 23
+      },
+      "checkpoints": 250
+    },
+    {
+      "policy": "paced",
+      "modelOnly": true,
+      "assumptions": {
+        "hz": 120,
+        "durationMs": 3000,
+        "gpuServiceMs": 12,
+        "notificationMs": 1,
+        "queue": "serial nonpreemptive; ideal periodic rAF; no browser compositor, driver, DVFS, or scanout model"
+      },
+      "callbacks": 360,
+      "submissions": 251,
+      "deferrals": 109,
+      "completedByEnd": 250,
+      "unacknowledgedAtEnd": 2,
+      "peakUnacknowledged": 2,
+      "peakUnfinishedModelFrames": 2,
+      "modelSubmitToGpuEndMs": {
+        "median": 19,
+        "p95": 22.666666666666515,
+        "max": 23
+      },
+      "checkpoints": 251
+    }
+  ]
+}

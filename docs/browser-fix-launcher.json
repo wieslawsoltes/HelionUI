@@ -1,0 +1,37 @@
+{
+  "scope": "Local Python server/MIME/guard delivery, not browser rendering",
+  "checks": [
+    {
+      "path": "/designer/",
+      "status": 200,
+      "redirected": false,
+      "contentType": "text/html"
+    },
+    {
+      "path": "/playground/",
+      "status": 200,
+      "redirected": false,
+      "contentType": "text/html"
+    },
+    {
+      "path": "/",
+      "status": 200,
+      "redirected": false,
+      "contentType": "text/html"
+    },
+    {
+      "path": "/src/startup/prepare-worker.js",
+      "status": 200,
+      "redirected": false,
+      "contentType": "text/javascript"
+    },
+    {
+      "path": "/tests/font-fixture.mjs",
+      "status": 200,
+      "redirected": false,
+      "contentType": "text/javascript"
+    }
+  ],
+  "shellLauncherHelpFromDifferentDirectory": "PASS",
+  "status": "PASS"
+}

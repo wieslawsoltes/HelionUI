@@ -1,0 +1,16 @@
+import {ShapedText} from '../typography/declaration.js';
+import {AccentButton,SubtleButton,DestructiveButton,AccentButtonTemplate,SubtleButtonTemplate,DestructiveButtonTemplate,themePreferenceAction,ControlTemplate,TemplateBinding,ThemeResource,VisualState,VisualStateGroup,WinUIFluentTheme,MacOS26Theme,ToggleSwitch,TemplatedToggleButton,ButtonTemplate,CheckBoxTemplate,SliderTemplate,TextBoxTemplate,ProgressBarTemplate,ContentControlTemplate,templateAction,themeAction} from '../templates/index.js';
+import {dataSource,createDataSource} from '../data/index.js';
+import {hostAction,Toolbar,StatusBar,Menu,ToggleButton,Separator,Popup,Dialog} from '../controls/index.js';
+import {TextDocument} from '../editor/declarations.js';
+import {EditorCommand} from '../editor/schema.js';
+import {DockTabs,DockSplit,DockCommand} from '../docking/index.js';
+import {defineModel,defineViewModel,field,computed,ref,expr,modelBinding} from '../models/index.js';
+import { Color, ColorFromArgb, parseColor } from '../core/colors.js';
+import { h } from '../core/declaration.js';
+import { Dock, Orientation, Stretch, Thickness, GridLength, RowDefinition, ColumnDefinition } from '../layout/properties.js';
+import { Style, StaticResource, ResourceDictionary, FluentTheme, parseStyles } from '../styling/styles.js';
+import { Compositor, ScalarKeyFrameAnimation, Vector2KeyFrameAnimation, CompositionAnimationGroup, Easing, KeyFrame, bindExpression, transition } from '../composition/animations.js';
+import { DrawingContext, SolidColorBrush, LinearGradientBrush, RadialGradientBrush, GradientStop, Pen, FormattedText, ImageSource, GlyphRun, DrawingGroup, GeometryDrawing, GlyphRunDrawing } from '../drawing/context.js';
+import { Point, Rect, Matrix, TranslateTransform, ScaleTransform, RotateTransform, SkewTransform, TransformGroup, PathGeometry, RectangleGeometry, EllipseGeometry, GeometryGroup, StreamGeometry } from '../drawing/geometry.js';
+export const authoringAPI=Object.freeze({ShapedText,AccentButton,SubtleButton,DestructiveButton,AccentButtonTemplate,SubtleButtonTemplate,DestructiveButtonTemplate,themePreferenceAction,ControlTemplate,TemplateBinding,ThemeResource,VisualState,VisualStateGroup,WinUIFluentTheme,MacOS26Theme,ToggleSwitch,TemplatedToggleButton,ButtonTemplate,CheckBoxTemplate,SliderTemplate,TextBoxTemplate,ProgressBarTemplate,ContentControlTemplate,templateAction,themeAction,dataSource,createDataSource,hostAction,Toolbar,StatusBar,Menu,ToggleButton,Separator,Popup,Dialog,TextDocument,EditorCommand,DockTabs,DockSplit,DockCommand,defineModel,defineViewModel,field,computed,ref,expr,modelBinding,Color,ColorFromArgb,parseColor,h,Dock,Orientation,Stretch,Thickness,GridLength,RowDefinition,ColumnDefinition,Style,StaticResource,ResourceDictionary,FluentTheme,parseStyles,Compositor,ScalarKeyFrameAnimation,Vector2KeyFrameAnimation,CompositionAnimationGroup,Easing,KeyFrame,bindExpression,transition,DrawingContext,SolidColorBrush,LinearGradientBrush,RadialGradientBrush,GradientStop,Pen,FormattedText,ImageSource,GlyphRun,DrawingGroup,GeometryDrawing,GlyphRunDrawing,Point,Rect,Matrix,TranslateTransform,ScaleTransform,RotateTransform,SkewTransform,TransformGroup,PathGeometry,RectangleGeometry,EllipseGeometry,GeometryGroup,StreamGeometry});

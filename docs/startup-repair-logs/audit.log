@@ -1,0 +1,104 @@
+{
+  "status": "PASS",
+  "scenes": 5,
+  "protectedFiles": 23,
+  "corePipelines": [
+    44,
+    36
+  ],
+  "programBytes": 278584,
+  "groups": [
+    [
+      "designer-state",
+      13556
+    ],
+    [
+      "layoutLists",
+      6626
+    ],
+    [
+      "emitListParts",
+      21126
+    ],
+    [
+      "editor-analysis",
+      16014
+    ],
+    [
+      "emitEditorParts",
+      29963
+    ],
+    [
+      "models",
+      9950
+    ],
+    [
+      "schedule",
+      9212
+    ],
+    [
+      "input",
+      144853
+    ],
+    [
+      "composition",
+      9249
+    ],
+    [
+      "layout",
+      31502
+    ],
+    [
+      "flatten",
+      6071
+    ],
+    [
+      "emit",
+      58662
+    ],
+    [
+      "damage",
+      6392
+    ],
+    [
+      "glyph-cache",
+      16761
+    ],
+    [
+      "raster",
+      27408
+    ]
+  ],
+  "callSites": [
+    {
+      "caller": "editorKey",
+      "callee": "editorCommand",
+      "before": 10,
+      "after": 1
+    },
+    {
+      "caller": "dsKey",
+      "callee": "dsCommand",
+      "before": 3,
+      "after": 1
+    },
+    {
+      "caller": "handleKey",
+      "callee": "activate",
+      "before": 2,
+      "after": 1
+    },
+    {
+      "caller": "dsDecimal",
+      "callee": "glyph",
+      "before": 4,
+      "after": 1
+    },
+    {
+      "caller": "dsHexText",
+      "callee": "glyph",
+      "before": 2,
+      "after": 1
+    }
+  ]
+}

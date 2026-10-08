@@ -1,0 +1,35 @@
+{
+  "baselineScratchBytes": 30282048,
+  "sharpScratchBytes": 81006912,
+  "additionalScratchBytes": 50724864,
+  "additionalScratchMiB": 48.375,
+  "oldMaxTiles": 16384,
+  "newMaxTiles": 65536,
+  "maxPixels": 16777216,
+  "unchangedGlyphCacheBytes": 8536128,
+  "coreComputePipelines": 43,
+  "additionalHUDComputePipelines": 1,
+  "additionalHUDRenderPipelines": 1,
+  "additionalNormalUploads": 0,
+  "hudAllocations": [
+    {
+      "dpr": 1,
+      "width": 456,
+      "height": 374,
+      "bytes": 682176
+    },
+    {
+      "dpr": 2,
+      "width": 904,
+      "height": 740,
+      "bytes": 2675840
+    },
+    {
+      "dpr": 3,
+      "width": 1352,
+      "height": 1106,
+      "bytes": 5981248
+    }
+  ],
+  "note": "Configured maxima, not measured GPU memory usage. Output textures and driver allocations are additional. Each retained root/child owns separate arenas."
+}

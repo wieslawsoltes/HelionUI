@@ -1,0 +1,163 @@
+{
+  "scope": "Host parser/initial data and source comparison; no pixels, runtime performance or native GPU verification.",
+  "font": {
+    "family": "DejaVu Sans",
+    "glyphs": 6253,
+    "inputSHA256": "57f73e11f51999432bf7ab22ce55b6f945d5eca1bf824404cfa9ec2e3718c84e",
+    "geometryAndAdvancesEqual": true,
+    "glyphDataSHA256": "5445f7dc57defd46b95c5e5bd075ba16b2eaf117e3e3f4f1fd443d8025025773"
+  },
+  "protectedFiles": [
+    {
+      "file": "src/gpu/cadence.js",
+      "equal": true,
+      "sha256": "d37e28f590e6c48cb421ef89771dc3d41e7cd21bd5e84125e0c9f42100de3200"
+    },
+    {
+      "file": "src/gpu/frame-gate.js",
+      "equal": true,
+      "sha256": "e0e4d385292ddd0073d281711d0c60d80d9dd99fa9417184017ae9ca287b9d90"
+    },
+    {
+      "file": "src/gpu/frame-sync.js",
+      "equal": true,
+      "sha256": "5dfbbf5b6fc0b2c162cf472e726d82d3b270b89a8019be389a7476c56e3460f9"
+    },
+    {
+      "file": "src/gpu/queue-progress.js",
+      "equal": true,
+      "sha256": "47d0e7388e46fad5eda01216ca27fa9d70b9e05e519f4d8718a28667c85fd8e1"
+    },
+    {
+      "file": "src/gpu/progress-watchdog.js",
+      "equal": true,
+      "sha256": "f7948d8db9664f7e0ee431510b2f16547769cfa6a434374d2685437de4392bf7"
+    },
+    {
+      "file": "src/gpu/submission.js",
+      "equal": true,
+      "sha256": "30295b062da3f0028a5dd9b21927abdb261a9803cdf18c5798b9d6add0d1d52e"
+    },
+    {
+      "file": "src/gpu/performance.js",
+      "equal": true,
+      "sha256": "d884edd73b694604eeccf5ec350f6223054277827104c17c1e7833fc1b494a20"
+    },
+    {
+      "file": "src/gpu/viewport.js",
+      "equal": true,
+      "sha256": "f22063fde102c005834041b432ea94883f100146fda003ca54e6f5792a8850cd"
+    },
+    {
+      "file": "src/gpu/arena-layout.js",
+      "equal": true,
+      "sha256": "e9c2f78578f7a57375f92fba4adf8ab94b4e718246a8af4f0c7dcf95d18e6e92"
+    },
+    {
+      "file": "src/startup/worker-source.js",
+      "equal": true,
+      "sha256": "6d369509ba9d420302268e0445864416ca6ad907a3b62be91d382f0a4d6cd735"
+    },
+    {
+      "file": "src/platform/launch.js",
+      "equal": true,
+      "sha256": "7832e0d1ad623ab9cb20338f796557f00566c1b7e3561a80f89136ffe9886dc0"
+    },
+    {
+      "file": "shaders/curve-coverage.wgsl",
+      "equal": true,
+      "sha256": "e1eda6ef0ef8c70a532276a82f2320e9158acfe647bed91e797594fcb8db44da"
+    },
+    {
+      "file": "shaders/glyph-cache.wgsl",
+      "equal": true,
+      "sha256": "f11c52c8c456be9fbf529516a9530112cf18fb47797c9649067b1a91241284d4"
+    },
+    {
+      "file": "shaders/strips.wgsl",
+      "equal": true,
+      "sha256": "71ab04bcdc1f83513c53bc8e18d31fc6822378a84916bdad991fbd97388a11b3"
+    },
+    {
+      "file": "shaders/hud-common.wgsl",
+      "equal": true,
+      "sha256": "c8303847975fbb520b3cf065958e6701603b6f440e9f7a6d6e30184e0debf2e2"
+    },
+    {
+      "file": "shaders/hud-viewport.wgsl",
+      "equal": true,
+      "sha256": "f5f60c7cc3697f65ff0f9f57909b69205b19357a0702ed3498c1f1d293403483"
+    },
+    {
+      "file": "shaders/hud.wgsl",
+      "equal": true,
+      "sha256": "2996d5652075631046258e0904a096dba7d36c1062970127adaf1a5e835b56e9"
+    },
+    {
+      "file": "shaders/blit.wgsl",
+      "equal": true,
+      "sha256": "e06d0ea086add289f4258eccbc3bed820e22f0bbea625b9ddfb74e26b8c8d131"
+    },
+    {
+      "file": "shaders/present.wgsl",
+      "equal": true,
+      "sha256": "e0c6c25f4a98bc5b0e2865f1be6e3b5dbe57b202c360b6913d95415579a241f6"
+    },
+    {
+      "file": "shaders/metrics.wgsl",
+      "equal": true,
+      "sha256": "60472f5eadb0ef8444e3abe30ad0eef51da5eff75a503faa12b20da9ffb4d455"
+    }
+  ],
+  "scenes": [
+    {
+      "name": "showcase",
+      "nodes": 202,
+      "rows": [
+        65536
+      ],
+      "animations": 8,
+      "shapedRuns": 11,
+      "heapBytes": 21470700,
+      "nodesBytes": 58176,
+      "stateBytes": 13184,
+      "shapingReservedBytes": 855412,
+      "heapBudgetBytes": 67108864
+    },
+    {
+      "name": "designer",
+      "nodes": 483,
+      "rows": [],
+      "animations": 0,
+      "shapedRuns": 96,
+      "heapBytes": 66946180,
+      "nodesBytes": 139104,
+      "stateBytes": 31168,
+      "shapingReservedBytes": 19406584,
+      "heapBudgetBytes": 100663296
+    },
+    {
+      "name": "typography-lab",
+      "nodes": 89,
+      "rows": [
+        5
+      ],
+      "animations": 0,
+      "shapedRuns": 286,
+      "heapBytes": 43976960,
+      "nodesBytes": 25632,
+      "stateBytes": 5952,
+      "shapingReservedBytes": 23066496,
+      "heapBudgetBytes": 67108864
+    }
+  ],
+  "baselineShowcase": {
+    "nodes": 202,
+    "rows": [
+      65536
+    ],
+    "animations": 8,
+    "heapBytes": 20272572
+  },
+  "initialBuffersExpectedToDiffer": true
+}

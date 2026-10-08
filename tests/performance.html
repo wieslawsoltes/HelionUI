@@ -1,0 +1,12 @@
+<!doctype html><html lang="en"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Helion native typography performance comparison</title>
+<style>body{margin:0;background:#0e1720;color:#dbe8f4;font:14px/1.6 system-ui}header{padding:18px 24px}h1{font-size:22px;margin:0}p{margin:8px 0;max-width:1050px;color:#9caebd}button,select,input{padding:9px;border:1px solid #486072;border-radius:6px;background:#203241;color:#e0e9f0}button{cursor:pointer}label{display:inline-block;margin:6px 10px 6px 0}canvas{display:block;width:100%;height:640px;max-height:75vh}pre{white-space:pre-wrap;padding:20px;max-width:1100px}button:disabled{opacity:.5;cursor:wait}</style>
+<header><h1>Native typography performance comparison</h1>
+<p>Compare exact GPU glyph caching with direct outline rasterization, or retained damage with full-frame rendering. Both arms use the same real fonts, 65,536 rows, layout, sorting and rendering resolution. This is not an old-release speedup or input-to-photon measurement. Explicit readbacks are confined to this test harness.</p>
+<p>Fonts load once before measurement from pinned public Noto Sans URLs. Select your own static TrueType or WOFF1 files for an offline run; the files remain in this page. Font preparation, mount and cold-frame costs are recorded separately. Run multiple comparisons with alternating order before drawing conclusions.</p>
+<label>Comparison <select id="comparison"><option value="glyph">Glyph cache</option><option value="damage">Dirty tiles</option></select></label>
+<label>Order <select id="comparison-order"><option value="reference-first">Reference first</option><option value="optimized-first">Optimized first</option></select></label>
+<label>Local fonts <input id="benchmark-fonts" type="file" accept=".ttf,.otf,.ttc,.woff" multiple></label><br>
+<button id="run-benchmark">Run comparison</button> <button id="save-results" disabled>Save JSON</button></header>
+<canvas id="benchmark-surface"></canvas><pre id="benchmark-log">No benchmark has run. A completed run is evidence only for the reported browser/device and configuration, not a universal performance guarantee.</pre>
+<script type="module" src="./performance.js"></script></html>

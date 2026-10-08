@@ -1,0 +1,162 @@
+{
+  "coverageFunctions": [
+    {
+      "name": "glyphMatrix",
+      "equal": true,
+      "sha256": "78aa7e8498520422912d21242d8d7c2101ff1d1b1575b26c51848ebd3f190455"
+    },
+    {
+      "name": "glyphOrigin",
+      "equal": true,
+      "sha256": "5b1d62028dd921398a6ffd99ad4ddaae926b3c8d7322374068be114a963434e8"
+    },
+    {
+      "name": "glyphCoverage",
+      "equal": true,
+      "sha256": "1b14fcd7a11fcb99e07ba049735165c2447637d138d4f677973e309c7ccbd22a"
+    },
+    {
+      "name": "cachedGlyphCoverage",
+      "equal": true,
+      "sha256": "0a1ddd0b529017007652b80042fad750ecbd5f8f804e4421dd6393e2832daa74"
+    }
+  ],
+  "scope": "CPU preparation and exact binary/source preservation. NOT a native pixel or FPS comparison.",
+  "fontFilesIncluded": false,
+  "fontTestSet": [
+    {
+      "family": "DejaVu Sans",
+      "weight": 400,
+      "style": "normal",
+      "glyphs": 6253
+    },
+    {
+      "family": "DejaVu Sans",
+      "weight": 700,
+      "style": "normal",
+      "glyphs": 6196
+    },
+    {
+      "family": "DejaVu Sans",
+      "weight": 400,
+      "style": "italic",
+      "glyphs": 5355
+    }
+  ],
+  "baselineVersion": "0.6.0-experimental",
+  "currentVersion": "0.6.1-experimental",
+  "sceneDeclarationEqual": true,
+  "compiledBuffers": {
+    "nodes": {
+      "equal": true,
+      "bytes": 58176,
+      "sha256": "fed20d01d84241dcb0f10d696cbc67c5e66ac357ccd6b9cd815e4bbf69f77d8a"
+    },
+    "state": {
+      "equal": true,
+      "bytes": 13184,
+      "sha256": "23175c647451c0379539e01966a399c56ebf58852e255ebb819eb12dad65bdb5"
+    },
+    "heap": {
+      "equal": true,
+      "bytes": 54960608,
+      "sha256": "c00c8cfa6b76ec6a7f824a06783536d8097d63d09464b2f81f856801d12f1962"
+    }
+  },
+  "protectedFiles": [
+    {
+      "file": "src/core/compiler.js",
+      "equal": true,
+      "sha256": "1328151db19e184ce2ba700cf1839080e416f1cbae31fe1d3c6900095e235768"
+    },
+    {
+      "file": "src/core/index.d.ts",
+      "equal": true,
+      "sha256": "5ad67b559ea52aa62da94623c6dbf42e0fa711c7512690bfb93fd0e02a4ad60f"
+    },
+    {
+      "file": "src/core/index.js",
+      "equal": true,
+      "sha256": "f8ad06b1b94f9385ee9dad572cf0e9bb2871be2ce668eff0757714ddeb058672"
+    },
+    {
+      "file": "src/core/protocol.d.ts",
+      "equal": true,
+      "sha256": "654b7039d66a81c9c7c421f4b67f904724e24b7bbb46d0869c020f9472a38ff9"
+    },
+    {
+      "file": "src/core/protocol.js",
+      "equal": true,
+      "sha256": "efb01705a48ba5866ab11f7f06f53df1cb1eb1f0e700fff9c124534007548a31"
+    },
+    {
+      "file": "src/core/schema.js",
+      "equal": true,
+      "sha256": "0edd42fc01bcf3cc91b0d5738a01288d0e7b420ca2b88065b482e5cd5f1ad953"
+    },
+    {
+      "file": "src/text/fonts.js",
+      "equal": true,
+      "sha256": "7046904b5396cb898a33d65ac92ab04720916a2065671ee8cd4d3634a0e23245"
+    },
+    {
+      "file": "src/text/index.d.ts",
+      "equal": true,
+      "sha256": "7e58f578d1f0ae00cde279ba7d7be2f9e9a70ca5884c6af7c3c80b4aa19ff4bc"
+    },
+    {
+      "file": "src/text/index.js",
+      "equal": true,
+      "sha256": "3a2a768918b833a2363ed6a49fbaf89103d0081f988f555ee96c628b05f3f6be"
+    },
+    {
+      "file": "src/text/opentype.js",
+      "equal": true,
+      "sha256": "7e066665d9a8d20ab876239416e26a45995fa30f1e4d6ad6e94d30caa224a9c7"
+    },
+    {
+      "file": "src/startup/cache.js",
+      "equal": true,
+      "sha256": "1f347a7a78ff1edeb4c15943f9a2fca5104ffa57602d9b2a2ff11be8b043dec3"
+    },
+    {
+      "file": "src/startup/prepare-core.js",
+      "equal": true,
+      "sha256": "85db3ee74bb129798429144f5f3fbf1b8cc38a894e78235afa2c9d9094cba82f"
+    },
+    {
+      "file": "src/startup/prepare-worker.js",
+      "equal": true,
+      "sha256": "4b63faae27ea0a555b28e340b008b03d5e21f17213cf83dca27a70b2eff6d25e"
+    },
+    {
+      "file": "src/startup/prepare.js",
+      "equal": true,
+      "sha256": "378e406f287fac40d86c158b45eb16158a84e2e9f238edd002578ae20feae83a"
+    },
+    {
+      "file": "shaders/text.wgsl",
+      "equal": true,
+      "sha256": "4d006344386482d80d5316e4a6367b048d4d2b4d0baaaf6ab6cddb11cfad8b3b"
+    },
+    {
+      "file": "shaders/layout.wgsl",
+      "equal": true,
+      "sha256": "8e8a1789c08c8fb056e23a4e6566accd89a4f4b6fb299e2f97bf39079c138d7e"
+    },
+    {
+      "file": "shaders/data.wgsl",
+      "equal": true,
+      "sha256": "74f91a67926faedc6ada9a2bb518b3269f26614f662b9ad34306bcbc68a8b571"
+    },
+    {
+      "file": "shaders/flatten.wgsl",
+      "equal": true,
+      "sha256": "34ee7bf4e9181546f88bce5585e3c6f8e72847f24fa82bff8fd19d8ff8d683aa"
+    }
+  ],
+  "views": 202,
+  "rows": 65536,
+  "animations": 8,
+  "status": "PASS"
+}

@@ -1,0 +1,183 @@
+{
+  "version": "0.14.0-experimental",
+  "baselineVersion": "0.13.0-experimental",
+  "scope": "Exact CPU initial-buffer/source audit and allocation sizes only. No native WGSL, rendered pixels, GPU performance or startup timing measurement.",
+  "fontAssetsIncluded": false,
+  "fontTestSet": [
+    {
+      "family": "DejaVu Sans",
+      "weight": 400,
+      "style": "normal",
+      "glyphs": 6253
+    }
+  ],
+  "originalShowcase": {
+    "views": 202,
+    "rows": 65536,
+    "animations": 8,
+    "compiledArrays": {
+      "nodes": {
+        "equal": true,
+        "bytes": 58176,
+        "sha256": "7c85e63a21a351cb11b594b479f3694ac4c6a6d492af11cace99b1da789d2ded"
+      },
+      "state": {
+        "equal": true,
+        "bytes": 13184,
+        "sha256": "0738a5dd94d258b13507c011e32742767d360a34e6785d0ad0b9a0756705d1ab"
+      },
+      "heap": {
+        "equal": true,
+        "bytes": 20272572,
+        "sha256": "a30ad8fbbcf411723e4b531b11f2e29d96be7414fa643686a737a6154d7845ed"
+      }
+    }
+  },
+  "protectedFiles": [
+    {
+      "file": "src/text/fonts.js",
+      "equal": true,
+      "sha256": "7046904b5396cb898a33d65ac92ab04720916a2065671ee8cd4d3634a0e23245"
+    },
+    {
+      "file": "src/text/opentype.js",
+      "equal": true,
+      "sha256": "7e066665d9a8d20ab876239416e26a45995fa30f1e4d6ad6e94d30caa224a9c7"
+    },
+    {
+      "file": "shaders/curve-coverage.wgsl",
+      "equal": true,
+      "sha256": "e1eda6ef0ef8c70a532276a82f2320e9158acfe647bed91e797594fcb8db44da"
+    },
+    {
+      "file": "shaders/glyph-cache.wgsl",
+      "equal": true,
+      "sha256": "f11c52c8c456be9fbf529516a9530112cf18fb47797c9649067b1a91241284d4"
+    },
+    {
+      "file": "shaders/text.wgsl",
+      "equal": true,
+      "sha256": "4d006344386482d80d5316e4a6367b048d4d2b4d0baaaf6ab6cddb11cfad8b3b"
+    },
+    {
+      "file": "shaders/flatten.wgsl",
+      "equal": true,
+      "sha256": "34ee7bf4e9181546f88bce5585e3c6f8e72847f24fa82bff8fd19d8ff8d683aa"
+    },
+    {
+      "file": "shaders/strips.wgsl",
+      "equal": true,
+      "sha256": "71ab04bcdc1f83513c53bc8e18d31fc6822378a84916bdad991fbd97388a11b3"
+    },
+    {
+      "file": "shaders/metrics.wgsl",
+      "equal": true,
+      "sha256": "60472f5eadb0ef8444e3abe30ad0eef51da5eff75a503faa12b20da9ffb4d455"
+    },
+    {
+      "file": "shaders/hud.wgsl",
+      "equal": true,
+      "sha256": "2996d5652075631046258e0904a096dba7d36c1062970127adaf1a5e835b56e9"
+    },
+    {
+      "file": "shaders/hud-common.wgsl",
+      "equal": true,
+      "sha256": "c8303847975fbb520b3cf065958e6701603b6f440e9f7a6d6e30184e0debf2e2"
+    },
+    {
+      "file": "src/gpu/arena-layout.js",
+      "equal": true,
+      "sha256": "e9c2f78578f7a57375f92fba4adf8ab94b4e718246a8af4f0c7dcf95d18e6e92"
+    },
+    {
+      "file": "src/gpu/viewport.js",
+      "equal": true,
+      "sha256": "f22063fde102c005834041b432ea94883f100146fda003ca54e6f5792a8850cd"
+    },
+    {
+      "file": "src/gpu/frame-gate.js",
+      "equal": true,
+      "sha256": "e0e4d385292ddd0073d281711d0c60d80d9dd99fa9417184017ae9ca287b9d90"
+    },
+    {
+      "file": "src/gpu/queue-progress.js",
+      "equal": true,
+      "sha256": "47d0e7388e46fad5eda01216ca27fa9d70b9e05e519f4d8718a28667c85fd8e1"
+    },
+    {
+      "file": "src/gpu/cadence.js",
+      "equal": true,
+      "sha256": "d37e28f590e6c48cb421ef89771dc3d41e7cd21bd5e84125e0c9f42100de3200"
+    },
+    {
+      "file": "src/gpu/submission.js",
+      "equal": true,
+      "sha256": "30295b062da3f0028a5dd9b21927abdb261a9803cdf18c5798b9d6add0d1d52e"
+    },
+    {
+      "file": "src/gpu/progress-watchdog.js",
+      "equal": true,
+      "sha256": "f7948d8db9664f7e0ee431510b2f16547769cfa6a434374d2685437de4392bf7"
+    },
+    {
+      "file": "src/gpu/performance.js",
+      "equal": true,
+      "sha256": "d884edd73b694604eeccf5ec350f6223054277827104c17c1e7833fc1b494a20"
+    },
+    {
+      "file": "src/startup/prepare-worker.js",
+      "equal": true,
+      "sha256": "4b63faae27ea0a555b28e340b008b03d5e21f17213cf83dca27a70b2eff6d25e"
+    },
+    {
+      "file": "src/startup/worker-source.js",
+      "equal": true,
+      "sha256": "6d369509ba9d420302268e0445864416ca6ad907a3b62be91d382f0a4d6cd735"
+    },
+    {
+      "file": "src/startup/lifecycle.js",
+      "equal": true,
+      "sha256": "867cdd34e572d41aa8ea47afce724cdf5ddd83269e87febea9621f69d4df3eaa"
+    },
+    {
+      "file": "src/platform/launch.js",
+      "equal": true,
+      "sha256": "7832e0d1ad623ab9cb20338f796557f00566c1b7e3561a80f89136ffe9886dc0"
+    },
+    {
+      "file": "src/playground/sandbox.js",
+      "equal": true,
+      "sha256": "933b9f9888da080d5fb618a5ab8a105dfd65a3441f7cf2b53efb879fe4fc03c1"
+    }
+  ],
+  "studio": {
+    "before": {
+      "nodes": 440,
+      "nodeBytes": 126720,
+      "stateBytes": 28416,
+      "heapBytes": 47136792,
+      "templateInstances": 7,
+      "templatePlans": 68,
+      "templateNestingLevels": 1,
+      "templateLayout": true,
+      "designers": 1,
+      "editors": 5,
+      "dockWorkspaces": 1
+    },
+    "after": {
+      "nodes": 480,
+      "nodeBytes": 138240,
+      "stateBytes": 30976,
+      "heapBytes": 47193728,
+      "templateInstances": 7,
+      "templatePlans": 84,
+      "templateNestingLevels": 1,
+      "templateLayout": true,
+      "designers": 1,
+      "editors": 5,
+      "dockWorkspaces": 1
+    },
+    "note": "Studio changes are intentional; no initial-buffer or pixel equivalence claimed for the expanded workspace."
+  },
+  "status": "PASS"
+}

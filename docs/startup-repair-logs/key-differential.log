@@ -1,0 +1,1 @@
+{"status":"PASS","cases":2000,"trials":20,"scope":"Differential test of actual scalar WGSL function bodies through test-only JavaScript adapters; complete editor heap/state/snapshots equal after each operation. Not WGSL compilation or GPU execution.","seed":29}

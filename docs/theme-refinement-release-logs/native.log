@@ -1,0 +1,5 @@
+
+> @helion/ui@0.14.0-experimental check:native
+> node tools/check-native.mjs
+
+Native shader validation did not run. Install the optional official Dawn binding with: npm install --no-save --package-lock=false webgpu@0.6.1

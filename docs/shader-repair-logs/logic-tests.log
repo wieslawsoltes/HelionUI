@@ -1,0 +1,190 @@
+TAP version 13
+# Subtest: logical syntax guard rejects the exact reported designer allowed kinds expression
+ok 1 - logical syntax guard rejects the exact reported designer allowed kinds expression
+  ---
+  duration_ms: 1.325552
+  type: 'test'
+  ...
+# Subtest: scalar adapter must not silently accept invalid WGSL as JavaScript: allowed kinds
+ok 2 - scalar adapter must not silently accept invalid WGSL as JavaScript: allowed kinds
+  ---
+  duration_ms: 0.65585
+  type: 'test'
+  ...
+# Subtest: logical syntax guard rejects the exact reported designer numeric ranges expression
+ok 3 - logical syntax guard rejects the exact reported designer numeric ranges expression
+  ---
+  duration_ms: 0.197367
+  type: 'test'
+  ...
+# Subtest: scalar adapter must not silently accept invalid WGSL as JavaScript: numeric ranges
+ok 4 - scalar adapter must not silently accept invalid WGSL as JavaScript: numeric ranges
+  ---
+  duration_ms: 0.142185
+  type: 'test'
+  ...
+# Subtest: logical syntax guard rejects and before or
+ok 5 - logical syntax guard rejects and before or
+  ---
+  duration_ms: 0.108539
+  type: 'test'
+  ...
+# Subtest: logical syntax guard rejects or before and
+ok 6 - logical syntax guard rejects or before and
+  ---
+  duration_ms: 0.109497
+  type: 'test'
+  ...
+# Subtest: logical syntax guard rejects parenthesized whole expression
+ok 7 - logical syntax guard rejects parenthesized whole expression
+  ---
+  duration_ms: 0.120047
+  type: 'test'
+  ...
+# Subtest: logical syntax guard rejects multiline condition
+ok 8 - logical syntax guard rejects multiline condition
+  ---
+  duration_ms: 0.061064
+  type: 'test'
+  ...
+# Subtest: logical syntax guard rejects nested function argument
+ok 9 - logical syntax guard rejects nested function argument
+  ---
+  duration_ms: 0.22913
+  type: 'test'
+  ...
+# Subtest: logical syntax guard rejects indexed expression
+ok 10 - logical syntax guard rejects indexed expression
+  ---
+  duration_ms: 0.275549
+  type: 'test'
+  ...
+# Subtest: logical syntax guard rejects for condition
+ok 11 - logical syntax guard rejects for condition
+  ---
+  duration_ms: 0.144292
+  type: 'test'
+  ...
+# Subtest: logical syntax guard rejects while condition
+ok 12 - logical syntax guard rejects while condition
+  ---
+  duration_ms: 0.051619
+  type: 'test'
+  ...
+# Subtest: logical syntax guard rejects return condition
+ok 13 - logical syntax guard rejects return condition
+  ---
+  duration_ms: 0.041518
+  type: 'test'
+  ...
+# Subtest: logical syntax guard accepts grouped conjunction
+ok 14 - logical syntax guard accepts grouped conjunction
+  ---
+  duration_ms: 0.630608
+  type: 'test'
+  ...
+# Subtest: logical syntax guard accepts grouped disjunction
+ok 15 - logical syntax guard accepts grouped disjunction
+  ---
+  duration_ms: 0.062714
+  type: 'test'
+  ...
+# Subtest: logical syntax guard accepts separate arguments
+ok 16 - logical syntax guard accepts separate arguments
+  ---
+  duration_ms: 0.076493
+  type: 'test'
+  ...
+# Subtest: logical syntax guard accepts separate statements
+ok 17 - logical syntax guard accepts separate statements
+  ---
+  duration_ms: 0.04215
+  type: 'test'
+  ...
+# Subtest: logical syntax guard accepts separate conditions
+ok 18 - logical syntax guard accepts separate conditions
+  ---
+  duration_ms: 0.037406
+  type: 'test'
+  ...
+# Subtest: logical syntax guard accepts separate scopes
+ok 19 - logical syntax guard accepts separate scopes
+  ---
+  duration_ms: 0.043887
+  type: 'test'
+  ...
+# Subtest: logical syntax guard accepts nested parentheses
+ok 20 - logical syntax guard accepts nested parentheses
+  ---
+  duration_ms: 0.035578
+  type: 'test'
+  ...
+# Subtest: logical syntax guard accepts nested and line comments
+ok 21 - logical syntax guard accepts nested and line comments
+  ---
+  duration_ms: 0.062583
+  type: 'test'
+  ...
+# Subtest: logical syntax guard accepts individual bit operators
+ok 22 - logical syntax guard accepts individual bit operators
+  ---
+  duration_ms: 0.044398
+  type: 'test'
+  ...
+# Subtest: logical syntax guard accepts template argument separator
+ok 23 - logical syntax guard accepts template argument separator
+  ---
+  duration_ms: 0.113875
+  type: 'test'
+  ...
+# Subtest: logical syntax diagnostic preserves line and column after nested comments
+ok 24 - logical syntax diagnostic preserves line and column after nested comments
+  ---
+  duration_ms: 0.089606
+  type: 'test'
+  ...
+# Subtest: logical syntax diagnostics report separate bad expressions once each
+ok 25 - logical syntax diagnostics report separate bad expressions once each
+  ---
+  duration_ms: 0.084174
+  type: 'test'
+  ...
+# Subtest: every shipped shader has explicit mixed-logical grouping
+ok 26 - every shipped shader has explicit mixed-logical grouping
+  ---
+  duration_ms: 71.430873
+  type: 'test'
+  ...
+# Subtest: reintroducing either reported expression is caught in the assembled-source audit
+ok 27 - reintroducing either reported expression is caught in the assembled-source audit
+  ---
+  duration_ms: 11.121497
+  type: 'test'
+  ...
+# Subtest: kind grouping preserves the exact allowed palette including Ellipse and excluding DataGrid
+ok 28 - kind grouping preserves the exact allowed palette including Ellipse and excluding DataGrid
+  ---
+  duration_ms: 127.418553
+  type: 'test'
+  ...
+# Subtest: grouped font-size, opacity, and scale validation preserves boundary behavior
+ok 29 - grouped font-size, opacity, and scale validation preserves boundary behavior
+  ---
+  duration_ms: 30.877525
+  type: 'test'
+  ...
+# Subtest: rendering and release versions are not confused with the retained ABI
+ok 30 - rendering and release versions are not confused with the retained ABI
+  ---
+  duration_ms: 8.597587
+  type: 'test'
+  ...
+1..30
+# tests 30
+# suites 0
+# pass 30
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 441.063485

@@ -1,0 +1,50 @@
+Helion UI is an independent experimental implementation. It is not affiliated
+with Microsoft, Avalonia, the Vello project, or Linebender. No Vello binary or
+source implementation is embedded or linked. Sparse-strip design ideas and
+primary references are acknowledged in docs/ARCHITECTURE.md. The original
+vector alphabet is authored as JavaScript geometry; no external font files,
+brand logos, images, dependencies or hosted services are included.
+
+
+Typography release 0.3.0
+------------------------
+The source distribution does not include font binaries, downloaded/system fonts,
+font data URLs, or repackaged third-party font outlines. The normal showcase
+requests Noto Sans Regular, SemiBold and Italic from public URLs pinned to the
+notofonts/noto-fonts v20201206-phase3 tag. Font rights/notices are supplied by that
+upstream distribution: https://github.com/notofonts/noto-fonts/tree/v20201206-phase3 .
+Applications can instead load fonts they supply themselves through local File
+objects or configured same-origin URLs. Respect each font's own terms.
+
+The OpenType parser, retained text plan packer, GPU text/cache implementation and
+the small synthetic font fixture builder are authored for this experiment. The
+fixture builder uses simple original test geometry; it is not a bundled UI font.
+OpenType specifications and HarfBuzz conceptual documentation were consulted; no
+HarfBuzz or third-party font rasterizer implementation is linked.
+
+Workbench release 0.9.0
+-----------------------
+The editor, docking, and numeric model code is independently authored for Helion.
+No Monaco, CodeMirror, LSP server, third-party editor, or docking runtime is embedded.
+The workbench requests Noto Sans Mono Regular from the same pinned runtime source
+release, or uses a local font selected by the user. No font binary is distributed.
+
+Dynamic workspace release 0.10.0
+--------------------------------
+The data-source, virtualized list/tree, action bridge, and embedded-presenter code
+are independently authored for Helion. No additional font files or upstream UI
+framework runtime is redistributed. The visible playground is retained Helion UI;
+JavaScript execution and OS/browser service bridges remain host facilities.
+
+Template/theme additions are independently authored. Fluent, WinUI, WPF and macOS
+references identify inspiration and interoperability concepts, not affiliation or
+certification. No native OS theme assets or font binaries are redistributed.
+
+Typography 0.15
+----------------
+Generated Unicode 16.0 property data is covered by the accompanying
+src/typography/UNICODE-LICENSE.txt. HarfBuzz 10.2.0 and ICU 76 are comparison
+oracles in development tools only; no HarfBuzz/ICU binary or font is linked into
+runtime applications. Script-specific mark ordering and shaping behavior were
+informed by the HarfBuzz sources and Unicode/OpenType specifications. Reference
+material and associated notice are in docs/HARFBUZZ-REFERENCE-NOTICE.txt.

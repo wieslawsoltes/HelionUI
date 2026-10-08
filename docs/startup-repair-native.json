@@ -1,0 +1,22 @@
+{
+  "version": "0.12.2-experimental",
+  "recordedAtUTC": "2026-09-26T05:34:18.241838+00:00",
+  "status": "UNVERIFIED",
+  "shaderExecution": false,
+  "nativePixels": false,
+  "hardwarePerformance": false,
+  "pages": [
+    {
+      "url": "http://127.0.0.1:8135/tests/shaders.html?autorun",
+      "serverStatus": 200,
+      "navigation": "BLOCKED_OR_FAILED",
+      "error": "Page.goto: net::ERR_BLOCKED_BY_ADMINISTRATOR at http://127.0.0.1:8135/tests/shaders.html?autorun\nCall log:\n  - navigating to \"http://127.0.0.1:8135/tests/shaders.html?autorun\", waiting until \"load\"\n"
+    },
+    {
+      "url": "http://127.0.0.1:8135/tests/designer.html?autorun",
+      "serverStatus": 200,
+      "navigation": "BLOCKED_OR_FAILED",
+      "error": "Page.goto: net::ERR_BLOCKED_BY_ADMINISTRATOR at http://127.0.0.1:8135/tests/designer.html?autorun\nCall log:\n  - navigating to \"http://127.0.0.1:8135/tests/designer.html?autorun\", waiting until \"load\"\n"
+    }
+  ]
+}

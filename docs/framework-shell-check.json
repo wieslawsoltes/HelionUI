@@ -1,0 +1,32 @@
+{
+  "scope": "Browser-rendered editor HTML/CSS shell only. No scripts/GPU preview executed.",
+  "desktop": {
+    "width": 1440,
+    "docWidth": 1440,
+    "editor": {
+      "x": 49,
+      "y": 178,
+      "width": 656.59375,
+      "height": 570,
+      "top": 178,
+      "right": 705.59375,
+      "bottom": 748,
+      "left": 49
+    },
+    "canvas": {
+      "x": 733.59375,
+      "y": 201,
+      "width": 683.40625,
+      "height": 675,
+      "top": 201,
+      "right": 1417,
+      "bottom": 876,
+      "left": 733.59375
+    }
+  },
+  "mobile": {
+    "width": 390,
+    "docWidth": 390,
+    "height": 1270
+  }
+}

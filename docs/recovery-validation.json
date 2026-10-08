@@ -1,0 +1,93 @@
+{
+  "version": "0.6.1-experimental",
+  "recordedAtUTC": "2026-09-24T11:46:01.599145+00:00",
+  "status": "HOST_CHECKS_PASS_NATIVE_UNVERIFIED",
+  "hostTests": {
+    "command": "npm test",
+    "passed": 352,
+    "failed": 0,
+    "skipped": 0,
+    "logSHA256": "fee2c46303221ed8e6ec28a550d2fe11b51646441273dda0a87a153567da05cb",
+    "scope": "Host algorithms, independent bounded ownership oracles and non-executing WebGPU scheduling mocks; NOT shader execution or frame-rate evidence."
+  },
+  "staticChecks": {
+    "status": "PASS",
+    "javascriptModules": 61,
+    "shaderSources": 14,
+    "coreComputeEntries": 33,
+    "showcaseNodes": 202,
+    "logSHA256": "86f273ad5ce11f5deb0660c7bf912b0e198924bcf33873d7f62f4718289cb777"
+  },
+  "typeCheck": {
+    "status": "PASS",
+    "command": "tsc --strict --noEmit --target es2022 --module nodenext --moduleResolution nodenext --lib es2023,dom tests/api-types.ts"
+  },
+  "build": {
+    "status": "PASS",
+    "embeddedModules": 26,
+    "exactShaderSources": 14,
+    "exactStartupWorker": true,
+    "command": "npm run build && npm run check:build",
+    "standaloneBytes": 473243
+  },
+  "preservation": {
+    "status": "PASS",
+    "report": "recovery-preservation.json",
+    "initialCompiledArraysByteIdentical": true,
+    "protectedSourceFiles": 18,
+    "exactCoverageHelpers": 4,
+    "scope": "Same three private DejaVu faces, same declarations/initial arrays; no native pixel result."
+  },
+  "sourceTrace": {
+    "report": "recovery-trace-analysis.json",
+    "sourceSHA256": "33da7ac59ddd0274ce8617430d76d52aef4f4ecbc63f2fd69f7772d14eac9e0e",
+    "recordedVersion": "0.6.0-experimental",
+    "scope": "Provided recording, not a benchmark of this new build; no startup attribution or app GPU timestamp buffer."
+  },
+  "nativeGPU": {
+    "status": "UNVERIFIED",
+    "browser": {
+      "status": "FAIL",
+      "error": "Page.goto: net::ERR_BLOCKED_BY_ADMINISTRATOR at http://127.0.0.1:8080/tests/frame-sync.html?autorun\nCall log:\n  - navigating to \"http://127.0.0.1:8080/tests/frame-sync.html?autorun\", waiting until \"load\"\n"
+    },
+    "optionalNativeValidator": {
+      "status": "UNAVAILABLE",
+      "detail": "> @helion/ui@0.6.1-experimental check:native\n> node tools/check-native.mjs\n\nNative shader validation did not run. Install the optional official Dawn binding with: npm install --no-save --package-lock=false webgpu@0.6.1"
+    },
+    "shaderCompilationVerified": false,
+    "executionVerified": false,
+    "pixelsVerified": false,
+    "browserStartupImprovementVerified": false,
+    "fpsImprovementVerified": false
+  },
+  "releaseContract": {
+    "defaultSubmission": "Every delivered browser rAF; no completion gate (unchanged)",
+    "asapDefault": false,
+    "timingDetailDefault": "frame",
+    "timingOffHasNoTimestampWritesOrResolves": true,
+    "deferHUDDefault": true,
+    "firstUIIncludesRealFontsAndFullScene": true,
+    "firstUIIncludesReadyHUD": false,
+    "firstUIReadinessIsNotTotalStartup": true,
+    "partitionOwners": 64,
+    "slotsPerDefaultOwner": 32,
+    "exactGlyphKeyWords": 7,
+    "newDefaultScratchBytes": 786752,
+    "newHUDKerningBytes": 36100,
+    "newDefaultStorageTotalBytes": 822852,
+    "normalFrameUploadBytes": 64,
+    "normalCommandBytes": 32,
+    "normalGPUReadback": false,
+    "rows": 65536,
+    "views": 202,
+    "animations": 8,
+    "fontFilesIncluded": false,
+    "qualityOrDPRReduction": false
+  },
+  "remainingRisks": [
+    "Native WGSL/pipeline interfaces and GPU execution remain unverified in this environment.",
+    "Disjoint partitions change collisions/replacement; hot partitions can increase direct analytical bypass work.",
+    "Deferring diagnostic compilation moves optional work off first UI, but does not remove total work or guarantee faster end-to-end startup.",
+    "GPU timestamp queries, HUD drawing, queue backpressure, compositor timing and cache occupancy still need target-device measurements."
+  ]
+}

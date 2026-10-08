@@ -1,0 +1,21 @@
+{
+  "scope": "Actual WGSL bodies translated into scalar JavaScript versus independent native HarfBuzz/ICU. NOT GPU execution or a full conformance corpus.",
+  "harfbuzzVersion": "10.2.0",
+  "unicodeVersion": "16.0.0",
+  "font": "DejaVu Sans",
+  "counts": {
+    "shape": {
+      "passed": 104,
+      "failed": 0
+    },
+    "bidi": {
+      "passed": 1200,
+      "failed": 0
+    },
+    "grapheme": {
+      "passed": 1200,
+      "failed": 0
+    }
+  },
+  "failures": []
+}

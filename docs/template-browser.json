@@ -1,0 +1,35 @@
+{
+  "scope": "Native browser host/worker serialization only unless a served GPU gate actually passes. No hardware performance claim.",
+  "served": [
+    {
+      "path": "/tests/templates.html?autorun",
+      "status": "UNVERIFIED",
+      "error": "Page.goto: net::ERR_BLOCKED_BY_ADMINISTRATOR at http://127.0.0.1:8123/tests/templates.html?autorun\nCall log:\n  - navigating to \"http://127.0.0.1:8123/tests/templates.html?autorun\", waiting until \"domcontentloaded\"\n"
+    },
+    {
+      "path": "/tests/shaders.html?autorun",
+      "status": "UNVERIFIED",
+      "error": "Page.goto: net::ERR_BLOCKED_BY_ADMINISTRATOR at http://127.0.0.1:8123/tests/shaders.html?autorun\nCall log:\n  - navigating to \"http://127.0.0.1:8123/tests/shaders.html?autorun\", waiting until \"domcontentloaded\"\n"
+    }
+  ],
+  "browser": "144.0.7559.96",
+  "originOrCSPBypass": false,
+  "isolatedTemplateWorker": {
+    "status": "PASS",
+    "scope": "Actual classic Blob worker, complete initial buffers and template manifests. No WGSL execution.",
+    "checks": [
+      {
+        "nodes": 12,
+        "templates": 3,
+        "heapBytes": 151048,
+        "status": "PASS"
+      },
+      {
+        "nodes": 30,
+        "templates": 1,
+        "heapBytes": 456028,
+        "status": "PASS"
+      }
+    ]
+  }
+}

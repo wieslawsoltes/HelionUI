@@ -1,0 +1,126 @@
+{
+  "version": "0.10.0-experimental",
+  "recordedAtUTC": "2026-09-25T17:21:42.506035+00:00",
+  "status": "HOST_CHECKS_PASS_NATIVE_UNVERIFIED",
+  "checks": {
+    "hostTests": {
+      "command": "npm test",
+      "status": "PASS",
+      "exitCode": 0,
+      "log": "dynamic-release-logs/final-test.log",
+      "logSHA256": "321bea3fff99cbcb4a8746b05ceb9ec65f391d28da3a1e50d01a1145ee88d888",
+      "scope": "Real host code, scalar WGSL-body adapters and non-executing WebGPU mocks; NOT native execution.",
+      "passed": 658,
+      "failed": 0,
+      "skipped": 0,
+      "scalarDataRandomizedTransactions": 2000,
+      "scalarStringGrowthUpdates": 120
+    },
+    "static": {
+      "command": "npm run check",
+      "status": "PASS",
+      "exitCode": 0,
+      "log": "dynamic-release-logs/final-check.log",
+      "logSHA256": "a022e414ba26e9b8e021768c7a64c10163c8b00ad6b06e4d1c52d1f9492b4abf",
+      "scope": "JS syntax and controlled shader/source/resource/arity checks, not native WGSL compilation.",
+      "jsModules": 117,
+      "shaderSources": 21,
+      "computeEntries": 43,
+      "legacyShowcaseNodes": 202
+    },
+    "types": {
+      "command": "tsc --strict --noEmit --target es2022 --module nodenext --moduleResolution nodenext --lib es2023,dom tests/api-types.ts",
+      "status": "PASS",
+      "exitCode": 0,
+      "log": "dynamic-release-logs/final-types.log",
+      "logSHA256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "scope": "Public TypeScript declarations."
+    },
+    "build": {
+      "command": "npm run build",
+      "status": "PASS",
+      "exitCode": 0,
+      "log": "dynamic-release-logs/build.log",
+      "logSHA256": "0f227af71ebb529153a5dc4f389dedfb1b907ba15a444ce03d149273696a4db6",
+      "scope": "Standalone/site generation."
+    },
+    "bundleClosure": {
+      "command": "npm run check:build",
+      "status": "PASS",
+      "exitCode": 0,
+      "log": "dynamic-release-logs/check-build.log",
+      "logSHA256": "ebe642c7e251e154981657c43e70f36d587a0995c17912e7d0bc15001a72cdd7",
+      "scope": "Exact module/shader/worker/style embedding and standalone closure.",
+      "embeddedModules": 61,
+      "shaderSources": 21,
+      "exactWorkers": [
+        "startup",
+        "authoring"
+      ]
+    },
+    "preservation": {
+      "command": "node tools/compare-dynamic-release.mjs --baseline=<0.9 source> --font=<three private static faces> --output=docs/dynamic-preservation.json",
+      "status": "PASS",
+      "exitCode": 0,
+      "log": "dynamic-release-logs/preservation.log",
+      "logSHA256": "642f7908aa3efd704ad3f236f405783c046306b764fc8ad280efb7711a0d4ea3",
+      "scope": "Initial bytes and eleven named preserved components; changed runtime/shaders NOT claimed identical."
+    }
+  },
+  "native": {
+    "status": "UNVERIFIED",
+    "browser": {
+      "recordedAtUTC": "2026-09-25T17:12:28.904625+00:00",
+      "url": "http://127.0.0.1:8123/tests/dynamic.html?autorun",
+      "status": "BLOCKED_BEFORE_VALIDATION",
+      "scope": "Native browser gate; a navigation failure is not shader validation.",
+      "browserVersion": "144.0.7559.96",
+      "error": "Page.goto: net::ERR_BLOCKED_BY_ADMINISTRATOR at http://127.0.0.1:8123/tests/dynamic.html?autorun\nCall log:\n  - navigating to \"http://127.0.0.1:8123/tests/dynamic.html?autorun\", waiting until \"load\"\n"
+    },
+    "dawnValidator": {
+      "status": "UNAVAILABLE",
+      "command": "npm run check:native",
+      "exitCode": 1,
+      "reason": "Optional webgpu package is not installed",
+      "log": "dynamic-release-logs/native-validator.log"
+    },
+    "gpuExecutionVerified": false,
+    "finalPixelsVerified": false,
+    "browserIntegrationVerified": false,
+    "hardwarePerformanceVerified": false
+  },
+  "delivery": {
+    "sourceAndStandaloneRebuild": "Recorded in the external final package manifest after extraction and a complete fresh rebuild.",
+    "fontFilesIncluded": false,
+    "githubPushed": false
+  },
+  "contract": {
+    "ordinaryRootFrameBytes": 64,
+    "activeEmbeddedFrameTemplateBytes": 64,
+    "commandBytes": 32,
+    "extraBulkPayload": "Explicit UTF-32/record ingestion bytes, not included above",
+    "gpuViewportCopyBytes": 64,
+    "actionOutboxBytes": 12496,
+    "actionReadback": "Input-triggered only; may contain zero actions. No idle/move/wheel control-state polling. Enabled source auto-run opts in to change events.",
+    "defaultVsyncCredits": 2,
+    "defaultASAP": false,
+    "playgroundDefaultGPUTimestamps": false,
+    "playgroundDefaultHUD": false,
+    "playgroundDefaultAutoRun": false,
+    "frameSubmission": "One owning queue submission per admitted frame with child included. Asset setup/snapshots can submit separately.",
+    "dynamicLimits": "Bounded preallocated state, one DataGrid per surface and one non-nested embedded presenter; no arbitrary GPU heap growth or structural patch migration."
+  },
+  "playground": {
+    "nodes": 118,
+    "editors": 6,
+    "lists": 2,
+    "dockPanes": 10,
+    "examples": 10,
+    "initialHeapBytesDiagnosticFont": 18249568,
+    "previewDefault": "GPU-derived Fit",
+    "dataSourceCapacity": 4096,
+    "canvasCount": 1,
+    "rAFProducers": 1,
+    "normalRectReadback": false
+  }
+}

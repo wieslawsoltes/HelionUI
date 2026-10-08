@@ -1,0 +1,119 @@
+{
+  "status": "PASS",
+  "scope": "Exact host-side initial scene/geometry/metric preservation. Not GPU execution, pixels or speed measurement.",
+  "baselineVersion": "0.4.1-experimental",
+  "version": "0.5.0-experimental",
+  "fontInputs": "Same three privately loaded Noto Sans Regular/SemiBold/Italic faces; NO font data redistributed",
+  "configuration": {
+    "nodes": 202,
+    "rows": 65536,
+    "animations": 8,
+    "paths": 9868,
+    "textMode": "opentype"
+  },
+  "arrays": {
+    "nodes": {
+      "bytes": 58176,
+      "oldSHA256": "239019363e4dfa0e1d4457ce39e639622f9a4571cff318ceb9a83933793d072e",
+      "newSHA256": "239019363e4dfa0e1d4457ce39e639622f9a4571cff318ceb9a83933793d072e",
+      "identical": true
+    },
+    "state": {
+      "bytes": 13184,
+      "oldSHA256": "3f305f612b77265699d3702b5c7fa4d23c85b2f65d9d81729d59eadc7a9748ce",
+      "newSHA256": "3f305f612b77265699d3702b5c7fa4d23c85b2f65d9d81729d59eadc7a9748ce",
+      "identical": true
+    },
+    "heap": {
+      "bytes": 32344544,
+      "oldSHA256": "ea7dced624b386bb75447bbd6d4dd87b8ec8e7b718a33f7c2cdc435a85b8939e",
+      "newSHA256": "ea7dced624b386bb75447bbd6d4dd87b8ec8e7b718a33f7c2cdc435a85b8939e",
+      "identical": true
+    }
+  },
+  "identicalFiles": [
+    "src/core/compiler.js",
+    "src/core/index.d.ts",
+    "src/core/index.js",
+    "src/core/protocol.d.ts",
+    "src/core/protocol.js",
+    "src/core/schema.js",
+    "src/text/fonts.js",
+    "src/text/index.d.ts",
+    "src/text/index.js",
+    "src/text/opentype.js",
+    "src/startup/cache.js",
+    "src/startup/prepare-core.js",
+    "src/startup/prepare-worker.js",
+    "src/startup/prepare.js"
+  ],
+  "changedFiles": [],
+  "shaders": {
+    "common.wgsl": {
+      "identical": true,
+      "oldSHA256": "d5711ae91390f2bdfc6fb31d41005d56ce451e40d7028551c0a715389a01287d",
+      "newSHA256": "d5711ae91390f2bdfc6fb31d41005d56ce451e40d7028551c0a715389a01287d"
+    },
+    "data.wgsl": {
+      "identical": true,
+      "oldSHA256": "74f91a67926faedc6ada9a2bb518b3269f26614f662b9ad34306bcbc68a8b571",
+      "newSHA256": "74f91a67926faedc6ada9a2bb518b3269f26614f662b9ad34306bcbc68a8b571"
+    },
+    "emit.wgsl": {
+      "identical": true,
+      "oldSHA256": "9adbe1d8cad062f588ff0a7ac614295a1d06f393de417d896137c23a57f1cee2",
+      "newSHA256": "9adbe1d8cad062f588ff0a7ac614295a1d06f393de417d896137c23a57f1cee2"
+    },
+    "flatten.wgsl": {
+      "identical": true,
+      "oldSHA256": "34ee7bf4e9181546f88bce5585e3c6f8e72847f24fa82bff8fd19d8ff8d683aa",
+      "newSHA256": "34ee7bf4e9181546f88bce5585e3c6f8e72847f24fa82bff8fd19d8ff8d683aa"
+    },
+    "glyph-cache.wgsl": {
+      "identical": true,
+      "oldSHA256": "b5092f4b945300882b0c17c24c299cc8cc6407f2f1353d1c7af90073d0c6c387",
+      "newSHA256": "b5092f4b945300882b0c17c24c299cc8cc6407f2f1353d1c7af90073d0c6c387"
+    },
+    "hud-common.wgsl": {
+      "identical": false,
+      "oldSHA256": "4e8e1a1805a2a575f23b1a057ead75dd49176954a31d7c91b7ef71ba68d52d7f",
+      "newSHA256": "e1eef307b136fd1189f01dc86f04019738394498770a242367ffc39286048fd2"
+    },
+    "hud.wgsl": {
+      "identical": false,
+      "oldSHA256": "c4a3d9f796202ef3d0a22a18484f182e4d34cba14a48e976304bea7152079972",
+      "newSHA256": "defa0b0a3ebf3ab3e8314fb62e5fd2d909c665a7038f01bac52ebf8b8582a45c"
+    },
+    "input.wgsl": {
+      "identical": false,
+      "oldSHA256": "4e49721b4db6be5f4ac419c6030559f8cbaf4633f9984ad0f7172535de99c142",
+      "newSHA256": "1cd2cc60513dde7c8763a076d7ed8cff157e2f65e6b38b69717b0299183e5eed"
+    },
+    "layout.wgsl": {
+      "identical": true,
+      "oldSHA256": "8e8a1789c08c8fb056e23a4e6566accd89a4f4b6fb299e2f97bf39079c138d7e",
+      "newSHA256": "8e8a1789c08c8fb056e23a4e6566accd89a4f4b6fb299e2f97bf39079c138d7e"
+    },
+    "metrics.wgsl": {
+      "identical": false,
+      "oldSHA256": "ba2efb85b80ccf56828f1dd2cc6ee5042c968b18f80d43480afd24f4dd7616e4",
+      "newSHA256": "811066b534c603a3fa8d70ef6cb0638e73a7b83503e3a03559bfbcb4355f58be"
+    },
+    "present.wgsl": {
+      "identical": false,
+      "oldSHA256": "6b2f1f5ce0ed04f7b4235b2f7dc67b2bf0d9a5efe79bf98ed86a127ceb79965e",
+      "newSHA256": "ee45c2a9f8e278c8605bdb268d8a65bbcc5ca4f30eb7e3e858d30984ce25e919"
+    },
+    "strips.wgsl": {
+      "identical": false,
+      "oldSHA256": "ebd7c94e7c40b5b6ce13536fa46c89633cf59433c3a67e6c680d72217bd23255",
+      "newSHA256": "8b75f9044e307b54cbded8d5527bade8d52ff300492eaf02cc36aacb6df3a956"
+    },
+    "text.wgsl": {
+      "identical": true,
+      "oldSHA256": "4d006344386482d80d5316e4a6367b048d4d2b4d0baaaf6ab6cddb11cfad8b3b",
+      "newSHA256": "4d006344386482d80d5316e4a6367b048d4d2b4d0baaaf6ab6cddb11cfad8b3b"
+    }
+  },
+  "checkedAt": "2026-09-24T08:50:45.124Z"
+}

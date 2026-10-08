@@ -1,0 +1,40 @@
+TAP version 13
+# Subtest: native compile harness attempts all entries but explicitly reports no execution (fake)
+ok 1 - native compile harness attempts all entries but explicitly reports no execution (fake)
+  ---
+  duration_ms: 22.322241
+  type: 'test'
+  ...
+# Subtest: native compile harness cannot turn accepted invalid source into success (fake)
+ok 2 - native compile harness cannot turn accepted invalid source into success (fake)
+  ---
+  duration_ms: 1.011732
+  type: 'test'
+  ...
+# Subtest: native compile harness cannot turn rejected repaired source into success (fake)
+ok 3 - native compile harness cannot turn rejected repaired source into success (fake)
+  ---
+  duration_ms: 0.278337
+  type: 'test'
+  ...
+# Subtest: native compile harness cannot turn pipeline rejection into success (fake)
+ok 4 - native compile harness cannot turn pipeline rejection into success (fake)
+  ---
+  duration_ms: 1.208127
+  type: 'test'
+  ...
+# Subtest: native designer negative controls contain the reported syntax and repaired controls pass the guard
+ok 5 - native designer negative controls contain the reported syntax and repaired controls pass the guard
+  ---
+  duration_ms: 1.325514
+  type: 'test'
+  ...
+1..5
+# tests 5
+# suites 0
+# pass 5
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 122.546159

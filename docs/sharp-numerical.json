@@ -1,0 +1,76 @@
+{
+  "scope": "Host double-precision area mathematics on original synthetic quadratic contours; not GPU pixels, hinting, font shaping or performance",
+  "casesPerSize": 160,
+  "sizes": [
+    {
+      "deviceScale": 9,
+      "cases": 160,
+      "referenceMaxAreaError": 0.005006734383908862,
+      "sharpMaxAreaError": 1.0195704747140155e-7,
+      "referenceMeanAreaError": 0.001964137841306083,
+      "sharpMeanAreaError": 3.116515515178345e-8
+    },
+    {
+      "deviceScale": 12,
+      "cases": 160,
+      "referenceMaxAreaError": 0.007352542459607259,
+      "sharpMaxAreaError": 1.5952865140000938e-7,
+      "referenceMeanAreaError": 0.0025587006149196947,
+      "sharpMeanAreaError": 4.302197309860316e-8
+    },
+    {
+      "deviceScale": 16,
+      "cases": 160,
+      "referenceMaxAreaError": 0.009463186035466697,
+      "sharpMaxAreaError": 2.587878349391559e-7,
+      "referenceMeanAreaError": 0.003615262402603483,
+      "sharpMeanAreaError": 5.735623084893995e-8
+    },
+    {
+      "deviceScale": 24,
+      "cases": 160,
+      "referenceMaxAreaError": 0.013534113461644792,
+      "sharpMaxAreaError": 3.8414393388475077e-7,
+      "referenceMeanAreaError": 0.005804593304867692,
+      "sharpMeanAreaError": 9.428464301278975e-8
+    },
+    {
+      "deviceScale": 48,
+      "cases": 160,
+      "referenceMaxAreaError": 0.028034852984366698,
+      "sharpMaxAreaError": 7.041917705619127e-7,
+      "referenceMeanAreaError": 0.010804868021998332,
+      "sharpMeanAreaError": 1.844975036266168e-7
+    },
+    {
+      "deviceScale": 128,
+      "cases": 160,
+      "referenceMaxAreaError": 0.10016735364208107,
+      "sharpMaxAreaError": 0.0000021209550382650377,
+      "referenceMeanAreaError": 0.03236979346272387,
+      "sharpMeanAreaError": 4.802844135337516e-7
+    },
+    {
+      "deviceScale": 256,
+      "cases": 160,
+      "referenceMaxAreaError": 0.21035778345083656,
+      "sharpMaxAreaError": 0.000003636388158811954,
+      "referenceMeanAreaError": 0.062481856929160605,
+      "sharpMeanAreaError": 9.906038313065233e-7
+    },
+    {
+      "deviceScale": 512,
+      "cases": 160,
+      "referenceMaxAreaError": 0.3834628546452504,
+      "sharpMaxAreaError": 0.000006682262939788908,
+      "referenceMeanAreaError": 0.09428645067080824,
+      "sharpMeanAreaError": 0.0000017423182478948618
+    }
+  ],
+  "oracle": "Independent 4096-segment polygon clipping and shoelace pixel area",
+  "oldPath": "0.10 font-space flattening rule ceil(sqrt(length(p0-2*p1+p2)/0.003)), capped at 32",
+  "newPath": "Root-partitioned quadratic area integration; host mirror of WGSL mathematics",
+  "totalCases": 1280,
+  "maxSharpAreaError": 0.000006682262939788908,
+  "caveat": "JavaScript doubles do not prove WGSL f32 rounding, native execution or visual quality. The independent polygon oracle is itself a finite approximation."
+}

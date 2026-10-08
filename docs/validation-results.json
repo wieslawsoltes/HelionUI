@@ -1,0 +1,109 @@
+{
+  "version": "0.3.0-experimental",
+  "compiledABI": 3,
+  "status": "HOST_PASS_NATIVE_UNVERIFIED",
+  "hostTests": {
+    "passed": 220,
+    "failed": 0,
+    "skipped": 0,
+    "newTextTests": 68,
+    "newNonExecutingRuntimeTests": 2
+  },
+  "staticChecks": {
+    "status": "PASS",
+    "javascriptModules": 38,
+    "wgslFiles": 11,
+    "coreComputeEntries": 30,
+    "totalComputePipelines": 31
+  },
+  "typeScriptAPI": "PASS",
+  "build": "PASS",
+  "standaloneConsistency": {
+    "status": "PASS",
+    "embeddedModules": 17,
+    "exactShaders": 11,
+    "fontAssetsEmbedded": false
+  },
+  "independentFontComparison": {
+    "status": "PASS",
+    "scope": "signed-area, horizontal advance and character-map aggregates only; not contour/pixel/shaping/GPU equivalence",
+    "results": [
+      {
+        "fontLabel": "Go-Regular.ttf",
+        "family": "Go",
+        "glyphCount": 666,
+        "mappedScalars": 663,
+        "glyphMismatches": 0,
+        "cmapMismatches": 0,
+        "cmapComparison": "bidirectional",
+        "maxSignedAreaDeltaEm2": 0.0,
+        "maxAdvanceDeltaEm": 0.0,
+        "sampleMismatches": []
+      },
+      {
+        "fontLabel": "DejaVuSans.ttf",
+        "family": "DejaVu Sans",
+        "glyphCount": 6253,
+        "mappedScalars": 5918,
+        "glyphMismatches": 0,
+        "cmapMismatches": 0,
+        "cmapComparison": "bidirectional",
+        "maxSignedAreaDeltaEm2": 1.6653345369377348e-16,
+        "maxAdvanceDeltaEm": 0.0,
+        "sampleMismatches": []
+      }
+    ]
+  },
+  "nativeBrowser": {
+    "status": "BLOCKED_BEFORE_PAGE_LOAD",
+    "error": "ERR_BLOCKED_BY_ADMINISTRATOR",
+    "gpuExecutionVerified": false
+  },
+  "nativeShaderValidator": {
+    "status": "UNAVAILABLE",
+    "reason": "Optional Dawn development binding not installed; dependency installation unavailable"
+  },
+  "benchmarks": {
+    "status": "NOT_RUN",
+    "measuredFPS": null,
+    "measuredSpeedup": null,
+    "samePerformanceVerified": false,
+    "comparison": "Same-release real-font exact glyph cache versus direct analytical rendering, or dirty tiles versus full-frame; not a prior-release comparison"
+  },
+  "implementedCountsNotTimings": {
+    "showcaseRows": 65536,
+    "showcaseNodes": 202,
+    "animations": 8,
+    "sortDispatchesAt65536Rows": 9,
+    "defaultMaximumFramesInFlight": 1,
+    "framePayloadBytes": 64,
+    "commandBytes": 32,
+    "normalGlyphCacheReadbackBytes": 0,
+    "hudHistoryFrames": 120,
+    "normalHUDReadbackBytes": 0,
+    "defaultGlyphSlots": 2048,
+    "glyphSlotPixels": [
+      64,
+      64
+    ],
+    "defaultGlyphCacheBytes": 8536128
+  },
+  "fontAcquisition": {
+    "defaultShowcaseFaces": [
+      "Noto Sans Regular",
+      "Noto Sans SemiBold",
+      "Noto Sans Italic"
+    ],
+    "mode": "User-browser runtime fetch of pinned public URLs, or user-selected local font files",
+    "fontFilesDistributed": false,
+    "defaultFontsNativeTested": false
+  },
+  "qualifications": [
+    "Not full Unicode/OpenType/HarfBuzz conformance.",
+    "Initial parsing, plan preparation and upload occur on the host; supported live text and glyph coverage run in compute.",
+    "Real-font comparison tests only character maps, horizontal advances and signed-area aggregates, not contour/pixel equality.",
+    "Host WebGPU test doubles do not compile or execute WGSL.",
+    "Optional GPU timestamp graphs remain resident; CPU fallback is labeled encoding time.",
+    "Exact cache keys add memory and can churn during fractional scrolling; no measured equal-FPS guarantee."
+  ]
+}

@@ -1,0 +1,131 @@
+{
+  "scope": "CPU binary/source preservation for the original showcase, NOT native execution, pixel equality or FPS.",
+  "fontsIncluded": false,
+  "faces": [
+    {
+      "family": "DejaVu Sans",
+      "weight": 400,
+      "style": "normal",
+      "glyphs": 6253
+    },
+    {
+      "family": "DejaVu Sans",
+      "weight": 700,
+      "style": "normal",
+      "glyphs": 6196
+    },
+    {
+      "family": "DejaVu Sans",
+      "weight": 400,
+      "style": "italic",
+      "glyphs": 5355
+    }
+  ],
+  "versions": [
+    "0.7.0-experimental",
+    "0.8.0-experimental"
+  ],
+  "sceneDeclarationEqual": true,
+  "compiledBuffers": {
+    "nodes": {
+      "equal": true,
+      "baselineBytes": 58176,
+      "currentBytes": 58176,
+      "baselineSHA256": "fed20d01d84241dcb0f10d696cbc67c5e66ac357ccd6b9cd815e4bbf69f77d8a",
+      "currentSHA256": "fed20d01d84241dcb0f10d696cbc67c5e66ac357ccd6b9cd815e4bbf69f77d8a"
+    },
+    "state": {
+      "equal": true,
+      "baselineBytes": 13184,
+      "currentBytes": 13184,
+      "baselineSHA256": "23175c647451c0379539e01966a399c56ebf58852e255ebb819eb12dad65bdb5",
+      "currentSHA256": "23175c647451c0379539e01966a399c56ebf58852e255ebb819eb12dad65bdb5"
+    },
+    "heap": {
+      "equal": true,
+      "baselineBytes": 54960608,
+      "currentBytes": 54960608,
+      "baselineSHA256": "c00c8cfa6b76ec6a7f824a06783536d8097d63d09464b2f81f856801d12f1962",
+      "currentSHA256": "c00c8cfa6b76ec6a7f824a06783536d8097d63d09464b2f81f856801d12f1962"
+    }
+  },
+  "protectedFiles": [
+    {
+      "file": "src/gpu/cadence.js",
+      "equal": true,
+      "sha256": "d37e28f590e6c48cb421ef89771dc3d41e7cd21bd5e84125e0c9f42100de3200"
+    },
+    {
+      "file": "src/gpu/frame-gate.js",
+      "equal": true,
+      "sha256": "e0e4d385292ddd0073d281711d0c60d80d9dd99fa9417184017ae9ca287b9d90"
+    },
+    {
+      "file": "src/gpu/queue-progress.js",
+      "equal": true,
+      "sha256": "47d0e7388e46fad5eda01216ca27fa9d70b9e05e519f4d8718a28667c85fd8e1"
+    },
+    {
+      "file": "src/gpu/submission.js",
+      "equal": true,
+      "sha256": "30295b062da3f0028a5dd9b21927abdb261a9803cdf18c5798b9d6add0d1d52e"
+    },
+    {
+      "file": "src/gpu/performance.js",
+      "equal": true,
+      "sha256": "d884edd73b694604eeccf5ec350f6223054277827104c17c1e7833fc1b494a20"
+    },
+    {
+      "file": "shaders/metrics.wgsl",
+      "equal": true,
+      "sha256": "60472f5eadb0ef8444e3abe30ad0eef51da5eff75a503faa12b20da9ffb4d455"
+    },
+    {
+      "file": "shaders/glyph-cache.wgsl",
+      "equal": true,
+      "sha256": "cb9bbc5086997ad7871b3a93e0b2f28aea34c3aa47251d24f3e2fa8d2c1072a7"
+    },
+    {
+      "file": "shaders/text.wgsl",
+      "equal": true,
+      "sha256": "4d006344386482d80d5316e4a6367b048d4d2b4d0baaaf6ab6cddb11cfad8b3b"
+    },
+    {
+      "file": "shaders/data.wgsl",
+      "equal": true,
+      "sha256": "74f91a67926faedc6ada9a2bb518b3269f26614f662b9ad34306bcbc68a8b571"
+    },
+    {
+      "file": "shaders/flatten.wgsl",
+      "equal": true,
+      "sha256": "34ee7bf4e9181546f88bce5585e3c6f8e72847f24fa82bff8fd19d8ff8d683aa"
+    },
+    {
+      "file": "shaders/hud.wgsl",
+      "equal": true,
+      "sha256": "8ce73a59a3c1c66568ee47da6f6b3113677c92b04303fa2da2e3a159a0e06c43"
+    },
+    {
+      "file": "shaders/hud-common.wgsl",
+      "equal": true,
+      "sha256": "8254b527f0f1cc07c2120a81d9d5fba88f87210d59607980b014e7f789ff08c3"
+    },
+    {
+      "file": "shaders/present.wgsl",
+      "equal": true,
+      "sha256": "4a4e0e8ae390c0dd7f1aa20702bd89f409ae8d11eef0d710185a6cc351a5c9c9"
+    },
+    {
+      "file": "shaders/blit.wgsl",
+      "equal": true,
+      "sha256": "9e56811bf49e426e9496c61b18f2b59c2250f16c06ec4799bdef1eb37c0cf41b"
+    }
+  ],
+  "showcase": {
+    "nodes": 202,
+    "rows": 65536,
+    "animations": 8
+  },
+  "newFeaturesRequireNativeQualification": true,
+  "status": "PASS"
+}

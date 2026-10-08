@@ -1,0 +1,168 @@
+{
+  "version": "0.7.0-experimental",
+  "recordedAtUTC": "2026-09-24T13:25:36.453924+00:00",
+  "status": "HOST_CHECKS_PASS_NATIVE_UNVERIFIED",
+  "hostTests": {
+    "passed": 386,
+    "failed": 0,
+    "skipped": 0,
+    "command": "npm test",
+    "scope": "Actual host runtime with a non-executing WebGPU double, real JavaScript promises, deterministic scheduling model; NOT hardware FPS or native shader execution"
+  },
+  "staticChecks": {
+    "status": "PASS",
+    "jsModules": 66,
+    "shaderFiles": 14,
+    "coreComputeEntries": 33,
+    "showcaseNodes": 202
+  },
+  "typeCheck": {
+    "status": "PASS",
+    "command": "tsc --strict --noEmit --target es2022 --module nodenext --moduleResolution nodenext --lib es2023,dom tests/api-types.ts"
+  },
+  "buildCheck": {
+    "status": "PASS",
+    "embeddedModules": 27,
+    "exactShaders": 14,
+    "workerEmbedding": "EXACT",
+    "fontFilesIncluded": false
+  },
+  "native": {
+    "page": "/tests/pacing.html",
+    "status": "UNVERIFIED",
+    "hardwareFPSMeasured": false,
+    "error": "Page.goto: net::ERR_BLOCKED_BY_ADMINISTRATOR at http://127.0.0.1:8080/tests/pacing.html\nCall log:\n  - navigating to \"http://127.0.0.1:8080/tests/pacing.html\", waiting until \"load\"\n"
+  },
+  "nativeValidator": {
+    "status": "UNAVAILABLE",
+    "error": "npm webgpu@0.6.1 lookup failed with EAI_AGAIN"
+  },
+  "qualityPreservation": {
+    "status": "PASS",
+    "compiledReport": "pacing-preservation.json",
+    "unchangedShaders": 13,
+    "shaders": [
+      {
+        "file": "shaders/blit.wgsl",
+        "equal": true,
+        "sha256": "9e56811bf49e426e9496c61b18f2b59c2250f16c06ec4799bdef1eb37c0cf41b"
+      },
+      {
+        "file": "shaders/common.wgsl",
+        "equal": true,
+        "sha256": "6bbebe7fe4870492654a1befe65f4db8b2410d3c1e0afd803d6a9876319d0439"
+      },
+      {
+        "file": "shaders/data.wgsl",
+        "equal": true,
+        "sha256": "74f91a67926faedc6ada9a2bb518b3269f26614f662b9ad34306bcbc68a8b571"
+      },
+      {
+        "file": "shaders/emit.wgsl",
+        "equal": true,
+        "sha256": "db946c44a52451ee2b876407541b1c827cadd6cee4d4dc86995022570360fa55"
+      },
+      {
+        "file": "shaders/flatten.wgsl",
+        "equal": true,
+        "sha256": "34ee7bf4e9181546f88bce5585e3c6f8e72847f24fa82bff8fd19d8ff8d683aa"
+      },
+      {
+        "file": "shaders/glyph-cache.wgsl",
+        "equal": true,
+        "sha256": "cb9bbc5086997ad7871b3a93e0b2f28aea34c3aa47251d24f3e2fa8d2c1072a7"
+      },
+      {
+        "file": "shaders/hud-common.wgsl",
+        "equal": true,
+        "sha256": "8254b527f0f1cc07c2120a81d9d5fba88f87210d59607980b014e7f789ff08c3"
+      },
+      {
+        "file": "shaders/hud.wgsl",
+        "equal": false,
+        "sha256": "8ce73a59a3c1c66568ee47da6f6b3113677c92b04303fa2da2e3a159a0e06c43"
+      },
+      {
+        "file": "shaders/input.wgsl",
+        "equal": true,
+        "sha256": "82c0e3c9fbd0d0440d65ad85c114a30b2c9935d2affd55f9770f2e5120bb7408"
+      },
+      {
+        "file": "shaders/layout.wgsl",
+        "equal": true,
+        "sha256": "8e8a1789c08c8fb056e23a4e6566accd89a4f4b6fb299e2f97bf39079c138d7e"
+      },
+      {
+        "file": "shaders/metrics.wgsl",
+        "equal": true,
+        "sha256": "60472f5eadb0ef8444e3abe30ad0eef51da5eff75a503faa12b20da9ffb4d455"
+      },
+      {
+        "file": "shaders/present.wgsl",
+        "equal": true,
+        "sha256": "4a4e0e8ae390c0dd7f1aa20702bd89f409ae8d11eef0d710185a6cc351a5c9c9"
+      },
+      {
+        "file": "shaders/strips.wgsl",
+        "equal": true,
+        "sha256": "b16f31ff9e356e7374451791aa4f4751eb51ab5c1696c46d642769238c5f31c8"
+      },
+      {
+        "file": "shaders/text.wgsl",
+        "equal": true,
+        "sha256": "4d006344386482d80d5316e4a6367b048d4d2b4d0baaaf6ab6cddb11cfad8b3b"
+      }
+    ],
+    "gpuBufferAndPipelineChanges": "NONE",
+    "normalFramePayload": "64 + 32*N bytes; 0 on a deferred attempt",
+    "defaultRows": 65536
+  },
+  "scheduling": {
+    "vsyncDefault": "rAF-driven with two independent per-submission acknowledgements",
+    "vsyncFramesInFlight": 2,
+    "asapDefault": false,
+    "asapFramesInFlight": 8,
+    "referenceLimit": 0,
+    "gpuReadbackDuringNormalLoop": false
+  },
+  "queueModel": {
+    "report": "pacing-queue-model.json",
+    "scope": "Assumed service/notification times; NOT a hardware benchmark"
+  },
+  "knownLimitations": [
+    "No native WGSL/pixel or hardware cadence result",
+    "Completion notification latency can still constrain bounded admission",
+    "No direct browser compositor dropped-frame or scanout API is used",
+    "Scheduling does not reduce a GPU workload that exceeds the refresh budget"
+  ],
+  "logs": {
+    "host-tests.log": {
+      "sha256": "e2b45058572b6bd69e79fc3fd211923a19d6b5dc141db3ac79b793ffa333f046",
+      "bytes": 79623
+    },
+    "static-checks.log": {
+      "sha256": "06437e7dd64852c05f1bdc2fa4aac2d20fdeb3e79050ed325dd68737e35cef89",
+      "bytes": 258
+    },
+    "types.log": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    "build.log": {
+      "sha256": "b4fc95f8a625ec5258585f866906d2ab3c22fd6a301fd9515027bbed5d254222",
+      "bytes": 219
+    },
+    "build-check.log": {
+      "sha256": "d63698329d52145e88048ca25adbbedf6fee7a4523a32383c825c887046184c1",
+      "bytes": 270
+    },
+    "native-pacing.json": {
+      "sha256": "04132385e21a44f2c076c26aa9fcdda28ee0f426fc8ec142082c3abb68d6ec6f",
+      "bytes": 295
+    },
+    "native-package.log": {
+      "sha256": "5c83f05a6727937bf9a5ef0c2e4cb74349caa8dca42d807b13f7d4672afc603d",
+      "bytes": 305
+    }
+  }
+}
