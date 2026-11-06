@@ -31,6 +31,7 @@
     "check:build": "node tools/check-build.mjs",
     "check:native": "node tools/check-native.mjs",
     "check:browser": "node tools/browser-test.mjs",
+    "check:workspaces": "node tools/browser-workspaces.mjs",
     "check:frames": "node tools/browser-frame-profile.mjs",
     "build:typography": "node tools/package-typography.mjs"
   },

@@ -26,6 +26,7 @@ test('Playground starts GPU preparation without awaiting host fonts and persists
   });
   await f.context.boot();assert.deepEqual(f.errors,[]);assert.equal(f.mounts.length,1);
   const first=f.mounts[0].options;assert.equal(first.fontSources,fonts);assert.equal(first.fonts,undefined);assert.equal(first.startupWorker,true);assert.equal(first.startupCache,'playground-public-example-v1');assert.equal(f.notice.hidden,true);
+  f.notice.hidden=false;first.onStartup({stage:'ready',detail:'First full-quality application frame completed'});assert.equal(f.notice.hidden,true,'Late ready notification must not cover the running canvas');
   await f.context.boot({...initial,notes:'private notes'});
   assert.equal(f.mounts[1].options.startupCache,false);assert.equal(first.signal.aborted,true);
   f.context.localFonts=[{source:{privateFile:true}}];await f.context.boot(initial);
