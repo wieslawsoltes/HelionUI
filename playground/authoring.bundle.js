@@ -405,6 +405,24 @@ class DataSourceController {
 
 return { DataSourceFormat, validateFieldPath, dataSource, createDataSource, normalizeItemsSource, valueAt, encodeDataBatch, DataSourceController };
 })();
+__helionModules["src/styling/studio-theme.js"] = (() => {
+/** Shared visual tokens for Helion's first-party workspaces. */
+const STUDIO=Object.freeze({
+ base:'#111114',panel:'#19191f',inset:'#151519',raised:'#202027',line:'#303038',
+ text:'#eeeef2',muted:'#a0a0ad',subtle:'#777786',accent:'#b9a7ff',
+ primary:'#b9a7ff',onPrimary:'#211936',selected:'#302a42',hover:'#292832'
+});
+function studioButtons(name){return `
+ Button.${name} { Background: ${STUDIO.raised}; Foreground: ${STUDIO.text}; CornerRadius: 6; FontSize: 11; }
+ Button.${name}:pointerover { Background: ${STUDIO.hover}; }
+ Button.${name}:pressed { Background: #383143; }
+ Button.${name}:focus { BorderBrush: ${STUDIO.accent}; BorderThickness: 1; }
+ Button.primary { Background: ${STUDIO.primary}; Foreground: ${STUDIO.onPrimary}; }
+ Button.primary:pointerover { Background: #c9bcff; }
+`;}
+
+return { STUDIO, studioButtons };
+})();
 __helionModules["src/core/declaration.js"] = (() => {
 const { Kind } = __helionModules["src/core/schema.js"];
 
@@ -426,6 +444,8 @@ function h(type, props = {}, ...children) {
 return { h };
 })();
 __helionModules["src/controls/index.js"] = (() => {
+const { STUDIO } = __helionModules["src/styling/studio-theme.js"];
+
 const { h } = __helionModules["src/core/declaration.js"];
 
 const { Opcode,AUTO_TARGET } = __helionModules["src/core/schema.js"];
@@ -433,13 +453,13 @@ const { Opcode,AUTO_TARGET } = __helionModules["src/core/schema.js"];
 const ACTION_EVENT_CAPACITY=520;
 const ACTION_OUTBOX_BYTES=16+ACTION_EVENT_CAPACITY*24;
 function hostAction(name,value=0){if(typeof name!=='string'||!name||name.length>128||!Number.isFinite(value))throw new TypeError('Host action requires a name and finite argument');return {type:'host',name,value};}
-const Toolbar=(props,...children)=>h('ScrollViewer',{height:40,...props},h('StackPanel',{orientation:'horizontal',gap:6,padding:4},...children));
+const Toolbar=(props,...children)=>h('ScrollViewer',{height:40,scrollHorizontal:true,...props},h('StackPanel',{orientation:'horizontal',gap:6,padding:4},...children));
 const StatusBar=(props,...children)=>h('Grid',{height:28,columns:'* auto',...props},...children);
 const Menu=(props)=>h('ListBox',{rowHeight:32,...props});
 const ToggleButton=(props)=>h('CheckBox',{height:34,...props});
 const Separator=(props)=>h('Border',{width:1,background:'#304358',...props});
 const Popup=(props,...children)=>h('Border',{zIndex:1000,background:'#172637',borderColor:'#3b5970',borderWidth:1,radius:10,padding:16,...props},...children);
-function Dialog(props={},...children){const {width=560,height=420,padding=20,background='#172637',...root}=props;return h('Modal',{background:'#00000088',zIndex:1000,...root},h('Border',{width,height,padding,background,radius:10,borderWidth:1,borderColor:'#3b5970',horizontalAlignment:'center',verticalAlignment:'center'},...children));}
+function Dialog(props={},...children){const {width=560,height=420,padding=20,background=STUDIO.panel,responsive=false,...root}=props;return h('Modal',{background:'#00000088',zIndex:1000,padding:responsive?12:0,...root},h('Border',{...(responsive?{maxWidth:width,maxHeight:height}:{width,height}),padding,background,radius:10,borderWidth:1,borderColor:STUDIO.line,horizontalAlignment:'center',verticalAlignment:'center'},...children));}
 /** Flatten a tree once at ingestion. Expansion, selection and visible indexing live on-device. */
 function normalizeItems(items,{capacity=256,textCapacity=32768}={}){
  if(!Array.isArray(items)||!Number.isInteger(capacity)||capacity<1||capacity>4096||!Number.isInteger(textCapacity)||textCapacity<1||textCapacity>1048576)throw new TypeError('Invalid list capacity or items');
