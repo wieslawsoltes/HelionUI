@@ -1,15 +1,16 @@
+import {STUDIO} from '../styling/studio-theme.js';
 import {h} from '../core/declaration.js';
 import {Opcode,AUTO_TARGET} from '../core/schema.js';
 export const ACTION_EVENT_CAPACITY=520;
 export const ACTION_OUTBOX_BYTES=16+ACTION_EVENT_CAPACITY*24;
 export function hostAction(name,value=0){if(typeof name!=='string'||!name||name.length>128||!Number.isFinite(value))throw new TypeError('Host action requires a name and finite argument');return {type:'host',name,value};}
-export const Toolbar=(props,...children)=>h('ScrollViewer',{height:40,...props},h('StackPanel',{orientation:'horizontal',gap:6,padding:4},...children));
+export const Toolbar=(props,...children)=>h('ScrollViewer',{height:40,scrollHorizontal:true,...props},h('StackPanel',{orientation:'horizontal',gap:6,padding:4},...children));
 export const StatusBar=(props,...children)=>h('Grid',{height:28,columns:'* auto',...props},...children);
 export const Menu=(props)=>h('ListBox',{rowHeight:32,...props});
 export const ToggleButton=(props)=>h('CheckBox',{height:34,...props});
 export const Separator=(props)=>h('Border',{width:1,background:'#304358',...props});
 export const Popup=(props,...children)=>h('Border',{zIndex:1000,background:'#172637',borderColor:'#3b5970',borderWidth:1,radius:10,padding:16,...props},...children);
-export function Dialog(props={},...children){const {width=560,height=420,padding=20,background='#172637',...root}=props;return h('Modal',{background:'#00000088',zIndex:1000,...root},h('Border',{width,height,padding,background,radius:10,borderWidth:1,borderColor:'#3b5970',horizontalAlignment:'center',verticalAlignment:'center'},...children));}
+export function Dialog(props={},...children){const {width=560,height=420,padding=20,background=STUDIO.panel,responsive=false,...root}=props;return h('Modal',{background:'#00000088',zIndex:1000,...root},h('Border',{...(responsive?{maxWidth:width,maxHeight:height}:{width,height}),padding,background,radius:10,borderWidth:1,borderColor:STUDIO.line,horizontalAlignment:'center',verticalAlignment:'center'},...children));}
 /** Flatten a tree once at ingestion. Expansion, selection and visible indexing live on-device. */
 export function normalizeItems(items,{capacity=256,textCapacity=32768}={}){
  if(!Array.isArray(items)||!Number.isInteger(capacity)||capacity<1||capacity>4096||!Number.isInteger(textCapacity)||textCapacity<1||textCapacity>1048576)throw new TypeError('Invalid list capacity or items');

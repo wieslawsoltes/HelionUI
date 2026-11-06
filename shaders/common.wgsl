@@ -105,6 +105,7 @@ fn nodePadding(n:Node)->vec4<f32> {
  let e=extension(n); if(e!=0u && (heap[e+1u]&1u)!=0u) {return vec4<f32>(hf(e+8u),hf(e+9u),hf(e+10u),hf(e+11u));}
  return vec4<f32>(n.limits.z);
 }
+fn horizontalScroll(n:Node)->bool {let e=extension(n);return e!=0u&&(heap[e+1u]&128u)!=0u;}
 fn axisSpacing(n:Node,axis:u32)->f32 {let e=extension(n);if(e==0u){return n.limits.w;}return hf(e+29u-axis);}
 fn dockEdge(n:Node)->u32 {let e=extension(n);if(e==0u){return 0u;}return heap[e+2u];}
 fn trackLimits(n:Node,axis:u32,index:u32)->vec2<f32> {let e=extension(n);if(e==0u){return vec2<f32>(0.0,INF);}let p=heap[e+32u+axis];if(p==0u){return vec2<f32>(0.0,INF);}return vec2<f32>(hf(p+index*2u),hf(p+index*2u+1u));}
@@ -113,7 +114,8 @@ fn uniformShape(n:Node)->vec2<u32> {
  let e=extension(n);var rows=heap[e+4u];var cols=heap[e+5u];var count=0u;
  for(var j=0u;j<n.info.w;j++){if(visible(child(n,j))){count++;}}
  let first=uniformFirstColumn(n,cols);let needed=max(1u,count+first);
- if(rows==0u&&cols==0u){cols=u32(ceil(sqrt(f32(needed))));rows=(needed+cols-1u)/cols;}
+ if(rows==0u&&cols==0u&&hf(e+22u)>0.0){let pad=layoutPadding(n);let width=max(0.0,min(n.available.x,select(INF,n.size.x,n.size.x>=0.0))-pad.x-pad.z);let gap=axisSpacing(n,0u);cols=max(1u,min(needed,u32(min(f32(needed),floor((width+gap)/max(1.0,hf(e+22u)+gap))))));rows=(needed+cols-1u)/cols;}
+ else if(rows==0u&&cols==0u){cols=u32(ceil(sqrt(f32(needed))));rows=(needed+cols-1u)/cols;}
  else if(rows==0u){rows=(needed+cols-1u)/cols;}else if(cols==0u){cols=(needed+rows-1u)/rows;}
  return vec2<u32>(max(1u,cols),max(1u,rows));
 }

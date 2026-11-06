@@ -10,7 +10,13 @@ export function packDocks(heap,list,u){
    else if(node.type==='tabs'){if(!Array.isArray(node.panes))throw new TypeError('DockTabs panes required');const members=node.panes.map(id=>{if(!ids.has(id)||used.has(id))throw new TypeError(`Unknown/duplicate dock pane ${id}`);used.add(id);assigned.set(id,index);return ids.get(id);});const requested=node.active??members[0]?.id;const candidate=members.find(p=>p.id===requested);const active=candidate&&!candidate.props.closed?candidate:members.find(p=>!p.props.closed);if(members.length&&!candidate)throw new TypeError('Active pane must belong to its group');heap.set(at,[0,parent,0,0,0,0,active?.index??AUTO_TARGET]);}
    else throw new TypeError('Dock layout requires split or tabs');return index;};
   add(root.props.dockLayout??{type:'tabs',panes:panes.map(p=>p.id)});if(used.size!==panes.length)throw new TypeError('Every DockItem must occur exactly once in dockLayout');
-  heap.set(pointer,[count,0,tree,panes.length,paneList,AUTO_TARGET,0,0,0,0,AUTO_TARGET,0,0,0,0,0]);u[root.index*72+68]=pointer;
+  heap.set(paneList,[...used].map(id=>ids.get(id).index));
+  const breakpoint=Number(root.props.dockBreakpoint??0);
+  if(!Number.isFinite(breakpoint)||(breakpoint!==0&&(breakpoint<320||breakpoint>4096)))throw new RangeError('dockBreakpoint must be 0 or 320–4096 CSS pixels');
+  const primary=root.props.dockPrimary??panes.find(p=>!p.props.closed)?.id??panes[0].id;
+  if(!ids.has(primary))throw new TypeError('dockPrimary must identify a pane in this workspace');
+  const responsive=breakpoint?heap.push([fbits(breakpoint),ids.get(primary).index,0,0]):0;
+  heap.set(pointer,[count,0,tree,panes.length,paneList,AUTO_TARGET,0,0,0,0,AUTO_TARGET,0,0,0,0,responsive]);u[root.index*72+68]=pointer;
   const manifest=[];for(const pane of panes){const p=heap.alloc(16);let end=pane.index+1;while(end<list.length&&list[end].depth>pane.depth)end++;const [title]=heap.string(pane.props.title??pane.id,0,true);
    heap.set(p,[root.index,assigned.get(pane.id),pane.props.closed?1:0,0,fbits(80),fbits(70),fbits(560),fbits(360),title,pane.props.canClose===false?0:1,end-pane.index,0,0,0,0,0]);u[pane.index*72+68]=p;manifest.push({node:pane.index,id:pane.id,pointer:p,subtreeNodes:end-pane.index});
   }result.push({node:root.index,pointer,tree,panes:manifest});

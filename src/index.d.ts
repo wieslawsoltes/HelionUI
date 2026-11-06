@@ -46,7 +46,7 @@ export interface CanonicalViewProps {
  data?: Record<string,string|number|null|undefined>[]; dataColumns?: Column[]; rowCount?: number; rowHeight?: number; filter?: string; activeOnly?: string; minViewportWidth?: number; maxViewportWidth?: number;
 }
 export interface CanonicalViewProps {
- dock?:'left'|'top'|'right'|'bottom';lastChildFill?:boolean;firstColumn?:number;itemWidth?:number;itemHeight?:number;
+ dock?:'left'|'top'|'right'|'bottom';lastChildFill?:boolean;firstColumn?:number;scrollHorizontal?:boolean;minColumnWidth?:number;itemWidth?:number;itemHeight?:number;
  stretch?:'none'|'fill'|'uniform'|'uniformToFill';stretchDirection?:'both'|'uponly'|'downonly';
  renderTransform?:MatrixValue;renderTransformOrigin?:PointValue;right?:number;bottom?:number;rowSpacing?:number;columnSpacing?:number;
  zIndex?:number;useLayoutRounding?:boolean;classes?:string|string[];styles?:Styles;resources?:Record<string,unknown>;transitions?:Transition[];
@@ -349,6 +349,8 @@ export interface EditorDocumentProps {
  tabSize?:number;editorLineHeight?:number;lineNumbers?:boolean;renderWhitespace?:boolean;autoClosingBrackets?:boolean;
 }
 export interface CanonicalViewProps extends EditorDocumentProps {
+ /** Below this viewport width, show one retained pane with a GPU view picker. */
+ dockBreakpoint?:number;dockPrimary?:string;
  dockLayout?:DockLayout;title?:string;closed?:boolean;canClose?:boolean;
  models?:Record<string,GPUModelDefinition>;modelBind?:ModelBinding;
 }
@@ -470,7 +472,7 @@ export function Menu(props:ViewProps):View;
 export function ToggleButton(props:ViewProps):View;
 export function Separator(props:ViewProps):View;
 export function Popup(props:ViewProps,...children:Child[]):View;
-export function Dialog(props:ViewProps,...children:Child[]):View;
+export function Dialog(props:ViewProps & {responsive?:boolean},...children:Child[]):View;
 export interface CanonicalViewProps {
  itemsSource?:DataRow[]|DataSourceDescriptor;dataSource?:DataSourceDescriptor;rowKey?:string;rowCapacity?:number;
  items?:(ListItem|string)[];itemCapacity?:number;itemTextCapacity?:number;textCapacity?:number;

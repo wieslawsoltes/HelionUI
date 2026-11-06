@@ -119,6 +119,7 @@ fn maxScroll(i:u32)->f32 {
 }
 fn maxScrollX(i:u32)->f32 {
  let n=nodes[i]; if(isList(i)){return 0.0;}
+ if(n.info.x==13u){if(!horizontalScroll(n)){return 0.0;}var right=0.0;for(var j=0u;j<n.info.w;j++){right=max(right,nodes[child(n,j)].available.z);}return max(0.0,right-contentRect(n).z);}
  if(isEditor(i)){return max(0.0,f32(heap[ed(i)+33u])*edCell(i)-edTextWidth(i));} if(n.info.x!=11u) { return 0.0; } let t=n.action.w; var width=0.0;
  for(var c=0u;c<heap[t+2u];c++) { width+=hf(heap[t+9u]+c*8u+4u); }
  return max(0.0,width-contentRect(n).z+12.0);
@@ -315,6 +316,7 @@ fn processInputCommand(command:Command,e:u32){
   if(c.kind==5u) { atomicStore(&scratch[46u],1u);atomicStore(&scratch[47u],select(c.recipient,state[0],c.recipient==NONE));atomicStore(&scratch[48u],c.code);atomicStore(&scratch[49u],u32(c.data.x));return; }
   if(c.kind==6u) { let recipientNode=select(c.recipient,state[0],c.recipient==NONE); if(recipientNode!=NONE){insertCharacter(recipientNode,c.code);} return; }
   if(c.kind==1u) {
+   if((state[30u]==7u||state[30u]==8u)&&state[2u]!=NONE){let scroll=state[29u];let n=nodes[scroll];let p=inverse(n.matrix,n.translation.xy,c.position);let delta=p-vec2<f32>(sf(18u),sf(19u));if(state[30u]==8u||length(delta)>6.0){state[30u]=8u;state[2u]=scroll;setf(cs(scroll)+1u,clamp(sf(cs(scroll)+1u)-delta.y,0.0,maxScroll(scroll)));setf(cs(scroll)+2u,clamp(sf(cs(scroll)+2u)-delta.x,0.0,maxScrollX(scroll)));setf(18u,p.x);setf(19u,p.y);setf(16u,c.position.x);setf(17u,c.position.y);return;}}
    state[1]=hit;
    if(state[2]!=NONE) {
     let i=state[2]; let n=nodes[i]; let p=inverse(n.matrix,n.translation.xy,c.position); let r=controlRect(i); let s=cs(i);
@@ -326,7 +328,7 @@ fn processInputCommand(command:Command,e:u32){
      let t=n.action.w;
      if(state[30]==1u) { let view=max(1.0,r.w-68.0); let full=f32(heap[t+10u])*hf(t+15u); let thumb=max(24.0,view*view/max(view,full)); setf(s+1u,clamp((p.y-r.y-42.0-sf(28u))/max(1.0,view-thumb)*maxScroll(i),0.0,maxScroll(i))); }
      if(state[30]==2u) { let a=heap[t+9u]+state[29]*8u; hsetf(a+4u,clamp(sf(47u)+p.x-sf(18u),hf(a+5u),hf(a+6u))); }
-     if(state[30]==3u) { setf(s+1u,clamp(sf(s+1u)-(p.y-sf(19u)),0.0,maxScroll(i))); setf(19u,p.y); }
+     if(state[30]==3u) { setf(s+1u,clamp(sf(s+1u)-(p.y-sf(19u)),0.0,maxScroll(i)));setf(s+2u,clamp(sf(s+2u)-(p.x-sf(18u)),0.0,maxScrollX(i)));setf(18u,p.x); setf(19u,p.y); }
     }
    }
   }
@@ -370,7 +372,10 @@ fn processInputCommand(command:Command,e:u32){
     }
    }
   }
+  if(c.kind==2u&&(c.code&255u)==2u&&hit!=NONE&&!isEditor(hit)&&!isList(hit)&&nodes[hit].info.x!=8u&&nodes[hit].info.x!=9u&&nodes[hit].info.x!=11u&&nodes[hit].info.x!=24u&&nodes[hit].info.x!=25u){var at=hit;for(var k=0u;k<32u&&at!=NONE;k++){if(nodes[at].info.x==13u&&(maxScroll(at)>0.0||maxScrollX(at)>0.0)){let p=inverse(nodes[at].matrix,nodes[at].translation.xy,c.position);state[30u]=7u;state[29u]=at;setf(18u,p.x);setf(19u,p.y);break;}at=nodes[at].info.y;}}
   if(c.kind==3u) {
+   if(state[30u]==8u){state[30u]=0u;releaseCapture=true;return;}
+   if(state[30u]==7u){state[30u]=0u;}
    if(hit!=NONE&&hit==state[2u]&&isList(hit)){listPointer(hit,inverse(nodes[hit].matrix,nodes[hit].translation.xy,c.position),true);}
    if(state[2]!=NONE){let captured=state[2];if(nodes[captured].info.x==24u||nodes[captured].info.x==25u){dockPointer(captured,inverse(nodes[captured].matrix,nodes[captured].translation.xy,c.position),3u);}if(isEditor(captured)){heap[ed(captured)+60u]=0u;}}
    if(state[2]!=NONE && hit==state[2] && (nodes[hit].info.x==6u || nodes[hit].info.x==7u)) { activate(hit); }

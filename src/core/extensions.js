@@ -5,7 +5,7 @@ export const EASINGS=Object.freeze({linear:0,smooth:1,spring:2,cubicIn:3,cubicOu
 export function easingCode(name='linear') {if(!(name in EASINGS))throw new TypeError(`Unknown easing ${name}`);return EASINGS[name];}
 const dynamicProperties=Object.freeze({background:[0,20],foreground:[0,21],borderColor:[0,22],radius:[1,23],borderWidth:[1,35],opacity:[2,3],translateX:[2,8],translateY:[2,9],scaleX:[2,10],scaleY:[2,11],rotation:[2,12]});
 export function packNodeExtension(heap,p,type,nodeWords,state,nodeIndex,limitsByAxis=[]) {
- const needs=['Panel','DockPanel','WrapPanel','UniformGrid','Viewbox','ContentControl','ContentPresenter'].includes(type)||['dock','lastChildFill','renderTransform','renderTransformOrigin','rowSpacing','columnSpacing','right','bottom','stateStyles','useLayoutRounding','templatePart','templateInstance','templateExpressions','templateSystem','textShaping'].some(k=>p[k]!=null)||Array.isArray(p.padding)||limitsByAxis.some(Boolean);
+ const needs=['Panel','DockPanel','WrapPanel','UniformGrid','Viewbox','ContentControl','ContentPresenter'].includes(type)||['scrollHorizontal','dock','lastChildFill','renderTransform','renderTransformOrigin','rowSpacing','columnSpacing','right','bottom','stateStyles','useLayoutRounding','templatePart','templateInstance','templateExpressions','templateSystem','textShaping'].some(k=>p[k]!=null)||Array.isArray(p.padding)||limitsByAxis.some(Boolean);
  if(!needs)return 0;
  const e=heap.alloc(40);if(e>=16777216)throw new RangeError('Extension pointer exceeds exact f32 address range'); const put=(at,value)=>heap.words[e+at]=value;
  put(0,0x48455831);put(2,['left','top','right','bottom'].indexOf(p.dock||'left'));if(heap.words[e+2]>3)throw new TypeError('Invalid DockPanel.Dock');put(3,p.lastChildFill!==false?1:0);
@@ -18,8 +18,9 @@ export function packNodeExtension(heap,p,type,nodeWords,state,nodeIndex,limitsBy
  let flags=Array.isArray(p.padding)?1:0;
  if(p.renderTransform!=null){if(!Array.isArray(p.renderTransform)||p.renderTransform.length!==6)throw new TypeError('RenderTransform requires a six-number Matrix');p.renderTransform.forEach((v,j)=>put(12+j,fbits(finite(v,0))));if(Math.abs(p.renderTransform[0]*p.renderTransform[3]-p.renderTransform[1]*p.renderTransform[2])<1e-8)throw new RangeError('RenderTransform must be invertible');flags|=2;}
  const origin=p.renderTransformOrigin||[.5,.5];if(!Array.isArray(origin)||origin.length!==2)throw new TypeError('RenderTransformOrigin requires a relative [x,y]');origin.forEach((v,j)=>put(18+j,fbits(finite(v,.5))));
- if(p.renderTransformOrigin)flags|=4;if(p.x!=null)flags|=16;if(p.y!=null)flags|=32;if(p.useLayoutRounding)flags|=64;put(1,flags);
+ if(p.renderTransformOrigin)flags|=4;if(p.x!=null)flags|=16;if(p.y!=null)flags|=32;if(p.useLayoutRounding)flags|=64;if(p.scrollHorizontal===true)flags|=128;put(1,flags);
  for(const [k,at] of [['itemWidth',20],['itemHeight',21]]){const x=finite(p[k],-1);if(x<0&&x!==-1)throw new RangeError(`Invalid ${k}`);put(at,fbits(x));}
+ if(type==='UniformGrid'&&p.minColumnWidth!=null){const value=finite(p.minColumnWidth,0);if(value<=0||value>16384)throw new RangeError('minColumnWidth must be positive and at most 16384');put(22,fbits(value));}
  const direction=['both','uponly','downonly'].indexOf(p.stretchDirection||'both');if(direction<0)throw new TypeError('Invalid StretchDirection');put(23,direction);
  for(const [k,at] of [['rowSpacing',28],['columnSpacing',29]]){const x=finite(p[k],p.gap??0);if(x<0)throw new RangeError('Spacing must be nonnegative');put(at,fbits(x));}
  put(30,fbits(finite(p.right,-1e7)));put(31,fbits(finite(p.bottom,-1e7)));

@@ -9,7 +9,7 @@ export function layoutReference(compiled, width, height, page = 0) {
   const nodes = Array.from({ length: compiled.nodeCount }, (_, i) => {
     const o = i * 72; return { i, kind: u[o], parent: u[o + 1], children: [...heap.slice(u[o + 2], u[o + 2] + u[o + 3])], depth: u[o + 4], flags: u[o + 5], offset: u[o + 6], length: u[o + 7],
       size: [...f.slice(o + 8, o + 12)], limits: [...f.slice(o + 12, o + 16)], margin: [...f.slice(o + 16, o + 20)], placement: [...u.slice(o + 24, o + 28)], tracks: [...u.slice(o + 28, o + 32)],
-      misc: [...f.slice(o + 32, o + 36)], binding: u[o + 41], span: [...f.slice(o + 44, o + 46)], page: f[o + 46], aux: [...u.slice(o + 68, o + 72)], av: [0, 0, 0, 0], rect: [0, 0, 0, 0] };
+      extension:f[o+47], misc: [...f.slice(o + 32, o + 36)], binding: u[o + 41], span: [...f.slice(o + 44, o + 46)], page: f[o + 46], aux: [...u.slice(o + 68, o + 72)], av: [0, 0, 0, 0], rect: [0, 0, 0, 0] };
   });
   const visible = i => { for (let at = i; at !== NONE; at = nodes[at].parent) { const n = nodes[at]; if (n.flags & 32 || n.page >= 0 && n.page !== page || width < fromBits(n.aux[1]) || width >= fromBits(n.aux[2])) return false; } return true; };
   const intrinsic = (n, axis) => {
@@ -78,7 +78,7 @@ export function layoutReference(compiled, width, height, page = 0) {
       if (p.kind === 1) for (let a = 0; a < 2; a++) { const [pos, size] = span(p, a, n.placement[a + 2], n.span[a], slot[a + 2]); slot[a] += pos; slot[a + 2] = size; }
       if (p.kind === 2) { const axis = p.flags & 2 ? 0 : 1; for (const id of p.children) { if (id === n.i) break; if (visible(id)) slot[axis] += nodes[id].av[axis + 2] + p.limits[3]; } slot[axis + 2] = n.av[axis + 2]; }
       if (p.kind === 3) for (let a = 0; a < 2; a++) { slot[a] += n.misc[a]; slot[a + 2] = n.av[a + 2]; }
-      if (p.kind === 13) slot[3] = Math.max(slot[3], n.av[3]);
+      if (p.kind === 13) { if(p.extension && (heap[p.extension+1]&128)) slot[2] = Math.max(slot[2], n.av[2]); slot[3] = Math.max(slot[3], n.av[3]); }
     }
     for (let a = 0; a < 2; a++) {
       slot[a] += n.margin[a]; slot[a + 2] = Math.max(0, slot[a + 2] - n.margin[a] - n.margin[a + 2]);

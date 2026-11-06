@@ -36,6 +36,19 @@ export async function runFrameworkGate(){
   surface.options.damageTracking=false;await step(0);const full=await pixels(surface);assert(bytes.every((v,i)=>v===full[i]),'Dirty/full drawing pixels differ');snapshot=await surface.inspect({includeNodes:false});assert(snapshot.state[15]===0,`Arena overflow ${snapshot.state[15]}`);pass('drawing retained damage agrees with complete rerasterization; no arena overflow');
   surface.dispose();surface=null;
   surface=await HelionSurface.mount(canvas,h('Grid',{width:300,height:80,columns:[ColumnDefinition('*',120,1000),ColumnDefinition('*',0,30)]},h('Border',{id:'large'}),h('Border',{id:'small',column:1})),{fonts:[fixtureFont()],startupWorker:false,autoStart:false,input:false,pixelRatio:1});surface.render(surface.startTime+16);await surface.whenSubmittedWorkDone();snapshot=await surface.inspect();near(fromBits(snapshot.nodes[surface.id('large')*72+54]),270);near(fromBits(snapshot.nodes[surface.id('small')*72+54]),30);pass('native constrained-star allocation releases a minimum after another column saturates');
+  surface.dispose();surface=null;
+  surface=await HelionSurface.mount(canvas,h('ScrollViewer',{id:'scroll',scrollHorizontal:true,width:200,height:160},h('Grid',{width:420,height:400},h('Button',{id:'tap',width:90,height:32,horizontalAlignment:'start',verticalAlignment:'start',action:{type:'page',value:1},text:'Tap'}))),{fonts:[fixtureFont()],startupWorker:false,autoStart:false,input:false,pixelRatio:1});
+  now=surface.startTime;await step();const scroll=surface.id('scroll'),tap=surface.id('tap');
+  surface.send(Opcode.Wheel,{target:scroll,x:10,y:10,a:50,b:0});await step();snapshot=await surface.inspect({includeNodes:false});near(fromBits(snapshot.state[64+scroll*16+2]),50);
+  surface.send(Opcode.Wheel,{target:scroll,x:10,y:10,a:-50,b:0});await step();
+  surface.send(Opcode.Down,{target:tap,x:50,y:20,c:2});await step();surface.send(Opcode.Move,{target:tap,x:50,y:-60,c:2});await step();surface.send(Opcode.Up,{target:tap,x:50,y:-60,c:2});await step();
+  snapshot=await surface.inspect({includeNodes:false});near(fromBits(snapshot.state[64+scroll*16+1]),80);assert(snapshot.state[8]===0,'Touch drag activated its starting button');
+  surface.set('scroll','scrollY',0);await step();surface.send(Opcode.Down,{target:tap,x:50,y:20,c:2});await step();surface.send(Opcode.Up,{target:tap,x:50,y:20,c:2});await step();snapshot=await surface.inspect({includeNodes:false});assert(snapshot.state[8]===1,'Touch tap no longer activates a button');
+  pass('ScrollViewer supports horizontal wheel and GPU touch drag without accidental button activation');
+  surface.dispose();surface=null;
+  surface=await HelionSurface.mount(canvas,h('UniformGrid',{id:'responsive-grid',minColumnWidth:280,gap:12},...['card-a','card-b','card-c'].map(id=>h('Border',{id,height:80}))),{fonts:[fixtureFont()],startupWorker:false,autoStart:false,input:false,pixelRatio:1});now=surface.startTime;await step();snapshot=await surface.inspect();let cells=new Float32Array(snapshot.nodes.buffer);assert(cells[surface.id('card-b')*72+52]>0,'Wide auto grid did not form multiple columns');
+  canvas.style.width='390px';surface.resizePending=true;await step();await step();snapshot=await surface.inspect();cells=new Float32Array(snapshot.nodes.buffer);near(cells[surface.id('card-b')*72+52],0);assert(cells[surface.id('card-b')*72+53]>cells[surface.id('card-a')*72+53],'Narrow auto grid did not stack its existing nodes');
+  pass('UniformGrid chooses responsive columns on the GPU without replacing nodes');
   result.status='PASS';
  }catch(error){result.status='FAIL';result.error=error.stack||String(error);}finally{surface?.dispose();button.disabled=false;result.finished=new Date().toISOString();log.textContent=JSON.stringify(result,null,2);}return result;
 }

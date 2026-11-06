@@ -84,3 +84,12 @@ test('raw drawings validate dimensions and image byte values before upload',()=>
 test('CSS colors reject angular RGB/alpha and percentage hue values',()=>{for(const value of ['rgb(20deg 0 0)','rgb(20 0 0 / 1deg)','hsl(20% 50% 50%)'])assert.throws(()=>parseColor(value),/units/);});
 test('unsupported extended speed references fail instead of being silently ignored',()=>{assert.throws(()=>packed(h('Panel',{},h('Slider',{id:'speed'}),h('Border',{animations:[{property:'opacity',duration:1,speed:'speed',keyFrames:[KeyFrame(0,0),KeyFrame(1,1)]}]}))),/legacy/);});
 test('resources resolve before boolean and enum adapters without truthy-object substitution',()=>{const c=packed(h('StackPanel',{Resources:{Enabled:false,Direction:'Horizontal',Alignment:'Left'},Orientation:StaticResource('Direction')},h('Button',{Name:'disabled',IsEnabled:StaticResource('Enabled'),HorizontalAlignment:StaticResource('Alignment')})));const w=words(c);assert.ok(w[5]&2);assert.ok(w[72+5]&16);assert.equal(w[72+24],1);});
+
+
+test('adaptive grids validate their column minimum and horizontal scrolling is opt-in',()=>{
+ const c=packed(h('UniformGrid',{minColumnWidth:280},h('Border',{})));
+ assert.equal(fromBits(c.heap[ext(c)+22]),280);
+ for(const minColumnWidth of [0,-1,16385,Infinity,NaN])assert.throws(()=>packed(h('UniformGrid',{minColumnWidth},h('Border',{}))));
+ const ordinary=packed(h('ScrollViewer',{},h('Border',{width:420}))),horizontal=packed(h('ScrollViewer',{scrollHorizontal:true},h('Border',{width:420})));
+ assert.equal(ext(ordinary),0);assert.equal(horizontal.heap[ext(horizontal)+1]&128,128);
+});

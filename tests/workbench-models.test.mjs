@@ -32,3 +32,13 @@ test('optional pipeline families are absent from an ordinary view',()=>{assert.e
 test('bulk payload is immutable and subsequent commands cannot overwrite its staging',()=>{const stream=new CommandStream(),first=Uint32Array.of(97,98),second=Uint32Array.of(99),writes=[];stream.pushBulk(Opcode.Editor,{c:27,a:2},first,100);first.fill(0);stream.push(Opcode.Text,{c:100});stream.pushBulk(Opcode.Editor,{c:27,a:1},second,100);const queue={writeBuffer:(...args)=>writes.push(args)};const p=stream.flush(queue,{},256,{});assert.equal(p.count,2);assert.equal(p.bytes,72);assert.equal(p.payloadBytes,8);assert.deepEqual([...writes[0][2]],[97,98]);assert.equal(stream.length,1);const q=stream.flush(queue,{},256,{});assert.equal(q.count,1);assert.equal(q.bytes,36);assert.equal(stream.length,0);assert.equal(stream.bulkUploads.size,0);});
 test('bulk input with no heap fails before consuming queued data',()=>{const stream=new CommandStream();stream.pushBulk(Opcode.Editor,{c:38,a:1},Uint32Array.of(65),100);assert.throws(()=>stream.flush({writeBuffer(){}},{}),/resident heap/);assert.equal(stream.length,1);});
 test('command guards observe prior queued updates through fresh derived values',()=>{const s=scalarModels({vm:declaration()}).evaluate();s.execute('vm','argument',2).execute('vm','inc');assert.equal(s.value('vm','amount'),2);});
+
+test('responsive docking validates its viewport contract and preserves declared tab order',()=>{
+ const view=props=>h('DockWorkspace',{id:'dock',dockLayout:DockTabs(['b','a']),...props},pane('a'),pane('b'));
+ const c=compile(view({dockBreakpoint:960,dockPrimary:'b'})),d=c.docks[0],config=c.heap[d.pointer+15];
+ assert.ok(config>0);assert.equal(new Float32Array(c.heap.buffer)[config],960);assert.equal(c.heap[config+1],c.ids.get('b'));
+ assert.deepEqual([...c.heap.slice(c.heap[d.pointer+4],c.heap[d.pointer+4]+2)],[c.ids.get('b'),c.ids.get('a')]);
+ for(const bad of [-1,10,Infinity,4097])assert.throws(()=>compile(view({dockBreakpoint:bad})),/dockBreakpoint/);
+ assert.throws(()=>compile(view({dockBreakpoint:960,dockPrimary:'missing'})),/dockPrimary/);
+ assert.equal(compile(view({})).heap[d.pointer+15],0);
+});

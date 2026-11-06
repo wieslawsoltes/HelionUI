@@ -13,7 +13,7 @@ export async function runEditorGate(){
   const editorOptions={documentCapacity:4096,historyCapacity:32768,editorLineHeight:20,fontSize:14,autoClosingBrackets:false};
   const view=h('Grid',{rows:'36 *',models:{vm:model},background:'#101923'},
    h('TextBlock',{text:'Twice ',bind:modelBinding('vm','twice')}),
-   h('DockWorkspace',{id:'dock',row:1,dockLayout:DockTabs(['a-pane','b-pane'])},
+   h('DockWorkspace',{id:'dock',row:1,dockBreakpoint:600,dockPrimary:'a-pane',dockLayout:DockTabs(['a-pane','b-pane'])},
     h('DockItem',{id:'a-pane',title:'app.js'},h('CodeEditor',{id:'a',text:'const value = 2;\nvalue += 1;\n',...editorOptions})),
     h('DockItem',{id:'b-pane',title:'notes.txt'},h('TextEditor',{id:'b',text:'Notes\n',...editorOptions}))));
   surface=await HelionSurface.mount(canvas,view,{fonts:[fixtureFont()],startupWorker:false,autoStart:false,input:false,performanceHUD:false,gpuTiming:false,pixelRatio:1});result.adapter=surface.adapterInfo;
@@ -25,6 +25,20 @@ export async function runEditorGate(){
   a.replaceDocument('');await step();a.insertSnippet('${1:item} + $1 = $0');await step();snapshot=await a.snapshot();assert(snapshot.text==='item + item = '&&snapshot.selections.length===2,'Linked snippet stops');surface.send(Opcode.Text,{target:surface.id('a'),c:88});await step();assert((await a.snapshot()).text==='X + X = ','Linked snippet edit');pass('Snippet expansion and linked multicaret editing');
   surface.model('vm').set('count',5).execute('increment',2);await step();let vm=await surface.model('vm').snapshot();assert(vm.fields.count[0]===7&&vm.fields.twice[0]===14,'Derived field update');surface.model('vm').set('count',10).execute('increment',1);await step();vm=await surface.model('vm').snapshot();assert(vm.fields.count[0]===10&&vm.fields.twice[0]===20,'Command used stale computed guard');assert(vm.errors.every(v=>v===0),'Model evaluation error');pass('Typed model storage, derived expressions, and fresh CanExecute guard');
   const layout=await dock.snapshot(),savedA=(await a.snapshot()).text;dock.command('activate','b-pane');await step();b.select(5).insert(' edited');await step();dock.command('float','a-pane');await step();dock.command('splitHorizontal','b-pane',0);await step();dock.command('close','a-pane');await step();dock.command('reopen','a-pane');await step();await dock.restore(layout);await step();assert((await a.snapshot()).text===savedA,'Docking lost first document');assert((await b.snapshot()).text==='Notes edited\n','Docking lost second document');pass('Tab, float, split, close/reopen, and layout restoration preserve documents');
+  const desktopBefore=await dock.snapshot();canvas.style.width='390px';surface.resizePending=true;await step();await step();
+  let compact=await surface.inspect();let rects=new Float32Array(compact.nodes.buffer);const aNode=surface.id('a-pane'),bNode=surface.id('b-pane');
+  assert(Math.abs(rects[aNode*72+54]-surface.viewport.width)<1,`Compact pane width ${rects[aNode*72+54]}, other ${rects[bNode*72+54]}, viewport ${JSON.stringify(surface.viewport)}`);
+  assert(rects[bNode*72+54]===0,'Inactive compact pane remains visible');
+  surface.send(Opcode.Down,{x:30,y:50});await step();surface.send(Opcode.Up,{x:30,y:50});await step();
+  const responsive=surface.manifest.docks[0];const header=new Uint32Array(await surface.readHeapRange(responsive.pointer,16));
+  let config=new Uint32Array(await surface.readHeapRange(header[15],4));assert(config[2]===1,'Compact view picker did not open');
+  surface.send(Opcode.Down,{x:30,y:118});await step();surface.send(Opcode.Up,{x:30,y:118});await step();
+  config=new Uint32Array(await surface.readHeapRange(header[15],4));assert(config[1]===bNode&&config[2]===0,'Compact view picker did not select the second pane');
+  compact=await surface.inspect();rects=new Float32Array(compact.nodes.buffer);assert(Math.abs(rects[bNode*72+54]-surface.viewport.width)<1,'Selected compact pane is not full width');
+  assert((await a.snapshot()).text===savedA&&(await b.snapshot()).text==='Notes edited\n','Responsive layout changed document contents');
+  canvas.style.width='640px';surface.resizePending=true;await step();await step();
+  const desktopAfter=await dock.snapshot();assert(JSON.stringify(desktopBefore.nodes.map(n=>({...n,active:null})))===JSON.stringify(desktopAfter.nodes.map(n=>({...n,active:null}))),'Responsive layout modified desktop split topology');
+  pass('GPU compact view picker, full-width panes, desktop topology and resident documents survive viewport changes');
   // Fixed animation time and unfocused editors remove caret blink as a comparison variable.
   surface.send(Opcode.Cancel);await step();const before=await pixels(surface);surface.options.damageTracking=false;await step(0);const full=await pixels(surface);assert(before.length===full.length&&before.every((value,index)=>value===full[index]),'Retained-damage and full rendering differ');assert(new Set(before).size>12,'Unexpectedly blank/unshaded output');pass('Native editor/docking cached-damage pixels equal the full-render reference');
   const state=await surface.inspect({includeNodes:false});assert(state.state[15]===0,`GPU arena overflow ${state.state[15]}`);const words=new Uint32Array(await surface.readHeapRange(a.meta.pointer,80));assert(words[ED.rejectedEdits]===0,'Unexpected rejected edit');result.status='PASS';

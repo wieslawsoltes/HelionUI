@@ -152,7 +152,7 @@ fn arrange(@builtin(global_invocation_id) tid:vec3<u32>) {
   if(p.info.x==16u) {let wrap=wrapLayout(p,slot.zw,i);slot=vec4<f32>(slot.xy+wrap.xy,wrap.zw);}
   if(p.info.x==17u) {let shape=uniformShape(p);let gaps=vec2<f32>(axisSpacing(p,0u),axisSpacing(p,1u));let size=max(vec2<f32>(0.0),slot.zw-(vec2<f32>(shape)-vec2<f32>(1.0))*gaps)/vec2<f32>(shape);var index=uniformFirstColumn(p,shape.x);for(var j=0u;j<p.info.w;j++){let c=child(p,j);if(c==i){break;}if(visible(c)){index++;}}slot=vec4<f32>(slot.xy+vec2<f32>(f32(index%shape.x),f32(index/shape.x))*(size+gaps),size);}
   if(p.info.x==18u) {slot=vec4<f32>(slot.xy,n.available.zw);}
-  if(p.info.x==13u) { slot.w=max(slot.w,n.available.w); }
+  if(p.info.x==13u) { if(horizontalScroll(p)){slot.z=max(slot.z,n.available.z);}slot.w=max(slot.w,n.available.w); }
  }
  slot=vec4<f32>(slot.xy+n.margin.xy,max(vec2<f32>(0.0),slot.zw-n.margin.xy-n.margin.zw));
  var desired=max(vec2<f32>(0.0),n.available.zw-n.margin.xy-n.margin.zw);

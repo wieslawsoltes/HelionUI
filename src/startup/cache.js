@@ -2,7 +2,7 @@
 // Cache use is opt-in with an application revision key. Local/private fonts are
 // deliberately not persisted. Storage denial, blocked databases and eviction miss.
 const DATABASE = 'helion-startup-v1';
-const REVISION = 'helion-0.15.0-abi3-typography1';
+const REVISION = 'helion-0.15.0-abi3-responsive1';
 const MAX_BYTES = 72 * 1024 * 1024;
 function canonical(value) {
   if (value === undefined) return ['undefined'];
