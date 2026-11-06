@@ -39,7 +39,7 @@ async function boot(data=lastBootData){
  const token=++bootEpoch;lastBootData=data;bootNotice('Loading the real font and preparing compute pipelines…');
  let next;
  try{
-  next=await HelionSurface.mount($('workbench'),createGPUShell({...data,examples}),{fontSources:localFonts||EDITOR_FONT_SOURCES,signal:controller.signal,startupCache:!localFonts&&data===defaultBootData?'playground-public-example-v1':false,limits,autoStart:false,startupWorker:true,maxFramesInFlight:2,submissionMode:'vsync',performanceHUD:false,profiling:true,gpuTiming:true,timingDetail:'off',onAction:action,onKey:keyboard,editorChangeEvents:false,onStartup:e=>{if(token===bootEpoch){if(e.stage==='ready')$('boot').hidden=true;else bootNotice(e.detail);}},onError:error=>{bootNotice(error.message);log('error',error.message);},onDiagnosticsError:error=>log('warning',error.message)});
+  next=await HelionSurface.mount($('workbench'),createGPUShell({...data,examples}),{fontSources:localFonts||EDITOR_FONT_SOURCES,textShaping:'opentype',signal:controller.signal,startupCache:!localFonts&&data===defaultBootData?'playground-public-example-v1':false,limits,autoStart:false,startupWorker:true,maxFramesInFlight:2,submissionMode:'vsync',performanceHUD:false,profiling:true,gpuTiming:true,timingDetail:'off',onAction:action,onKey:keyboard,editorChangeEvents:false,onStartup:e=>{if(token===bootEpoch){if(e.stage==='ready')$('boot').hidden=true;else bootNotice(e.detail);}},onError:error=>{bootNotice(error.message);log('error',error.message);},onDiagnosticsError:error=>log('warning',error.message)});
   if(token!==bootEpoch){next.dispose();return;}
   workbench=next;globalThis.helionWorkbench=workbench;
   if(data.dataset)workbench.dataSource('dataset').replace(data.dataset);

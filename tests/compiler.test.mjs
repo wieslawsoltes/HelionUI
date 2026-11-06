@@ -65,8 +65,8 @@ test('custom row data packs text and numeric cells once', () => {
   const t = c.tables[0].offset, row = c.heap[t + 3], name = c.heap[row]; assert.equal(c.heap[name], 1); assert.equal(c.heap[name + 1], 65); assert.equal(fromBits(c.heap[row + 1]), 4.25); assert.equal(c.heap[t + 21], 0);
 });
 test('complete showcase fits capacity, has five pages and one GPU table', () => {
-  const c = compile(createShowcase()); assert.equal(c.nodeCount, 224); assert.equal(c.tables[0].rowCount, 65536); assert.equal(c.animations, 8);
-  assert.ok(c.heap.byteLength < 5 * 1024 * 1024); assert.equal(c.maxDepth, 8); assert.ok(c.state[48] > 0);
+  const c = compile(createShowcase()); assert.equal(c.nodeCount, 230); assert.equal(c.tables[0].rowCount, 65536); assert.equal(c.animations, 8);
+  assert.ok(c.heap.byteLength < 5 * 1024 * 1024); assert.equal(c.maxDepth, 9); assert.ok(c.state[48] > 0);
 });
 test('HTML adapter produces equivalent declarations without a DOM renderer', () => {
   const el = (tagName, props, children = [], value = '') => ({ tagName, attributes: Object.entries(props).map(([name, value]) => ({ name, value })), children, childNodes: [{ nodeType: 3, textContent: value }] });

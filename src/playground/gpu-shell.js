@@ -95,10 +95,10 @@ export function createGPUShell({code='',css='',notes='',data=JSON.stringify(INIT
  const base=createWorkbench({code,css,...(notes?{notes}:{})});
  const oldDock=base.children[1];
  const watch=node=>{if(node.props?.id==='source-editor'||node.props?.id==='style-editor')node.props.changeAction='source-changed';for(const child of node.children??[])watch(child);};watch(base);
- const text=(value,props={})=>h('TextBlock',{text:value,fontSize:12,foreground:'#adc2d1',...props});
+ const text=(value,props={})=>h('TextBlock',{text:value,fontSize:12,foreground:'#b2b2bf',...props});
  const button=(title,name,value=0,props={})=>h('Button',{text:title,classes:'tool',height:32,width:94,action:hostAction(name,value),...props});
  const pane=(id,title,view)=>h('DockItem',{id,title},view);
- const doc={fontFamily:'Noto Sans Mono',fontSize:12,editorLineHeight:20,documentCapacity:65536,historyCapacity:131072,background:'#142229',foreground:'#cfdfeb',clip:true};
+ const doc={fontFamily:'Noto Sans Mono',fontSize:12,editorLineHeight:20,documentCapacity:65536,historyCapacity:131072,background:'#151519',foreground:'#cfdfeb',clip:true};
  const files=[{key:100,label:'WORKSPACE',children:[{key:0,label:'app.js'},{key:1,label:'styles.css'},{key:2,label:'notes.txt'},{key:3,label:'data.json'},{key:4,label:'Live dataset'},{key:5,label:'GPU view model'},{key:6,label:'Console'},{key:7,label:'API guide'},{key:8,label:'Live preview'}]}];
  const dockLayout=DockSplit('horizontal',.17,DockTabs(['explorer-pane']),DockSplit('horizontal',.57,
    DockSplit('vertical',.76,DockTabs(['source-pane','style-pane','notes-pane','data-editor-pane'],'source-pane'),DockTabs(['console-pane','model-pane','help-pane'],'console-pane')),
@@ -106,8 +106,8 @@ export function createGPUShell({code='',css='',notes='',data=JSON.stringify(INIT
  const source=dataSource({key:'id',capacity:4096,stringCapacity:131072,inboxCapacity:131072,
   columns:[{field:'name',title:'Name',type:'text',width:230},{field:'value',title:'Value',type:'number',width:115,editable:true},{field:'enabled',title:'Enabled',type:'boolean',width:105}],rows:INITIAL_ROWS.map(r=>({...r}))});
  const menu=defineModel({settings:field('bool',false)},{commands:{openSettings:{assign:{settings:true}},closeSettings:{assign:{settings:false}}}});
- const settings=Dialog({id:'settings-dialog',width:590,height:566,modelBind:modelBinding('shell','settings',{property:'visible'}),action:{type:'model',model:'shell',command:'closeSettings'}},
-  h('Grid',{rows:'34 * 38',gap:12},text('WORKSPACE SETTINGS',{fontSize:19,foreground:'#80ddc2'}),
+ const settings=Dialog({id:'settings-dialog',responsive:true,width:590,height:566,modelBind:modelBinding('shell','settings',{property:'visible'}),action:{type:'model',model:'shell',command:'closeSettings'}},
+  h('Grid',{rows:'34 * 38',gap:12},text('WORKSPACE SETTINGS',{fontSize:19,foreground:'#b9a7ff'}),
    h('ScrollViewer',{row:1},h('StackPanel',{gap:12},
     h('CheckBox',{id:'auto-run',text:'Auto-run editor input (900 ms debounce)',action:hostAction('auto-run'),height:30,fontSize:12}),
     h('CheckBox',{id:'hud-option',text:'GPU performance overlay',action:hostAction('hud'),height:30,fontSize:12}),
@@ -115,26 +115,29 @@ export function createGPUShell({code='',css='',notes='',data=JSON.stringify(INIT
     h('CheckBox',{id:'asap-option',text:'As fast as possible (off by default)',action:hostAction('asap'),height:30,fontSize:12}),
     text('GPU timestamps are an opt-in diagnostic, not a scanout measurement.',{wrap:true,fontSize:11}),
     Toolbar({height:40},button('Frame timing','timing',1,{width:130}),button('No timestamps','timing',0,{width:134}),button('Stage timing','timing',2,{width:130})),
+    Toolbar({height:36},button('Open file','open',0,{width:100}),button('Export JS','export-js',0,{width:105})),
     Toolbar({height:36},button('Reopen panes','reopen',0,{width:122}),button('Save layout','save-layout',0,{width:114}),button('Load layout','load-layout',0,{width:114})),
     Toolbar({height:36},button('API guide','help',0,{width:105}),button('Designer','designer',0,{width:100}),button('Typography','typography',0,{width:112})),
-    text('TEXT / DISPLAY',{foreground:'#80ddc2'}),
+    text('TEXT / DISPLAY',{foreground:'#b9a7ff'}),
     Toolbar({height:36},button('Sharp curves','text-quality',0,{width:144}),button('Reference','text-quality',1,{width:124})),
     Toolbar({height:36},button('Native pixels','resolution',0,{width:144}),button('Balanced 2048','resolution',1,{width:144})),
     text('Native pixels use more GPU memory/bandwidth on high-DPI displays.',{fontSize:11,wrap:true}),
     text('Font change is a snapshot/remount and resets undo history.',{fontSize:11,wrap:true}))),
    h('StackPanel',{row:2,orientation:'horizontal',gap:10},button('Local fonts','fonts',0,{width:130}),h('Button',{text:'Close',width:90,height:32,classes:'tool',action:{type:'model',model:'shell',command:'closeSettings'}}))));
- const core=h('Grid',{id:'shell-layout',rows:'46 36 * 26',background:'#101b21'},
-   Toolbar({id:'shell-toolbar',height:46,padding:4},
-    text('Playground',{width:115,fontSize:15,foreground:'#e0ebe6',verticalAlignment:'center'}),
-    button('Run app','run',0,{width:92,background:'#367b68',foreground:'#f1ffff'}),button('Stop','stop',0,{width:64}),
+ const core=h('Grid',{id:'shell-layout',rows:'46 36 * 26',background:'#111114'},
+   Toolbar({id:'shell-toolbar',height:46,padding:4,minViewportWidth:960},
+    text('Playground',{width:115,fontSize:15,foreground:'#eeeef2',verticalAlignment:'center'}),
+    button('Run app','run',0,{width:92,background:'#b9a7ff',foreground:'#211936'}),button('Stop','stop',0,{width:64}),
     button('Open','open',0,{width:62}),button('Save','save',0,{width:62}),button('Export JS','export-js',0,{width:92}),
     h('Button',{text:'Settings',height:32,width:86,classes:'tool',action:{type:'model',model:'shell',command:'openSettings'}})),
+   h('Grid',{height:46,padding:[10,8],columns:'* 55 48 50 68',gap:5,background:'#151519',maxViewportWidth:959},
+    text('Playground',{fontSize:13,verticalAlignment:'center'}),button('Run','run',0,{column:1,width:55,height:30,background:'#b9a7ff',foreground:'#211936'}),button('Stop','stop',0,{column:2,width:48,height:30}),button('Save','save',0,{column:3,width:50,height:30}),h('Button',{column:4,text:'Settings',classes:'tool',height:30,action:{type:'model',model:'shell',command:'openSettings'}})),
    {...base.children[0],props:{...base.children[0].props,row:1}},
-   h('DockWorkspace',{id:'workspace-dock',row:2,background:'#0e1924',dockLayout},
+   h('DockWorkspace',{id:'workspace-dock',row:2,dockBreakpoint:960,dockPrimary:'source-pane',background:'#151519',dockLayout},
     ...oldDock.children,
     pane('explorer-pane','Explorer',h('Grid',{rows:'172 30 36 *',gap:7,padding:8},
       h('TreeView',{id:'documents',items:files,rowHeight:25,fontSize:11,foreground:'#bcd3e0',action:hostAction('document'),itemCapacity:64,itemTextCapacity:2048}),
-      text('EXAMPLES',{row:1,foreground:'#80ddc2',verticalAlignment:'center'}),
+      text('EXAMPLES',{row:1,foreground:'#b9a7ff',verticalAlignment:'center'}),
       h('TextBox',{id:'example-search',row:2,height:34,fontSize:12}),
       h('ListBox',{id:'examples',row:3,items:examples.map((e,key)=>({key,label:e.name})),filter:'example-search',rowHeight:34,fontSize:11,action:hostAction('example'),itemCapacity:256,itemTextCapacity:8192}))),
     pane('console-pane','Console',h('Grid',{rows:'35 *'},Toolbar({height:35},button('Clear','clear-log',0,{width:70,height:28}),button('Read model','inspect-model',0,{height:28,width:102}),button('Frame sync','inspect-frames',0,{height:28,width:102})),h('TextEditor',{...doc,id:'console-editor',row:1,readOnly:true,lineNumbers:false,wordWrap:true,text:'The GPU workspace is ready. Run an example or apply a dataset.\n'}))),
@@ -143,12 +146,12 @@ export function createGPUShell({code='',css='',notes='',data=JSON.stringify(INIT
     pane('data-pane','Live dataset',h('Grid',{rows:'36 36 *',gap:4,padding:6},
      Toolbar({height:36},button('Patch','patch-data',0,{width:66,height:28}),button('Add','add-data',0,{width:56,height:28}),button('Remove last','remove-data',0,{width:112,height:28}),button('Clear','clear-data',0,{width:64,height:28})),
      h('Grid',{row:1,columns:'* 115',gap:8},h('TextBox',{id:'data-search',height:32,fontSize:12}),text('Rows ',{column:1,verticalAlignment:'center',bind:{metric:'rows'}})),
-     h('DataGrid',{id:'dataset',row:2,itemsSource:source,filter:'data-search',rowHeight:30,fontSize:12,background:'#142229',borderWidth:1,borderColor:'#293f52'}))),
-    pane('preview-pane','Live preview',h('Grid',{rows:'36 *',background:'#101b27'},
+     h('DataGrid',{id:'dataset',row:2,itemsSource:source,filter:'data-search',rowHeight:30,fontSize:12,background:'#151519',borderWidth:1,borderColor:'#293f52'}))),
+    pane('preview-pane','Live preview',h('Grid',{rows:'36 *',background:'#19191f'},
      Toolbar({height:36},button('Fit','viewport',0,{width:48,height:28}),button('Desktop','viewport',1,{width:86,height:28}),button('Tablet','viewport',2,{width:80,height:28}),button('Phone','viewport',3,{width:72,height:28}),button('FPS','hud-toggle',0,{width:56,height:28})),
-     h('SurfacePresenter',{id:'preview',row:1,presenterWidth:0,presenterHeight:0,text:'Run app to attach a GPU preview',fontSize:15,foreground:'#91aabd',background:'#0c1823',padding:6})))),
-   h('Grid',{row:3,columns:'* 215',padding:[10,4],background:'#142229'},
+     h('SurfacePresenter',{id:'preview',row:1,presenterWidth:0,presenterHeight:0,text:'Run app to attach a GPU preview',fontSize:15,foreground:'#a0a0ad',background:'#121215',padding:6})))),
+   h('Grid',{row:3,columns:'* 215',padding:[10,4],background:'#151519'},
      text('Ready · Ctrl/Cmd+Enter runs · Ctrl/Cmd+S saves',{id:'runtime-status',textCapacity:512,fontSize:10}),
-     text('Single canvas / shared queue',{column:1,fontSize:10,foreground:'#80ddc2'})));
- return h('Panel',{id:'gpu-playground',fontFamily:'Noto Sans Mono',styles:WORKBENCH_STYLE,models:{...base.props.models,shell:menu},background:'#101b21'},core,settings);
+     text('Single canvas / shared queue',{column:1,fontSize:10,foreground:'#b9a7ff'})));
+ return h('Panel',{id:'gpu-playground',fontFamily:'Noto Sans',styles:WORKBENCH_STYLE,models:{...base.props.models,shell:menu},background:'#111114'},core,settings);
 }

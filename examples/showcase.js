@@ -4,22 +4,22 @@ import {defineModel,field,modelBinding} from '../src/models/index.js';
 import {BUILD_VERSION} from '../src/version.js';
 import { h, HelionSurface, DEFAULT_FONT_SOURCES, clearStartupCache } from '../src/index.js';
 
-const C = { base: '#101b21', panel: '#19282e', inset: '#142229', line: '#304149', text: '#e0ebe6', muted: '#9aafa8', accent: '#80ddc2', green: '#9ecb88', violet: '#b5a1ed' };
+const C = { base: '#111114', panel: '#19191f', inset: '#151519', line: '#303038', text: '#eeeef2', muted: '#a0a0ad', accent: '#b9a7ff', green: '#9ecb88', violet: '#b5a1ed' };
 const text = (value, props = {}) => h('TextBlock', { text: value, fontSize: 13, foreground: C.text, ...props });
-const button = (value, action, props = {}) => h('Button', { text: value, action, fontSize: 12, height: 34, radius: 7, background: '#22363d', foreground: C.text, ...props });
+const button = (value, action, props = {}) => h('Button', { text: value, action, fontSize: 11, height: 30, radius: 6, background: '#202027', foreground: C.text, ...props });
 const card = (props, ...children) => h('Grid', { padding: 18, background: C.panel, radius: 12, borderColor: C.line, borderWidth: 1, ...props }, ...children);
-const stat = (label, metric, props = {}) => card({ rows: '22 *', padding: 15, ...props },
-  text(label, { foreground: C.muted, fontSize: 11 }), text('', { row: 1, fontSize: 27, foreground: C.accent, bind: { metric } }));
+const stat = (label, metric, props = {}) => card({ rows: '17 *', padding: 12, ...props },
+  text(label, { foreground: C.muted, fontSize: 11 }), text('', { row: 1, fontSize: 25, foreground: C.accent, bind: { metric } }));
 const orbitPath = 'M 50 6 C 77 6 94 24 94 50 C 94 76 76 94 50 94 C 24 94 6 76 6 50 C 6 24 24 6 50 6 Z';
 const helixPath = 'M 8 50 C 8 0 42 0 50 50 C 58 100 92 100 92 50 C 92 0 58 0 50 50 C 42 100 8 100 8 50';
 const compose = (property, from, to, duration, extra = {}) => ({ property, from, to, duration, speed: 'speed', ...extra });
 
 export function createShowcase({ rowCount = 65536 } = {}) {
-  return h('Grid', { id: 'root', rows: '66 50 * 28', background: C.base, models:{tools:defineModel({open:field('bool',false)},{commands:{open:{assign:{open:true}},close:{assign:{open:false}}}})} },
-    h('Grid', { id: 'header', columns: 'auto * auto auto auto auto', padding: 16, gap: 10, background: '#142229' },
+  const view=h('Grid', { id: 'root', rows: '48 42 * 26', background: C.base, models:{tools:defineModel({open:field('bool',false)},{commands:{open:{assign:{open:true}},close:{assign:{open:false}}}})} },
+    h('Grid', { id: 'header', columns: 'auto * auto auto auto auto', padding: [12,7], gap: 8, background: '#151519' },
       h('StackPanel', { orientation: 'horizontal', gap: 10 },
-        h('Path', { width: 27, height: 30, path: 'M 1 2 L 8 2 L 8 12 L 20 12 L 20 2 L 27 2 L 27 29 L 20 29 L 20 19 L 8 19 L 8 29 L 1 29 Z', foreground: C.accent }),
-        text('HELION', { fontSize: 22, verticalAlignment: 'center' })),
+        h('Path', { width: 21, height: 24, minViewportWidth:780, path: 'M 1 2 L 8 2 L 8 12 L 20 12 L 20 2 L 27 2 L 27 29 L 20 29 L 20 19 L 8 19 L 8 29 L 1 29 Z', foreground: C.accent }),
+        text('Showcase', { fontSize: 16, verticalAlignment: 'center' })),
       text('GPU-RESIDENT UI LAB', { column: 1, minViewportWidth: 780, fontSize: 11, foreground: C.muted, verticalAlignment: 'center', margin: [15, 0] }),
       button('Pause / run', 'animations', { id: 'pause', column: 2, width: 112, minViewportWidth: 630 }),
       button('Bounds', 'bounds', { id: 'bounds', column: 3, width: 78, minViewportWidth: 460 }),
@@ -28,7 +28,7 @@ export function createShowcase({ rowCount = 65536 } = {}) {
       ...['Data', 'Layout', 'Motion', 'Design', 'Type'].map((title, page) => button(title, { type: 'page', value: page }, { id: `tab${page}`, column: page }))),
     // All pages are uploaded once. Page switching only changes GPU visibility and invalidates layout.
     h('Grid', { id: 'dataPage', row: 2, page: 0, columns: '* auto', padding: 16, gap: 16 },
-      h('Grid', { rows: '90 44 *', gap: 14 },
+      h('Grid', { rows: '76 42 *', gap: 14 },
         h('Grid', { columns: '* * auto', gap: 12 },
           stat('RESIDENT ROWS', 'rows', { id: 'residentRows' }),
           stat('QUERY MATCHES', 'matched', { column: 1 }),
@@ -70,7 +70,7 @@ export function createShowcase({ rowCount = 65536 } = {}) {
                 h('ProgressBar', { height: 9, foreground: C.green, bind: { source: 'layoutSlider' } }))))),
         card({ column: 1, rows: 'auto *', gap: 14 }, text('02  SCROLL + CLIP', { fontSize: 12, foreground: C.accent }),
           h('ScrollViewer', { row: 1, background: C.inset, padding: 12, radius: 8 },
-            h('StackPanel', { gap: 12 }, ...Array.from({ length: 14 }, (_, i) => h('Border', { height: 82, background: i % 2 ? '#23303f' : '#1c2d3b', radius: 8, padding: 14 },
+            h('StackPanel', { gap: 12 }, ...Array.from({ length: 14 }, (_, i) => h('Border', { height: 82, background: i % 2 ? '#23303f' : '#202027', radius: 8, padding: 14 },
               h('StackPanel', { gap: 8 }, text(`Retained view  ${String(i + 1).padStart(2, '0')}`, { fontSize: 13 }), text('Wheel input updates GPU scroll state.', { wrap: true, fontSize: 11, foreground: C.muted }))))))))),
     h('Grid', { row: 2, page: 2, padding: 20, rows: 'auto * auto', gap: 18 },
       h('StackPanel', { gap: 8 }, text('Layout stays still. Pixels move.', { fontSize: 25, wrap: true }),
@@ -130,6 +130,17 @@ export function createShowcase({ rowCount = 65536 } = {}) {
     h('Grid', { row: 3, columns: '* auto', padding: 7, background: '#101a24' },
       text('EXPERIMENTAL / WebGPU required / no DOM renderer', { fontSize: 10, foreground: C.muted }),
       text('HOST BYTES SENT  ', { column: 1, fontSize: 10, bind: { metric: 'upload' }, foreground: C.muted, minViewportWidth: 680 })),showcaseTools());
+  // Responsive panels are one retained tree. The GPU chooses the column count.
+  const layout=view.children.find(node=>node.props?.page===1),cards=layout.children[1];
+  cards.type='UniformGrid';cards.props={minColumnWidth:320,gap:16,verticalAlignment:'start'};
+  for(const child of cards.children)child.props={...child.props,column:0,height:420};
+  layout.children[1]=h('ScrollViewer',{row:1},cards);
+  const motion=view.children.find(node=>node.props?.page===2),stage=motion.children[1],items=stage.children[0].children;
+  items[2].props.x=42;items[2].props.y=25;items[3].props.x=58;items[3].props.y=50;items[4].props.x=48;items[4].props.y=48;
+  stage.children[0]=h('ScrollViewer',{},h('UniformGrid',{id:'motionCanvas',minColumnWidth:240,gap:12,verticalAlignment:'start'},
+    h('Canvas',{height:270},items[0],items[1]),...items.slice(2).map(item=>h('Canvas',{height:270},item))));
+  stage.children[1].props.text='Each example reflows on the GPU. Resize the window to explore the same retained scene.';
+  return view;
 }
 
 function showcaseTools(){
