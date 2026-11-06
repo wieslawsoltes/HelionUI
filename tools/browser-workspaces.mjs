@@ -42,7 +42,7 @@ try{
  check('Tests directory pauses both tools',await designer.evaluate(()=>!helionDesigner.running)&&await playground.evaluate(()=>!helionWorkbench.running));
  check('Revisiting tools creates no duplicate frames',await page.locator('iframe').count()===2);
  // First test button: ensure asynchronous GPU host actions open the test URL.
- const popupPromise=page.waitForEvent('popup');await clickHub('test-link-gpu');const popup=await popupPromise;await popup.waitForLoadState();
+ const popupPromise=page.waitForEvent('popup');await clickHub('test-link-gpu');const popup=await popupPromise;await popup.waitForURL(url=>url.pathname.endsWith('/tests/gpu.html'));await popup.waitForLoadState();
  check('GPU test link opens the real browser harness',new URL(popup.url()).pathname.endsWith('/tests/gpu.html'));await popup.close();
  await page.setViewportSize({width:390,height:844});await page.evaluate(()=>location.hash='home');
  await page.waitForTimeout(250);await page.screenshot({path:'/tmp/helion-workspaces-mobile.png'});
@@ -54,6 +54,9 @@ try{
  check('Real touch drag scrolls the GPU landing page',await page.evaluate(async()=>{const s=helionHub,{state}=await s.inspect({includeNodes:false});return new Float32Array(state.buffer)[64+s.id('overview')*16+1]>0;}));
  await clickHub('nav-small-designer');await page.waitForURL('**/#designer');await designer.waitForFunction(()=>helionDesigner.running&&helionDesigner.viewport.width===390);
  check('Narrow Designer shows a full-width retained artboard',await designer.evaluate(async()=>{const s=helionDesigner,{nodes}=await s.inspect(),f=new Float32Array(nodes.buffer);return Math.abs(f[s.id('artboard-pane')*72+54]-390)<1;}));
+ const settingsPoint=await designer.evaluate(async()=>{const s=helionDesigner,{nodes}=await s.inspect(),f=new Float32Array(nodes.buffer),at=s.id('designer-settings-open-compact')*72;return{x:f[at+52]+f[at+54]/2,y:f[at+53]+f[at+55]/2};});
+ const canvasBox=await designer.locator('canvas').first().boundingBox();await page.mouse.click(canvasBox.x+settingsPoint.x,canvasBox.y+settingsPoint.y);await page.waitForTimeout(150);
+ check('Mobile settings dialog spans the workspace and fits the viewport',await designer.evaluate(async()=>{const s=helionDesigner,{nodes}=await s.inspect(),f=new Float32Array(nodes.buffer),at=s.id('designer-settings')*72,card=at+72;return f[at+55]>500&&f[card+52]>=0&&f[card+53]>=0&&f[card+52]+f[card+54]<=s.viewport.width&&f[card+53]+f[card+55]<=s.viewport.height;}));
  await page.evaluate(()=>location.hash='home');
  await page.setViewportSize({width:1440,height:1000});await page.waitForTimeout(250);await page.screenshot({path:'/tmp/helion-workspaces-desktop.png'});
  check('No browser script errors',errors.length===0);report.status='PASS';
