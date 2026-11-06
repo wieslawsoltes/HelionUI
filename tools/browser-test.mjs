@@ -88,9 +88,9 @@ try {
           if (s.faulted||s.stats.completedFrames<=before.completedFrames) throw new Error(s.errors.join('\n')||'GPU frames stopped completing');
           if (s.stats.readbackBytes!==before.readbackBytes) throw new Error('Idle frame readback');
           const a=s.adapterInfo;
-          const {status,cache,fontMs,compileMs,adapterAndShadersMs,deviceMs,shaderModulesMs,uploadAndBindingsMs,pipelineMs,mountMs,startedAt,firstCompletedMs,pipelineEntries}=s.startup;
+          const {status,cache,fontMs,compileMs,adapterAndShadersMs,deviceMs,shaderModulesMs,uploadAndBindingsMs,pipelineMs,pipelineConcurrency,mountMs,startedAt,firstCompletedMs,pipelineEntries}=s.startup;
           return {adapter:{vendor:a.vendor,architecture:a.architecture,device:a.device,description:a.description},
-            startup:{status,cache,fontMs,compileMs,adapterAndShadersMs,deviceMs,shaderModulesMs,uploadAndBindingsMs,pipelineMs,mountMs,firstCompletedMs,
+            startup:{status,cache,fontMs,compileMs,adapterAndShadersMs,deviceMs,shaderModulesMs,uploadAndBindingsMs,pipelineMs,pipelineConcurrency,mountMs,firstCompletedMs,
               navigationToFirstCompletedMs:startedAt+firstCompletedMs,pipelineEntries},
             viewport:s.resolution,stats:{...s.stats},idleReadbackBytes:s.stats.readbackBytes-before.readbackBytes,
             network:performance.getEntriesByType('resource').map(r=>({url:r.name.startsWith('data:')?'embedded module':r.name,bytes:r.transferSize,durationMs:r.duration}))};

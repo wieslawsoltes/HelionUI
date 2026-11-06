@@ -59,7 +59,7 @@ The standalone designer is **1,713,323 bytes instead of 2,359,684 bytes — 27.3
 ```js
 const surface = await HelionSurface.mount(canvas, view, {
   shaderCompilation: 'partitioned', // default; 'monolithic' is a diagnostic comparison
-  pipelineConcurrency: 4,          // unchanged default
+  pipelineConcurrency: 8,          // current bounded default
   startupTimeoutMs: 60000,         // overall preparation/upload wait
   pipelineTimeoutMs: 30000,        // adapter/module/pipeline wait
   gpuWatchdogMs: 10000,            // outstanding-frame acknowledgement progress

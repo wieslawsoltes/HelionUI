@@ -212,7 +212,7 @@ test('runtime host: manual rendering does not invent a browser refresh frequency
 test('runtime host: no font sources or prepared outline objects are retained in surface options',async()=>{
  const f=await fixture({options:{fonts:[fixtureFont()]}});try{
   assert.equal(f.surface.options.fonts,undefined);assert.equal(f.surface.options.fontSources,undefined);
-  assert.equal(f.surface.startup.pipelineConcurrency,4);assert.ok(f.surface.startup.compileMs>=0);
+  assert.equal(f.surface.startup.pipelineConcurrency,8);assert.ok(f.surface.startup.compileMs>=0);
  }finally{f.close();}
 });
 

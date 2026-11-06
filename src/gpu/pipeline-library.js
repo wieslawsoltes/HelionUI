@@ -48,7 +48,7 @@ export async function prepareGPU(limits, options, startup, report) {
     maxStorageBufferBindingSize: Math.min(adapter.limits.maxStorageBufferBindingSize, Math.max(128 * 1024 * 1024, largest)),
     maxBufferSize: Math.min(adapter.limits.maxBufferSize, Math.max(256 * 1024 * 1024, largest))
   };
-  const concurrency = options.pipelineConcurrency ?? 4;
+  const concurrency = options.pipelineConcurrency ?? 8;
   if (!Number.isInteger(concurrency) || concurrency < 1 || concurrency > 32) throw new RangeError('pipelineConcurrency must be 1–32');
   try {
     let begin = performance.now();

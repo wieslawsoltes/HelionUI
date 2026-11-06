@@ -24,7 +24,7 @@ All ten runs produced identical SHA-256 values for the complete compiled node, i
 
 **Unicode mark classification.** The old path performed approximately 1.1 million separate JavaScript regex tests. The new path scans 4,096-scalar strings with the browser's native Unicode regex engine: 272 chunks covering the same complete scalar range, merging ranges across chunk boundaries. It still uses the executing browser's Unicode categories, not a reduced or pinned substitute. An exhaustive host test compares all 1,114,112 codepoints against the old predicate. This computation overlaps pending font requests in the startup worker.
 
-**Parallel preparation.** Font I/O, parsing and scene packing are independent of adapter selection, shader loading, shader-module validation and pipeline creation. Mount starts both paths together. Pipeline creation uses a bounded asynchronous batch of four by default, instead of awaiting each pipeline before starting the next. All 30 core compute entries, the metrics pipeline and presentation remain present. Shader code and compiler optimization quality are not weakened. `pipelineConcurrency` accepts 1–32; the browser/driver decides how much native parallelism is actually available.
+**Parallel preparation.** Font I/O, parsing and scene packing are independent of adapter selection, shader loading, shader-module validation and pipeline creation. Mount starts both paths together. Pipeline creation uses a bounded asynchronous batch of eight by default, instead of awaiting each pipeline before starting the next. All enabled core compute entries, the metrics pipeline and presentation remain present. Shader code and compiler optimization quality are not weakened. `pipelineConcurrency` accepts 1–32; the browser/driver decides how much native parallelism is actually available.
 
 **One resource-graph analysis.** The controlled shader function/resource graph is cached by exact source instead of rebuilt for every entry. Checked shader modules pop their device error scopes before yielding, so concurrent checks cannot mismatch scope stacks; detailed original-file diagnostics remain available. Failed pipeline batches settle before device cleanup.
 
@@ -66,7 +66,7 @@ const surface = await HelionSurface.mount(canvas, view, {
   fontSources: DEFAULT_FONT_SOURCES,
   startupWorker: true,                 // default
   startupCache: 'my-app-assets-v1',     // opt in; omit for sensitive initial data
-  pipelineConcurrency: 4,              // default
+  pipelineConcurrency: 8,              // default
   maxFramesInFlight: 2,                // new default
   performanceHUD: true,
   onStartup(event) { console.log(event.stage, event.elapsedMs); }
