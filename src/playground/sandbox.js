@@ -21,7 +21,7 @@ const AsyncFunction=Object.getPrototypeOf(async function(){}).constructor;
 `;
 }
 
-function frameBootstrap() {
+function frameBootstrap(applicationBootstrap) {
  let worker,channel,run,blob;
  const send=(type,data)=>parent.postMessage({helion:channel,run,type,...data},'*');
  addEventListener('message',event=>{
@@ -37,7 +37,7 @@ function frameBootstrap() {
  });
  parent.postMessage({helionSandboxReady:true},'*');
 }
-export function sandboxDocument() {return `<!doctype html><meta charset="utf-8"><meta http-equiv="Content-Security-Policy" content="${SANDBOX_CSP}"><script>const applicationBootstrap=${applicationBootstrap.toString()};(${frameBootstrap.toString()})()<\/script>`;}
+export function sandboxDocument() {return `<!doctype html><meta charset="utf-8"><meta http-equiv="Content-Security-Policy" content="${SANDBOX_CSP}"><script>const applicationBootstrap=${applicationBootstrap.toString()};(${frameBootstrap.toString()})(applicationBootstrap)<\/script>`;}
 export class AppSandbox {
  constructor({bundle,onMessage,timeoutMs=8000}={}){if(typeof bundle!=='string')throw new TypeError('Authoring bundle required');this.bundle=bundle;this.onMessage=onMessage;this.timeoutMs=timeoutMs;this.runId=0;}
  run(code){this.stop();if(typeof code!=='string'||code.length>256000)throw new RangeError('App source is limited to 256K characters');

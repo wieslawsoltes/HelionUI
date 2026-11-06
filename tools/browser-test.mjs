@@ -77,6 +77,7 @@ try {
     try {
       const response = await page.goto(new URL(path,args.base).href,{waitUntil:'domcontentloaded'});
       if (!response?.ok()) throw new Error(`Navigation HTTP ${response?.status()}`);
+      if(args['compile-probe']&&await page.locator('script[data-helion-bundle]').count())throw new Error('--compile-probe requires the unbundled source server, not published bundles');
       if (path.includes('?autorun')) {
         await page.waitForFunction(()=>Object.keys(globalThis).some(key=>/^__HELION_.*(?:RESULT|CHECK)__$/.test(key)&&['PASS','FAIL'].includes(globalThis[key]?.status)),null,{timeout:180000});
         item.gate = await page.evaluate(()=>Object.entries(globalThis).find(([key,value])=>/^__HELION_.*(?:RESULT|CHECK)__$/.test(key)&&['PASS','FAIL'].includes(value?.status))?.[1]);

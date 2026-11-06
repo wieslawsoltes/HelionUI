@@ -197,6 +197,7 @@ Normal explicit frame records are 64 bytes per active retained surface: **128 by
 ## Build and validate
 
 ```sh
+npm ci # install the pinned build/test tooling (no runtime npm dependencies)
 npm test
 npm run check
 # Optional developer TypeScript compiler:

@@ -1,5 +1,5 @@
 import {launchScript, launchPages} from './launch-bootstrap.mjs';
-import {modulePreloadScript,startupWorkerScript} from './module-preloads.mjs';
+import {publishedBundles,publishedHTML} from './published-bundles.mjs';
 import {gzipSync} from 'node:zlib';
 import { buildWorkerSource, buildAuthoringSource } from './build-worker.mjs';
 import { readdir, readFile, mkdir, writeFile, cp, rm } from 'node:fs/promises';
@@ -14,15 +14,12 @@ for (const page of launchPages) {
 }
 const files = [...(await walk('src')).filter(f => f.endsWith('.js')), 'examples/showcase.js','playground/app.js','playground/examples.js','designer/app.js','designer/examples.js','designer/runner.js','typography/app.js','typography/view.js'];
 const imports = {};
-const moduleGraph = new Map();
 for (const file of files) {
   let code = await readFile(resolve(root, file), 'utf8');
-  const dependencies=[];
   code = code.replace(/(\bfrom\s*|\bimport\s*)['"](\.[^'"]+)['"]/g, (_, prefix, relative) => {
-    const target=posix.normalize(posix.join(posix.dirname(file),relative));dependencies.push(target);
+    const target=posix.normalize(posix.join(posix.dirname(file),relative));
     return `${prefix}'@helion.bundle/${target}'`;
   });
-  moduleGraph.set(file,dependencies);
   code += `\n//# sourceURL=helion/${file}\n`;
   imports[`@helion.bundle/${file}`] = `data:text/javascript;base64,${Buffer.from(code).toString('base64')}`;
 }
@@ -46,11 +43,14 @@ ${launchScript('@helion.bundle/designer/runner.js',{standalone:true})}`);
 await writeFile(resolve(root,'designer/export-template.html'),exportTemplate);
 for (const file of ['index.html', 'README.md', 'LICENSE', 'NOTICE', 'START-HERE.md', 'serve-helion.py', 'start-helion.command', 'start-helion.sh', 'start-helion.cmd']) await cp(resolve(root, file), resolve(out, file));
 for (const dir of ['src', 'shaders', 'examples', 'docs', 'tests', 'playground', 'designer', 'typography']) await cp(resolve(root, dir), resolve(out, dir), { recursive: true });
-// Published source routes discover the complete required module graph at once.
-// Embedded standalone/export pages already contain their modules and omit hints.
+// Published routes share a few cacheable modules; standalone exports retain
+// their exact, independent source graph and embedded startup worker.
+const published=await publishedBundles(root,out);
+await mkdir(resolve(out,'assets'),{recursive:true});
+for(const file of published.files)await writeFile(file.path,file.contents);
 for(const page of launchPages){
   const path=resolve(out,page.file),html=await readFile(path,'utf8');
-  await writeFile(path,html.replace('<script data-helion-launch>',startupWorkerScript(page.file)+'\n'+modulePreloadScript(moduleGraph,page.bundle,page.file)+'\n<script data-helion-launch>'));
+  await writeFile(path,publishedHTML(html,page,published));
 }
 console.log(`Built dist/ and dist/helion-standalone.html (${Buffer.byteLength(standalone).toLocaleString()} bytes). Application code is embedded. Real fonts load at mount from configured sources or local files.`);
 
