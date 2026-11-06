@@ -1,0 +1,1917 @@
+{
+  "date": "2026-11-06",
+  "baselineCommit": "5c1e6bd",
+  "implementationCommits": [
+    "9732503",
+    "b6d1491",
+    "271a1e5",
+    "3a065f7"
+  ],
+  "scope": "Single-machine observational samples. Headed Chrome on Apple metal-3. Unrelated compiler jobs and a busy Chrome renderer were observed; total navigation timings are not isolated speedup estimates or cold-driver guarantees. Our browser experiments were sequential. GPU elapsed ranges include overlap/waits, not exclusive busy time.",
+  "analysis": {
+    "scope": "Partitioning plus all 85 resource closures. Fresh sources, alternating warm Node process; exact output/binding equivalence.",
+    "rows": [
+      [
+        {
+          "side": "before",
+          "ms": 85.098042
+        },
+        {
+          "side": "after",
+          "ms": 37.09537499999999
+        }
+      ],
+      [
+        {
+          "side": "after",
+          "ms": 33.369999999999976
+        },
+        {
+          "side": "before",
+          "ms": 61.08133300000003
+        }
+      ],
+      [
+        {
+          "side": "before",
+          "ms": 62.32708400000001
+        },
+        {
+          "side": "after",
+          "ms": 32.88679199999996
+        }
+      ],
+      [
+        {
+          "side": "after",
+          "ms": 29.773415999999997
+        },
+        {
+          "side": "before",
+          "ms": 52.16966700000006
+        }
+      ],
+      [
+        {
+          "side": "before",
+          "ms": 48.01920800000005
+        },
+        {
+          "side": "after",
+          "ms": 18.824459000000047
+        }
+      ],
+      [
+        {
+          "side": "after",
+          "ms": 34.797333000000094
+        },
+        {
+          "side": "before",
+          "ms": 48.932083000000034
+        }
+      ],
+      [
+        {
+          "side": "before",
+          "ms": 64.37933299999997
+        },
+        {
+          "side": "after",
+          "ms": 23.93612500000006
+        }
+      ],
+      [
+        {
+          "side": "after",
+          "ms": 20.668957999999975
+        },
+        {
+          "side": "before",
+          "ms": 48.957583
+        }
+      ],
+      [
+        {
+          "side": "before",
+          "ms": 68.9950419999999
+        },
+        {
+          "side": "after",
+          "ms": 25.22462500000006
+        }
+      ]
+    ],
+    "medianMs": {
+      "before": 61.08133300000003,
+      "after": 29.773415999999997
+    },
+    "exactShaderAndBindingEquality": true
+  },
+  "workerAlternatingExperiment": [
+    {
+      "visit": 0,
+      "bundled": false,
+      "cache": "miss",
+      "workerReadyMs": 107.89999985694885,
+      "navigationMs": 1223.8999998569489,
+      "pipelineMs": 380.59999990463257,
+      "errors": []
+    },
+    {
+      "visit": 0,
+      "bundled": true,
+      "cache": "hit",
+      "workerReadyMs": 33.200000047683716,
+      "navigationMs": 557.4000000953674,
+      "pipelineMs": 284,
+      "errors": []
+    },
+    {
+      "visit": 1,
+      "bundled": true,
+      "cache": "hit",
+      "workerReadyMs": 43,
+      "navigationMs": 647.5999999046326,
+      "pipelineMs": 320.5,
+      "errors": []
+    },
+    {
+      "visit": 1,
+      "bundled": false,
+      "cache": "hit",
+      "workerReadyMs": 79.29999995231628,
+      "navigationMs": 551.5999999046326,
+      "pipelineMs": 309.90000009536743,
+      "errors": []
+    },
+    {
+      "visit": 2,
+      "bundled": false,
+      "cache": "hit",
+      "workerReadyMs": 56.09999990463257,
+      "navigationMs": 501.40000009536743,
+      "pipelineMs": 275.80000019073486,
+      "errors": []
+    },
+    {
+      "visit": 2,
+      "bundled": true,
+      "cache": "hit",
+      "workerReadyMs": 33.39999985694885,
+      "navigationMs": 475.59999990463257,
+      "pipelineMs": 263.2999999523163,
+      "errors": []
+    },
+    {
+      "visit": 3,
+      "bundled": true,
+      "cache": "hit",
+      "workerReadyMs": 45.200000047683716,
+      "navigationMs": 526.3999998569489,
+      "pipelineMs": 275.40000009536743,
+      "errors": []
+    },
+    {
+      "visit": 3,
+      "bundled": false,
+      "cache": "hit",
+      "workerReadyMs": 56.5,
+      "navigationMs": 498.40000009536743,
+      "pipelineMs": 267.2999999523163,
+      "errors": []
+    }
+  ],
+  "discardedExperiments": {
+    "pipelineConcurrency": [
+      {
+        "path": "designer/",
+        "n": 8,
+        "visit": 0,
+        "navigationMs": 942.5,
+        "pipelineMs": 316.7000000476837,
+        "cache": "miss",
+        "errors": []
+      },
+      {
+        "path": "designer/",
+        "n": 16,
+        "visit": 0,
+        "navigationMs": 511.59999990463257,
+        "pipelineMs": 245.5,
+        "cache": "hit",
+        "errors": []
+      },
+      {
+        "path": "designer/",
+        "n": 32,
+        "visit": 0,
+        "navigationMs": 462.7999999523163,
+        "pipelineMs": 238.20000004768372,
+        "cache": "hit",
+        "errors": []
+      },
+      {
+        "path": "designer/",
+        "n": 32,
+        "visit": 1,
+        "navigationMs": 453.7999999523163,
+        "pipelineMs": 235,
+        "cache": "hit",
+        "errors": []
+      },
+      {
+        "path": "designer/",
+        "n": 16,
+        "visit": 1,
+        "navigationMs": 447.59999990463257,
+        "pipelineMs": 231.59999990463257,
+        "cache": "hit",
+        "errors": []
+      },
+      {
+        "path": "designer/",
+        "n": 8,
+        "visit": 1,
+        "navigationMs": 454.30000019073486,
+        "pipelineMs": 233,
+        "cache": "hit",
+        "errors": []
+      },
+      {
+        "path": "designer/",
+        "n": 8,
+        "visit": 2,
+        "navigationMs": 457.5,
+        "pipelineMs": 240.90000009536743,
+        "cache": "hit",
+        "errors": []
+      },
+      {
+        "path": "designer/",
+        "n": 16,
+        "visit": 2,
+        "navigationMs": 470.89999985694885,
+        "pipelineMs": 241.20000004768372,
+        "cache": "hit",
+        "errors": []
+      },
+      {
+        "path": "designer/",
+        "n": 32,
+        "visit": 2,
+        "navigationMs": 464.2000000476837,
+        "pipelineMs": 247,
+        "cache": "hit",
+        "errors": []
+      },
+      {
+        "path": "designer/",
+        "n": 32,
+        "visit": 3,
+        "navigationMs": 480.5,
+        "pipelineMs": 238.70000004768372,
+        "cache": "hit",
+        "errors": []
+      },
+      {
+        "path": "designer/",
+        "n": 16,
+        "visit": 3,
+        "navigationMs": 476.2999999523163,
+        "pipelineMs": 248.59999990463257,
+        "cache": "hit",
+        "errors": []
+      },
+      {
+        "path": "designer/",
+        "n": 8,
+        "visit": 3,
+        "navigationMs": 448.60000014305115,
+        "pipelineMs": 251.59999990463257,
+        "cache": "hit",
+        "errors": []
+      },
+      {
+        "path": "",
+        "n": 8,
+        "visit": 0,
+        "navigationMs": 563.5999999046326,
+        "pipelineMs": 146.79999995231628,
+        "cache": "miss",
+        "errors": []
+      },
+      {
+        "path": "",
+        "n": 16,
+        "visit": 0,
+        "navigationMs": 274.5,
+        "pipelineMs": 125,
+        "cache": "hit",
+        "errors": []
+      },
+      {
+        "path": "",
+        "n": 32,
+        "visit": 0,
+        "navigationMs": 287.2000000476837,
+        "pipelineMs": 139.29999995231628,
+        "cache": "hit",
+        "errors": []
+      },
+      {
+        "path": "",
+        "n": 32,
+        "visit": 1,
+        "navigationMs": 300.5,
+        "pipelineMs": 144.39999985694885,
+        "cache": "hit",
+        "errors": []
+      },
+      {
+        "path": "",
+        "n": 16,
+        "visit": 1,
+        "navigationMs": 295,
+        "pipelineMs": 123.40000009536743,
+        "cache": "hit",
+        "errors": []
+      },
+      {
+        "path": "",
+        "n": 8,
+        "visit": 1,
+        "navigationMs": 287.89999985694885,
+        "pipelineMs": 136.09999990463257,
+        "cache": "hit",
+        "errors": []
+      },
+      {
+        "path": "",
+        "n": 8,
+        "visit": 2,
+        "navigationMs": 289,
+        "pipelineMs": 132.5,
+        "cache": "hit",
+        "errors": []
+      },
+      {
+        "path": "",
+        "n": 16,
+        "visit": 2,
+        "navigationMs": 278.09999990463257,
+        "pipelineMs": 124.90000009536743,
+        "cache": "hit",
+        "errors": []
+      },
+      {
+        "path": "",
+        "n": 32,
+        "visit": 2,
+        "navigationMs": 293,
+        "pipelineMs": 140.09999990463257,
+        "cache": "hit",
+        "errors": []
+      },
+      {
+        "path": "",
+        "n": 32,
+        "visit": 3,
+        "navigationMs": 324.59999990463257,
+        "pipelineMs": 143.29999995231628,
+        "cache": "hit",
+        "errors": []
+      },
+      {
+        "path": "",
+        "n": 16,
+        "visit": 3,
+        "navigationMs": 281.7999999523163,
+        "pipelineMs": 126.70000004768372,
+        "cache": "hit",
+        "errors": []
+      },
+      {
+        "path": "",
+        "n": 8,
+        "visit": 3,
+        "navigationMs": 286.2000000476837,
+        "pipelineMs": 141.40000009536743,
+        "cache": "hit",
+        "errors": []
+      }
+    ],
+    "synchronousPipelines": [
+      {
+        "path": "",
+        "n": 0,
+        "visit": 0,
+        "navigationMs": 1214.7999999523163,
+        "pipelineMs": 184,
+        "cache": "miss",
+        "errors": []
+      },
+      {
+        "path": "",
+        "n": 1,
+        "visit": 0,
+        "navigationMs": 604.7999999523163,
+        "pipelineMs": 317.7999999523163,
+        "cache": "hit",
+        "errors": []
+      },
+      {
+        "path": "",
+        "n": 1,
+        "visit": 1,
+        "navigationMs": 656.2000000476837,
+        "pipelineMs": 371.5,
+        "cache": "hit",
+        "errors": []
+      },
+      {
+        "path": "",
+        "n": 0,
+        "visit": 1,
+        "navigationMs": 455.2000000476837,
+        "pipelineMs": 189.79999995231628,
+        "cache": "hit",
+        "errors": []
+      },
+      {
+        "path": "",
+        "n": 0,
+        "visit": 2,
+        "navigationMs": 392.69999980926514,
+        "pipelineMs": 149.39999985694885,
+        "cache": "hit",
+        "errors": []
+      },
+      {
+        "path": "",
+        "n": 1,
+        "visit": 2,
+        "navigationMs": 711.9000000953674,
+        "pipelineMs": 331.39999985694885,
+        "cache": "hit",
+        "errors": []
+      },
+      {
+        "path": "",
+        "n": 1,
+        "visit": 3,
+        "navigationMs": 663.5,
+        "pipelineMs": 386.90000009536743,
+        "cache": "hit",
+        "errors": []
+      },
+      {
+        "path": "",
+        "n": 0,
+        "visit": 3,
+        "navigationMs": 373.60000014305115,
+        "pipelineMs": 154.10000014305115,
+        "cache": "hit",
+        "errors": []
+      }
+    ],
+    "decision": "Keep bounded async preparation at eight; larger batches did not improve Studio and synchronous compute-pipeline creation was slower."
+  },
+  "startup": {
+    "startup-before": {
+      "status": "PASS",
+      "browser": "156.0.8078.80",
+      "base": "http://127.0.0.1:8082/dist/",
+      "scope": "Browser startup and native GPU correctness on the recorded adapter; not cross-browser or cold-cache performance qualification.",
+      "results": [
+        {
+          "path": "",
+          "visit": 1,
+          "status": "PASS",
+          "correctnessStatus": "PASS",
+          "startup": {
+            "status": "ready",
+            "cache": "miss",
+            "fontMs": 385,
+            "compileMs": 100.29999995231628,
+            "adapterAndShadersMs": 34.89999985694885,
+            "deviceMs": 4.799999952316284,
+            "shaderModulesMs": 5.099999904632568,
+            "uploadAndBindingsMs": 16,
+            "pipelineMs": 166.59999990463257,
+            "pipelineConcurrency": 8,
+            "mountMs": 676.7999999523163,
+            "firstCompletedMs": 728.4000000953674,
+            "navigationToFirstCompletedMs": 882
+          },
+          "pageJavaScriptRequests": 120,
+          "idleReadbackBytes": 0
+        },
+        {
+          "path": "",
+          "visit": 2,
+          "status": "PASS",
+          "correctnessStatus": "PASS",
+          "startup": {
+            "status": "ready",
+            "cache": "hit",
+            "fontMs": 0,
+            "compileMs": 0,
+            "adapterAndShadersMs": 31,
+            "deviceMs": 0.5,
+            "shaderModulesMs": 2,
+            "uploadAndBindingsMs": 8.600000143051147,
+            "pipelineMs": 151.29999995231628,
+            "pipelineConcurrency": 8,
+            "mountMs": 215.29999995231628,
+            "firstCompletedMs": 311.09999990463257,
+            "navigationToFirstCompletedMs": 405.90000009536743
+          },
+          "pageJavaScriptRequests": 120,
+          "idleReadbackBytes": 0
+        },
+        {
+          "path": "",
+          "visit": 3,
+          "status": "PASS",
+          "correctnessStatus": "PASS",
+          "startup": {
+            "status": "ready",
+            "cache": "hit",
+            "fontMs": 0,
+            "compileMs": 0,
+            "adapterAndShadersMs": 19.299999952316284,
+            "deviceMs": 0.7000000476837158,
+            "shaderModulesMs": 2.5,
+            "uploadAndBindingsMs": 6.799999952316284,
+            "pipelineMs": 134.5,
+            "pipelineConcurrency": 8,
+            "mountMs": 185.09999990463257,
+            "firstCompletedMs": 208.90000009536743,
+            "navigationToFirstCompletedMs": 269.30000019073486
+          },
+          "pageJavaScriptRequests": 120,
+          "idleReadbackBytes": 0
+        },
+        {
+          "path": "designer/",
+          "visit": 1,
+          "status": "PASS",
+          "correctnessStatus": "PASS",
+          "startup": {
+            "status": "ready",
+            "cache": "miss",
+            "fontMs": 311.2000000476837,
+            "compileMs": 141.79999995231628,
+            "adapterAndShadersMs": 20.799999952316284,
+            "deviceMs": 0.5,
+            "shaderModulesMs": 1.9000000953674316,
+            "uploadAndBindingsMs": 11.599999904632568,
+            "pipelineMs": 272.59999990463257,
+            "pipelineConcurrency": 8,
+            "mountMs": 605.9000000953674,
+            "firstCompletedMs": 701.7000000476837,
+            "navigationToFirstCompletedMs": 793.3999998569489
+          },
+          "pageJavaScriptRequests": 124,
+          "idleReadbackBytes": 0
+        },
+        {
+          "path": "designer/",
+          "visit": 2,
+          "status": "PASS",
+          "correctnessStatus": "PASS",
+          "startup": {
+            "status": "ready",
+            "cache": "hit",
+            "fontMs": 0,
+            "compileMs": 0,
+            "adapterAndShadersMs": 35.40000009536743,
+            "deviceMs": 0.5,
+            "shaderModulesMs": 2.0999999046325684,
+            "uploadAndBindingsMs": 12.399999856948853,
+            "pipelineMs": 331.7999999523163,
+            "pipelineConcurrency": 8,
+            "mountMs": 418.89999985694885,
+            "firstCompletedMs": 522.1999998092651,
+            "navigationToFirstCompletedMs": 596.3999998569489
+          },
+          "pageJavaScriptRequests": 124,
+          "idleReadbackBytes": 0
+        },
+        {
+          "path": "designer/",
+          "visit": 3,
+          "status": "PASS",
+          "correctnessStatus": "PASS",
+          "startup": {
+            "status": "ready",
+            "cache": "hit",
+            "fontMs": 0,
+            "compileMs": 0,
+            "adapterAndShadersMs": 20.299999952316284,
+            "deviceMs": 0.5,
+            "shaderModulesMs": 2.299999952316284,
+            "uploadAndBindingsMs": 11.5,
+            "pipelineMs": 299.5,
+            "pipelineConcurrency": 8,
+            "mountMs": 371.7000000476837,
+            "firstCompletedMs": 496.10000014305115,
+            "navigationToFirstCompletedMs": 578.3000001907349
+          },
+          "pageJavaScriptRequests": 124,
+          "idleReadbackBytes": 0
+        },
+        {
+          "path": "playground/",
+          "visit": 1,
+          "status": "PASS",
+          "correctnessStatus": "PASS",
+          "startup": {
+            "status": "ready",
+            "cache": "miss",
+            "fontMs": 450.10000014305115,
+            "compileMs": 45.89999985694885,
+            "adapterAndShadersMs": 25.799999952316284,
+            "deviceMs": 0.5999999046325684,
+            "shaderModulesMs": 2.4000000953674316,
+            "uploadAndBindingsMs": 6.900000095367432,
+            "pipelineMs": 186.20000004768372,
+            "pipelineConcurrency": 8,
+            "mountMs": 621.4000000953674,
+            "firstCompletedMs": 668,
+            "navigationToFirstCompletedMs": 791.5
+          },
+          "pageJavaScriptRequests": 125,
+          "idleReadbackBytes": 0
+        },
+        {
+          "path": "playground/",
+          "visit": 2,
+          "status": "PASS",
+          "correctnessStatus": "PASS",
+          "startup": {
+            "status": "ready",
+            "cache": "hit",
+            "fontMs": 0,
+            "compileMs": 0,
+            "adapterAndShadersMs": 28.299999952316284,
+            "deviceMs": 0.6000001430511475,
+            "shaderModulesMs": 11.399999856948853,
+            "uploadAndBindingsMs": 8.300000190734863,
+            "pipelineMs": 192.29999995231628,
+            "pipelineConcurrency": 8,
+            "mountMs": 271.7000000476837,
+            "firstCompletedMs": 317.2000000476837,
+            "navigationToFirstCompletedMs": 392.80000019073486
+          },
+          "pageJavaScriptRequests": 125,
+          "idleReadbackBytes": 0
+        },
+        {
+          "path": "playground/",
+          "visit": 3,
+          "status": "PASS",
+          "correctnessStatus": "PASS",
+          "startup": {
+            "status": "ready",
+            "cache": "hit",
+            "fontMs": 0,
+            "compileMs": 0,
+            "adapterAndShadersMs": 25.700000047683716,
+            "deviceMs": 0.7999999523162842,
+            "shaderModulesMs": 2.0999999046325684,
+            "uploadAndBindingsMs": 7.8999998569488525,
+            "pipelineMs": 213.70000004768372,
+            "pipelineConcurrency": 8,
+            "mountMs": 276.7999999523163,
+            "firstCompletedMs": 326,
+            "navigationToFirstCompletedMs": 408.7999999523163
+          },
+          "pageJavaScriptRequests": 125,
+          "idleReadbackBytes": 0
+        },
+        {
+          "path": "typography/",
+          "visit": 1,
+          "status": "PASS",
+          "correctnessStatus": "PASS",
+          "startup": {
+            "status": "ready",
+            "cache": "miss",
+            "fontMs": 328.59999990463257,
+            "compileMs": 108.40000009536743,
+            "adapterAndShadersMs": 20.59999990463257,
+            "deviceMs": 0.5,
+            "shaderModulesMs": 2.1000001430511475,
+            "uploadAndBindingsMs": 9.600000143051147,
+            "pipelineMs": 193,
+            "pipelineConcurrency": 8,
+            "mountMs": 566.7000000476837,
+            "firstCompletedMs": 670.7000000476837,
+            "navigationToFirstCompletedMs": 744.7000000476837
+          },
+          "pageJavaScriptRequests": 121,
+          "idleReadbackBytes": 0
+        },
+        {
+          "path": "typography/",
+          "visit": 2,
+          "status": "PASS",
+          "correctnessStatus": "PASS",
+          "startup": {
+            "status": "ready",
+            "cache": "hit",
+            "fontMs": 0,
+            "compileMs": 0,
+            "adapterAndShadersMs": 17.09999990463257,
+            "deviceMs": 0.7999999523162842,
+            "shaderModulesMs": 11.300000190734863,
+            "uploadAndBindingsMs": 10.299999952316284,
+            "pipelineMs": 228.79999995231628,
+            "pipelineConcurrency": 8,
+            "mountMs": 309.2999999523163,
+            "firstCompletedMs": 416.7999999523163,
+            "navigationToFirstCompletedMs": 483.90000009536743
+          },
+          "pageJavaScriptRequests": 121,
+          "idleReadbackBytes": 0
+        },
+        {
+          "path": "typography/",
+          "visit": 3,
+          "status": "PASS",
+          "correctnessStatus": "PASS",
+          "startup": {
+            "status": "ready",
+            "cache": "hit",
+            "fontMs": 0,
+            "compileMs": 0,
+            "adapterAndShadersMs": 22.100000143051147,
+            "deviceMs": 0.5999999046325684,
+            "shaderModulesMs": 2.1999998092651367,
+            "uploadAndBindingsMs": 7.5,
+            "pipelineMs": 184.90000009536743,
+            "pipelineConcurrency": 8,
+            "mountMs": 245.79999995231628,
+            "firstCompletedMs": 371.7000000476837,
+            "navigationToFirstCompletedMs": 441.7999999523163
+          },
+          "pageJavaScriptRequests": 121,
+          "idleReadbackBytes": 0
+        }
+      ]
+    },
+    "startup-after": {
+      "status": "FAIL",
+      "browser": "156.0.8078.80",
+      "base": "http://127.0.0.1:8080/dist/",
+      "scope": "Browser startup and native GPU correctness on the recorded adapter; not cross-browser or cold-cache performance qualification.",
+      "results": [
+        {
+          "path": "",
+          "visit": 1,
+          "status": "FAIL",
+          "correctnessStatus": "PASS",
+          "startup": {
+            "status": "ready",
+            "cache": "miss",
+            "fontMs": 355,
+            "compileMs": 154.79999995231628,
+            "workerReadyMs": 65.29999995231628,
+            "adapterAndShadersMs": 45.799999952316284,
+            "deviceMs": 6.8999998569488525,
+            "shaderModulesMs": 8.599999904632568,
+            "uploadAndBindingsMs": 17.299999952316284,
+            "pipelineMs": 167.90000009536743,
+            "pipelineConcurrency": 8,
+            "mountMs": 684.1000001430511,
+            "firstCompletedMs": 783.3000001907349,
+            "navigationToFirstCompletedMs": 973.5
+          },
+          "pageJavaScriptRequests": 80,
+          "idleReadbackBytes": 0
+        },
+        {
+          "path": "",
+          "visit": 2,
+          "status": "FAIL",
+          "correctnessStatus": "PASS",
+          "startup": {
+            "status": "ready",
+            "cache": "hit",
+            "fontMs": 0,
+            "compileMs": 0,
+            "workerReadyMs": 39.90000009536743,
+            "adapterAndShadersMs": 28.5,
+            "deviceMs": 1.1000001430511475,
+            "shaderModulesMs": 2.5,
+            "uploadAndBindingsMs": 7.3999998569488525,
+            "pipelineMs": 134.09999990463257,
+            "pipelineConcurrency": 8,
+            "mountMs": 188.59999990463257,
+            "firstCompletedMs": 213.09999990463257,
+            "navigationToFirstCompletedMs": 294.39999985694885
+          },
+          "pageJavaScriptRequests": 80,
+          "idleReadbackBytes": 0
+        },
+        {
+          "path": "",
+          "visit": 3,
+          "status": "FAIL",
+          "correctnessStatus": "PASS",
+          "startup": {
+            "status": "ready",
+            "cache": "hit",
+            "fontMs": 0,
+            "compileMs": 0,
+            "workerReadyMs": 71.29999995231628,
+            "adapterAndShadersMs": 25.59999990463257,
+            "deviceMs": 0.7000000476837158,
+            "shaderModulesMs": 6,
+            "uploadAndBindingsMs": 9.200000047683716,
+            "pipelineMs": 392.2999999523163,
+            "pipelineConcurrency": 8,
+            "mountMs": 450.09999990463257,
+            "firstCompletedMs": 504.39999985694885,
+            "navigationToFirstCompletedMs": 639.2999999523163
+          },
+          "pageJavaScriptRequests": 80,
+          "idleReadbackBytes": 0
+        },
+        {
+          "path": "designer/",
+          "visit": 1,
+          "status": "FAIL",
+          "correctnessStatus": "PASS",
+          "startup": {
+            "status": "ready",
+            "cache": "miss",
+            "fontMs": 317.09999990463257,
+            "compileMs": 116.40000009536743,
+            "workerReadyMs": 31.90000009536743,
+            "adapterAndShadersMs": 17,
+            "deviceMs": 0.5,
+            "shaderModulesMs": 1.8999998569488525,
+            "uploadAndBindingsMs": 14.5,
+            "pipelineMs": 306.7999999523163,
+            "pipelineConcurrency": 8,
+            "mountMs": 572.5,
+            "firstCompletedMs": 703.5,
+            "navigationToFirstCompletedMs": 802.4000000953674
+          },
+          "pageJavaScriptRequests": 84,
+          "idleReadbackBytes": 0
+        },
+        {
+          "path": "designer/",
+          "visit": 2,
+          "status": "FAIL",
+          "correctnessStatus": "PASS",
+          "startup": {
+            "status": "ready",
+            "cache": "hit",
+            "fontMs": 0,
+            "compileMs": 0,
+            "workerReadyMs": 37.40000009536743,
+            "adapterAndShadersMs": 20.899999856948853,
+            "deviceMs": 0.5,
+            "shaderModulesMs": 3,
+            "uploadAndBindingsMs": 11.400000095367432,
+            "pipelineMs": 284.39999985694885,
+            "pipelineConcurrency": 8,
+            "mountMs": 340.10000014305115,
+            "firstCompletedMs": 421.90000009536743,
+            "navigationToFirstCompletedMs": 523.5
+          },
+          "pageJavaScriptRequests": 84,
+          "idleReadbackBytes": 0
+        },
+        {
+          "path": "designer/",
+          "visit": 3,
+          "status": "FAIL",
+          "correctnessStatus": "PASS",
+          "startup": {
+            "status": "ready",
+            "cache": "hit",
+            "fontMs": 0,
+            "compileMs": 0,
+            "workerReadyMs": 35.299999952316284,
+            "adapterAndShadersMs": 22.5,
+            "deviceMs": 0.40000009536743164,
+            "shaderModulesMs": 1.9000000953674316,
+            "uploadAndBindingsMs": 10.299999952316284,
+            "pipelineMs": 264.2999999523163,
+            "pipelineConcurrency": 8,
+            "mountMs": 318,
+            "firstCompletedMs": 405,
+            "navigationToFirstCompletedMs": 484.7999999523163
+          },
+          "pageJavaScriptRequests": 84,
+          "idleReadbackBytes": 0
+        },
+        {
+          "path": "playground/",
+          "visit": 1,
+          "status": "FAIL",
+          "correctnessStatus": "PASS",
+          "startup": {
+            "status": "ready",
+            "cache": "miss",
+            "fontMs": 256.7999999523163,
+            "compileMs": 46.40000009536743,
+            "workerReadyMs": 27.09999990463257,
+            "adapterAndShadersMs": 17.299999952316284,
+            "deviceMs": 0.39999985694885254,
+            "shaderModulesMs": 2,
+            "uploadAndBindingsMs": 8.599999904632568,
+            "pipelineMs": 168.79999995231628,
+            "pipelineConcurrency": 8,
+            "mountMs": 380.39999985694885,
+            "firstCompletedMs": 422.5,
+            "navigationToFirstCompletedMs": 486.7000000476837
+          },
+          "pageJavaScriptRequests": 85,
+          "idleReadbackBytes": 0
+        },
+        {
+          "path": "playground/",
+          "visit": 2,
+          "status": "FAIL",
+          "correctnessStatus": "PASS",
+          "startup": {
+            "status": "ready",
+            "cache": "hit",
+            "fontMs": 0,
+            "compileMs": 0,
+            "workerReadyMs": 36.80000019073486,
+            "adapterAndShadersMs": 24.299999952316284,
+            "deviceMs": 0.7999999523162842,
+            "shaderModulesMs": 2.200000047683716,
+            "uploadAndBindingsMs": 6.200000047683716,
+            "pipelineMs": 168,
+            "pipelineConcurrency": 8,
+            "mountMs": 221.60000014305115,
+            "firstCompletedMs": 251.60000014305115,
+            "navigationToFirstCompletedMs": 320
+          },
+          "pageJavaScriptRequests": 85,
+          "idleReadbackBytes": 0
+        },
+        {
+          "path": "playground/",
+          "visit": 3,
+          "status": "FAIL",
+          "correctnessStatus": "PASS",
+          "startup": {
+            "status": "ready",
+            "cache": "hit",
+            "fontMs": 0,
+            "compileMs": 0,
+            "workerReadyMs": 55.5,
+            "adapterAndShadersMs": 24.200000047683716,
+            "deviceMs": 0.40000009536743164,
+            "shaderModulesMs": 3.3999998569488525,
+            "uploadAndBindingsMs": 6.5,
+            "pipelineMs": 178.5,
+            "pipelineConcurrency": 8,
+            "mountMs": 231.70000004768372,
+            "firstCompletedMs": 276.60000014305115,
+            "navigationToFirstCompletedMs": 357.60000014305115
+          },
+          "pageJavaScriptRequests": 85,
+          "idleReadbackBytes": 0
+        },
+        {
+          "path": "typography/",
+          "visit": 1,
+          "status": "FAIL",
+          "correctnessStatus": "PASS",
+          "startup": {
+            "status": "ready",
+            "cache": "miss",
+            "fontMs": 286.69999980926514,
+            "compileMs": 67.5,
+            "workerReadyMs": 30.40000009536743,
+            "adapterAndShadersMs": 17.5,
+            "deviceMs": 0.39999985694885254,
+            "shaderModulesMs": 2.1000001430511475,
+            "uploadAndBindingsMs": 9.799999952316284,
+            "pipelineMs": 161.79999995231628,
+            "pipelineConcurrency": 8,
+            "mountMs": 448.19999980926514,
+            "firstCompletedMs": 530.8999998569489,
+            "navigationToFirstCompletedMs": 618.3999998569489
+          },
+          "pageJavaScriptRequests": 81,
+          "idleReadbackBytes": 0
+        },
+        {
+          "path": "typography/",
+          "visit": 2,
+          "status": "FAIL",
+          "correctnessStatus": "PASS",
+          "startup": {
+            "status": "ready",
+            "cache": "hit",
+            "fontMs": 0,
+            "compileMs": 0,
+            "workerReadyMs": 47.5,
+            "adapterAndShadersMs": 30.899999856948853,
+            "deviceMs": 0.7999999523162842,
+            "shaderModulesMs": 3.6000001430511475,
+            "uploadAndBindingsMs": 8.299999952316284,
+            "pipelineMs": 202.10000014305115,
+            "pipelineConcurrency": 8,
+            "mountMs": 266.2999999523163,
+            "firstCompletedMs": 382,
+            "navigationToFirstCompletedMs": 455.59999990463257
+          },
+          "pageJavaScriptRequests": 81,
+          "idleReadbackBytes": 0
+        },
+        {
+          "path": "typography/",
+          "visit": 3,
+          "status": "FAIL",
+          "correctnessStatus": "PASS",
+          "startup": {
+            "status": "ready",
+            "cache": "hit",
+            "fontMs": 0,
+            "compileMs": 0,
+            "workerReadyMs": 33.40000009536743,
+            "adapterAndShadersMs": 20.5,
+            "deviceMs": 0.7000000476837158,
+            "shaderModulesMs": 2.0999999046325684,
+            "uploadAndBindingsMs": 8.799999952316284,
+            "pipelineMs": 169.90000009536743,
+            "pipelineConcurrency": 8,
+            "mountMs": 218.39999985694885,
+            "firstCompletedMs": 342.59999990463257,
+            "navigationToFirstCompletedMs": 448.09999990463257
+          },
+          "pageJavaScriptRequests": 81,
+          "idleReadbackBytes": 0
+        }
+      ]
+    },
+    "final-startup": {
+      "status": "FAIL",
+      "browser": "156.0.8078.80",
+      "base": "http://127.0.0.1:8080/dist/",
+      "scope": "Browser startup and native GPU correctness on the recorded adapter; not cross-browser or cold-cache performance qualification.",
+      "results": [
+        {
+          "path": "",
+          "visit": 1,
+          "status": "FAIL",
+          "correctnessStatus": "PASS",
+          "startup": {
+            "status": "ready",
+            "cache": "miss",
+            "fontMs": 406.19999980926514,
+            "compileMs": 137.40000009536743,
+            "workerReadyMs": 60.59999990463257,
+            "adapterAndShadersMs": 58.5,
+            "deviceMs": 4.599999904632568,
+            "shaderModulesMs": 4.6000001430511475,
+            "uploadAndBindingsMs": 16,
+            "pipelineMs": 196.5,
+            "pipelineConcurrency": 8,
+            "mountMs": 709.1999998092651,
+            "firstCompletedMs": 763.5,
+            "navigationToFirstCompletedMs": 836.7000000476837
+          },
+          "pageJavaScriptRequests": 3,
+          "idleReadbackBytes": 0
+        },
+        {
+          "path": "",
+          "visit": 2,
+          "status": "FAIL",
+          "correctnessStatus": "PASS",
+          "startup": {
+            "status": "ready",
+            "cache": "hit",
+            "fontMs": 0,
+            "compileMs": 0,
+            "workerReadyMs": 69,
+            "adapterAndShadersMs": 38,
+            "deviceMs": 1.1000001430511475,
+            "shaderModulesMs": 3.3999998569488525,
+            "uploadAndBindingsMs": 7.6000001430511475,
+            "pipelineMs": 174.5,
+            "pipelineConcurrency": 8,
+            "mountMs": 239.70000004768372,
+            "firstCompletedMs": 265.09999990463257,
+            "navigationToFirstCompletedMs": 310
+          },
+          "pageJavaScriptRequests": 3,
+          "idleReadbackBytes": 0
+        },
+        {
+          "path": "",
+          "visit": 3,
+          "status": "FAIL",
+          "correctnessStatus": "PASS",
+          "startup": {
+            "status": "ready",
+            "cache": "hit",
+            "fontMs": 0,
+            "compileMs": 0,
+            "workerReadyMs": 40.5,
+            "adapterAndShadersMs": 30,
+            "deviceMs": 0.5,
+            "shaderModulesMs": 2.200000047683716,
+            "uploadAndBindingsMs": 6.799999952316284,
+            "pipelineMs": 143.09999990463257,
+            "pipelineConcurrency": 8,
+            "mountMs": 197.40000009536743,
+            "firstCompletedMs": 221.5,
+            "navigationToFirstCompletedMs": 248.89999985694885
+          },
+          "pageJavaScriptRequests": 3,
+          "idleReadbackBytes": 0
+        },
+        {
+          "path": "designer/",
+          "visit": 1,
+          "status": "FAIL",
+          "correctnessStatus": "PASS",
+          "startup": {
+            "status": "ready",
+            "cache": "miss",
+            "fontMs": 352.7000000476837,
+            "compileMs": 262.5,
+            "workerReadyMs": 30.700000047683716,
+            "adapterAndShadersMs": 17.200000047683716,
+            "deviceMs": 0.5,
+            "shaderModulesMs": 1.9000000953674316,
+            "uploadAndBindingsMs": 13.399999856948853,
+            "pipelineMs": 258.89999985694885,
+            "pipelineConcurrency": 8,
+            "mountMs": 827.6999998092651,
+            "firstCompletedMs": 927.5,
+            "navigationToFirstCompletedMs": 969.6000001430511
+          },
+          "pageJavaScriptRequests": 4,
+          "idleReadbackBytes": 0
+        },
+        {
+          "path": "designer/",
+          "visit": 2,
+          "status": "FAIL",
+          "correctnessStatus": "PASS",
+          "startup": {
+            "status": "ready",
+            "cache": "hit",
+            "fontMs": 0,
+            "compileMs": 0,
+            "workerReadyMs": 120.79999995231628,
+            "adapterAndShadersMs": 71.40000009536743,
+            "deviceMs": 0.6000001430511475,
+            "shaderModulesMs": 11.200000047683716,
+            "uploadAndBindingsMs": 9.200000047683716,
+            "pipelineMs": 331.2000000476837,
+            "pipelineConcurrency": 8,
+            "mountMs": 450.90000009536743,
+            "firstCompletedMs": 564,
+            "navigationToFirstCompletedMs": 646.7000000476837
+          },
+          "pageJavaScriptRequests": 4,
+          "idleReadbackBytes": 0
+        },
+        {
+          "path": "designer/",
+          "visit": 3,
+          "status": "FAIL",
+          "correctnessStatus": "PASS",
+          "startup": {
+            "status": "ready",
+            "cache": "hit",
+            "fontMs": 0,
+            "compileMs": 0,
+            "workerReadyMs": 108.5,
+            "adapterAndShadersMs": 113.79999995231628,
+            "deviceMs": 0.40000009536743164,
+            "shaderModulesMs": 5,
+            "uploadAndBindingsMs": 8.700000047683716,
+            "pipelineMs": 277.09999990463257,
+            "pipelineConcurrency": 8,
+            "mountMs": 428.40000009536743,
+            "firstCompletedMs": 495.30000019073486,
+            "navigationToFirstCompletedMs": 561.9000000953674
+          },
+          "pageJavaScriptRequests": 4,
+          "idleReadbackBytes": 0
+        },
+        {
+          "path": "playground/",
+          "visit": 1,
+          "status": "FAIL",
+          "correctnessStatus": "PASS",
+          "startup": {
+            "status": "ready",
+            "cache": "miss",
+            "fontMs": 262.89999985694885,
+            "compileMs": 40.799999952316284,
+            "workerReadyMs": 33.60000014305115,
+            "adapterAndShadersMs": 22.90000009536743,
+            "deviceMs": 0.7999999523162842,
+            "shaderModulesMs": 1.8999998569488525,
+            "uploadAndBindingsMs": 7.700000047683716,
+            "pipelineMs": 162.29999995231628,
+            "pipelineConcurrency": 8,
+            "mountMs": 382.10000014305115,
+            "firstCompletedMs": 421.2000000476837,
+            "navigationToFirstCompletedMs": 453.2999999523163
+          },
+          "pageJavaScriptRequests": 3,
+          "idleReadbackBytes": 0
+        },
+        {
+          "path": "playground/",
+          "visit": 2,
+          "status": "FAIL",
+          "correctnessStatus": "PASS",
+          "startup": {
+            "status": "ready",
+            "cache": "hit",
+            "fontMs": 0,
+            "compileMs": 0,
+            "workerReadyMs": 35.90000009536743,
+            "adapterAndShadersMs": 23.199999809265137,
+            "deviceMs": 1,
+            "shaderModulesMs": 3.0999999046325684,
+            "uploadAndBindingsMs": 5.8999998569488525,
+            "pipelineMs": 179.90000009536743,
+            "pipelineConcurrency": 8,
+            "mountMs": 229.59999990463257,
+            "firstCompletedMs": 261,
+            "navigationToFirstCompletedMs": 304.10000014305115
+          },
+          "pageJavaScriptRequests": 3,
+          "idleReadbackBytes": 0
+        },
+        {
+          "path": "playground/",
+          "visit": 3,
+          "status": "FAIL",
+          "correctnessStatus": "PASS",
+          "startup": {
+            "status": "ready",
+            "cache": "hit",
+            "fontMs": 0,
+            "compileMs": 0,
+            "workerReadyMs": 44.80000019073486,
+            "adapterAndShadersMs": 26,
+            "deviceMs": 6.400000095367432,
+            "shaderModulesMs": 1.9000000953674316,
+            "uploadAndBindingsMs": 6.8999998569488525,
+            "pipelineMs": 174.29999995231628,
+            "pipelineConcurrency": 8,
+            "mountMs": 232.29999995231628,
+            "firstCompletedMs": 264.2999999523163,
+            "navigationToFirstCompletedMs": 298.7999999523163
+          },
+          "pageJavaScriptRequests": 3,
+          "idleReadbackBytes": 0
+        },
+        {
+          "path": "typography/",
+          "visit": 1,
+          "status": "FAIL",
+          "correctnessStatus": "PASS",
+          "startup": {
+            "status": "ready",
+            "cache": "miss",
+            "fontMs": 265.10000014305115,
+            "compileMs": 65.90000009536743,
+            "workerReadyMs": 28.09999990463257,
+            "adapterAndShadersMs": 15.599999904632568,
+            "deviceMs": 0.40000009536743164,
+            "shaderModulesMs": 1.9000000953674316,
+            "uploadAndBindingsMs": 7.400000095367432,
+            "pipelineMs": 152.29999995231628,
+            "pipelineConcurrency": 8,
+            "mountMs": 409.5,
+            "firstCompletedMs": 476.7000000476837,
+            "navigationToFirstCompletedMs": 515.4000000953674
+          },
+          "pageJavaScriptRequests": 3,
+          "idleReadbackBytes": 0
+        },
+        {
+          "path": "typography/",
+          "visit": 2,
+          "status": "FAIL",
+          "correctnessStatus": "PASS",
+          "startup": {
+            "status": "ready",
+            "cache": "hit",
+            "fontMs": 0,
+            "compileMs": 0,
+            "workerReadyMs": 48.299999952316284,
+            "adapterAndShadersMs": 26.199999809265137,
+            "deviceMs": 8.200000047683716,
+            "shaderModulesMs": 2.3000001907348633,
+            "uploadAndBindingsMs": 6,
+            "pipelineMs": 182.29999995231628,
+            "pipelineConcurrency": 8,
+            "mountMs": 242.20000004768372,
+            "firstCompletedMs": 311.2000000476837,
+            "navigationToFirstCompletedMs": 354.2000000476837
+          },
+          "pageJavaScriptRequests": 3,
+          "idleReadbackBytes": 0
+        },
+        {
+          "path": "typography/",
+          "visit": 3,
+          "status": "FAIL",
+          "correctnessStatus": "PASS",
+          "startup": {
+            "status": "ready",
+            "cache": "hit",
+            "fontMs": 0,
+            "compileMs": 0,
+            "workerReadyMs": 48,
+            "adapterAndShadersMs": 22.299999952316284,
+            "deviceMs": 0.5999999046325684,
+            "shaderModulesMs": 2.5999999046325684,
+            "uploadAndBindingsMs": 6.200000047683716,
+            "pipelineMs": 180.90000009536743,
+            "pipelineConcurrency": 8,
+            "mountMs": 228.70000004768372,
+            "firstCompletedMs": 298.90000009536743,
+            "navigationToFirstCompletedMs": 340.90000009536743
+          },
+          "pageJavaScriptRequests": 3,
+          "idleReadbackBytes": 0
+        }
+      ]
+    },
+    "final-source": {
+      "status": "PASS",
+      "browser": "156.0.8078.80",
+      "base": "http://127.0.0.1:8080/",
+      "scope": "Browser startup and native GPU correctness on the recorded adapter; not cross-browser or cold-cache performance qualification.",
+      "results": [
+        {
+          "path": "",
+          "visit": 1,
+          "status": "PASS",
+          "correctnessStatus": "PASS",
+          "startup": {
+            "status": "ready",
+            "cache": "miss",
+            "fontMs": 451.2999999523163,
+            "compileMs": 145.20000004768372,
+            "workerReadyMs": 82.29999995231628,
+            "adapterAndShadersMs": 25,
+            "deviceMs": 4.6000001430511475,
+            "shaderModulesMs": 6.200000047683716,
+            "uploadAndBindingsMs": 16.200000047683716,
+            "pipelineMs": 160.80000019073486,
+            "pipelineConcurrency": 8,
+            "mountMs": 775.5,
+            "firstCompletedMs": 826.2999999523163,
+            "navigationToFirstCompletedMs": 956.2000000476837
+          },
+          "pageJavaScriptRequests": 120,
+          "idleReadbackBytes": 0
+        },
+        {
+          "path": "designer/",
+          "visit": 1,
+          "status": "PASS",
+          "correctnessStatus": "PASS",
+          "startup": {
+            "status": "ready",
+            "cache": "miss",
+            "fontMs": 358.5,
+            "compileMs": 173.90000009536743,
+            "workerReadyMs": 50.10000014305115,
+            "adapterAndShadersMs": 20.600000143051147,
+            "deviceMs": 0.7999999523162842,
+            "shaderModulesMs": 2.9000000953674316,
+            "uploadAndBindingsMs": 13.700000047683716,
+            "pipelineMs": 359,
+            "pipelineConcurrency": 8,
+            "mountMs": 733.6000001430511,
+            "firstCompletedMs": 856.8000001907349,
+            "navigationToFirstCompletedMs": 951.4000000953674
+          },
+          "pageJavaScriptRequests": 124,
+          "idleReadbackBytes": 0
+        },
+        {
+          "path": "playground/",
+          "visit": 1,
+          "status": "PASS",
+          "correctnessStatus": "PASS",
+          "startup": {
+            "status": "ready",
+            "cache": "miss",
+            "fontMs": 465.40000009536743,
+            "compileMs": 82.90000009536743,
+            "workerReadyMs": 50.700000047683716,
+            "adapterAndShadersMs": 20.5,
+            "deviceMs": 0.5999999046325684,
+            "shaderModulesMs": 2.8000001907348633,
+            "uploadAndBindingsMs": 9.5,
+            "pipelineMs": 217.09999990463257,
+            "pipelineConcurrency": 8,
+            "mountMs": 667.9000000953674,
+            "firstCompletedMs": 714,
+            "navigationToFirstCompletedMs": 859.2000000476837
+          },
+          "pageJavaScriptRequests": 125,
+          "idleReadbackBytes": 0
+        },
+        {
+          "path": "typography/",
+          "visit": 1,
+          "status": "PASS",
+          "correctnessStatus": "PASS",
+          "startup": {
+            "status": "ready",
+            "cache": "miss",
+            "fontMs": 338.7999999523163,
+            "compileMs": 124.10000014305115,
+            "workerReadyMs": 51.10000014305115,
+            "adapterAndShadersMs": 21.5,
+            "deviceMs": 0.5999999046325684,
+            "shaderModulesMs": 4.299999952316284,
+            "uploadAndBindingsMs": 6.8999998569488525,
+            "pipelineMs": 192.80000019073486,
+            "pipelineConcurrency": 8,
+            "mountMs": 594.7999999523163,
+            "firstCompletedMs": 699.7999999523163,
+            "navigationToFirstCompletedMs": 789.7999999523163
+          },
+          "pageJavaScriptRequests": 121,
+          "idleReadbackBytes": 0
+        }
+      ]
+    },
+    "final-standalone": {
+      "status": "PASS",
+      "browser": "156.0.8078.80",
+      "base": "http://127.0.0.1:8080/dist/",
+      "scope": "Browser startup and native GPU correctness on the recorded adapter; not cross-browser or cold-cache performance qualification.",
+      "results": [
+        {
+          "path": "helion-standalone.html",
+          "visit": 1,
+          "status": "PASS",
+          "correctnessStatus": "PASS",
+          "startup": {
+            "status": "ready",
+            "cache": "miss",
+            "fontMs": 369.5,
+            "compileMs": 118.5,
+            "workerReadyMs": 28.800000190734863,
+            "adapterAndShadersMs": 15.400000095367432,
+            "deviceMs": 0.8000001907348633,
+            "shaderModulesMs": 2.0999999046325684,
+            "uploadAndBindingsMs": 10.299999952316284,
+            "pipelineMs": 164.5,
+            "pipelineConcurrency": 8,
+            "mountMs": 580.2999999523163,
+            "firstCompletedMs": 637.5999999046326,
+            "navigationToFirstCompletedMs": 768.3999998569489
+          },
+          "pageJavaScriptRequests": 0,
+          "idleReadbackBytes": 0
+        },
+        {
+          "path": "helion-designer.html",
+          "visit": 1,
+          "status": "PASS",
+          "correctnessStatus": "PASS",
+          "startup": {
+            "status": "ready",
+            "cache": "miss",
+            "fontMs": 366.60000014305115,
+            "compileMs": 210.70000004768372,
+            "workerReadyMs": 23.299999952316284,
+            "adapterAndShadersMs": 4.900000095367432,
+            "deviceMs": 1.9000000953674316,
+            "shaderModulesMs": 2,
+            "uploadAndBindingsMs": 14.200000047683716,
+            "pipelineMs": 311.5,
+            "pipelineConcurrency": 8,
+            "mountMs": 732.2000000476837,
+            "firstCompletedMs": 830.4000000953674,
+            "navigationToFirstCompletedMs": 944.2000000476837
+          },
+          "pageJavaScriptRequests": 0,
+          "idleReadbackBytes": 0
+        },
+        {
+          "path": "helion-playground.html",
+          "visit": 1,
+          "status": "PASS",
+          "correctnessStatus": "PASS",
+          "startup": {
+            "status": "ready",
+            "cache": "miss",
+            "fontMs": 274.2000000476837,
+            "compileMs": 55.09999990463257,
+            "workerReadyMs": 27.90000009536743,
+            "adapterAndShadersMs": 14.5,
+            "deviceMs": 0.5999999046325684,
+            "shaderModulesMs": 2.0999999046325684,
+            "uploadAndBindingsMs": 10.900000095367432,
+            "pipelineMs": 166.90000009536743,
+            "pipelineConcurrency": 8,
+            "mountMs": 417.40000009536743,
+            "firstCompletedMs": 460.7999999523163,
+            "navigationToFirstCompletedMs": 579.0999999046326
+          },
+          "pageJavaScriptRequests": 0,
+          "idleReadbackBytes": 0
+        },
+        {
+          "path": "helion-typography.html",
+          "visit": 1,
+          "status": "PASS",
+          "correctnessStatus": "PASS",
+          "startup": {
+            "status": "ready",
+            "cache": "miss",
+            "fontMs": 289.60000014305115,
+            "compileMs": 112.40000009536743,
+            "workerReadyMs": 28.90000009536743,
+            "adapterAndShadersMs": 14.899999856948853,
+            "deviceMs": 0.5,
+            "shaderModulesMs": 3.3999998569488525,
+            "uploadAndBindingsMs": 11.700000047683716,
+            "pipelineMs": 197.60000014305115,
+            "pipelineConcurrency": 8,
+            "mountMs": 505.7000000476837,
+            "firstCompletedMs": 613,
+            "navigationToFirstCompletedMs": 697.7000000476837
+          },
+          "pageJavaScriptRequests": 0,
+          "idleReadbackBytes": 0
+        }
+      ]
+    }
+  },
+  "frames": {
+    "frame-before": {
+      "status": "PASS",
+      "browser": "156.0.8078.80",
+      "seconds": 20,
+      "pointer": true,
+      "delta": {
+        "frames": 2403,
+        "completedFrames": 2403,
+        "skippedSubmissions": 0,
+        "rafCapacityDeferrals": 0,
+        "animationFrameCallbacks": 2403,
+        "readbackBytes": 0,
+        "uploadedBytes": 192032
+      },
+      "callbackGaps": {
+        "referenceIntervalMs": 8.200000000000728,
+        "intervals": 2402,
+        "longerThanOneAndHalfIntervals": 0,
+        "note": "Relative to observed lower-quartile rAF interval; not hardware-vsync or compositor drop measurement."
+      },
+      "timing": "off",
+      "traceEvents": {
+        "DroppedFrame": 0,
+        "CommitPresentedFrameToCA": 2404,
+        "Scheduler::MissedBeginFrameDropped": 0,
+        "Scheduler::BeginFrameDropped": 1
+      },
+      "actualViewport": {
+        "width": 1280,
+        "height": 900,
+        "dpr": 2,
+        "w": 2560,
+        "h": 1800,
+        "tileCols": 160,
+        "tileRows": 113,
+        "requestedDpr": 1,
+        "requestedW": 2560,
+        "requestedH": 1800,
+        "nativeResolution": true,
+        "devicePixelBox": true,
+        "resolutionMode": "native",
+        "maxTiles": 65536,
+        "limitedBy": null
+      },
+      "manifest": {
+        "nodes": 483,
+        "depth": 24,
+        "templateLevels": 1,
+        "templateLayout": true,
+        "shapedTexts": 96,
+        "designers": 1
+      },
+      "initialUploadBytes": 69550888,
+      "captureDurationMs": 20021.0,
+      "cpuEncodeMs": {
+        "count": 2403,
+        "min": 0,
+        "median": 0.10000014305114746,
+        "p95": 0.2999999523162842,
+        "max": 0.8999998569488525
+      },
+      "cpuSubmitMs": {
+        "count": 2403,
+        "min": 0,
+        "median": 0,
+        "p95": 0.10000014305114746,
+        "max": 0.20000004768371582
+      },
+      "gpuHistoryMedianMs": null,
+      "residentOverflow": 0,
+      "dirtyTiles": 0
+    },
+    "frame-after": {
+      "status": "PASS",
+      "browser": "156.0.8078.80",
+      "seconds": 20,
+      "pointer": true,
+      "delta": {
+        "frames": 2404,
+        "completedFrames": 2404,
+        "skippedSubmissions": 2,
+        "rafCapacityDeferrals": 2,
+        "animationFrameCallbacks": 2406,
+        "readbackBytes": 0,
+        "uploadedBytes": 192096
+      },
+      "callbackGaps": {
+        "referenceIntervalMs": 8.199999999999818,
+        "intervals": 2405,
+        "longerThanOneAndHalfIntervals": 0,
+        "note": "Relative to observed lower-quartile rAF interval; not hardware-vsync or compositor drop measurement."
+      },
+      "timing": "off",
+      "traceEvents": {
+        "DroppedFrame": 0,
+        "CommitPresentedFrameToCA": 2405,
+        "Scheduler::MissedBeginFrameDropped": 0,
+        "Scheduler::BeginFrameDropped": 1
+      },
+      "actualViewport": {
+        "width": 1280,
+        "height": 900,
+        "dpr": 2,
+        "w": 2560,
+        "h": 1800,
+        "tileCols": 160,
+        "tileRows": 113,
+        "requestedDpr": 1,
+        "requestedW": 2560,
+        "requestedH": 1800,
+        "nativeResolution": true,
+        "devicePixelBox": true,
+        "resolutionMode": "native",
+        "maxTiles": 65536,
+        "limitedBy": null
+      },
+      "manifest": {
+        "nodes": 483,
+        "depth": 24,
+        "templateLevels": 1,
+        "templateLayout": true,
+        "shapedTexts": 280,
+        "designers": 1
+      },
+      "initialUploadBytes": 74246632,
+      "captureDurationMs": 20048.0,
+      "cpuEncodeMs": {
+        "count": 2404,
+        "min": 0,
+        "median": 0.10000014305114746,
+        "p95": 0.2999999523162842,
+        "max": 1
+      },
+      "cpuSubmitMs": {
+        "count": 2404,
+        "min": 0,
+        "median": 0,
+        "p95": 0.10000014305114746,
+        "max": 0.20000004768371582
+      },
+      "gpuHistoryMedianMs": null,
+      "residentOverflow": 0,
+      "dirtyTiles": 0
+    },
+    "final-frame": {
+      "status": "PASS",
+      "browser": "156.0.8078.80",
+      "seconds": 20,
+      "pointer": true,
+      "delta": {
+        "frames": 2402,
+        "completedFrames": 2402,
+        "skippedSubmissions": 1,
+        "rafCapacityDeferrals": 1,
+        "animationFrameCallbacks": 2403,
+        "readbackBytes": 0,
+        "uploadedBytes": 192256
+      },
+      "callbackGaps": {
+        "referenceIntervalMs": 8.200000000000728,
+        "intervals": 2402,
+        "longerThanOneAndHalfIntervals": 0,
+        "note": "Relative to observed lower-quartile rAF interval; not hardware-vsync or compositor drop measurement."
+      },
+      "timing": "off",
+      "traceEvents": {
+        "DroppedFrame": 0,
+        "CommitPresentedFrameToCA": 2403,
+        "Scheduler::MissedBeginFrameDropped": 0,
+        "Scheduler::BeginFrameDropped": 1
+      },
+      "actualViewport": {
+        "width": 1280,
+        "height": 900,
+        "dpr": 2,
+        "w": 2560,
+        "h": 1800,
+        "tileCols": 160,
+        "tileRows": 113,
+        "requestedDpr": 1,
+        "requestedW": 2560,
+        "requestedH": 1800,
+        "nativeResolution": true,
+        "devicePixelBox": true,
+        "resolutionMode": "native",
+        "maxTiles": 65536,
+        "limitedBy": null
+      },
+      "manifest": {
+        "nodes": 483,
+        "depth": 24,
+        "templateLevels": 1,
+        "templateLayout": true,
+        "shapedTexts": 280,
+        "designers": 1
+      },
+      "initialUploadBytes": 74246632,
+      "captureDurationMs": 20021.89999985695,
+      "cpuEncodeMs": {
+        "count": 2402,
+        "min": 0,
+        "median": 0.10000014305114746,
+        "p95": 0.20000004768371582,
+        "max": 0.9000000953674316
+      },
+      "cpuSubmitMs": {
+        "count": 2402,
+        "min": 0,
+        "median": 0,
+        "p95": 0.10000014305114746,
+        "max": 0.20000004768371582
+      },
+      "gpuHistoryMedianMs": null,
+      "residentOverflow": 0,
+      "dirtyTiles": 0
+    },
+    "final-stages": {
+      "status": "PASS",
+      "browser": "156.0.8078.80",
+      "seconds": 6,
+      "pointer": false,
+      "delta": {
+        "frames": 724,
+        "completedFrames": 724,
+        "skippedSubmissions": 0,
+        "rafCapacityDeferrals": 0,
+        "animationFrameCallbacks": 724,
+        "readbackBytes": 0,
+        "uploadedBytes": 46656
+      },
+      "callbackGaps": {
+        "referenceIntervalMs": 8.200000000000728,
+        "intervals": 723,
+        "longerThanOneAndHalfIntervals": 0,
+        "note": "Relative to observed lower-quartile rAF interval; not hardware-vsync or compositor drop measurement."
+      },
+      "timing": "stages",
+      "traceEvents": null,
+      "actualViewport": {
+        "width": 1280,
+        "height": 900,
+        "dpr": 2,
+        "w": 2560,
+        "h": 1800,
+        "tileCols": 160,
+        "tileRows": 113,
+        "requestedDpr": 1,
+        "requestedW": 2560,
+        "requestedH": 1800,
+        "nativeResolution": true,
+        "devicePixelBox": true,
+        "resolutionMode": "native",
+        "maxTiles": 65536,
+        "limitedBy": null
+      },
+      "manifest": {
+        "nodes": 483,
+        "depth": 24,
+        "templateLevels": 1,
+        "templateLayout": true,
+        "shapedTexts": 280,
+        "designers": 1
+      },
+      "initialUploadBytes": 74246632,
+      "captureDurationMs": 6034.700000047684,
+      "cpuEncodeMs": {
+        "count": 724,
+        "min": 0,
+        "median": 0.19999980926513672,
+        "p95": 0.3000001907348633,
+        "max": 1.2000000476837158
+      },
+      "cpuSubmitMs": {
+        "count": 724,
+        "min": 0,
+        "median": 0,
+        "p95": 0.10000014305114746,
+        "max": 0.20000004768371582
+      },
+      "gpuHistoryMedianMs": {
+        "span": 3.2440319061279297,
+        "input": 0.32767999172210693,
+        "layout": 0.32767999172210693,
+        "data": 0.0,
+        "scene": 2.1626880168914795,
+        "glyph": 0.0,
+        "sparse": 0.0655359998345375,
+        "hud": 0.0,
+        "present": 2.6869759559631348
+      },
+      "residentOverflow": 0,
+      "dirtyTiles": 0
+    }
+  },
+  "traceBoundaryNote": "The final Scheduler::BeginFrameDropped event was 83.916 ms after the last FireAnimationFrame event, following the runner stop. It is retained in the raw trace count; it is not presented as proof of a dropped application frame.",
+  "validation": {
+    "hostTests": 1033,
+    "hostFailures": 0,
+    "staticJSModules": 202,
+    "WGSLFiles": 31,
+    "computeEntries": 85,
+    "exactBuildEmbeddingAndPublishedAssets": "PASS",
+    "typeScript": "Not rerun: standalone tsc executable unavailable",
+    "nativeGates": [
+      {
+        "path": "tests/gpu.html?autorun",
+        "status": "PASS"
+      },
+      {
+        "path": "tests/editor.html?autorun",
+        "status": "PASS"
+      },
+      {
+        "path": "tests/designer.html?autorun",
+        "status": "PASS"
+      },
+      {
+        "path": "tests/typography.html?autorun",
+        "status": "PASS"
+      },
+      {
+        "path": "tests/templates.html?autorun",
+        "status": "PASS"
+      },
+      {
+        "path": "tests/framework.html?autorun",
+        "status": "PASS"
+      },
+      {
+        "path": "tests/dynamic.html?autorun",
+        "status": "PASS"
+      },
+      {
+        "path": "tests/quality.html?autorun",
+        "status": "PASS"
+      },
+      {
+        "path": "tests/shaders.html?autorun",
+        "status": "PASS"
+      },
+      {
+        "path": "tests/metrics.html?autorun",
+        "status": "PASS"
+      },
+      {
+        "path": "tests/frame-sync.html?autorun",
+        "status": "PASS"
+      }
+    ]
+  }
+}

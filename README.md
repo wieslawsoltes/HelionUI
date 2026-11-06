@@ -10,8 +10,9 @@ Browser startup repair: large input, shaping and designer compiler graphs now us
 bounded GPU stages. Retina backing pixels and shader scale agree. See the
 [pipeline audit and hardware results](docs/browser-pipeline-repair.md) and run
 `npm run check:browser` with optional Playwright and an installed WebGPU Chrome.
-The latest [GPU frame-pacing fix and startup measurements](docs/frame-pacing-optimization.md)
-remove clean-frame raster scans; the 200 ms navigation-to-frame target remains unmet.
+The latest [published startup and retained-text improvements](docs/startup-bundles-optimization.md)
+reduce module requests and repeated preparation; the 200 ms navigation-to-frame target remains unmet.
+The earlier [GPU frame-pacing fix](docs/frame-pacing-optimization.md) removes clean-frame raster scans.
 Earlier [startup reductions](docs/startup-followup.md) remain documented.
 
 ## 0.15: retained shaping and paragraph layout
