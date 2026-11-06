@@ -34,7 +34,10 @@ export class BrowserInput {
       if((e.ctrlKey||e.metaKey)&&['c','x'].includes(e.key.toLowerCase())&&options.onClipboard){e.preventDefault();options.onClipboard(e.key.toLowerCase()==='x');return;}
       const modifiers = (e.shiftKey ? 1 : 0) | (e.ctrlKey ? 2 : 0) | (e.metaKey ? 4 : 0) | (e.altKey ? 8 : 0);
       const name = e.key === ' ' ? 'Space' : (e.ctrlKey||e.metaKey)&&/^[a-z]$/i.test(e.key)?e.key.toUpperCase():['/','[',']','=','-'].includes(e.key)&&(e.ctrlKey||e.metaKey)?({'/':'Slash','[':'BracketLeft',']':'BracketRight','=':'Equal','-':'Minus'})[e.key]:e.key;
-      if (Key[name] != null) {
+      // Letter entries in Key are shortcut aliases, not printable-key handlers.
+      // Without Ctrl/Meta, uppercase A/C/etc. must reach beforeinput (or the
+      // canvas text path); preventing their default here silently loses text.
+      if (Key[name] != null && (e.key.length !== 1 || name === 'Space' || e.ctrlKey || e.metaKey)) {
         this.push(Opcode.Key, { a: modifiers, c: Key[name] }); if(name!=='V'||!(e.ctrlKey||e.metaKey))e.preventDefault();
       } else if (e.target === canvas && e.key.length === 1 && !(e.ctrlKey || e.metaKey || e.altKey)) {
         this.text(e.key); e.preventDefault();
