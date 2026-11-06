@@ -1,0 +1,3863 @@
+{
+  "date": "2026-11-06",
+  "baselineCommit": "7337625",
+  "implementationCommit": "3dd0ee873a005b2e37bac0641375942ae4f073f5",
+  "correctnessStatus": "PASS",
+  "startupBudgetMs": 200,
+  "startupBudgetStatus": "FAIL",
+  "hostTests": {
+    "passed": 1028,
+    "failed": 0,
+    "skipped": 0
+  },
+  "staticChecks": "PASS",
+  "buildEmbedding": "PASS",
+  "deployed": false,
+  "conditions": [
+    "Apple metal-3; Chrome 156.0.8078.80; headed browser with sandbox enabled.",
+    "Local development server sends Cache-Control: no-store. Repeat visits reuse IndexedDB and driver caches, not HTTP response caching.",
+    "Unrelated compiler jobs were observed on the host; samples are observational comparisons, not isolated or statistical performance qualification.",
+    "Compilation probes inject unique uniform guards and disable Chromium shader disk cache. They are not production cold-start timings.",
+    "Module-delay probes add 20 ms before continuing each page JavaScript request; this is synthetic instrumentation, not a full network simulation."
+  ],
+  "reports": {
+    "baseline": {
+      "status": "PASS",
+      "started": "2026-11-06T19:28:14.502Z",
+      "finished": "2026-11-06T19:28:34.386Z",
+      "base": "http://127.0.0.1:8082/",
+      "browser": "156.0.8078.80",
+      "standalone": false,
+      "visits": 3,
+      "startupBudgetMs": null,
+      "applications": [
+        {
+          "path": "",
+          "visit": 1,
+          "status": "PASS",
+          "correctnessStatus": "PASS",
+          "startupBudgetStatus": null,
+          "startup": {
+            "status": "ready",
+            "cache": "miss",
+            "fontMs": 664.2999999523163,
+            "compileMs": 171.10000014305115,
+            "adapterAndShadersMs": 21.799999952316284,
+            "deviceMs": 2.6999998092651367,
+            "shaderModulesMs": 5.799999952316284,
+            "uploadAndBindingsMs": 18.700000047683716,
+            "pipelineMs": 227.39999985694885,
+            "mountMs": 1015.8999998569489,
+            "firstCompletedMs": 1089,
+            "navigationToFirstCompletedMs": 1211.7000000476837
+          },
+          "slowestPipelines": [
+            {
+              "name": "hud-copy",
+              "startMs": 1106.0999999046326,
+              "elapsedMs": 108.79999995231628
+            },
+            {
+              "name": "layoutTextRuns",
+              "startMs": 60.19999980926514,
+              "elapsedMs": 100.5
+            },
+            {
+              "name": "prepareTextInput",
+              "startMs": 59.799999952316284,
+              "elapsedMs": 97.59999990463257
+            },
+            {
+              "name": "shapeTextRuns",
+              "startMs": 60.19999980926514,
+              "elapsedMs": 81.80000019073486
+            },
+            {
+              "name": "input",
+              "startMs": 118.79999995231628,
+              "elapsedMs": 55.39999985694885
+            },
+            {
+              "name": "compositeHud",
+              "startMs": 1106.1999998092651,
+              "elapsedMs": 54.200000047683716
+            },
+            {
+              "name": "rasterHudFont",
+              "startMs": 1106.1999998092651,
+              "elapsedMs": 54.200000047683716
+            },
+            {
+              "name": "buildHudText",
+              "startMs": 1106.1999998092651,
+              "elapsedMs": 54.200000047683716
+            }
+          ],
+          "idleReadbackBytes": 0,
+          "interaction": {
+            "status": "PASS",
+            "check": "DOM pointer/keyboard to GPU TextBox",
+            "text": "Aurora"
+          },
+          "errors": [],
+          "error": null,
+          "initialModuleRequests": null,
+          "uniqueInitialModuleRequests": null,
+          "moduleRequestStartSpanMs": null
+        },
+        {
+          "path": "",
+          "visit": 2,
+          "status": "PASS",
+          "correctnessStatus": "PASS",
+          "startupBudgetStatus": null,
+          "startup": {
+            "status": "ready",
+            "cache": "hit",
+            "fontMs": 0,
+            "compileMs": 0,
+            "adapterAndShadersMs": 21.299999952316284,
+            "deviceMs": 1.1000001430511475,
+            "shaderModulesMs": 3.5,
+            "uploadAndBindingsMs": 8,
+            "pipelineMs": 203.70000004768372,
+            "mountMs": 263.2999999523163,
+            "firstCompletedMs": 292.5,
+            "navigationToFirstCompletedMs": 384.59999990463257
+          },
+          "slowestPipelines": [
+            {
+              "name": "layoutTextRuns",
+              "startMs": 51.90000009536743,
+              "elapsedMs": 81.70000004768372
+            },
+            {
+              "name": "prepareTextInput",
+              "startMs": 51.60000014305115,
+              "elapsedMs": 78.29999995231628
+            },
+            {
+              "name": "shapeTextRuns",
+              "startMs": 51.90000009536743,
+              "elapsedMs": 63.299999952316284
+            },
+            {
+              "name": "input",
+              "startMs": 100.79999995231628,
+              "elapsedMs": 51.700000047683716
+            },
+            {
+              "name": "measure",
+              "startMs": 137.29999995231628,
+              "elapsedMs": 49
+            },
+            {
+              "name": "emit",
+              "startMs": 174.79999995231628,
+              "elapsedMs": 44.80000019073486
+            },
+            {
+              "name": "emitButton",
+              "startMs": 186.40000009536743,
+              "elapsedMs": 39.39999985694885
+            },
+            {
+              "name": "emitTextBlock",
+              "startMs": 175.10000014305115,
+              "elapsedMs": 36.69999980926514
+            }
+          ],
+          "idleReadbackBytes": 0,
+          "interaction": {
+            "status": "PASS",
+            "check": "DOM pointer/keyboard to GPU TextBox",
+            "text": "Aurora"
+          },
+          "errors": [],
+          "error": null,
+          "initialModuleRequests": null,
+          "uniqueInitialModuleRequests": null,
+          "moduleRequestStartSpanMs": null
+        },
+        {
+          "path": "",
+          "visit": 3,
+          "status": "PASS",
+          "correctnessStatus": "PASS",
+          "startupBudgetStatus": null,
+          "startup": {
+            "status": "ready",
+            "cache": "hit",
+            "fontMs": 0,
+            "compileMs": 0,
+            "adapterAndShadersMs": 21,
+            "deviceMs": 10.900000095367432,
+            "shaderModulesMs": 2.1999998092651367,
+            "uploadAndBindingsMs": 7.6000001430511475,
+            "pipelineMs": 189.5,
+            "mountMs": 257.7000000476837,
+            "firstCompletedMs": 325.09999990463257,
+            "navigationToFirstCompletedMs": 414.89999985694885
+          },
+          "slowestPipelines": [
+            {
+              "name": "hud-copy",
+              "startMs": 357.5,
+              "elapsedMs": 96.79999995231628
+            },
+            {
+              "name": "prepareTextInput",
+              "startMs": 60.799999952316284,
+              "elapsedMs": 81.40000009536743
+            },
+            {
+              "name": "layoutTextRuns",
+              "startMs": 61.299999952316284,
+              "elapsedMs": 73.29999995231628
+            },
+            {
+              "name": "shapeTextRuns",
+              "startMs": 61.200000047683716,
+              "elapsedMs": 66.19999980926514
+            },
+            {
+              "name": "compositeHud",
+              "startMs": 359.7999999523163,
+              "elapsedMs": 45.09999990463257
+            },
+            {
+              "name": "input",
+              "startMs": 113,
+              "elapsedMs": 43.89999985694885
+            },
+            {
+              "name": "rasterHudFont",
+              "startMs": 361.5,
+              "elapsedMs": 43.39999985694885
+            },
+            {
+              "name": "buildHudText",
+              "startMs": 361.5,
+              "elapsedMs": 43.39999985694885
+            }
+          ],
+          "idleReadbackBytes": 0,
+          "interaction": {
+            "status": "PASS",
+            "check": "DOM pointer/keyboard to GPU TextBox",
+            "text": "Aurora"
+          },
+          "errors": [],
+          "error": null,
+          "initialModuleRequests": null,
+          "uniqueInitialModuleRequests": null,
+          "moduleRequestStartSpanMs": null
+        },
+        {
+          "path": "designer/",
+          "visit": 1,
+          "status": "PASS",
+          "correctnessStatus": "PASS",
+          "startupBudgetStatus": null,
+          "startup": {
+            "status": "ready",
+            "cache": "miss",
+            "fontMs": 338.09999990463257,
+            "compileMs": 191.89999985694885,
+            "adapterAndShadersMs": 22.09999990463257,
+            "deviceMs": 0.5,
+            "shaderModulesMs": 3.9000000953674316,
+            "uploadAndBindingsMs": 16.600000143051147,
+            "pipelineMs": 476.2000000476837,
+            "mountMs": 716.1000001430511,
+            "firstCompletedMs": 827.4000000953674,
+            "navigationToFirstCompletedMs": 925.2000000476837
+          },
+          "slowestPipelines": [
+            {
+              "name": "prepareTextInput",
+              "startMs": 63.90000009536743,
+              "elapsedMs": 92.70000004768372
+            },
+            {
+              "name": "layoutTextRuns",
+              "startMs": 64.40000009536743,
+              "elapsedMs": 90
+            },
+            {
+              "name": "shapeTextRuns",
+              "startMs": 64.40000009536743,
+              "elapsedMs": 80.39999985694885
+            },
+            {
+              "name": "input",
+              "startMs": 173.79999995231628,
+              "elapsedMs": 74.10000014305115
+            },
+            {
+              "name": "applyDesignerInput",
+              "startMs": 222.10000014305115,
+              "elapsedMs": 52.799999952316284
+            },
+            {
+              "name": "emitDockNode",
+              "startMs": 408,
+              "elapsedMs": 43.5
+            },
+            {
+              "name": "resolveTemplateLayout",
+              "startMs": 64.40000009536743,
+              "elapsedMs": 42.700000047683716
+            },
+            {
+              "name": "applyEditorInput",
+              "startMs": 215.40000009536743,
+              "elapsedMs": 42.59999990463257
+            }
+          ],
+          "idleReadbackBytes": 0,
+          "interaction": null,
+          "errors": [],
+          "error": null,
+          "initialModuleRequests": null,
+          "uniqueInitialModuleRequests": null,
+          "moduleRequestStartSpanMs": null
+        },
+        {
+          "path": "designer/",
+          "visit": 2,
+          "status": "PASS",
+          "correctnessStatus": "PASS",
+          "startupBudgetStatus": null,
+          "startup": {
+            "status": "ready",
+            "cache": "hit",
+            "fontMs": 0,
+            "compileMs": 0,
+            "adapterAndShadersMs": 24.200000047683716,
+            "deviceMs": 0.39999985694885254,
+            "shaderModulesMs": 3.9000000953674316,
+            "uploadAndBindingsMs": 9.599999904632568,
+            "pipelineMs": 374.2999999523163,
+            "mountMs": 451.90000009536743,
+            "firstCompletedMs": 555.7000000476837,
+            "navigationToFirstCompletedMs": 654.0999999046326
+          },
+          "slowestPipelines": [
+            {
+              "name": "prepareTextInput",
+              "startMs": 68,
+              "elapsedMs": 75.90000009536743
+            },
+            {
+              "name": "layoutTextRuns",
+              "startMs": 68.60000014305115,
+              "elapsedMs": 75.29999995231628
+            },
+            {
+              "name": "input",
+              "startMs": 161.60000014305115,
+              "elapsedMs": 62.299999952316284
+            },
+            {
+              "name": "shapeTextRuns",
+              "startMs": 68.5,
+              "elapsedMs": 60.60000014305115
+            },
+            {
+              "name": "applyEditorInput",
+              "startMs": 200.10000014305115,
+              "elapsedMs": 39.89999985694885
+            },
+            {
+              "name": "applyDesignerSurfaceInput",
+              "startMs": 271.10000014305115,
+              "elapsedMs": 39.700000047683716
+            },
+            {
+              "name": "resolveTemplateLayout",
+              "startMs": 68.60000014305115,
+              "elapsedMs": 39
+            },
+            {
+              "name": "applyDesignerInput",
+              "startMs": 208.30000019073486,
+              "elapsedMs": 37.39999985694885
+            }
+          ],
+          "idleReadbackBytes": 0,
+          "interaction": null,
+          "errors": [],
+          "error": null,
+          "initialModuleRequests": null,
+          "uniqueInitialModuleRequests": null,
+          "moduleRequestStartSpanMs": null
+        },
+        {
+          "path": "designer/",
+          "visit": 3,
+          "status": "PASS",
+          "correctnessStatus": "PASS",
+          "startupBudgetStatus": null,
+          "startup": {
+            "status": "ready",
+            "cache": "hit",
+            "fontMs": 0,
+            "compileMs": 0,
+            "adapterAndShadersMs": 38.59999990463257,
+            "deviceMs": 0.5,
+            "shaderModulesMs": 3.5999999046325684,
+            "uploadAndBindingsMs": 9.400000095367432,
+            "pipelineMs": 393.7999999523163,
+            "mountMs": 472.7999999523163,
+            "firstCompletedMs": 568.3999998569489,
+            "navigationToFirstCompletedMs": 652.8999998569489
+          },
+          "slowestPipelines": [
+            {
+              "name": "prepareTextInput",
+              "startMs": 69.59999990463257,
+              "elapsedMs": 82.70000004768372
+            },
+            {
+              "name": "shapeTextRuns",
+              "startMs": 69.79999995231628,
+              "elapsedMs": 78.59999990463257
+            },
+            {
+              "name": "layoutTextRuns",
+              "startMs": 69.79999995231628,
+              "elapsedMs": 74.5
+            },
+            {
+              "name": "input",
+              "startMs": 179.19999980926514,
+              "elapsedMs": 51.60000014305115
+            },
+            {
+              "name": "applyEditorInput",
+              "startMs": 197.69999980926514,
+              "elapsedMs": 44.700000047683716
+            },
+            {
+              "name": "resolveTemplateLayout",
+              "startMs": 69.79999995231628,
+              "elapsedMs": 42.700000047683716
+            },
+            {
+              "name": "applyDesignerInput",
+              "startMs": 205.69999980926514,
+              "elapsedMs": 41.200000047683716
+            },
+            {
+              "name": "emit",
+              "startMs": 329.2999999523163,
+              "elapsedMs": 40.200000047683716
+            }
+          ],
+          "idleReadbackBytes": 0,
+          "interaction": null,
+          "errors": [],
+          "error": null,
+          "initialModuleRequests": null,
+          "uniqueInitialModuleRequests": null,
+          "moduleRequestStartSpanMs": null
+        },
+        {
+          "path": "playground/",
+          "visit": 1,
+          "status": "PASS",
+          "correctnessStatus": "PASS",
+          "startupBudgetStatus": null,
+          "startup": {
+            "status": "ready",
+            "cache": "disabled",
+            "fontMs": 101.79999995231628,
+            "compileMs": 93.10000014305115,
+            "adapterAndShadersMs": 23.5,
+            "deviceMs": 0.5,
+            "shaderModulesMs": 2.5,
+            "uploadAndBindingsMs": 12.599999904632568,
+            "pipelineMs": 328.80000019073486,
+            "mountMs": 399,
+            "firstCompletedMs": 466.10000014305115,
+            "navigationToFirstCompletedMs": 994.2999999523163
+          },
+          "slowestPipelines": [
+            {
+              "name": "layoutTextRuns",
+              "startMs": 57.90000009536743,
+              "elapsedMs": 109.09999990463257
+            },
+            {
+              "name": "shapeTextRuns",
+              "startMs": 57.90000009536743,
+              "elapsedMs": 101.5
+            },
+            {
+              "name": "prepareTextInput",
+              "startMs": 57.60000014305115,
+              "elapsedMs": 98.59999990463257
+            },
+            {
+              "name": "input",
+              "startMs": 189.80000019073486,
+              "elapsedMs": 73.29999995231628
+            },
+            {
+              "name": "resolveTemplateLayout",
+              "startMs": 57.90000009536743,
+              "elapsedMs": 47.90000009536743
+            },
+            {
+              "name": "measure",
+              "startMs": 237.80000019073486,
+              "elapsedMs": 46.69999980926514
+            },
+            {
+              "name": "emit",
+              "startMs": 278.40000009536743,
+              "elapsedMs": 46.299999952316284
+            },
+            {
+              "name": "emitGridParts",
+              "startMs": 326,
+              "elapsedMs": 44
+            }
+          ],
+          "idleReadbackBytes": 0,
+          "interaction": {
+            "status": "PASS",
+            "check": "Run app shortcut through sandbox worker to shared GPU preview",
+            "nodes": 38,
+            "frames": 2
+          },
+          "errors": [],
+          "error": null,
+          "initialModuleRequests": null,
+          "uniqueInitialModuleRequests": null,
+          "moduleRequestStartSpanMs": null
+        },
+        {
+          "path": "playground/",
+          "visit": 2,
+          "status": "PASS",
+          "correctnessStatus": "PASS",
+          "startupBudgetStatus": null,
+          "startup": {
+            "status": "ready",
+            "cache": "disabled",
+            "fontMs": 90.5,
+            "compileMs": 78.5,
+            "adapterAndShadersMs": 31.399999856948853,
+            "deviceMs": 0.39999985694885254,
+            "shaderModulesMs": 2,
+            "uploadAndBindingsMs": 9.100000143051147,
+            "pipelineMs": 276.60000014305115,
+            "mountMs": 342.7999999523163,
+            "firstCompletedMs": 412.89999985694885,
+            "navigationToFirstCompletedMs": 708.7999999523163
+          },
+          "slowestPipelines": [
+            {
+              "name": "prepareTextInput",
+              "startMs": 56.89999985694885,
+              "elapsedMs": 97.10000014305115
+            },
+            {
+              "name": "layoutTextRuns",
+              "startMs": 57.19999980926514,
+              "elapsedMs": 89.80000019073486
+            },
+            {
+              "name": "shapeTextRuns",
+              "startMs": 57.19999980926514,
+              "elapsedMs": 75.60000014305115
+            },
+            {
+              "name": "input",
+              "startMs": 161.09999990463257,
+              "elapsedMs": 69.79999995231628
+            },
+            {
+              "name": "resolveTemplateLayout",
+              "startMs": 57.19999980926514,
+              "elapsedMs": 49.60000014305115
+            },
+            {
+              "name": "applyEditorInput",
+              "startMs": 194.89999985694885,
+              "elapsedMs": 36
+            },
+            {
+              "name": "emitDrawingNode",
+              "startMs": 287.7999999523163,
+              "elapsedMs": 35.89999985694885
+            },
+            {
+              "name": "emitButton",
+              "startMs": 257.89999985694885,
+              "elapsedMs": 34.90000009536743
+            }
+          ],
+          "idleReadbackBytes": 0,
+          "interaction": {
+            "status": "PASS",
+            "check": "Run app shortcut through sandbox worker to shared GPU preview",
+            "nodes": 38,
+            "frames": 2
+          },
+          "errors": [],
+          "error": null,
+          "initialModuleRequests": null,
+          "uniqueInitialModuleRequests": null,
+          "moduleRequestStartSpanMs": null
+        },
+        {
+          "path": "playground/",
+          "visit": 3,
+          "status": "PASS",
+          "correctnessStatus": "PASS",
+          "startupBudgetStatus": null,
+          "startup": {
+            "status": "ready",
+            "cache": "disabled",
+            "fontMs": 98.29999995231628,
+            "compileMs": 80.60000014305115,
+            "adapterAndShadersMs": 24.899999856948853,
+            "deviceMs": 0.7000000476837158,
+            "shaderModulesMs": 2.8000001907348633,
+            "uploadAndBindingsMs": 8.700000047683716,
+            "pipelineMs": 273.2999999523163,
+            "mountMs": 332.2999999523163,
+            "firstCompletedMs": 394.7000000476837,
+            "navigationToFirstCompletedMs": 521.7000000476837
+          },
+          "slowestPipelines": [
+            {
+              "name": "prepareTextInput",
+              "startMs": 50.39999985694885,
+              "elapsedMs": 95.20000004768372
+            },
+            {
+              "name": "shapeTextRuns",
+              "startMs": 50.5,
+              "elapsedMs": 82.89999985694885
+            },
+            {
+              "name": "layoutTextRuns",
+              "startMs": 50.5,
+              "elapsedMs": 80.20000004768372
+            },
+            {
+              "name": "measure",
+              "startMs": 197.20000004768372,
+              "elapsedMs": 46.299999952316284
+            },
+            {
+              "name": "applyEditorInput",
+              "startMs": 179.5,
+              "elapsedMs": 45.09999990463257
+            },
+            {
+              "name": "resolveTemplateLayout",
+              "startMs": 50.5,
+              "elapsedMs": 43.39999985694885
+            },
+            {
+              "name": "emitButton",
+              "startMs": 243.59999990463257,
+              "elapsedMs": 40.700000047683716
+            },
+            {
+              "name": "emitCheckBox",
+              "startMs": 258.2999999523163,
+              "elapsedMs": 35.700000047683716
+            }
+          ],
+          "idleReadbackBytes": 0,
+          "interaction": {
+            "status": "PASS",
+            "check": "Run app shortcut through sandbox worker to shared GPU preview",
+            "nodes": 38,
+            "frames": 2
+          },
+          "errors": [],
+          "error": null,
+          "initialModuleRequests": null,
+          "uniqueInitialModuleRequests": null,
+          "moduleRequestStartSpanMs": null
+        },
+        {
+          "path": "typography/",
+          "visit": 1,
+          "status": "PASS",
+          "correctnessStatus": "PASS",
+          "startupBudgetStatus": null,
+          "startup": {
+            "status": "ready",
+            "cache": "disabled",
+            "fontMs": 356.90000009536743,
+            "compileMs": 128.40000009536743,
+            "adapterAndShadersMs": 28.40000009536743,
+            "deviceMs": 4.200000047683716,
+            "shaderModulesMs": 2.700000047683716,
+            "uploadAndBindingsMs": 17.200000047683716,
+            "pipelineMs": 323.7000000476837,
+            "mountMs": 577.2999999523163,
+            "firstCompletedMs": 693.1999998092651,
+            "navigationToFirstCompletedMs": 788.7999999523163
+          },
+          "slowestPipelines": [
+            {
+              "name": "prepareTextInput",
+              "startMs": 72.29999995231628,
+              "elapsedMs": 100.89999985694885
+            },
+            {
+              "name": "layoutTextRuns",
+              "startMs": 72.89999985694885,
+              "elapsedMs": 84.40000009536743
+            },
+            {
+              "name": "shapeTextRuns",
+              "startMs": 72.89999985694885,
+              "elapsedMs": 76
+            },
+            {
+              "name": "applyEditorInput",
+              "startMs": 210.39999985694885,
+              "elapsedMs": 74.10000014305115
+            },
+            {
+              "name": "input",
+              "startMs": 173.19999980926514,
+              "elapsedMs": 62.60000014305115
+            },
+            {
+              "name": "emitEditorParts",
+              "startMs": 148.89999985694885,
+              "elapsedMs": 61.299999952316284
+            },
+            {
+              "name": "measure",
+              "startMs": 235.89999985694885,
+              "elapsedMs": 55.200000047683716
+            },
+            {
+              "name": "applyEditorCommands",
+              "startMs": 222.09999990463257,
+              "elapsedMs": 46.200000047683716
+            }
+          ],
+          "idleReadbackBytes": 0,
+          "interaction": null,
+          "errors": [],
+          "error": null,
+          "initialModuleRequests": null,
+          "uniqueInitialModuleRequests": null,
+          "moduleRequestStartSpanMs": null
+        },
+        {
+          "path": "typography/",
+          "visit": 2,
+          "status": "PASS",
+          "correctnessStatus": "PASS",
+          "startupBudgetStatus": null,
+          "startup": {
+            "status": "ready",
+            "cache": "disabled",
+            "fontMs": 183.90000009536743,
+            "compileMs": 115.5,
+            "adapterAndShadersMs": 27.299999952316284,
+            "deviceMs": 0.6000001430511475,
+            "shaderModulesMs": 2,
+            "uploadAndBindingsMs": 9.199999809265137,
+            "pipelineMs": 238.29999995231628,
+            "mountMs": 377.19999980926514,
+            "firstCompletedMs": 472.7999999523163,
+            "navigationToFirstCompletedMs": 583.9000000953674
+          },
+          "slowestPipelines": [
+            {
+              "name": "layoutTextRuns",
+              "startMs": 67.59999990463257,
+              "elapsedMs": 71.70000004768372
+            },
+            {
+              "name": "prepareTextInput",
+              "startMs": 67.29999995231628,
+              "elapsedMs": 71.29999995231628
+            },
+            {
+              "name": "shapeTextRuns",
+              "startMs": 67.59999990463257,
+              "elapsedMs": 59.90000009536743
+            },
+            {
+              "name": "input",
+              "startMs": 139.29999995231628,
+              "elapsedMs": 53.200000047683716
+            },
+            {
+              "name": "emitEditorParts",
+              "startMs": 131.89999985694885,
+              "elapsedMs": 49.299999952316284
+            },
+            {
+              "name": "measure",
+              "startMs": 195.5,
+              "elapsedMs": 43.299999952316284
+            },
+            {
+              "name": "emit",
+              "startMs": 228.5,
+              "elapsedMs": 39
+            },
+            {
+              "name": "emitTextBlock",
+              "startMs": 228.5,
+              "elapsedMs": 39
+            }
+          ],
+          "idleReadbackBytes": 0,
+          "interaction": null,
+          "errors": [],
+          "error": null,
+          "initialModuleRequests": null,
+          "uniqueInitialModuleRequests": null,
+          "moduleRequestStartSpanMs": null
+        },
+        {
+          "path": "typography/",
+          "visit": 3,
+          "status": "PASS",
+          "correctnessStatus": "PASS",
+          "startupBudgetStatus": null,
+          "startup": {
+            "status": "ready",
+            "cache": "disabled",
+            "fontMs": 174.79999995231628,
+            "compileMs": 105.40000009536743,
+            "adapterAndShadersMs": 21.59999990463257,
+            "deviceMs": 0.5,
+            "shaderModulesMs": 2.5,
+            "uploadAndBindingsMs": 12.099999904632568,
+            "pipelineMs": 233.89999985694885,
+            "mountMs": 354.69999980926514,
+            "firstCompletedMs": 467.09999990463257,
+            "navigationToFirstCompletedMs": 566.2999999523163
+          },
+          "slowestPipelines": [
+            {
+              "name": "prepareTextInput",
+              "startMs": 53.09999990463257,
+              "elapsedMs": 90.20000004768372
+            },
+            {
+              "name": "shapeTextRuns",
+              "startMs": 53.299999952316284,
+              "elapsedMs": 72.09999990463257
+            },
+            {
+              "name": "layoutTextRuns",
+              "startMs": 53.299999952316284,
+              "elapsedMs": 72.09999990463257
+            },
+            {
+              "name": "emitEditorParts",
+              "startMs": 118.5,
+              "elapsedMs": 52
+            },
+            {
+              "name": "input",
+              "startMs": 143.29999995231628,
+              "elapsedMs": 50.89999985694885
+            },
+            {
+              "name": "resolveTemplateLayout",
+              "startMs": 53.39999985694885,
+              "elapsedMs": 36.40000009536743
+            },
+            {
+              "name": "emit",
+              "startMs": 211.39999985694885,
+              "elapsedMs": 34.60000014305115
+            },
+            {
+              "name": "measure",
+              "startMs": 182,
+              "elapsedMs": 34.59999990463257
+            }
+          ],
+          "idleReadbackBytes": 0,
+          "interaction": null,
+          "errors": [],
+          "error": null,
+          "initialModuleRequests": null,
+          "uniqueInitialModuleRequests": null,
+          "moduleRequestStartSpanMs": null
+        }
+      ]
+    },
+    "finalPublished": {
+      "status": "FAIL",
+      "started": "2026-11-06T19:43:07.132Z",
+      "finished": "2026-11-06T19:43:26.423Z",
+      "base": "http://127.0.0.1:8080/dist/",
+      "browser": "156.0.8078.80",
+      "standalone": false,
+      "visits": 3,
+      "startupBudgetMs": 200,
+      "simulatedModuleRequestDelayMs": 0,
+      "applications": [
+        {
+          "path": "",
+          "visit": 1,
+          "status": "FAIL",
+          "correctnessStatus": "PASS",
+          "startupBudgetStatus": "FAIL",
+          "startup": {
+            "status": "ready",
+            "cache": "miss",
+            "fontMs": 390.2000000476837,
+            "compileMs": 161,
+            "adapterAndShadersMs": 30.09999990463257,
+            "deviceMs": 3.5999999046325684,
+            "shaderModulesMs": 5.400000095367432,
+            "uploadAndBindingsMs": 25,
+            "pipelineMs": 188.5,
+            "pipelineConcurrency": 8,
+            "mountMs": 736.3999998569489,
+            "firstCompletedMs": 815.0999999046326,
+            "navigationToFirstCompletedMs": 950.7000000476837
+          },
+          "slowestPipelines": [
+            {
+              "name": "input",
+              "startMs": 69.69999980926514,
+              "elapsedMs": 123.40000009536743
+            },
+            {
+              "name": "shapeTextRuns",
+              "startMs": 69.39999985694885,
+              "elapsedMs": 114.5
+            },
+            {
+              "name": "layoutTextRuns",
+              "startMs": 69.39999985694885,
+              "elapsedMs": 114.5
+            },
+            {
+              "name": "prepareTextInput",
+              "startMs": 69.09999990463257,
+              "elapsedMs": 108.79999995231628
+            },
+            {
+              "name": "compositeHud",
+              "startMs": 827.3999998569489,
+              "elapsedMs": 79.79999995231628
+            },
+            {
+              "name": "rasterHudFont",
+              "startMs": 827.5,
+              "elapsedMs": 79.69999980926514
+            },
+            {
+              "name": "buildHudText",
+              "startMs": 827.5999999046326,
+              "elapsedMs": 79.59999990463257
+            },
+            {
+              "name": "applyCoreKey",
+              "startMs": 69.69999980926514,
+              "elapsedMs": 79.10000014305115
+            }
+          ],
+          "idleReadbackBytes": 0,
+          "interaction": {
+            "status": "PASS",
+            "check": "DOM pointer/keyboard to GPU TextBox",
+            "text": "Aurora"
+          },
+          "errors": [],
+          "error": "Error: Startup budget exceeded: 951 ms from navigation to completed application frame; budget 200 ms\n    at file:///Users/wieslawsoltes/GitHub/HelionUI/tools/browser-test.mjs:137:69",
+          "initialModuleRequests": 79,
+          "uniqueInitialModuleRequests": 79,
+          "moduleRequestStartSpanMs": 3.1000001430511475
+        },
+        {
+          "path": "",
+          "visit": 2,
+          "status": "FAIL",
+          "correctnessStatus": "PASS",
+          "startupBudgetStatus": "FAIL",
+          "startup": {
+            "status": "ready",
+            "cache": "hit",
+            "fontMs": 0,
+            "compileMs": 0,
+            "adapterAndShadersMs": 16.59999990463257,
+            "deviceMs": 0.5999999046325684,
+            "shaderModulesMs": 11.600000143051147,
+            "uploadAndBindingsMs": 11.700000047683716,
+            "pipelineMs": 212.29999995231628,
+            "pipelineConcurrency": 8,
+            "mountMs": 273.40000009536743,
+            "firstCompletedMs": 324,
+            "navigationToFirstCompletedMs": 397
+          },
+          "slowestPipelines": [
+            {
+              "name": "prepareTextInput",
+              "startMs": 49.40000009536743,
+              "elapsedMs": 167.09999990463257
+            },
+            {
+              "name": "layoutTextRuns",
+              "startMs": 49.700000047683716,
+              "elapsedMs": 166.79999995231628
+            },
+            {
+              "name": "shapeTextRuns",
+              "startMs": 49.700000047683716,
+              "elapsedMs": 145.09999990463257
+            },
+            {
+              "name": "input",
+              "startMs": 49.90000009536743,
+              "elapsedMs": 145.09999990463257
+            },
+            {
+              "name": "applyInputActions",
+              "startMs": 49.90000009536743,
+              "elapsedMs": 95
+            },
+            {
+              "name": "hitTest",
+              "startMs": 49.799999952316284,
+              "elapsedMs": 93.60000014305115
+            },
+            {
+              "name": "applyCoreKey",
+              "startMs": 49.90000009536743,
+              "elapsedMs": 93.5
+            },
+            {
+              "name": "clearFrame",
+              "startMs": 49.700000047683716,
+              "elapsedMs": 62.700000047683716
+            }
+          ],
+          "idleReadbackBytes": 0,
+          "interaction": {
+            "status": "PASS",
+            "check": "DOM pointer/keyboard to GPU TextBox",
+            "text": "Aurora"
+          },
+          "errors": [],
+          "error": "Error: Startup budget exceeded: 397 ms from navigation to completed application frame; budget 200 ms\n    at file:///Users/wieslawsoltes/GitHub/HelionUI/tools/browser-test.mjs:137:69",
+          "initialModuleRequests": 79,
+          "uniqueInitialModuleRequests": 79,
+          "moduleRequestStartSpanMs": 1.5999999046325684
+        },
+        {
+          "path": "",
+          "visit": 3,
+          "status": "FAIL",
+          "correctnessStatus": "PASS",
+          "startupBudgetStatus": "FAIL",
+          "startup": {
+            "status": "ready",
+            "cache": "hit",
+            "fontMs": 0,
+            "compileMs": 0,
+            "adapterAndShadersMs": 26.100000143051147,
+            "deviceMs": 0.7000000476837158,
+            "shaderModulesMs": 3.200000047683716,
+            "uploadAndBindingsMs": 7.699999809265137,
+            "pipelineMs": 165,
+            "pipelineConcurrency": 8,
+            "mountMs": 226.39999985694885,
+            "firstCompletedMs": 257.39999985694885,
+            "navigationToFirstCompletedMs": 338.89999985694885
+          },
+          "slowestPipelines": [
+            {
+              "name": "prepareTextInput",
+              "startMs": 53.700000047683716,
+              "elapsedMs": 123.09999990463257
+            },
+            {
+              "name": "shapeTextRuns",
+              "startMs": 54.200000047683716,
+              "elapsedMs": 122.39999985694885
+            },
+            {
+              "name": "layoutTextRuns",
+              "startMs": 54.299999952316284,
+              "elapsedMs": 122.29999995231628
+            },
+            {
+              "name": "input",
+              "startMs": 54.59999990463257,
+              "elapsedMs": 122
+            },
+            {
+              "name": "hitTest",
+              "startMs": 54.39999985694885,
+              "elapsedMs": 75.80000019073486
+            },
+            {
+              "name": "applyCoreKey",
+              "startMs": 54.59999990463257,
+              "elapsedMs": 75.60000014305115
+            },
+            {
+              "name": "applyInputActions",
+              "startMs": 54.700000047683716,
+              "elapsedMs": 66.79999995231628
+            },
+            {
+              "name": "compositeHud",
+              "startMs": 263,
+              "elapsedMs": 60.200000047683716
+            }
+          ],
+          "idleReadbackBytes": 0,
+          "interaction": {
+            "status": "PASS",
+            "check": "DOM pointer/keyboard to GPU TextBox",
+            "text": "Aurora"
+          },
+          "errors": [],
+          "error": "Error: Startup budget exceeded: 339 ms from navigation to completed application frame; budget 200 ms\n    at file:///Users/wieslawsoltes/GitHub/HelionUI/tools/browser-test.mjs:137:69",
+          "initialModuleRequests": 79,
+          "uniqueInitialModuleRequests": 79,
+          "moduleRequestStartSpanMs": 4.200000047683716
+        },
+        {
+          "path": "designer/",
+          "visit": 1,
+          "status": "FAIL",
+          "correctnessStatus": "PASS",
+          "startupBudgetStatus": "FAIL",
+          "startup": {
+            "status": "ready",
+            "cache": "miss",
+            "fontMs": 357.90000009536743,
+            "compileMs": 189,
+            "adapterAndShadersMs": 21.300000190734863,
+            "deviceMs": 0.5999999046325684,
+            "shaderModulesMs": 3.8999998569488525,
+            "uploadAndBindingsMs": 15.799999952316284,
+            "pipelineMs": 368.2999999523163,
+            "pipelineConcurrency": 8,
+            "mountMs": 752.2000000476837,
+            "firstCompletedMs": 865.9000000953674,
+            "navigationToFirstCompletedMs": 954.7000000476837
+          },
+          "slowestPipelines": [
+            {
+              "name": "layoutTextRuns",
+              "startMs": 63.5,
+              "elapsedMs": 111
+            },
+            {
+              "name": "applyDesignerInput",
+              "startMs": 159.20000004768372,
+              "elapsedMs": 108.79999995231628
+            },
+            {
+              "name": "prepareTextInput",
+              "startMs": 62.799999952316284,
+              "elapsedMs": 96.30000019073486
+            },
+            {
+              "name": "applyDesignerCommands1",
+              "startMs": 174.70000004768372,
+              "elapsedMs": 93.29999995231628
+            },
+            {
+              "name": "shapeTextRuns",
+              "startMs": 63.40000009536743,
+              "elapsedMs": 83.39999985694885
+            },
+            {
+              "name": "input",
+              "startMs": 146.79999995231628,
+              "elapsedMs": 81.90000009536743
+            },
+            {
+              "name": "applyEditorCommands",
+              "startMs": 174.5,
+              "elapsedMs": 69.79999995231628
+            },
+            {
+              "name": "measure",
+              "startMs": 268.2999999523163,
+              "elapsedMs": 69.70000004768372
+            }
+          ],
+          "idleReadbackBytes": 0,
+          "interaction": null,
+          "errors": [],
+          "error": "Error: Startup budget exceeded: 955 ms from navigation to completed application frame; budget 200 ms\n    at file:///Users/wieslawsoltes/GitHub/HelionUI/tools/browser-test.mjs:137:69",
+          "initialModuleRequests": 83,
+          "uniqueInitialModuleRequests": 83,
+          "moduleRequestStartSpanMs": 1.8000001907348633
+        },
+        {
+          "path": "designer/",
+          "visit": 2,
+          "status": "FAIL",
+          "correctnessStatus": "PASS",
+          "startupBudgetStatus": "FAIL",
+          "startup": {
+            "status": "ready",
+            "cache": "hit",
+            "fontMs": 0,
+            "compileMs": 0,
+            "adapterAndShadersMs": 28.700000047683716,
+            "deviceMs": 0.5999999046325684,
+            "shaderModulesMs": 3.6000001430511475,
+            "uploadAndBindingsMs": 12.400000095367432,
+            "pipelineMs": 290.7000000476837,
+            "pipelineConcurrency": 8,
+            "mountMs": 368.90000009536743,
+            "firstCompletedMs": 488.5,
+            "navigationToFirstCompletedMs": 574.7999999523163
+          },
+          "slowestPipelines": [
+            {
+              "name": "prepareTextInput",
+              "startMs": 65.79999995231628,
+              "elapsedMs": 94.60000014305115
+            },
+            {
+              "name": "layoutTextRuns",
+              "startMs": 66.10000014305115,
+              "elapsedMs": 94.29999995231628
+            },
+            {
+              "name": "input",
+              "startMs": 138,
+              "elapsedMs": 74.40000009536743
+            },
+            {
+              "name": "shapeTextRuns",
+              "startMs": 66.10000014305115,
+              "elapsedMs": 71.69999980926514
+            },
+            {
+              "name": "resolveTemplateVisuals",
+              "startMs": 66.10000014305115,
+              "elapsedMs": 62
+            },
+            {
+              "name": "applyDesignerInput",
+              "startMs": 160.5,
+              "elapsedMs": 60.299999952316284
+            },
+            {
+              "name": "applyEditorCommands",
+              "startMs": 160.5,
+              "elapsedMs": 60.299999952316284
+            },
+            {
+              "name": "applyDesignerCommands1",
+              "startMs": 179.5,
+              "elapsedMs": 59.700000047683716
+            }
+          ],
+          "idleReadbackBytes": 0,
+          "interaction": null,
+          "errors": [],
+          "error": "Error: Startup budget exceeded: 575 ms from navigation to completed application frame; budget 200 ms\n    at file:///Users/wieslawsoltes/GitHub/HelionUI/tools/browser-test.mjs:137:69",
+          "initialModuleRequests": 83,
+          "uniqueInitialModuleRequests": 83,
+          "moduleRequestStartSpanMs": 1.8999998569488525
+        },
+        {
+          "path": "designer/",
+          "visit": 3,
+          "status": "FAIL",
+          "correctnessStatus": "PASS",
+          "startupBudgetStatus": "FAIL",
+          "startup": {
+            "status": "ready",
+            "cache": "hit",
+            "fontMs": 0,
+            "compileMs": 0,
+            "adapterAndShadersMs": 21.40000009536743,
+            "deviceMs": 0.5,
+            "shaderModulesMs": 2,
+            "uploadAndBindingsMs": 11.800000190734863,
+            "pipelineMs": 299.7999999523163,
+            "pipelineConcurrency": 8,
+            "mountMs": 372.7000000476837,
+            "firstCompletedMs": 514.9000000953674,
+            "navigationToFirstCompletedMs": 615.1000001430511
+          },
+          "slowestPipelines": [
+            {
+              "name": "prepareTextInput",
+              "startMs": 61,
+              "elapsedMs": 105.10000014305115
+            },
+            {
+              "name": "layoutTextRuns",
+              "startMs": 61.299999952316284,
+              "elapsedMs": 104.80000019073486
+            },
+            {
+              "name": "input",
+              "startMs": 129.40000009536743,
+              "elapsedMs": 95.89999985694885
+            },
+            {
+              "name": "shapeTextRuns",
+              "startMs": 61.200000047683716,
+              "elapsedMs": 79.79999995231628
+            },
+            {
+              "name": "applyDesignerCommands1",
+              "startMs": 166.5,
+              "elapsedMs": 69.5
+            },
+            {
+              "name": "applyEditorCommands",
+              "startMs": 166.10000014305115,
+              "elapsedMs": 59.19999980926514
+            },
+            {
+              "name": "applyCoreKey",
+              "startMs": 129.5,
+              "elapsedMs": 57.10000014305115
+            },
+            {
+              "name": "applyDesignerInput",
+              "startMs": 156.29999995231628,
+              "elapsedMs": 52.700000047683716
+            }
+          ],
+          "idleReadbackBytes": 0,
+          "interaction": null,
+          "errors": [],
+          "error": "Error: Startup budget exceeded: 615 ms from navigation to completed application frame; budget 200 ms\n    at file:///Users/wieslawsoltes/GitHub/HelionUI/tools/browser-test.mjs:137:69",
+          "initialModuleRequests": 83,
+          "uniqueInitialModuleRequests": 83,
+          "moduleRequestStartSpanMs": 2.799999952316284
+        },
+        {
+          "path": "playground/",
+          "visit": 1,
+          "status": "FAIL",
+          "correctnessStatus": "PASS",
+          "startupBudgetStatus": "FAIL",
+          "startup": {
+            "status": "ready",
+            "cache": "miss",
+            "fontMs": 473.7000000476837,
+            "compileMs": 72.20000004768372,
+            "adapterAndShadersMs": 24.399999856948853,
+            "deviceMs": 1,
+            "shaderModulesMs": 3.6999998092651367,
+            "uploadAndBindingsMs": 10.5,
+            "pipelineMs": 198.09999990463257,
+            "pipelineConcurrency": 8,
+            "mountMs": 674.1000001430511,
+            "firstCompletedMs": 725.7000000476837,
+            "navigationToFirstCompletedMs": 802.7000000476837
+          },
+          "slowestPipelines": [
+            {
+              "name": "prepareTextInput",
+              "startMs": 62.700000047683716,
+              "elapsedMs": 93
+            },
+            {
+              "name": "layoutTextRuns",
+              "startMs": 62.90000009536743,
+              "elapsedMs": 81.5
+            },
+            {
+              "name": "shapeTextRuns",
+              "startMs": 62.90000009536743,
+              "elapsedMs": 80.40000009536743
+            },
+            {
+              "name": "input",
+              "startMs": 125.90000009536743,
+              "elapsedMs": 69.29999995231628
+            },
+            {
+              "name": "applyEditorInput",
+              "startMs": 144.40000009536743,
+              "elapsedMs": 51.200000047683716
+            },
+            {
+              "name": "measure",
+              "startMs": 172.80000019073486,
+              "elapsedMs": 51.19999980926514
+            },
+            {
+              "name": "emitButton",
+              "startMs": 201.20000004768372,
+              "elapsedMs": 44.700000047683716
+            },
+            {
+              "name": "emitTextBlock",
+              "startMs": 201,
+              "elapsedMs": 44.5
+            }
+          ],
+          "idleReadbackBytes": 0,
+          "interaction": {
+            "status": "PASS",
+            "check": "Run app shortcut through sandbox worker to shared GPU preview",
+            "nodes": 38,
+            "frames": 3
+          },
+          "errors": [],
+          "error": "Error: Startup budget exceeded: 803 ms from navigation to completed application frame; budget 200 ms\n    at file:///Users/wieslawsoltes/GitHub/HelionUI/tools/browser-test.mjs:137:69",
+          "initialModuleRequests": 84,
+          "uniqueInitialModuleRequests": 84,
+          "moduleRequestStartSpanMs": 3.6000001430511475
+        },
+        {
+          "path": "playground/",
+          "visit": 2,
+          "status": "FAIL",
+          "correctnessStatus": "PASS",
+          "startupBudgetStatus": "FAIL",
+          "startup": {
+            "status": "ready",
+            "cache": "hit",
+            "fontMs": 0,
+            "compileMs": 0,
+            "adapterAndShadersMs": 28.799999952316284,
+            "deviceMs": 4.1000001430511475,
+            "shaderModulesMs": 2.1000001430511475,
+            "uploadAndBindingsMs": 7,
+            "pipelineMs": 174,
+            "pipelineConcurrency": 8,
+            "mountMs": 245.29999995231628,
+            "firstCompletedMs": 302.7000000476837,
+            "navigationToFirstCompletedMs": 370.59999990463257
+          },
+          "slowestPipelines": [
+            {
+              "name": "layoutTextRuns",
+              "startMs": 64.5,
+              "elapsedMs": 97.40000009536743
+            },
+            {
+              "name": "prepareTextInput",
+              "startMs": 64.20000004768372,
+              "elapsedMs": 81.79999995231628
+            },
+            {
+              "name": "shapeTextRuns",
+              "startMs": 64.5,
+              "elapsedMs": 70.90000009536743
+            },
+            {
+              "name": "input",
+              "startMs": 126,
+              "elapsedMs": 50.799999952316284
+            },
+            {
+              "name": "emitCheckBox",
+              "startMs": 177.5,
+              "elapsedMs": 50.299999952316284
+            },
+            {
+              "name": "emitTextBox",
+              "startMs": 177.5,
+              "elapsedMs": 50.299999952316284
+            },
+            {
+              "name": "emitButton",
+              "startMs": 177,
+              "elapsedMs": 45.90000009536743
+            },
+            {
+              "name": "resolveTemplateLayout",
+              "startMs": 64.5,
+              "elapsedMs": 43.299999952316284
+            }
+          ],
+          "idleReadbackBytes": 0,
+          "interaction": {
+            "status": "PASS",
+            "check": "Run app shortcut through sandbox worker to shared GPU preview",
+            "nodes": 38,
+            "frames": 3
+          },
+          "errors": [],
+          "error": "Error: Startup budget exceeded: 371 ms from navigation to completed application frame; budget 200 ms\n    at file:///Users/wieslawsoltes/GitHub/HelionUI/tools/browser-test.mjs:137:69",
+          "initialModuleRequests": 84,
+          "uniqueInitialModuleRequests": 84,
+          "moduleRequestStartSpanMs": 1.6999998092651367
+        },
+        {
+          "path": "playground/",
+          "visit": 3,
+          "status": "FAIL",
+          "correctnessStatus": "PASS",
+          "startupBudgetStatus": "FAIL",
+          "startup": {
+            "status": "ready",
+            "cache": "hit",
+            "fontMs": 0,
+            "compileMs": 0,
+            "adapterAndShadersMs": 25.5,
+            "deviceMs": 0.5,
+            "shaderModulesMs": 2.299999952316284,
+            "uploadAndBindingsMs": 6.599999904632568,
+            "pipelineMs": 187,
+            "pipelineConcurrency": 8,
+            "mountMs": 250.39999985694885,
+            "firstCompletedMs": 274.09999990463257,
+            "navigationToFirstCompletedMs": 356.5
+          },
+          "slowestPipelines": [
+            {
+              "name": "layoutTextRuns",
+              "startMs": 57.299999952316284,
+              "elapsedMs": 99.59999990463257
+            },
+            {
+              "name": "prepareTextInput",
+              "startMs": 57,
+              "elapsedMs": 90.29999995231628
+            },
+            {
+              "name": "shapeTextRuns",
+              "startMs": 57.299999952316284,
+              "elapsedMs": 81.59999990463257
+            },
+            {
+              "name": "input",
+              "startMs": 123.5,
+              "elapsedMs": 71.09999990463257
+            },
+            {
+              "name": "measure",
+              "startMs": 156.89999985694885,
+              "elapsedMs": 51
+            },
+            {
+              "name": "applyEditorInput",
+              "startMs": 139,
+              "elapsedMs": 44.799999952316284
+            },
+            {
+              "name": "resolveTemplateVisuals",
+              "startMs": 57.39999985694885,
+              "elapsedMs": 43
+            },
+            {
+              "name": "emitTextBlock",
+              "startMs": 184.39999985694885,
+              "elapsedMs": 42.90000009536743
+            }
+          ],
+          "idleReadbackBytes": 0,
+          "interaction": {
+            "status": "PASS",
+            "check": "Run app shortcut through sandbox worker to shared GPU preview",
+            "nodes": 38,
+            "frames": 3
+          },
+          "errors": [],
+          "error": "Error: Startup budget exceeded: 357 ms from navigation to completed application frame; budget 200 ms\n    at file:///Users/wieslawsoltes/GitHub/HelionUI/tools/browser-test.mjs:137:69",
+          "initialModuleRequests": 84,
+          "uniqueInitialModuleRequests": 84,
+          "moduleRequestStartSpanMs": 3.9000000953674316
+        },
+        {
+          "path": "typography/",
+          "visit": 1,
+          "status": "FAIL",
+          "correctnessStatus": "PASS",
+          "startupBudgetStatus": "FAIL",
+          "startup": {
+            "status": "ready",
+            "cache": "miss",
+            "fontMs": 356.2000000476837,
+            "compileMs": 131.19999980926514,
+            "adapterAndShadersMs": 20,
+            "deviceMs": 0.5,
+            "shaderModulesMs": 2.8000001907348633,
+            "uploadAndBindingsMs": 7.200000047683716,
+            "pipelineMs": 213.40000009536743,
+            "pipelineConcurrency": 8,
+            "mountMs": 619.2999999523163,
+            "firstCompletedMs": 709.5999999046326,
+            "navigationToFirstCompletedMs": 785.8999998569489
+          },
+          "slowestPipelines": [
+            {
+              "name": "prepareTextInput",
+              "startMs": 49.700000047683716,
+              "elapsedMs": 117.29999995231628
+            },
+            {
+              "name": "layoutTextRuns",
+              "startMs": 50.200000047683716,
+              "elapsedMs": 116.79999995231628
+            },
+            {
+              "name": "shapeTextRuns",
+              "startMs": 50.200000047683716,
+              "elapsedMs": 95.59999990463257
+            },
+            {
+              "name": "input",
+              "startMs": 108,
+              "elapsedMs": 89.20000004768372
+            },
+            {
+              "name": "emitTextBlock",
+              "startMs": 181.70000004768372,
+              "elapsedMs": 69.79999995231628
+            },
+            {
+              "name": "emitGridParts",
+              "startMs": 197.90000009536743,
+              "elapsedMs": 61.5
+            },
+            {
+              "name": "applyEditorInput",
+              "startMs": 138.29999995231628,
+              "elapsedMs": 58.90000009536743
+            },
+            {
+              "name": "emitCheckBox",
+              "startMs": 197.29999995231628,
+              "elapsedMs": 58.5
+            }
+          ],
+          "idleReadbackBytes": 0,
+          "interaction": null,
+          "errors": [],
+          "error": "Error: Startup budget exceeded: 786 ms from navigation to completed application frame; budget 200 ms\n    at file:///Users/wieslawsoltes/GitHub/HelionUI/tools/browser-test.mjs:137:69",
+          "initialModuleRequests": 80,
+          "uniqueInitialModuleRequests": 80,
+          "moduleRequestStartSpanMs": 4.0
+        },
+        {
+          "path": "typography/",
+          "visit": 2,
+          "status": "FAIL",
+          "correctnessStatus": "PASS",
+          "startupBudgetStatus": "FAIL",
+          "startup": {
+            "status": "ready",
+            "cache": "hit",
+            "fontMs": 0,
+            "compileMs": 0,
+            "adapterAndShadersMs": 31.299999952316284,
+            "deviceMs": 0.5,
+            "shaderModulesMs": 2.4000000953674316,
+            "uploadAndBindingsMs": 11.299999952316284,
+            "pipelineMs": 173.10000014305115,
+            "pipelineConcurrency": 8,
+            "mountMs": 247.5,
+            "firstCompletedMs": 317.2000000476837,
+            "navigationToFirstCompletedMs": 383.80000019073486
+          },
+          "slowestPipelines": [
+            {
+              "name": "layoutTextRuns",
+              "startMs": 63.5,
+              "elapsedMs": 95.09999990463257
+            },
+            {
+              "name": "prepareTextInput",
+              "startMs": 63.09999990463257,
+              "elapsedMs": 77.60000014305115
+            },
+            {
+              "name": "shapeTextRuns",
+              "startMs": 63.5,
+              "elapsedMs": 77.20000004768372
+            },
+            {
+              "name": "input",
+              "startMs": 107.09999990463257,
+              "elapsedMs": 63.700000047683716
+            },
+            {
+              "name": "measure",
+              "startMs": 148.29999995231628,
+              "elapsedMs": 55.700000047683716
+            },
+            {
+              "name": "emitTextBlock",
+              "startMs": 174,
+              "elapsedMs": 55.09999990463257
+            },
+            {
+              "name": "emitDrawingNode",
+              "startMs": 179,
+              "elapsedMs": 51.200000047683716
+            },
+            {
+              "name": "emitTextBox",
+              "startMs": 178.89999985694885,
+              "elapsedMs": 50.60000014305115
+            }
+          ],
+          "idleReadbackBytes": 0,
+          "interaction": null,
+          "errors": [],
+          "error": "Error: Startup budget exceeded: 384 ms from navigation to completed application frame; budget 200 ms\n    at file:///Users/wieslawsoltes/GitHub/HelionUI/tools/browser-test.mjs:137:69",
+          "initialModuleRequests": 80,
+          "uniqueInitialModuleRequests": 80,
+          "moduleRequestStartSpanMs": 3.5
+        },
+        {
+          "path": "typography/",
+          "visit": 3,
+          "status": "FAIL",
+          "correctnessStatus": "PASS",
+          "startupBudgetStatus": "FAIL",
+          "startup": {
+            "status": "ready",
+            "cache": "hit",
+            "fontMs": 0,
+            "compileMs": 0,
+            "adapterAndShadersMs": 31.40000009536743,
+            "deviceMs": 0.6000001430511475,
+            "shaderModulesMs": 2.799999952316284,
+            "uploadAndBindingsMs": 7.3999998569488525,
+            "pipelineMs": 174.29999995231628,
+            "pipelineConcurrency": 8,
+            "mountMs": 247.39999985694885,
+            "firstCompletedMs": 344.2999999523163,
+            "navigationToFirstCompletedMs": 440.2000000476837
+          },
+          "slowestPipelines": [
+            {
+              "name": "prepareTextInput",
+              "startMs": 65.69999980926514,
+              "elapsedMs": 100.30000019073486
+            },
+            {
+              "name": "layoutTextRuns",
+              "startMs": 66.19999980926514,
+              "elapsedMs": 84.60000014305115
+            },
+            {
+              "name": "input",
+              "startMs": 103.69999980926514,
+              "elapsedMs": 77.70000004768372
+            },
+            {
+              "name": "shapeTextRuns",
+              "startMs": 66.09999990463257,
+              "elapsedMs": 77.29999995231628
+            },
+            {
+              "name": "applyEditorInput",
+              "startMs": 143.39999985694885,
+              "elapsedMs": 64.10000014305115
+            },
+            {
+              "name": "measure",
+              "startMs": 150.89999985694885,
+              "elapsedMs": 56.60000014305115
+            },
+            {
+              "name": "emitEditorParts",
+              "startMs": 95.59999990463257,
+              "elapsedMs": 55.200000047683716
+            },
+            {
+              "name": "applyEditorCommands",
+              "startMs": 143.59999990463257,
+              "elapsedMs": 48.90000009536743
+            }
+          ],
+          "idleReadbackBytes": 0,
+          "interaction": null,
+          "errors": [],
+          "error": "Error: Startup budget exceeded: 440 ms from navigation to completed application frame; budget 200 ms\n    at file:///Users/wieslawsoltes/GitHub/HelionUI/tools/browser-test.mjs:137:69",
+          "initialModuleRequests": 80,
+          "uniqueInitialModuleRequests": 80,
+          "moduleRequestStartSpanMs": 1.5999999046325684
+        }
+      ]
+    },
+    "finalStandalone": {
+      "status": "PASS",
+      "started": "2026-11-06T19:44:29.806Z",
+      "finished": "2026-11-06T19:44:46.360Z",
+      "base": "http://127.0.0.1:8080/dist/",
+      "browser": "156.0.8078.80",
+      "standalone": true,
+      "visits": 2,
+      "startupBudgetMs": null,
+      "simulatedModuleRequestDelayMs": 0,
+      "applications": [
+        {
+          "path": "helion-standalone.html",
+          "visit": 1,
+          "status": "PASS",
+          "correctnessStatus": "PASS",
+          "startupBudgetStatus": null,
+          "startup": {
+            "status": "ready",
+            "cache": "miss",
+            "fontMs": 547.5,
+            "compileMs": 122.20000004768372,
+            "adapterAndShadersMs": 38.59999990463257,
+            "deviceMs": 4.900000095367432,
+            "shaderModulesMs": 7.900000095367432,
+            "uploadAndBindingsMs": 24.100000143051147,
+            "pipelineMs": 186.79999995231628,
+            "pipelineConcurrency": 8,
+            "mountMs": 877.9000000953674,
+            "firstCompletedMs": 924.2000000476837,
+            "navigationToFirstCompletedMs": 1088.2999999523163
+          },
+          "slowestPipelines": [
+            {
+              "name": "prepareTextInput",
+              "startMs": 95.5,
+              "elapsedMs": 143.5
+            },
+            {
+              "name": "layoutTextRuns",
+              "startMs": 95.79999995231628,
+              "elapsedMs": 119
+            },
+            {
+              "name": "shapeTextRuns",
+              "startMs": 95.79999995231628,
+              "elapsedMs": 117.90000009536743
+            },
+            {
+              "name": "input",
+              "startMs": 95.90000009536743,
+              "elapsedMs": 102.09999990463257
+            },
+            {
+              "name": "hud-copy",
+              "startMs": 931,
+              "elapsedMs": 85.20000004768372
+            },
+            {
+              "name": "hitTest",
+              "startMs": 95.79999995231628,
+              "elapsedMs": 74.79999995231628
+            },
+            {
+              "name": "applyCoreKey",
+              "startMs": 95.90000009536743,
+              "elapsedMs": 74.69999980926514
+            },
+            {
+              "name": "applyInputActions",
+              "startMs": 95.90000009536743,
+              "elapsedMs": 74.69999980926514
+            }
+          ],
+          "idleReadbackBytes": 0,
+          "interaction": {
+            "status": "PASS",
+            "check": "DOM pointer/keyboard to GPU TextBox",
+            "text": "Aurora"
+          },
+          "errors": [],
+          "error": null,
+          "initialModuleRequests": null,
+          "uniqueInitialModuleRequests": null,
+          "moduleRequestStartSpanMs": null
+        },
+        {
+          "path": "helion-standalone.html",
+          "visit": 2,
+          "status": "PASS",
+          "correctnessStatus": "PASS",
+          "startupBudgetStatus": null,
+          "startup": {
+            "status": "ready",
+            "cache": "hit",
+            "fontMs": 0,
+            "compileMs": 0,
+            "adapterAndShadersMs": 15.5,
+            "deviceMs": 0.6000001430511475,
+            "shaderModulesMs": 1.8999998569488525,
+            "uploadAndBindingsMs": 7.8999998569488525,
+            "pipelineMs": 157,
+            "pipelineConcurrency": 8,
+            "mountMs": 210,
+            "firstCompletedMs": 271.5,
+            "navigationToFirstCompletedMs": 404.2000000476837
+          },
+          "slowestPipelines": [
+            {
+              "name": "prepareTextInput",
+              "startMs": 45,
+              "elapsedMs": 129.40000009536743
+            },
+            {
+              "name": "shapeTextRuns",
+              "startMs": 45.299999952316284,
+              "elapsedMs": 112.5
+            },
+            {
+              "name": "layoutTextRuns",
+              "startMs": 45.299999952316284,
+              "elapsedMs": 112.5
+            },
+            {
+              "name": "input",
+              "startMs": 45.5,
+              "elapsedMs": 112.29999995231628
+            },
+            {
+              "name": "applyCoreKey",
+              "startMs": 45.5,
+              "elapsedMs": 81
+            },
+            {
+              "name": "applyInputActions",
+              "startMs": 45.5,
+              "elapsedMs": 81
+            },
+            {
+              "name": "hitTest",
+              "startMs": 45.299999952316284,
+              "elapsedMs": 72.5
+            },
+            {
+              "name": "clearFrame",
+              "startMs": 45.299999952316284,
+              "elapsedMs": 63.700000047683716
+            }
+          ],
+          "idleReadbackBytes": 0,
+          "interaction": {
+            "status": "PASS",
+            "check": "DOM pointer/keyboard to GPU TextBox",
+            "text": "Aurora"
+          },
+          "errors": [],
+          "error": null,
+          "initialModuleRequests": null,
+          "uniqueInitialModuleRequests": null,
+          "moduleRequestStartSpanMs": null
+        },
+        {
+          "path": "helion-designer.html",
+          "visit": 1,
+          "status": "PASS",
+          "correctnessStatus": "PASS",
+          "startupBudgetStatus": null,
+          "startup": {
+            "status": "ready",
+            "cache": "miss",
+            "fontMs": 358.60000014305115,
+            "compileMs": 140.20000004768372,
+            "adapterAndShadersMs": 4.599999904632568,
+            "deviceMs": 1.4000000953674316,
+            "shaderModulesMs": 2.299999952316284,
+            "uploadAndBindingsMs": 37.10000014305115,
+            "pipelineMs": 301.2999999523163,
+            "pipelineConcurrency": 8,
+            "mountMs": 672.1000001430511,
+            "firstCompletedMs": 805.5,
+            "navigationToFirstCompletedMs": 901.8999998569489
+          },
+          "slowestPipelines": [
+            {
+              "name": "prepareTextInput",
+              "startMs": 38.5,
+              "elapsedMs": 100.60000014305115
+            },
+            {
+              "name": "layoutTextRuns",
+              "startMs": 38.799999952316284,
+              "elapsedMs": 100.30000019073486
+            },
+            {
+              "name": "shapeTextRuns",
+              "startMs": 38.799999952316284,
+              "elapsedMs": 90.20000004768372
+            },
+            {
+              "name": "input",
+              "startMs": 121.20000004768372,
+              "elapsedMs": 62
+            },
+            {
+              "name": "applyDesignerCommands1",
+              "startMs": 151.79999995231628,
+              "elapsedMs": 55.700000047683716
+            },
+            {
+              "name": "applyDesignerInput",
+              "startMs": 139.10000014305115,
+              "elapsedMs": 53.69999980926514
+            },
+            {
+              "name": "applyDesignerCommands0",
+              "startMs": 151.70000004768372,
+              "elapsedMs": 51.59999990463257
+            },
+            {
+              "name": "emitTextBox",
+              "startMs": 251.10000014305115,
+              "elapsedMs": 49.69999980926514
+            }
+          ],
+          "idleReadbackBytes": 0,
+          "interaction": null,
+          "errors": [],
+          "error": null,
+          "initialModuleRequests": null,
+          "uniqueInitialModuleRequests": null,
+          "moduleRequestStartSpanMs": null
+        },
+        {
+          "path": "helion-designer.html",
+          "visit": 2,
+          "status": "PASS",
+          "correctnessStatus": "PASS",
+          "startupBudgetStatus": null,
+          "startup": {
+            "status": "ready",
+            "cache": "hit",
+            "fontMs": 0,
+            "compileMs": 0,
+            "adapterAndShadersMs": 6.900000095367432,
+            "deviceMs": 1.4000000953674316,
+            "shaderModulesMs": 2.299999952316284,
+            "uploadAndBindingsMs": 13.699999809265137,
+            "pipelineMs": 345.5,
+            "pipelineConcurrency": 8,
+            "mountMs": 400.89999985694885,
+            "firstCompletedMs": 504.5,
+            "navigationToFirstCompletedMs": 642.2000000476837
+          },
+          "slowestPipelines": [
+            {
+              "name": "layoutTextRuns",
+              "startMs": 42.200000047683716,
+              "elapsedMs": 166.89999985694885
+            },
+            {
+              "name": "prepareTextInput",
+              "startMs": 41.59999990463257,
+              "elapsedMs": 158.90000009536743
+            },
+            {
+              "name": "shapeTextRuns",
+              "startMs": 42.09999990463257,
+              "elapsedMs": 147.79999995231628
+            },
+            {
+              "name": "resolveTemplateLayout",
+              "startMs": 42.200000047683716,
+              "elapsedMs": 98
+            },
+            {
+              "name": "resolveTemplateVisuals",
+              "startMs": 42.299999952316284,
+              "elapsedMs": 97.90000009536743
+            },
+            {
+              "name": "rankTemplateTree",
+              "startMs": 42.299999952316284,
+              "elapsedMs": 93.90000009536743
+            },
+            {
+              "name": "synchronizeDesigners",
+              "startMs": 42.299999952316284,
+              "elapsedMs": 74.29999995231628
+            },
+            {
+              "name": "animateDesigners",
+              "startMs": 42.39999985694885,
+              "elapsedMs": 74
+            }
+          ],
+          "idleReadbackBytes": 0,
+          "interaction": null,
+          "errors": [],
+          "error": null,
+          "initialModuleRequests": null,
+          "uniqueInitialModuleRequests": null,
+          "moduleRequestStartSpanMs": null
+        },
+        {
+          "path": "helion-playground.html",
+          "visit": 1,
+          "status": "PASS",
+          "correctnessStatus": "PASS",
+          "startupBudgetStatus": null,
+          "startup": {
+            "status": "ready",
+            "cache": "miss",
+            "fontMs": 255.09999990463257,
+            "compileMs": 45.5,
+            "adapterAndShadersMs": 14.600000143051147,
+            "deviceMs": 0.7000000476837158,
+            "shaderModulesMs": 2.1000001430511475,
+            "uploadAndBindingsMs": 9.700000047683716,
+            "pipelineMs": 176.90000009536743,
+            "pipelineConcurrency": 8,
+            "mountMs": 399.2000000476837,
+            "firstCompletedMs": 439.80000019073486,
+            "navigationToFirstCompletedMs": 530.1000001430511
+          },
+          "slowestPipelines": [
+            {
+              "name": "prepareTextInput",
+              "startMs": 44,
+              "elapsedMs": 92.20000004768372
+            },
+            {
+              "name": "layoutTextRuns",
+              "startMs": 44.200000047683716,
+              "elapsedMs": 87.10000014305115
+            },
+            {
+              "name": "shapeTextRuns",
+              "startMs": 44.200000047683716,
+              "elapsedMs": 79.10000014305115
+            },
+            {
+              "name": "input",
+              "startMs": 115.70000004768372,
+              "elapsedMs": 55
+            },
+            {
+              "name": "resolveTemplateVisuals",
+              "startMs": 44.30000019073486,
+              "elapsedMs": 49.59999990463257
+            },
+            {
+              "name": "applyEditorInput",
+              "startMs": 123.5,
+              "elapsedMs": 47.200000047683716
+            },
+            {
+              "name": "emitDockNode",
+              "startMs": 170.90000009536743,
+              "elapsedMs": 47.09999990463257
+            },
+            {
+              "name": "emitCheckBox",
+              "startMs": 170.80000019073486,
+              "elapsedMs": 41.39999985694885
+            }
+          ],
+          "idleReadbackBytes": 0,
+          "interaction": {
+            "status": "PASS",
+            "check": "Run app shortcut through sandbox worker to shared GPU preview",
+            "nodes": 38,
+            "frames": 3
+          },
+          "errors": [],
+          "error": null,
+          "initialModuleRequests": null,
+          "uniqueInitialModuleRequests": null,
+          "moduleRequestStartSpanMs": null
+        },
+        {
+          "path": "helion-playground.html",
+          "visit": 2,
+          "status": "PASS",
+          "correctnessStatus": "PASS",
+          "startupBudgetStatus": null,
+          "startup": {
+            "status": "ready",
+            "cache": "hit",
+            "fontMs": 0,
+            "compileMs": 0,
+            "adapterAndShadersMs": 5.700000047683716,
+            "deviceMs": 2.0999999046325684,
+            "shaderModulesMs": 3,
+            "uploadAndBindingsMs": 7.5,
+            "pipelineMs": 197,
+            "pipelineConcurrency": 8,
+            "mountMs": 242.60000014305115,
+            "firstCompletedMs": 331.2000000476837,
+            "navigationToFirstCompletedMs": 458.2000000476837
+          },
+          "slowestPipelines": [
+            {
+              "name": "prepareTextInput",
+              "startMs": 38.30000019073486,
+              "elapsedMs": 102
+            },
+            {
+              "name": "shapeTextRuns",
+              "startMs": 38.700000047683716,
+              "elapsedMs": 101.60000014305115
+            },
+            {
+              "name": "layoutTextRuns",
+              "startMs": 38.700000047683716,
+              "elapsedMs": 89.29999995231628
+            },
+            {
+              "name": "resolveTemplateLayout",
+              "startMs": 38.700000047683716,
+              "elapsedMs": 54.40000009536743
+            },
+            {
+              "name": "resolveTemplateVisuals",
+              "startMs": 38.90000009536743,
+              "elapsedMs": 54.200000047683716
+            },
+            {
+              "name": "rankTemplateTree",
+              "startMs": 38.90000009536743,
+              "elapsedMs": 54.200000047683716
+            },
+            {
+              "name": "emitTextBox",
+              "startMs": 175.60000014305115,
+              "elapsedMs": 51.200000047683716
+            },
+            {
+              "name": "emitTextBlock",
+              "startMs": 170.30000019073486,
+              "elapsedMs": 51
+            }
+          ],
+          "idleReadbackBytes": 0,
+          "interaction": {
+            "status": "PASS",
+            "check": "Run app shortcut through sandbox worker to shared GPU preview",
+            "nodes": 38,
+            "frames": 3
+          },
+          "errors": [],
+          "error": null,
+          "initialModuleRequests": null,
+          "uniqueInitialModuleRequests": null,
+          "moduleRequestStartSpanMs": null
+        },
+        {
+          "path": "helion-typography.html",
+          "visit": 1,
+          "status": "PASS",
+          "correctnessStatus": "PASS",
+          "startupBudgetStatus": null,
+          "startup": {
+            "status": "ready",
+            "cache": "miss",
+            "fontMs": 289.5,
+            "compileMs": 76.5,
+            "adapterAndShadersMs": 5.299999952316284,
+            "deviceMs": 0.7999999523162842,
+            "shaderModulesMs": 2.299999952316284,
+            "uploadAndBindingsMs": 13.5,
+            "pipelineMs": 186.39999985694885,
+            "pipelineConcurrency": 8,
+            "mountMs": 460.5,
+            "firstCompletedMs": 561.2000000476837,
+            "navigationToFirstCompletedMs": 654.2000000476837
+          },
+          "slowestPipelines": [
+            {
+              "name": "prepareTextInput",
+              "startMs": 30.5,
+              "elapsedMs": 102.09999990463257
+            },
+            {
+              "name": "layoutTextRuns",
+              "startMs": 30.700000047683716,
+              "elapsedMs": 90.59999990463257
+            },
+            {
+              "name": "input",
+              "startMs": 67.79999995231628,
+              "elapsedMs": 90.20000004768372
+            },
+            {
+              "name": "shapeTextRuns",
+              "startMs": 30.700000047683716,
+              "elapsedMs": 77.09999990463257
+            },
+            {
+              "name": "emitEditorParts",
+              "startMs": 59.59999990463257,
+              "elapsedMs": 73
+            },
+            {
+              "name": "emitDrawingNode",
+              "startMs": 158.20000004768372,
+              "elapsedMs": 54.200000047683716
+            },
+            {
+              "name": "applyCoreKey",
+              "startMs": 67.79999995231628,
+              "elapsedMs": 54.10000014305115
+            },
+            {
+              "name": "emitCheckBox",
+              "startMs": 158,
+              "elapsedMs": 53.59999990463257
+            }
+          ],
+          "idleReadbackBytes": 0,
+          "interaction": null,
+          "errors": [],
+          "error": null,
+          "initialModuleRequests": null,
+          "uniqueInitialModuleRequests": null,
+          "moduleRequestStartSpanMs": null
+        },
+        {
+          "path": "helion-typography.html",
+          "visit": 2,
+          "status": "PASS",
+          "correctnessStatus": "PASS",
+          "startupBudgetStatus": null,
+          "startup": {
+            "status": "ready",
+            "cache": "hit",
+            "fontMs": 0,
+            "compileMs": 0,
+            "adapterAndShadersMs": 8.5,
+            "deviceMs": 1.5,
+            "shaderModulesMs": 2.4000000953674316,
+            "uploadAndBindingsMs": 8.300000190734863,
+            "pipelineMs": 160.59999990463257,
+            "pipelineConcurrency": 8,
+            "mountMs": 205.60000014305115,
+            "firstCompletedMs": 282.7000000476837,
+            "navigationToFirstCompletedMs": 411.40000009536743
+          },
+          "slowestPipelines": [
+            {
+              "name": "prepareTextInput",
+              "startMs": 36.700000047683716,
+              "elapsedMs": 75.29999995231628
+            },
+            {
+              "name": "layoutTextRuns",
+              "startMs": 37,
+              "elapsedMs": 75
+            },
+            {
+              "name": "shapeTextRuns",
+              "startMs": 37,
+              "elapsedMs": 68.5
+            },
+            {
+              "name": "input",
+              "startMs": 76.70000004768372,
+              "elapsedMs": 57.299999952316284
+            },
+            {
+              "name": "emitEditorParts",
+              "startMs": 69.40000009536743,
+              "elapsedMs": 56.700000047683716
+            },
+            {
+              "name": "applyEditorInput",
+              "startMs": 105.5,
+              "elapsedMs": 45.5
+            },
+            {
+              "name": "emitTextBox",
+              "startMs": 151.10000014305115,
+              "elapsedMs": 44.59999990463257
+            },
+            {
+              "name": "emitGridParts",
+              "startMs": 151.29999995231628,
+              "elapsedMs": 44.200000047683716
+            }
+          ],
+          "idleReadbackBytes": 0,
+          "interaction": null,
+          "errors": [],
+          "error": null,
+          "initialModuleRequests": null,
+          "uniqueInitialModuleRequests": null,
+          "moduleRequestStartSpanMs": null
+        }
+      ]
+    },
+    "compileBaseline": {
+      "status": "PASS",
+      "started": "2026-11-06T19:32:25.291Z",
+      "finished": "2026-11-06T19:33:52.497Z",
+      "base": "http://127.0.0.1:8082/",
+      "browser": "156.0.8078.80",
+      "standalone": false,
+      "visits": 1,
+      "startupBudgetMs": null,
+      "pipelineInstrumentation": "Test-only unique out-of-range workgroup guards; not an unmodified production-page benchmark. OS cache state cannot be cleared by this runner.",
+      "applications": [
+        {
+          "path": "",
+          "visit": 1,
+          "status": "PASS",
+          "correctnessStatus": "PASS",
+          "startupBudgetStatus": null,
+          "startup": {
+            "status": "ready",
+            "cache": "miss",
+            "fontMs": 535.0999999046326,
+            "compileMs": 211.09999990463257,
+            "adapterAndShadersMs": 46.799999952316284,
+            "deviceMs": 0.6000001430511475,
+            "shaderModulesMs": 11.700000047683716,
+            "uploadAndBindingsMs": 54.09999990463257,
+            "pipelineMs": 13120.099999904633,
+            "mountMs": 13260,
+            "firstCompletedMs": 13351,
+            "navigationToFirstCompletedMs": 13499.799999952316
+          },
+          "slowestPipelines": [
+            {
+              "name": "emitGridParts",
+              "startMs": 7324.600000143051,
+              "elapsedMs": 5880.199999809265
+            },
+            {
+              "name": "prepareTextInput",
+              "startMs": 85.29999995231628,
+              "elapsedMs": 5473.200000047684
+            },
+            {
+              "name": "layoutTextRuns",
+              "startMs": 87.29999995231628,
+              "elapsedMs": 5430.5
+            },
+            {
+              "name": "shapeTextRuns",
+              "startMs": 87.29999995231628,
+              "elapsedMs": 3983
+            },
+            {
+              "name": "measure",
+              "startMs": 4405.200000047684,
+              "elapsedMs": 2668.4000000953674
+            },
+            {
+              "name": "input",
+              "startMs": 453.90000009536743,
+              "elapsedMs": 2348.7000000476837
+            },
+            {
+              "name": "applyCoreKey",
+              "startMs": 2802.9000000953674,
+              "elapsedMs": 2189.0999999046326
+            },
+            {
+              "name": "emitTextBox",
+              "startMs": 7073.700000047684,
+              "elapsedMs": 1746.4000000953674
+            }
+          ],
+          "idleReadbackBytes": 0,
+          "interaction": {
+            "status": "PASS",
+            "check": "DOM pointer/keyboard to GPU TextBox",
+            "text": "Aurora"
+          },
+          "errors": [],
+          "error": null,
+          "initialModuleRequests": null,
+          "uniqueInitialModuleRequests": null,
+          "moduleRequestStartSpanMs": null
+        },
+        {
+          "path": "designer/",
+          "visit": 1,
+          "status": "PASS",
+          "correctnessStatus": "PASS",
+          "startupBudgetStatus": null,
+          "startup": {
+            "status": "ready",
+            "cache": "miss",
+            "fontMs": 448.59999990463257,
+            "compileMs": 219.39999985694885,
+            "adapterAndShadersMs": 29.5,
+            "deviceMs": 3.700000047683716,
+            "shaderModulesMs": 3.299999952316284,
+            "uploadAndBindingsMs": 49.200000047683716,
+            "pipelineMs": 26088.60000014305,
+            "mountMs": 26205.299999952316,
+            "firstCompletedMs": 26327.599999904633,
+            "navigationToFirstCompletedMs": 26472.200000047684
+          },
+          "slowestPipelines": [
+            {
+              "name": "applyDesignerInput",
+              "startMs": 6478,
+              "elapsedMs": 10317.5
+            },
+            {
+              "name": "emitEditorParts",
+              "startMs": 2731.899999856949,
+              "elapsedMs": 6621.300000190735
+            },
+            {
+              "name": "emitDesignerTracks",
+              "startMs": 18988,
+              "elapsedMs": 5458.099999904633
+            },
+            {
+              "name": "emitDesignerTimeline",
+              "startMs": 20725.099999904633,
+              "elapsedMs": 5429.799999952316
+            },
+            {
+              "name": "layoutTextRuns",
+              "startMs": 69.20000004768372,
+              "elapsedMs": 4424.799999952316
+            },
+            {
+              "name": "prepareTextInput",
+              "startMs": 67.09999990463257,
+              "elapsedMs": 4336.100000143051
+            },
+            {
+              "name": "emitDesignerInspector",
+              "startMs": 18250.700000047684,
+              "elapsedMs": 4276.399999856949
+            },
+            {
+              "name": "input",
+              "startMs": 3979.2999999523163,
+              "elapsedMs": 4220.200000047684
+            }
+          ],
+          "idleReadbackBytes": 0,
+          "interaction": null,
+          "errors": [],
+          "error": null,
+          "initialModuleRequests": null,
+          "uniqueInitialModuleRequests": null,
+          "moduleRequestStartSpanMs": null
+        },
+        {
+          "path": "playground/",
+          "visit": 1,
+          "status": "PASS",
+          "correctnessStatus": "PASS",
+          "startupBudgetStatus": null,
+          "startup": {
+            "status": "ready",
+            "cache": "disabled",
+            "fontMs": 98.20000004768372,
+            "compileMs": 89.10000014305115,
+            "adapterAndShadersMs": 35.69999980926514,
+            "deviceMs": 0.7999999523162842,
+            "shaderModulesMs": 3.6000001430511475,
+            "uploadAndBindingsMs": 35.09999990463257,
+            "pipelineMs": 19294.699999809265,
+            "mountMs": 19392.799999952316,
+            "firstCompletedMs": 19467.400000095367,
+            "navigationToFirstCompletedMs": 19923
+          },
+          "slowestPipelines": [
+            {
+              "name": "emitEditorParts",
+              "startMs": 3059.5,
+              "elapsedMs": 7921.900000095367
+            },
+            {
+              "name": "emitGridParts",
+              "startMs": 12344.5,
+              "elapsedMs": 7012.600000143051
+            },
+            {
+              "name": "input",
+              "startMs": 5107,
+              "elapsedMs": 5968.900000095367
+            },
+            {
+              "name": "prepareTextInput",
+              "startMs": 62.799999952316284,
+              "elapsedMs": 5801.100000143051
+            },
+            {
+              "name": "layoutTextRuns",
+              "startMs": 65.70000004768372,
+              "elapsedMs": 5340
+            },
+            {
+              "name": "shapeTextRuns",
+              "startMs": 65.60000014305115,
+              "elapsedMs": 4574.799999952316
+            },
+            {
+              "name": "applyEditorInput",
+              "startMs": 6498.700000047684,
+              "elapsedMs": 3741.7999999523163
+            },
+            {
+              "name": "measure",
+              "startMs": 7956.5,
+              "elapsedMs": 2559.7000000476837
+            }
+          ],
+          "idleReadbackBytes": 0,
+          "interaction": {
+            "status": "PASS",
+            "check": "Run app shortcut through sandbox worker to shared GPU preview",
+            "nodes": 38,
+            "frames": 3
+          },
+          "errors": [],
+          "error": null,
+          "initialModuleRequests": null,
+          "uniqueInitialModuleRequests": null,
+          "moduleRequestStartSpanMs": null
+        },
+        {
+          "path": "typography/",
+          "visit": 1,
+          "status": "PASS",
+          "correctnessStatus": "PASS",
+          "startupBudgetStatus": null,
+          "startup": {
+            "status": "ready",
+            "cache": "disabled",
+            "fontMs": 531.5999999046326,
+            "compileMs": 148.5,
+            "adapterAndShadersMs": 28.200000047683716,
+            "deviceMs": 0.5999999046325684,
+            "shaderModulesMs": 5,
+            "uploadAndBindingsMs": 38.5,
+            "pipelineMs": 18955.300000190735,
+            "mountMs": 19054.799999952316,
+            "firstCompletedMs": 19257.89999985695,
+            "navigationToFirstCompletedMs": 19368.299999952316
+          },
+          "slowestPipelines": [
+            {
+              "name": "emitEditorParts",
+              "startMs": 1588.7999999523163,
+              "elapsedMs": 11080.5
+            },
+            {
+              "name": "prepareTextInput",
+              "startMs": 60.5,
+              "elapsedMs": 6533.799999952316
+            },
+            {
+              "name": "layoutTextRuns",
+              "startMs": 63.39999985694885,
+              "elapsedMs": 6258.900000095367
+            },
+            {
+              "name": "emitGridParts",
+              "startMs": 13482.599999904633,
+              "elapsedMs": 5532.700000047684
+            },
+            {
+              "name": "applyEditorInput",
+              "startMs": 6865.599999904633,
+              "elapsedMs": 4722.5
+            },
+            {
+              "name": "shapeTextRuns",
+              "startMs": 63.39999985694885,
+              "elapsedMs": 4714
+            },
+            {
+              "name": "input",
+              "startMs": 5091.899999856949,
+              "elapsedMs": 4708.900000095367
+            },
+            {
+              "name": "measure",
+              "startMs": 9800.799999952316,
+              "elapsedMs": 2418.4000000953674
+            }
+          ],
+          "idleReadbackBytes": 0,
+          "interaction": null,
+          "errors": [],
+          "error": null,
+          "initialModuleRequests": null,
+          "uniqueInitialModuleRequests": null,
+          "moduleRequestStartSpanMs": null
+        }
+      ]
+    },
+    "compileOptimized": {
+      "status": "PASS",
+      "started": "2026-11-06T19:34:18.864Z",
+      "finished": "2026-11-06T19:35:14.329Z",
+      "base": "http://127.0.0.1:8080/",
+      "browser": "156.0.8078.80",
+      "standalone": false,
+      "visits": 1,
+      "startupBudgetMs": null,
+      "pipelineInstrumentation": "Test-only unique out-of-range workgroup guards; not an unmodified production-page benchmark. OS cache state cannot be cleared by this runner.",
+      "applications": [
+        {
+          "path": "",
+          "visit": 1,
+          "status": "PASS",
+          "correctnessStatus": "PASS",
+          "startupBudgetStatus": null,
+          "startup": {
+            "status": "ready",
+            "cache": "miss",
+            "fontMs": 535.5,
+            "compileMs": 178.80000019073486,
+            "adapterAndShadersMs": 45.799999952316284,
+            "deviceMs": 3.799999952316284,
+            "shaderModulesMs": 5.200000047683716,
+            "uploadAndBindingsMs": 12.299999952316284,
+            "pipelineMs": 8024.099999904633,
+            "pipelineConcurrency": 8,
+            "mountMs": 8122.700000047684,
+            "firstCompletedMs": 8180.799999952316,
+            "navigationToFirstCompletedMs": 8389.099999904633
+          },
+          "slowestPipelines": [
+            {
+              "name": "emitGridParts",
+              "startMs": 2863.9000000953674,
+              "elapsedMs": 5246.399999856949
+            },
+            {
+              "name": "layoutTextRuns",
+              "startMs": 88.79999995231628,
+              "elapsedMs": 5027.900000095367
+            },
+            {
+              "name": "prepareTextInput",
+              "startMs": 86.40000009536743,
+              "elapsedMs": 4976.299999952316
+            },
+            {
+              "name": "shapeTextRuns",
+              "startMs": 88.60000014305115,
+              "elapsedMs": 4120
+            },
+            {
+              "name": "input",
+              "startMs": 91,
+              "elapsedMs": 2701.100000143051
+            },
+            {
+              "name": "applyCoreKey",
+              "startMs": 91,
+              "elapsedMs": 2396.2000000476837
+            },
+            {
+              "name": "measure",
+              "startMs": 470.2000000476837,
+              "elapsedMs": 2393.7000000476837
+            },
+            {
+              "name": "emitTextBox",
+              "startMs": 2674.2000000476837,
+              "elapsedMs": 1910.7999999523163
+            }
+          ],
+          "idleReadbackBytes": 0,
+          "interaction": {
+            "status": "PASS",
+            "check": "DOM pointer/keyboard to GPU TextBox",
+            "text": "Aurora"
+          },
+          "errors": [],
+          "error": null,
+          "initialModuleRequests": null,
+          "uniqueInitialModuleRequests": null,
+          "moduleRequestStartSpanMs": null
+        },
+        {
+          "path": "designer/",
+          "visit": 1,
+          "status": "PASS",
+          "correctnessStatus": "PASS",
+          "startupBudgetStatus": null,
+          "startup": {
+            "status": "ready",
+            "cache": "miss",
+            "fontMs": 455.09999990463257,
+            "compileMs": 193.09999990463257,
+            "adapterAndShadersMs": 15.899999856948853,
+            "deviceMs": 0.7000000476837158,
+            "shaderModulesMs": 2.4000000953674316,
+            "uploadAndBindingsMs": 50,
+            "pipelineMs": 15468.700000047684,
+            "pipelineConcurrency": 8,
+            "mountMs": 15565,
+            "firstCompletedMs": 15680.299999952316,
+            "navigationToFirstCompletedMs": 15816.200000047684
+          },
+          "slowestPipelines": [
+            {
+              "name": "applyDesignerInput",
+              "startMs": 1476.2999999523163,
+              "elapsedMs": 12053.399999856949
+            },
+            {
+              "name": "emitEditorParts",
+              "startMs": 409.69999980926514,
+              "elapsedMs": 9549.100000143051
+            },
+            {
+              "name": "input",
+              "startMs": 647.1999998092651,
+              "elapsedMs": 5523.5
+            },
+            {
+              "name": "prepareTextInput",
+              "startMs": 46.19999980926514,
+              "elapsedMs": 5197.5
+            },
+            {
+              "name": "layoutTextRuns",
+              "startMs": 48.39999985694885,
+              "elapsedMs": 5123.700000047684
+            },
+            {
+              "name": "applyDesignerCommands1",
+              "startMs": 4242.799999952316,
+              "elapsedMs": 4818.799999952316
+            },
+            {
+              "name": "emitDesignerInspector",
+              "startMs": 9975.799999952316,
+              "elapsedMs": 4543.299999952316
+            },
+            {
+              "name": "applyEditorInput",
+              "startMs": 1384.1999998092651,
+              "elapsedMs": 4395
+            }
+          ],
+          "idleReadbackBytes": 0,
+          "interaction": null,
+          "errors": [],
+          "error": null,
+          "initialModuleRequests": null,
+          "uniqueInitialModuleRequests": null,
+          "moduleRequestStartSpanMs": null
+        },
+        {
+          "path": "playground/",
+          "visit": 1,
+          "status": "PASS",
+          "correctnessStatus": "PASS",
+          "startupBudgetStatus": null,
+          "startup": {
+            "status": "ready",
+            "cache": "disabled",
+            "fontMs": 100.5,
+            "compileMs": 74.79999995231628,
+            "adapterAndShadersMs": 13.5,
+            "deviceMs": 0.5,
+            "shaderModulesMs": 2.5,
+            "uploadAndBindingsMs": 33.200000047683716,
+            "pipelineMs": 12309.5,
+            "pipelineConcurrency": 8,
+            "mountMs": 12377.800000190735,
+            "firstCompletedMs": 12475.400000095367,
+            "navigationToFirstCompletedMs": 13083.799999952316
+          },
+          "slowestPipelines": [
+            {
+              "name": "emitEditorParts",
+              "startMs": 320.60000014305115,
+              "elapsedMs": 9928.399999856949
+            },
+            {
+              "name": "input",
+              "startMs": 528.9000000953674,
+              "elapsedMs": 7737.299999952316
+            },
+            {
+              "name": "emitGridParts",
+              "startMs": 5840.100000143051,
+              "elapsedMs": 6503.599999904633
+            },
+            {
+              "name": "layoutTextRuns",
+              "startMs": 36.90000009536743,
+              "elapsedMs": 5137.099999904633
+            },
+            {
+              "name": "prepareTextInput",
+              "startMs": 34.60000014305115,
+              "elapsedMs": 5116
+            },
+            {
+              "name": "applyEditorInput",
+              "startMs": 1244.5,
+              "elapsedMs": 4587.100000143051
+            },
+            {
+              "name": "shapeTextRuns",
+              "startMs": 36.80000019073486,
+              "elapsedMs": 3761.5
+            },
+            {
+              "name": "emitTextBox",
+              "startMs": 5174,
+              "elapsedMs": 2929.800000190735
+            }
+          ],
+          "idleReadbackBytes": 0,
+          "interaction": {
+            "status": "PASS",
+            "check": "Run app shortcut through sandbox worker to shared GPU preview",
+            "nodes": 38,
+            "frames": 3
+          },
+          "errors": [],
+          "error": null,
+          "initialModuleRequests": null,
+          "uniqueInitialModuleRequests": null,
+          "moduleRequestStartSpanMs": null
+        },
+        {
+          "path": "typography/",
+          "visit": 1,
+          "status": "PASS",
+          "correctnessStatus": "PASS",
+          "startupBudgetStatus": null,
+          "startup": {
+            "status": "ready",
+            "cache": "disabled",
+            "fontMs": 442.2999999523163,
+            "compileMs": 138.70000004768372,
+            "adapterAndShadersMs": 50,
+            "deviceMs": 0.6000001430511475,
+            "shaderModulesMs": 3.700000047683716,
+            "uploadAndBindingsMs": 31,
+            "pipelineMs": 10254.799999952316,
+            "pipelineConcurrency": 8,
+            "mountMs": 10369,
+            "firstCompletedMs": 10551.200000047684,
+            "navigationToFirstCompletedMs": 10887.599999904633
+          },
+          "slowestPipelines": [
+            {
+              "name": "emitEditorParts",
+              "startMs": 330.90000009536743,
+              "elapsedMs": 8312.400000095367
+            },
+            {
+              "name": "prepareTextInput",
+              "startMs": 83.10000014305115,
+              "elapsedMs": 5219.200000047684
+            },
+            {
+              "name": "emitGridParts",
+              "startMs": 5209.400000095367,
+              "elapsedMs": 5128.299999952316
+            },
+            {
+              "name": "layoutTextRuns",
+              "startMs": 85.5,
+              "elapsedMs": 5123.800000190735
+            },
+            {
+              "name": "applyEditorInput",
+              "startMs": 554.7000000476837,
+              "elapsedMs": 4605.299999952316
+            },
+            {
+              "name": "shapeTextRuns",
+              "startMs": 85.5,
+              "elapsedMs": 4111
+            },
+            {
+              "name": "input",
+              "startMs": 491.60000014305115,
+              "elapsedMs": 4079.399999856949
+            },
+            {
+              "name": "measure",
+              "startMs": 1721.6000001430511,
+              "elapsedMs": 2284.7999999523163
+            }
+          ],
+          "idleReadbackBytes": 0,
+          "interaction": null,
+          "errors": [],
+          "error": null,
+          "initialModuleRequests": null,
+          "uniqueInitialModuleRequests": null,
+          "moduleRequestStartSpanMs": null
+        }
+      ]
+    },
+    "moduleDiscoveryBefore": {
+      "status": "PASS",
+      "started": "2026-11-06T19:38:48.737Z",
+      "finished": "2026-11-06T19:39:09.523Z",
+      "base": "http://127.0.0.1:8080/",
+      "browser": "156.0.8078.80",
+      "standalone": false,
+      "visits": 1,
+      "startupBudgetMs": null,
+      "simulatedModuleRequestDelayMs": 20,
+      "applications": [
+        {
+          "path": "",
+          "visit": 1,
+          "status": "PASS",
+          "correctnessStatus": "PASS",
+          "startupBudgetStatus": null,
+          "startup": {
+            "status": "ready",
+            "cache": "miss",
+            "fontMs": 452.7999999523163,
+            "compileMs": 124.59999990463257,
+            "adapterAndShadersMs": 41.89999985694885,
+            "deviceMs": 3.9000000953674316,
+            "shaderModulesMs": 6.700000047683716,
+            "uploadAndBindingsMs": 12.5,
+            "pipelineMs": 189.10000014305115,
+            "pipelineConcurrency": 8,
+            "mountMs": 960,
+            "firstCompletedMs": 1019.7999999523163,
+            "navigationToFirstCompletedMs": 1321.7000000476837
+          },
+          "slowestPipelines": [
+            {
+              "name": "prepareTextInput",
+              "startMs": 85.29999995231628,
+              "elapsedMs": 138.89999985694885
+            },
+            {
+              "name": "layoutTextRuns",
+              "startMs": 86,
+              "elapsedMs": 125.19999980926514
+            },
+            {
+              "name": "shapeTextRuns",
+              "startMs": 86,
+              "elapsedMs": 124.79999995231628
+            },
+            {
+              "name": "input",
+              "startMs": 86.29999995231628,
+              "elapsedMs": 124.5
+            },
+            {
+              "name": "hitTest",
+              "startMs": 86.09999990463257,
+              "elapsedMs": 73.20000004768372
+            },
+            {
+              "name": "applyCoreKey",
+              "startMs": 86.39999985694885,
+              "elapsedMs": 72.90000009536743
+            },
+            {
+              "name": "applyInputActions",
+              "startMs": 86.5,
+              "elapsedMs": 72.79999995231628
+            },
+            {
+              "name": "emitGridParts",
+              "startMs": 211.19999980926514,
+              "elapsedMs": 63.10000014305115
+            }
+          ],
+          "idleReadbackBytes": 0,
+          "interaction": {
+            "status": "PASS",
+            "check": "DOM pointer/keyboard to GPU TextBox",
+            "text": "Aurora"
+          },
+          "errors": [],
+          "error": null,
+          "initialModuleRequests": 79,
+          "uniqueInitialModuleRequests": 79,
+          "moduleRequestStartSpanMs": 236.40000009536743
+        },
+        {
+          "path": "designer/",
+          "visit": 1,
+          "status": "PASS",
+          "correctnessStatus": "PASS",
+          "startupBudgetStatus": null,
+          "startup": {
+            "status": "ready",
+            "cache": "miss",
+            "fontMs": 414.40000009536743,
+            "compileMs": 168.59999990463257,
+            "adapterAndShadersMs": 27.700000047683716,
+            "deviceMs": 0.6000001430511475,
+            "shaderModulesMs": 12,
+            "uploadAndBindingsMs": 13.599999904632568,
+            "pipelineMs": 380.59999990463257,
+            "pipelineConcurrency": 8,
+            "mountMs": 937.5999999046326,
+            "firstCompletedMs": 1080.3999998569489,
+            "navigationToFirstCompletedMs": 1284.3999998569489
+          },
+          "slowestPipelines": [
+            {
+              "name": "prepareTextInput",
+              "startMs": 78.19999980926514,
+              "elapsedMs": 111.60000014305115
+            },
+            {
+              "name": "shapeTextRuns",
+              "startMs": 78.79999995231628,
+              "elapsedMs": 111
+            },
+            {
+              "name": "layoutTextRuns",
+              "startMs": 78.79999995231628,
+              "elapsedMs": 97.20000004768372
+            },
+            {
+              "name": "applyDesignerInspectorInput",
+              "startMs": 263,
+              "elapsedMs": 93.39999985694885
+            },
+            {
+              "name": "input",
+              "startMs": 156.09999990463257,
+              "elapsedMs": 80.90000009536743
+            },
+            {
+              "name": "applyEditorInput",
+              "startMs": 189.89999985694885,
+              "elapsedMs": 73
+            },
+            {
+              "name": "applyDesignerInput",
+              "startMs": 190,
+              "elapsedMs": 72.89999985694885
+            },
+            {
+              "name": "emitDesignerTimeline",
+              "startMs": 379.19999980926514,
+              "elapsedMs": 71.80000019073486
+            }
+          ],
+          "idleReadbackBytes": 0,
+          "interaction": null,
+          "errors": [],
+          "error": null,
+          "initialModuleRequests": 83,
+          "uniqueInitialModuleRequests": 83,
+          "moduleRequestStartSpanMs": 148.20000004768372
+        },
+        {
+          "path": "playground/",
+          "visit": 1,
+          "status": "PASS",
+          "correctnessStatus": "PASS",
+          "startupBudgetStatus": null,
+          "startup": {
+            "status": "ready",
+            "cache": "disabled",
+            "fontMs": 101,
+            "compileMs": 74.69999980926514,
+            "adapterAndShadersMs": 31.299999952316284,
+            "deviceMs": 0.9000000953674316,
+            "shaderModulesMs": 11.099999904632568,
+            "uploadAndBindingsMs": 13.700000047683716,
+            "pipelineMs": 229.70000004768372,
+            "pipelineConcurrency": 8,
+            "mountMs": 506.59999990463257,
+            "firstCompletedMs": 543.2000000476837,
+            "navigationToFirstCompletedMs": 1043.1000001430511
+          },
+          "slowestPipelines": [
+            {
+              "name": "prepareTextInput",
+              "startMs": 72.20000004768372,
+              "elapsedMs": 111
+            },
+            {
+              "name": "input",
+              "startMs": 136.20000004768372,
+              "elapsedMs": 100.29999995231628
+            },
+            {
+              "name": "layoutTextRuns",
+              "startMs": 72.39999985694885,
+              "elapsedMs": 98.70000004768372
+            },
+            {
+              "name": "shapeTextRuns",
+              "startMs": 72.29999995231628,
+              "elapsedMs": 89.70000004768372
+            },
+            {
+              "name": "emitTextBlock",
+              "startMs": 211.89999985694885,
+              "elapsedMs": 73.30000019073486
+            },
+            {
+              "name": "emitTextBox",
+              "startMs": 212.39999985694885,
+              "elapsedMs": 72.80000019073486
+            },
+            {
+              "name": "measure",
+              "startMs": 173.29999995231628,
+              "elapsedMs": 63.200000047683716
+            },
+            {
+              "name": "emit",
+              "startMs": 203.89999985694885,
+              "elapsedMs": 57.30000019073486
+            }
+          ],
+          "idleReadbackBytes": 0,
+          "interaction": {
+            "status": "PASS",
+            "check": "Run app shortcut through sandbox worker to shared GPU preview",
+            "nodes": 38,
+            "frames": 2
+          },
+          "errors": [],
+          "error": null,
+          "initialModuleRequests": 84,
+          "uniqueInitialModuleRequests": 84,
+          "moduleRequestStartSpanMs": 162.89999985694885
+        },
+        {
+          "path": "typography/",
+          "visit": 1,
+          "status": "PASS",
+          "correctnessStatus": "PASS",
+          "startupBudgetStatus": null,
+          "startup": {
+            "status": "ready",
+            "cache": "disabled",
+            "fontMs": 412.40000009536743,
+            "compileMs": 136.20000004768372,
+            "adapterAndShadersMs": 43.700000047683716,
+            "deviceMs": 0.5,
+            "shaderModulesMs": 12,
+            "uploadAndBindingsMs": 16.09999990463257,
+            "pipelineMs": 263,
+            "pipelineConcurrency": 8,
+            "mountMs": 868.4000000953674,
+            "firstCompletedMs": 980.4000000953674,
+            "navigationToFirstCompletedMs": 1231.7999999523163
+          },
+          "slowestPipelines": [
+            {
+              "name": "layoutTextRuns",
+              "startMs": 87.90000009536743,
+              "elapsedMs": 139.29999995231628
+            },
+            {
+              "name": "input",
+              "startMs": 148.30000019073486,
+              "elapsedMs": 121.69999980926514
+            },
+            {
+              "name": "prepareTextInput",
+              "startMs": 87.60000014305115,
+              "elapsedMs": 119.39999985694885
+            },
+            {
+              "name": "shapeTextRuns",
+              "startMs": 87.90000009536743,
+              "elapsedMs": 93.79999995231628
+            },
+            {
+              "name": "emitTextBlock",
+              "startMs": 252.5,
+              "elapsedMs": 91.60000014305115
+            },
+            {
+              "name": "applyEditorInput",
+              "startMs": 186.90000009536743,
+              "elapsedMs": 83.09999990463257
+            },
+            {
+              "name": "emitGridParts",
+              "startMs": 270.60000014305115,
+              "elapsedMs": 79.89999985694885
+            },
+            {
+              "name": "emitTextBox",
+              "startMs": 270.40000009536743,
+              "elapsedMs": 75.29999995231628
+            }
+          ],
+          "idleReadbackBytes": 0,
+          "interaction": null,
+          "errors": [],
+          "error": null,
+          "initialModuleRequests": 80,
+          "uniqueInitialModuleRequests": 80,
+          "moduleRequestStartSpanMs": 179.60000014305115
+        }
+      ]
+    },
+    "moduleDiscoveryAfter": {
+      "status": "PASS",
+      "started": "2026-11-06T19:39:24.661Z",
+      "finished": "2026-11-06T19:39:38.222Z",
+      "base": "http://127.0.0.1:8080/dist/",
+      "browser": "156.0.8078.80",
+      "standalone": false,
+      "visits": 1,
+      "startupBudgetMs": null,
+      "simulatedModuleRequestDelayMs": 20,
+      "applications": [
+        {
+          "path": "",
+          "visit": 1,
+          "status": "PASS",
+          "correctnessStatus": "PASS",
+          "startupBudgetStatus": null,
+          "startup": {
+            "status": "ready",
+            "cache": "miss",
+            "fontMs": 633.2000000476837,
+            "compileMs": 158,
+            "adapterAndShadersMs": 47.80000019073486,
+            "deviceMs": 2.200000047683716,
+            "shaderModulesMs": 6.5,
+            "uploadAndBindingsMs": 15,
+            "pipelineMs": 196,
+            "pipelineConcurrency": 8,
+            "mountMs": 1227.9000000953674,
+            "firstCompletedMs": 1293.5,
+            "navigationToFirstCompletedMs": 1490.5
+          },
+          "slowestPipelines": [
+            {
+              "name": "prepareTextInput",
+              "startMs": 82.20000004768372,
+              "elapsedMs": 161.29999995231628
+            },
+            {
+              "name": "layoutTextRuns",
+              "startMs": 82.79999995231628,
+              "elapsedMs": 135.40000009536743
+            },
+            {
+              "name": "input",
+              "startMs": 83,
+              "elapsedMs": 135.20000004768372
+            },
+            {
+              "name": "shapeTextRuns",
+              "startMs": 82.70000004768372,
+              "elapsedMs": 122.59999990463257
+            },
+            {
+              "name": "hitTest",
+              "startMs": 82.90000009536743,
+              "elapsedMs": 77.29999995231628
+            },
+            {
+              "name": "applyCoreKey",
+              "startMs": 83,
+              "elapsedMs": 77.20000004768372
+            },
+            {
+              "name": "applyInputActions",
+              "startMs": 83.10000014305115,
+              "elapsedMs": 63.59999990463257
+            },
+            {
+              "name": "hud-copy",
+              "startMs": 1299.9000000953674,
+              "elapsedMs": 61.59999990463257
+            }
+          ],
+          "idleReadbackBytes": 0,
+          "interaction": {
+            "status": "PASS",
+            "check": "DOM pointer/keyboard to GPU TextBox",
+            "text": "Aurora"
+          },
+          "errors": [],
+          "error": null,
+          "initialModuleRequests": 79,
+          "uniqueInitialModuleRequests": 79,
+          "moduleRequestStartSpanMs": 2.4000000953674316
+        },
+        {
+          "path": "designer/",
+          "visit": 1,
+          "status": "PASS",
+          "correctnessStatus": "PASS",
+          "startupBudgetStatus": null,
+          "startup": {
+            "status": "ready",
+            "cache": "miss",
+            "fontMs": 478.10000014305115,
+            "compileMs": 270.90000009536743,
+            "adapterAndShadersMs": 43.799999952316284,
+            "deviceMs": 11.200000047683716,
+            "shaderModulesMs": 4.599999904632568,
+            "uploadAndBindingsMs": 24.700000047683716,
+            "pipelineMs": 427.2000000476837,
+            "pipelineConcurrency": 8,
+            "mountMs": 1227.4000000953674,
+            "firstCompletedMs": 1365.2000000476837,
+            "navigationToFirstCompletedMs": 1531.7000000476837
+          },
+          "slowestPipelines": [
+            {
+              "name": "prepareTextInput",
+              "startMs": 111.10000014305115,
+              "elapsedMs": 147.70000004768372
+            },
+            {
+              "name": "shapeTextRuns",
+              "startMs": 111.40000009536743,
+              "elapsedMs": 147.40000009536743
+            },
+            {
+              "name": "layoutTextRuns",
+              "startMs": 111.40000009536743,
+              "elapsedMs": 136.70000004768372
+            },
+            {
+              "name": "emitDesignerResources",
+              "startMs": 434.90000009536743,
+              "elapsedMs": 90.5
+            },
+            {
+              "name": "input",
+              "startMs": 235.5,
+              "elapsedMs": 85.80000019073486
+            },
+            {
+              "name": "measure",
+              "startMs": 354.5,
+              "elapsedMs": 80.10000014305115
+            },
+            {
+              "name": "emitEditorParts",
+              "startMs": 177.40000009536743,
+              "elapsedMs": 70.70000004768372
+            },
+            {
+              "name": "emitCheckBox",
+              "startMs": 393.40000009536743,
+              "elapsedMs": 70.70000004768372
+            }
+          ],
+          "idleReadbackBytes": 0,
+          "interaction": null,
+          "errors": [],
+          "error": null,
+          "initialModuleRequests": 83,
+          "uniqueInitialModuleRequests": 83,
+          "moduleRequestStartSpanMs": 3.4000000953674316
+        },
+        {
+          "path": "playground/",
+          "visit": 1,
+          "status": "PASS",
+          "correctnessStatus": "PASS",
+          "startupBudgetStatus": null,
+          "startup": {
+            "status": "ready",
+            "cache": "disabled",
+            "fontMs": 100.90000009536743,
+            "compileMs": 112.89999985694885,
+            "adapterAndShadersMs": 45.799999952316284,
+            "deviceMs": 0.5,
+            "shaderModulesMs": 11.200000047683716,
+            "uploadAndBindingsMs": 16.200000047683716,
+            "pipelineMs": 260.19999980926514,
+            "pipelineConcurrency": 8,
+            "mountMs": 638.2000000476837,
+            "firstCompletedMs": 680.6000001430511,
+            "navigationToFirstCompletedMs": 1252
+          },
+          "slowestPipelines": [
+            {
+              "name": "prepareTextInput",
+              "startMs": 79.20000004768372,
+              "elapsedMs": 146.90000009536743
+            },
+            {
+              "name": "layoutTextRuns",
+              "startMs": 79.5,
+              "elapsedMs": 135.60000014305115
+            },
+            {
+              "name": "shapeTextRuns",
+              "startMs": 79.5,
+              "elapsedMs": 112.29999995231628
+            },
+            {
+              "name": "input",
+              "startMs": 158,
+              "elapsedMs": 108.29999995231628
+            },
+            {
+              "name": "emitEditorParts",
+              "startMs": 126.10000014305115,
+              "elapsedMs": 75.59999990463257
+            },
+            {
+              "name": "emitTextBlock",
+              "startMs": 254.10000014305115,
+              "elapsedMs": 69.09999990463257
+            },
+            {
+              "name": "applyEditorInput",
+              "startMs": 201.70000004768372,
+              "elapsedMs": 64.59999990463257
+            },
+            {
+              "name": "applyEditorCommands",
+              "startMs": 201.79999995231628,
+              "elapsedMs": 64.5
+            }
+          ],
+          "idleReadbackBytes": 0,
+          "interaction": {
+            "status": "PASS",
+            "check": "Run app shortcut through sandbox worker to shared GPU preview",
+            "nodes": 38,
+            "frames": 2
+          },
+          "errors": [],
+          "error": null,
+          "initialModuleRequests": 84,
+          "uniqueInitialModuleRequests": 84,
+          "moduleRequestStartSpanMs": 1.7000000476837158
+        },
+        {
+          "path": "typography/",
+          "visit": 1,
+          "status": "PASS",
+          "correctnessStatus": "PASS",
+          "startupBudgetStatus": null,
+          "startup": {
+            "status": "ready",
+            "cache": "disabled",
+            "fontMs": 401.90000009536743,
+            "compileMs": 110.79999995231628,
+            "adapterAndShadersMs": 31.200000047683716,
+            "deviceMs": 0.5,
+            "shaderModulesMs": 11.800000190734863,
+            "uploadAndBindingsMs": 12.699999809265137,
+            "pipelineMs": 207.80000019073486,
+            "pipelineConcurrency": 8,
+            "mountMs": 838.5999999046326,
+            "firstCompletedMs": 954.9000000953674,
+            "navigationToFirstCompletedMs": 1096.1000001430511
+          },
+          "slowestPipelines": [
+            {
+              "name": "layoutTextRuns",
+              "startMs": 73.40000009536743,
+              "elapsedMs": 106.09999990463257
+            },
+            {
+              "name": "prepareTextInput",
+              "startMs": 73.09999990463257,
+              "elapsedMs": 103.90000009536743
+            },
+            {
+              "name": "shapeTextRuns",
+              "startMs": 73.40000009536743,
+              "elapsedMs": 92.69999980926514
+            },
+            {
+              "name": "applyEditorInput",
+              "startMs": 154,
+              "elapsedMs": 82.20000004768372
+            },
+            {
+              "name": "input",
+              "startMs": 117.79999995231628,
+              "elapsedMs": 76.40000009536743
+            },
+            {
+              "name": "emit",
+              "startMs": 196.5,
+              "elapsedMs": 72.29999995231628
+            },
+            {
+              "name": "emitTextBlock",
+              "startMs": 203.70000004768372,
+              "elapsedMs": 67.59999990463257
+            },
+            {
+              "name": "measure",
+              "startMs": 169,
+              "elapsedMs": 67.20000004768372
+            }
+          ],
+          "idleReadbackBytes": 0,
+          "interaction": null,
+          "errors": [],
+          "error": null,
+          "initialModuleRequests": 80,
+          "uniqueInitialModuleRequests": 80,
+          "moduleRequestStartSpanMs": 3.0
+        }
+      ]
+    }
+  },
+  "nativeGates": {
+    "status": "PASS",
+    "results": [
+      {
+        "path": "tests/gpu.html?autorun",
+        "status": "PASS",
+        "checks": [
+          {
+            "name": "30 core compute pipelines, resident metrics and HUD presentation pipelines create",
+            "status": "PASS"
+          },
+          {
+            "name": "normal frames: 64-byte clock/viewport payload, zero explicit readbacks",
+            "status": "PASS"
+          },
+          {
+            "name": "native Measure / Arrange agrees with layout reference",
+            "status": "PASS"
+          },
+          {
+            "name": "small scene has no bounded-arena overflow",
+            "status": "PASS"
+          },
+          {
+            "name": "GPU hit testing, checkbox action and status filtering",
+            "status": "PASS"
+          },
+          {
+            "name": "GPU text editing and filtering reuse sorted order without layout",
+            "status": "PASS"
+          },
+          {
+            "name": "stable numeric GPU block/merge sorting",
+            "status": "PASS"
+          },
+          {
+            "name": "selection identity survives reverse sorting",
+            "status": "PASS"
+          },
+          {
+            "name": "column resizing stays on GPU without a layout pass",
+            "status": "PASS"
+          },
+          {
+            "name": "GPU numeric-cell editing and decimal commit",
+            "status": "PASS"
+          },
+          {
+            "name": "composition and value updates avoid layout and implicit readback",
+            "status": "PASS"
+          },
+          {
+            "name": "native sparse-strip raster/composition texture contains expected solid color",
+            "status": "PASS"
+          },
+          {
+            "name": "unchanged retained display list produces zero raster strips",
+            "status": "PASS"
+          },
+          {
+            "name": "dirty-tile output exactly matches full-frame rendering after a slider change",
+            "status": "PASS"
+          }
+        ],
+        "error": null
+      },
+      {
+        "path": "tests/editor.html?autorun",
+        "status": "PASS",
+        "checks": [
+          "Native initial editor document and visible-line indexing",
+          "Multicaret edit, grouped undo, redo, and no normal-frame readback",
+          "Resident literal search, replacement, and history",
+          "Snippet expansion and linked multicaret editing",
+          "Typed model storage, derived expressions, and fresh CanExecute guard",
+          "Tab, float, split, close/reopen, and layout restoration preserve documents",
+          "Native editor/docking cached-damage pixels equal the full-render reference"
+        ],
+        "error": null
+      },
+      {
+        "path": "tests/designer.html?autorun",
+        "status": "PASS",
+        "checks": [
+          "Designer modules and native frame graph compile and execute",
+          "GPU canvas selection hits a genuine authored control",
+          "Pointer move is one undoable GPU document transaction",
+          "Inspector edit and subsequent command retain separate GPU undo transactions",
+          "Native node insertion, paint, geometry and history work without remounting",
+          "GPU hierarchy reparent and undo preserve nested content",
+          "Grid track changes repair child placement and remain undoable",
+          "Auto-key records endpoints and timeline scrubbing evaluates them on GPU",
+          "Named visual states retain overrides independently from base values",
+          "Interactive preview uses separate runtime input text, not authoring history storage",
+          "Data-only snapshot/export/restore validates the authored hierarchy",
+          "Retained-damage and full-frame designer pixels match exactly"
+        ],
+        "error": null
+      },
+      {
+        "path": "tests/typography.html?autorun",
+        "status": "PASS",
+        "checks": [
+          "Native GSUB, positioning and paragraph metrics agree with original fixture",
+          "Warm cache and width-only reflow reuse shaped glyphs",
+          "Canonical composition, scalar clusters and hard line breaks",
+          "Real TextBlock, native and templated TextBox and DataGrid share compute shaping",
+          "Equal-length mutation and grapheme-safe TextBox deletion",
+          "Multiple GPU caret/edit boundaries preserve FIFO in one submission without readback",
+          "Post-query DataGrid visible-row cache refresh",
+          "Cached and direct glyph-coverage paths produce identical pixels"
+        ],
+        "error": null
+      },
+      {
+        "path": "tests/templates.html?autorun",
+        "status": "PASS",
+        "checks": [
+          "Template modules and native layouts compile and execute",
+          "Per-instance part trees are arranged independently",
+          "Visual state transition writes actual part paint",
+          "Theme switching and reduced motion remain GPU commands",
+          "Native text presenter aliases resident editor content",
+          "Native contrast and density plans update without rebuilding",
+          "On-device accent foreground matches independent host calculation",
+          "Separate focus overlay preserves content border geometry",
+          "Retained-damage and full-render pixels agree",
+          "Native pooled template assignment is undoable",
+          "Designer theme commands survive project snapshots",
+          "GPU designer preference transactions undo atomically",
+          "Designer state preview executes without a document remount"
+        ],
+        "error": null
+      },
+      {
+        "path": "tests/framework.html?autorun",
+        "status": "PASS",
+        "checks": [
+          "native DockPanel all edges and LastChildFill",
+          "native WrapPanel line sizing and placement",
+          "native UniformGrid auto rows, FirstColumn and independent spacing",
+          "native Viewbox uniform composition, independent of desired geometry",
+          "GPU pseudo-state selector and timed color transition",
+          "imperative composition Set has local precedence over pseudo style",
+          "native keyframe seek/pause/hold/stop without CPU animation evaluation",
+          "compute gradient, RGBA image and transformed clip pixels",
+          "drawing retained damage agrees with complete rerasterization; no arena overflow",
+          "native constrained-star allocation releases a minimum after another column saturates"
+        ],
+        "error": null
+      },
+      {
+        "path": "tests/dynamic.html?autorun",
+        "status": "PASS",
+        "checks": [
+          "Initial ItemsSource retains exact u32 keys and custom rows",
+          "Revision-checked patches reject stale state without changing rows",
+          "Deletion, free-slot reuse, sorting and selection preserve identity",
+          "Growing string updates compact on-device without dropping live text",
+          "Whole-source capacity rejection leaves the old table intact",
+          "Dynamic text and source filtering use the retained GPU state",
+          "Tree expansion, replacement and keyed selection execute on the GPU",
+          "Embedded preview shares device and a single owning frame submission",
+          "Parent hit testing forwards transformed pointer input to the child on-device",
+          "GPU-owned focus and keyboard forwarding update only the embedded control",
+          "Fit mode derives child viewport and pixel extent on the GPU without a host rectangle",
+          "Preview resize and detach preserve workspace documents"
+        ],
+        "error": null
+      },
+      {
+        "path": "tests/quality.html?autorun",
+        "status": "PASS",
+        "checks": [
+          "Quadratic WGSL output agrees with the high-precision host oracle",
+          "Sharp cache/direct output agrees at DPR 1",
+          "Quality switch invalidates coverage and HUD quad/fullscreen copies agree at DPR 1",
+          "Sharp cache/direct output agrees at DPR 1.25",
+          "Quality switch invalidates coverage and HUD quad/fullscreen copies agree at DPR 1.25",
+          "Sharp cache/direct output agrees at DPR 2",
+          "Quality switch invalidates coverage and HUD quad/fullscreen copies agree at DPR 2"
+        ],
+        "error": null
+      },
+      {
+        "path": "tests/shaders.html?autorun",
+        "status": "PASS",
+        "checks": null,
+        "error": null
+      },
+      {
+        "path": "tests/metrics.html?autorun",
+        "status": "PASS",
+        "checks": [
+          "0.300 ms nanosecond conversion with low-word rollover",
+          "CPU encode is independent of 14.3 ms GPU span and 0.3 ms pass sum",
+          "CPU-only mode reports missing GPU timings as unavailable",
+          "Skipped layout/data/glyph/HUD slots are ignored",
+          "Reversed active pair is invalid, not zero",
+          "Encoded but inactive layout is idle, not a fictitious execution",
+          "Compact merged phases are unavailable, never fake independent zeros",
+          "Overlapping pass ranges are unioned, not added",
+          "Direct 0.3 ms submit delta is independent of animation uptime",
+          "Long stall is retained without reporting high FPS",
+          "ASAP mode and metric epoch reset",
+          "260 queued samples preserve frame/history correspondence through wrapping",
+          "Synthetic 120 Hz host submissions and 50 Hz GPU end timestamps remain independent (not measured performance)",
+          "Actual pass timestamps agree with independent BigInt subtraction; this tiny workload is not the app benchmark"
+        ],
+        "error": null
+      },
+      {
+        "path": "tests/frame-sync.html?autorun",
+        "status": "PASS",
+        "checks": [
+          "native modules and both presentation pipelines create and execute",
+          "exact serial/parallel UI pixels: initial",
+          "exact serial/parallel UI pixels: fractional vertical scroll",
+          "exact serial/parallel UI pixels: integer scroll",
+          "exact serial/parallel UI pixels: selection",
+          "exact serial/parallel UI pixels: header sort",
+          "exact serial/parallel UI pixels: filter",
+          "exact serial/parallel UI pixels: empty query",
+          "exact serial/parallel UI pixels: clear query",
+          "exact serial/parallel UI pixels: fractional translation",
+          "exact serial/parallel UI pixels: opacity",
+          "exact serial/parallel UI pixels: hide",
+          "exact serial/parallel UI pixels: show",
+          "retained damage and full raster agree after row-mode changes",
+          "compact/stages changes measurement boundaries, not UI pixels",
+          "exact full/scissored HUD pixels at DPR 1",
+          "exact full/scissored HUD pixels at DPR 1.25",
+          "exact full/scissored HUD pixels at DPR 2",
+          "normal rendering keeps 64-byte frame metadata; test-only snapshots are explicit"
+        ],
+        "error": null
+      }
+    ]
+  },
+  "sourceSHA256": {
+    "src/gpu/pipeline-library.js": "52eb1f6b3064283f23e1dc3911e45ca7ee5e49c6efdc2b959ab0a1dc11c0bfb8",
+    "shaders/emit.wgsl": "fdec9a452158187b4f4b7d9c43e541384f11336fed1a24777af99ed59847bc35",
+    "playground/app.js": "08dbca7c6962f14e97ad130d9c5a6478328202036c0ccf28fff7a83d519ecd37",
+    "typography/app.js": "57dad6a07eb661d37aff7adeeaff0131d14bff2430882861df7792f77954f876",
+    "tools/build.mjs": "d40de467ca2abf80d5e9eef7f8ff8aa1bfa9f12aff132fc4554f580e321bc98c",
+    "tools/module-preloads.mjs": "b4e9c5b7617867747ea13896a393d54cb45d5e8a41502c172f99029939374788",
+    "tools/browser-test.mjs": "32e0af5823305bdd5306881fa5aba62ec5102f34a419d7d00de21fbd1e6443f0"
+  }
+}

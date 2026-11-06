@@ -1,5 +1,8 @@
 # Startup optimization and the 200 ms target — 2026-11-06
 
+This records the first optimization round. The subsequent committed changes and
+current validation are in the [startup follow-up](startup-followup.md).
+
 **The 200 ms navigation-to-usable-frame target is not met.** All application
 correctness checks pass, but every sample in the new 200 ms budget run fails the
 latency threshold. A loading screen, cached screenshot, queue submission or
