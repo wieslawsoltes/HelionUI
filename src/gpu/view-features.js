@@ -9,13 +9,16 @@ export function viewFeatures(view, options={}) {
  if(options.styles||options.resources)flags|=4;return flags;
 }
 export function entryEnabled(entry, flags=511){
- if(['shapeTextRuns','layoutTextRuns'].includes(entry))return !!(flags&256);
+ if(entry.startsWith('emitDesigner'))return !!(flags&32);
+ if(entry==='emitDockNode')return !!(flags&2);
+ if(entry==='applyDockInput')return !!(flags&2);
+ if(['prepareTextInput','shapeTextRuns','layoutTextRuns'].includes(entry))return !!(flags&256);
  if(['resolveTemplateLayout','resolveTemplateVisuals','rankTemplateTree'].includes(entry))return !!(flags&128);
  if(['initializeData','filterScan','scanBlocks','scatterRows','sortBlocks','mergeRows','resolveSelection','emitGridParts'].includes(entry))return !!(flags&64);
- if(['synchronizeDesigners','animateDesigners'].includes(entry))return !!(flags&32);
+ if(['applyDesignerSurfaceInput','applyDesignerTreeInput','applyDesignerInspectorInput','applyDesignerTimelineInput','applyDesignerColorInput','finishDesignerEdit','applyDesignerCommands0','applyDesignerCommands1','applyDesignerCommands2','applyDesignerCommands3','applyDesignerCommands4','applyDesignerCommands5','applyDesignerCommands6','applyDesignerInput','synchronizeDesigners','animateDesigners'].includes(entry))return !!(flags&32);
  if(entry==='preparePresenterFrame')return !!(flags&16);
  if(['layoutLists','emitListParts'].includes(entry))return !!(flags&8);
- if(['analyzeEditors','layoutEditors','emitEditorParts'].includes(entry))return !!(flags&1);
+ if(['applyEditorCommands','applyEditorInput','analyzeEditors','layoutEditors','emitEditorParts'].includes(entry))return !!(flags&1);
  if(['pullModels','evaluateModels','pushModels'].includes(entry))return !!(flags&4);
  return true;
 }

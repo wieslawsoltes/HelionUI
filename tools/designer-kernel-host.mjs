@@ -9,10 +9,10 @@ import {fbits,fromBits} from '../src/core/schema.js';
 import {DesignCommand} from '../src/designer/schema.js';
 import {decodeDesignSnapshot} from '../src/designer/document.js';
 const source=await readFile(new URL('../shaders/designer.wgsl',import.meta.url),'utf8');
-const skipped=new Set(['dsGroup','dsAlign','dsDrag','dsSurfacePointer','dsTreePointer','dsInspectorPointer','dsColorPointer','dsTimelinePointer','dsRoute','dsWorld','dsViewportOrigin','dsZoom','dsFit','dsHandlePosition','dsSelectionBounds']);
+const skipped=new Set(['dsGroup','dsAlign','dsDrag','dsSurfacePointer','dsTreePointer','dsInspectorPointer','dsInspectorPick','dsColorPointer','dsTimelinePointer','dsRoute','dsWorld','dsViewportOrigin','dsZoom','dsFit','dsHandlePosition','dsSelectionBounds']);
 const templateSource=await readFile(new URL('../shaders/templates.wgsl',import.meta.url),'utf8');
-const bodies=[...scalarFunctions(templateSource).filter(f=>f.name==='dsTemplatesValid'),...scalarFunctions(source)].filter(f=>!skipped.has(f.name));
-let code=bodies.map(f=>noFallthrough(translateScalarBody(f.code
+const bodies=[...scalarFunctions(templateSource).filter(f=>f.name==='dsTemplatesValid'),...scalarFunctions(source).filter(f=>!['dsCaptureTransition','finishDesignerCommit','dsCommit','finishDesignerEdit','dsCommand','dsRoute','applyDesignerInput','applyDesignerCommands0','applyDesignerCommands1','applyDesignerCommands2','applyDesignerCommands3','applyDesignerCommands4','applyDesignerCommands5','applyDesignerCommands6','applyDesignerSurfaceInput','applyDesignerTreeInput','applyDesignerInspectorInput','applyDesignerTimelineInput','applyDesignerColorInput'].includes(f.name)).map(f=>['executeDsCommand','executeDsCommit','executeDsRoute'].includes(f.name)?{...f,name:f.name.replace('executeDs','ds'),code:f.code.replace(f.name,f.name.replace('executeDs','ds'))}:f)].filter(f=>!skipped.has(f.name));
+let code=bodies.map(f=>noFallthrough(translateScalarBody(f.code.replaceAll('dsCaptureTransition(','dsChangeState(')
  .replace(/\b(\w+)\s*\/=\s*(\d+)u/g,'$1=u32($1/$2)')
  .replace(/\b(\w+)\s*\/\s*(\d+)u/g,'u32($1/$2)')))).join('\n')
  .replace(/vec([234])<(?:f32|u32)>\(/g,'vec$1(');

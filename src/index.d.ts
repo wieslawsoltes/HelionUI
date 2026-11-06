@@ -187,7 +187,7 @@ export class CommandStream {
  constructor(capacity?:number,maxQueued?:number); readonly length:number; readonly capacity:number; readonly sentBytes:number; readonly coalesced:number;
  push(kind:number,payload?:CommandPayload):this;
  pushBulk(kind:number,payload:CommandPayload,data:Uint32Array,destinationWords:number):this;
- flush(queue:{writeBuffer(buffer:unknown,offset:number,data:ArrayBuffer,dataOffset:number,size:number):void},buffer:unknown,maxEvents?:number,heapBuffer?:unknown):{lastSequence:number;payloadBytes:number;count:number;discrete:boolean;bytes:number;layout:boolean;query:boolean;hitTest:boolean;actionCandidate:boolean};
+ flush(queue:{writeBuffer(buffer:unknown,offset:number,data:ArrayBuffer,dataOffset:number,size:number):void},buffer:unknown,maxEvents?:number,heapBuffer?:unknown):{lastSequence:number;payloadBytes:number;count:number;caretCommands:number;discrete:boolean;bytes:number;layout:boolean;query:boolean;hitTest:boolean;actionCandidate:boolean};
 }
 export const Kind:Readonly<Record<ViewKind,number>>;
 export const Action:Readonly<Record<ActionName,number>>;

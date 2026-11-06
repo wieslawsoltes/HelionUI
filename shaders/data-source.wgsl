@@ -13,6 +13,7 @@ fn sourcePackedWords(t:u32,d:u32,skipSlot:u32,skipMask:u32)->u32{var words=0u;fo
 fn compactSourceStrings(t:u32,d:u32,skipSlot:u32,skipMask:u32){let spare=heap[d+20u];var used=0u;for(var row=0u;row<heap[d+11u];row++){if(heap[heap[d+5u]+row]==0u){continue;}for(var col=0u;col<heap[t+2u];col++){if(heap[heap[t+9u]+col*8u+2u]!=0u||(row==skipSlot&&(skipMask&(1u<<col))!=0u)){continue;}let cell=heap[t+3u]+row*8u+col;let src=heap[cell];let size=heap[src]+1u;for(var k=0u;k<size;k++){heap[spare+used+k]=heap[src+k];}heap[cell]=spare+used;used+=size;}}heap[d+20u]=heap[d+12u];heap[d+12u]=spare;heap[d+14u]=used;heap[d+21u]++;}
 fn sourceClear(t:u32,d:u32){for(var j=0u;j<=heap[d+8u];j++){heap[heap[d+7u]+j]=NONE;}for(var j=0u;j<heap[d+11u];j++){heap[heap[d+5u]+j]=0u;}heap[d+2u]=0u;heap[d+10u]=0u;heap[d+11u]=0u;heap[d+14u]=0u;heap[d+3u]+=1u;heap[t]=0u;heap[t+17u]=NONE;heap[t+16u]=NONE;heap[t+18u]=0u;sourceDirty();}
 fn applyDataSource(i:u32,command:u32,length:u32,parameter:f32,sequence:u32) {
+ if((VIEW_FEATURES&64u)==0u){state[43u]++;return;}
  if(i>=frame.counts.x||nodes[i].info.x!=11u){state[43u]+=1u;return;}let t=nodes[i].action.w;let d=heap[t+35u];if(d==0u){state[43u]+=1u;return;}
  heap[d+17u]=sequence;heap[d+19u]=0u;
  if(command==2u){if(length<heap[t+2u]){heap[t+11u]=length;heap[t+12u]=select(0u,1u,parameter>0.0);sourceDirty();}return;}

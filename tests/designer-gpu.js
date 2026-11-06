@@ -15,6 +15,18 @@ export async function runDesignerGate(){button.disabled=true;const result={statu
   surface.send(Opcode.Down,{...position});surface.send(Opcode.Up,{...position});await step();assert((await d.snapshot()).selectedSlot===1,'Canvas hit testing did not select actual Button');pass('GPU canvas selection hits a genuine authored control');
   surface.send(Opcode.Down,{...position});surface.send(Opcode.Move,{x:position.x+32,y:position.y+18});surface.send(Opcode.Up,{x:position.x+32,y:position.y+18});await step();const moved=await d.snapshot();assert(moved.project.root.children[0].props.x!==60,'GPU drag did not change layout position');d.command('undo');await step();assert((await d.snapshot()).project.root.children[0].props.x===60,'Drag undo did not restore position');pass('Pointer move is one undoable GPU document transaction');
   d.select(1).set('width',190).setColor('background','#abcdef80');await step();await step();let snap=await d.snapshot();assert(snap.project.root.children[0].props.width===190&&snap.project.root.children[0].props.background==='#abcdef80','Inspector/API transaction did not update authored paint and geometry');
+  // A pointer-started field edit and the next API mutation are separate undo steps.
+  raw=await surface.inspect({includeNodes:true});const inspector=surface.id('properties');
+  const cell=point(raw,inspector,.8,0);cell.y+=6*28+14;
+  surface.send(Opcode.Down,{target:inspector,...cell});surface.send(Opcode.Up,{target:inspector,...cell});
+  surface.send(Opcode.Key,{target:inspector,c:65,a:2});
+  for(const ch of '205')surface.send(Opcode.Text,{target:inspector,c:ch.codePointAt(0)});
+  d.set('height',63);await step();snap=await d.snapshot();
+  assert(snap.project.root.children[0].props.width===205&&snap.project.root.children[0].props.height===63,'Inspector edit before command');
+  d.command('undo');await step();snap=await d.snapshot();
+  assert(snap.project.root.children[0].props.width===205&&snap.project.root.children[0].props.height===52,'Command undo merged active edit');
+  d.command('undo');await step();assert((await d.snapshot()).project.root.children[0].props.width===190,'Field edit undo');
+  pass('Inspector edit and subsequent command retain separate GPU undo transactions');
   d.command('duplicate');await step();snap=await d.snapshot();assert(snap.project.root.children.length===4,'Duplicate did not insert actual native tree node');d.command('undo');await step();assert((await d.snapshot()).project.root.children.length===3,'Duplicate undo failed');pass('Native node insertion, paint, geometry and history work without remounting');
   d.select(4).command('reparent',0);await step();snap=await d.snapshot();assert(snap.project.root.children.some(n=>n.props.id==='nested'),'Reparent did not move the actual child');d.command('undo');await step();pass('GPU hierarchy reparent and undo preserve nested content');
   d.select(3).command('gridTrack',0,-1);await step();snap=await d.snapshot();assert(snap.project.root.children[2].props.columns.length===1,'Grid track removal failed');assert(snap.project.root.children[2].children[0].props.column===0,'Grid placement did not clamp to surviving track');d.command('undo');await step();pass('Grid track changes repair child placement and remain undoable');

@@ -51,7 +51,7 @@ fn dsPutKey(d:u32,k:u32,t:u32,time:f32,value:f32,easing:u32)->bool{
  if(count>=DS_KEYS){dsReject(d,4u);return false;}for(var j=count;j>position;j--){for(var w=0u;w<4u;w++){heap[at+4u+j*4u+w]=heap[at+(j-1u)*4u+4u+w];}}
  hsetf(at+4u+position*4u,clock);hsetf(at+5u+position*4u,value);heap[at+6u+position*4u]=min(8u,easing);heap[at+7u+position*4u]=0u;heap[at]=count+1u;return true;
 }
-fn dsCommit(d:u32){if(heap[d+32u]==0u){return;}var changed=false;for(var j=0u;j<heap[d+29u];j++){if(heap[heap[d+30u]+j]!=heap[dsData(d)+j]){changed=true;break;}}
+fn executeDsCommit(d:u32){if(heap[d+32u]==0u){return;}var changed=false;for(var j=0u;j<heap[d+29u];j++){if(heap[heap[d+30u]+j]!=heap[dsData(d)+j]){changed=true;break;}}
  if(changed&&(heap[d+17u]&32u)!=0u&&heap[d+70u]==0u){for(var k=0u;k<heap[d+1u];k++){if(!dsAlive(d,k)){continue;}for(var t=0u;t<6u;t++){let field=dsTrackField(t);if(heap[dsBefore(d,k)+field]!=heap[dsRec(d,k)+field]){if(heap[dsTrack(d,k,t)]==0u&&hf(d+35u)>.0001){if(!dsPutKey(d,k,t,0.0,hf(dsBefore(d,k)+field),1u)){dsCancel(d);return;}}if(!dsPutKey(d,k,t,hf(d+35u),hf(dsRec(d,k)+field),1u)){dsCancel(d);return;}}}}}
  if(changed&&!dsValidateBlock(d,dsData(d))){dsCancel(d);dsSelect(d,NONE,true);dsReject(d,7u);return;}
  if(changed){var count=heap[d+26u]+1u;let slots=heap[d+27u]+1u;if(count>=slots){heap[d+95u]=(heap[d+95u]+1u)%slots;count--;}
@@ -205,7 +205,7 @@ fn dsCaptureState(d:u32,s:u32){if(s==0u||s>3u){return;}dsBegin(d);for(var k=0u;k
   heap[at]=7u;heap[at+1u]=83u;heap[at+2u]=116u;heap[at+3u]=97u;heap[at+4u]=116u;heap[at+5u]=101u;heap[at+6u]=32u;heap[at+7u]=48u+st;
   for(var attempt=0u;attempt<4u;attempt++){if(attempt>0u){heap[at]=8u;heap[at+8u]=96u+attempt;}var duplicate=false;for(var other=1u;other<heap[data+4u];other++){if(other==st){continue;}let p=data+8u+(other-1u)*16u;if(heap[p]!=heap[at]){continue;}var same=true;for(var j=0u;j<heap[at];j++){if(heap[p+1u+j]!=heap[at+1u+j]){same=false;break;}}duplicate=duplicate||same;}if(!duplicate){break;}}
  }
- dsCommit(d);dsChangeState(d,s);
+ dsCommit(d);dsCaptureTransition(d,s);
 }
 fn dsHandlePosition(bounds:vec4<f32>,h:u32)->vec2<f32>{let center=(bounds.xy+bounds.zw)*.5;switch h{case 0u:{return bounds.xy;}case 1u:{return vec2<f32>(center.x,bounds.y);}case 2u:{return vec2<f32>(bounds.z,bounds.y);}case 3u:{return vec2<f32>(bounds.z,center.y);}case 4u:{return bounds.zw;}case 5u:{return vec2<f32>(center.x,bounds.w);}case 6u:{return vec2<f32>(bounds.x,bounds.w);}case 7u:{return vec2<f32>(bounds.x,center.y);}default:{return vec2<f32>(center.x,bounds.y-26.0);}}}
 fn dsBeginDrag(d:u32,point:vec2<f32>,mode:u32,handle:u32){dsBegin(d);heap[d+72u]=0u;for(var k=0u;k<heap[d+1u];k++){for(var t=0u;t<6u;t++){let offset=select(select(t+7u,3u,t==0u),12u,t==5u);heap[heap[d+96u]+k*12u+t]=state[cs(dsNode(d,k))+offset];}}heap[d+18u]=mode;heap[d+23u]=handle;hsetf(d+19u,point.x);hsetf(d+20u,point.y);let bounds=dsSelectionBounds(d);hsetf(d+80u,bounds.x);hsetf(d+81u,bounds.y);hsetf(d+82u,bounds.z);hsetf(d+83u,bounds.w);let primary=heap[d+9u];if(primary!=NONE){let n=nodes[dsNode(d,primary)];hsetf(d+104u,n.matrix.x);hsetf(d+105u,n.matrix.y);hsetf(d+106u,n.matrix.z);hsetf(d+107u,n.matrix.w);hsetf(d+108u,n.rect.z);hsetf(d+109u,n.rect.w);}heap[d+17u]&=~64u;}
@@ -225,7 +225,7 @@ fn dsDrag(d:u32,point:vec2<f32>,mods:u32){let mode=heap[d+18u];if(mode==3u){let 
  }
 }
 fn dsSurfacePointer(i:u32,c:Command){let d=nodes[i].aux.x;let p=c.position;let mods=c.code>>8u;if(c.kind==4u){if((mods&6u)!=0u){dsZoom(d,hf(d+13u)*exp(-c.data.y*.0015),p);}else{hsetf(d+14u,hf(d+14u)-c.data.x);hsetf(d+15u,hf(d+15u)-c.data.y);}return;}
- if(c.kind==2u){if(heap[d+45u]!=NONE&&!dsFinishEdit(d)){return;}state[0u]=i;state[2u]=i;hsetf(d+19u,p.x);hsetf(d+20u,p.y);hsetf(d+76u,p.x);hsetf(d+77u,p.y);heap[d+86u]=0u;heap[d+87u]=0u;
+ if(c.kind==2u){state[0u]=i;state[2u]=i;hsetf(d+19u,p.x);hsetf(d+20u,p.y);hsetf(d+76u,p.x);hsetf(d+77u,p.y);heap[d+86u]=0u;heap[d+87u]=0u;
   if(heap[d+12u]==1u||((mods&8u)!=0u&&c.data.y<2.0)){heap[d+18u]=3u;hsetf(d+21u,hf(d+14u));hsetf(d+22u,hf(d+15u));return;}
   if((heap[d+17u]&16u)!=0u){return;}if(heap[d+10u]>0u&&heap[d+12u]==0u){let bounds=dsSelectionBounds(d);for(var handle=0u;handle<9u;handle++){if(length(p-dsHandlePosition(bounds,handle))<=8.0){if(heap[d+10u]>1u&&handle<8u){dsReject(d,6u);return;}dsBeginDrag(d,p,select(4u,5u,handle==8u),handle);return;}}}
   if(heap[d+12u]>=2u){dsBegin(d);var kind=heap[d+12u]-100u;var shape=heap[d+97u];if(heap[d+12u]<100u){kind=select(select(select(4u,5u,heap[d+12u]==3u),12u,heap[d+12u]==4u),6u,heap[d+12u]==5u);shape=select(shape,1u,heap[d+12u]==4u);}var parent=heap[d+9u];if(parent==NONE||!dsContainer(heap[dsRec(d,parent)+1u])){parent=0u;}let k=dsNew(d,kind,parent,shape);if(k==NONE){dsCancel(d);return;}let r=dsRec(d,k);let pn=nodes[dsNode(d,parent)];let world=inverse(pn.matrix,pn.translation.xy,p);hsetf(r+8u,world.x-contentRect(pn).x);hsetf(r+9u,world.y-contentRect(pn).y);hsetf(r+10u,1.0);hsetf(r+11u,1.0);dsSelect(d,k,false);heap[d+18u]=6u;return;}
@@ -237,24 +237,31 @@ fn dsSurfacePointer(i:u32,c:Command){let d=nodes[i].aux.x;let p=c.position;let m
 }
 fn dsTreeRow(i:u32,point:vec2<f32>)->u32{let d=nodes[i].aux.x;let r=contentRect(nodes[i]);let row=u32(max(0.0,point.y-r.y+sf(cs(i)+1u))/27.0);var index=0u;for(var rank=0u;rank<heap[d+58u];rank++){let k=heap[heap[d+56u]+rank];var p=heap[dsRec(d,k)+2u];var show=true;for(var j=0u;j<17u&&p!=NONE;j++){if((heap[dsRec(d,p)+4u]&4u)!=0u){show=false;break;}p=heap[dsRec(d,p)+2u];}if(show){if(index==row){return k;}index++;}}return NONE;}
 fn dsTreePointer(i:u32,c:Command){let d=nodes[i].aux.x;let r=contentRect(nodes[i]);let point=inverse(nodes[i].matrix,nodes[i].translation.xy,c.position);if(c.kind==4u){setf(cs(i)+1u,clamp(sf(cs(i)+1u)+c.data.y,0.0,max(0.0,f32(heap[d+58u])*27.0-r.w)));return;}let slot=dsTreeRow(i,point);
- if(c.kind==2u){if(!dsFinishEdit(d)){return;}state[0u]=i;state[2u]=i;if(slot==NONE){return;}let rec=dsRec(d,slot);let depth=nodes[dsNode(d,slot)].text.x-nodes[heap[d+2u]].text.x;if(point.x>r.x+r.z-26.0){dsBegin(d);heap[rec+4u]^=2u;dsCommit(d);return;}if(point.x>r.x+r.z-50.0){dsBegin(d);heap[rec+4u]^=1u;heap[d+53u]=1u;state[3u]=1u;dsCommit(d);return;}if(point.x<r.x+f32(depth)*14.0+19.0&&nodes[dsNode(d,slot)].info.w>0u){heap[rec+4u]^=4u;return;}dsSelect(d,slot,(c.code&256u)!=0u);heap[d+74u]=slot;heap[d+75u]=NONE;hsetf(d+19u,point.x);hsetf(d+20u,point.y);}
+ if(c.kind==2u){state[0u]=i;state[2u]=i;if(slot==NONE){return;}let rec=dsRec(d,slot);let depth=nodes[dsNode(d,slot)].text.x-nodes[heap[d+2u]].text.x;if(point.x>r.x+r.z-26.0){dsBegin(d);heap[rec+4u]^=2u;dsCommit(d);return;}if(point.x>r.x+r.z-50.0){dsBegin(d);heap[rec+4u]^=1u;heap[d+53u]=1u;state[3u]=1u;dsCommit(d);return;}if(point.x<r.x+f32(depth)*14.0+19.0&&nodes[dsNode(d,slot)].info.w>0u){heap[rec+4u]^=4u;return;}dsSelect(d,slot,(c.code&256u)!=0u);heap[d+74u]=slot;heap[d+75u]=NONE;hsetf(d+19u,point.x);hsetf(d+20u,point.y);}
  if(c.kind==1u&&heap[d+74u]!=NONE&&length(point-vec2<f32>(hf(d+19u),hf(d+20u)))>5.0){heap[d+75u]=slot;}
  if(c.kind==3u){let source=heap[d+74u];let destination=heap[d+75u];if(source!=NONE&&destination!=NONE&&source!=destination){let tr=dsRec(d,destination);let child=(c.code&512u)!=0u||point.x>r.x+f32(nodes[dsNode(d,destination)].text.x-nodes[heap[d+2u]].text.x)*14.0+50.0;let parent=select(heap[tr+2u],destination,child&&dsContainer(heap[tr+1u]));if(parent!=NONE){dsBegin(d);if(dsReparent(d,source,parent,select(heap[tr+3u],heap[d+1u],parent==destination))){dsCommit(d);}else{dsCancel(d);}}}heap[d+74u]=NONE;heap[d+75u]=NONE;state[2u]=NONE;}
 }
-fn dsInspectorPointer(i:u32,c:Command){let d=nodes[i].aux.x;let n=nodes[i];let r=contentRect(n);let p=inverse(n.matrix,n.translation.xy,c.position);let role=n.action.w;let primary=heap[d+9u];let height=28.0;let rows=select(select(heap[d+103u],18u,role==1u||role==3u),5u,role==2u);
- if(c.kind==4u){setf(cs(i)+1u,clamp(sf(cs(i)+1u)+c.data.y,0.0,max(0.0,f32(rows)*height-r.w)));return;}if(c.kind!=2u){if(c.kind==3u){state[2u]=NONE;}return;}if(!dsFinishEdit(d)){return;}state[0u]=i;state[2u]=i;let row=u32(max(0.0,p.y-r.y+sf(cs(i)+1u))/height);
- if(role==2u){if(row<4u){if(p.x>r.x+r.z-78.0&&row>0u){dsCaptureState(d,row);}else{dsChangeState(d,row);}}return;}
- if(role==1u){let count=heap[dsData(d)+3u];if(row<count){heap[d+100u]=row+1u;heap[d+98u]=32u;if(c.data.y>=2.0){dsStartEdit(d,select(primary,0u,primary==NONE),2000u+row);}}else if(row==count&&count<16u){dsBegin(d);let at=dsData(d)+64u+count*68u;heap[at]=0xffdcc064u;heap[at+1u]=7u;heap[at+4u]=66u;heap[at+5u]=114u;heap[at+6u]=117u;heap[at+7u]=115u;heap[at+8u]=104u;heap[at+9u]=48u+count/10u;heap[at+10u]=48u+count%10u;heap[dsData(d)+3u]=count+1u;heap[d+100u]=count+1u;dsCommit(d);}return;}
- if(primary==NONE){return;}if(role==3u){if(heap[dsRec(d,primary)+1u]!=1u){return;}let axis=row/9u;let index=row%9u;if(axis>1u){return;}let rec=dsRec(d,primary);let count=heap[rec+48u+axis];if(index==8u){if(count<8u){dsBegin(d);heap[rec+48u+axis]++;let at=rec+50u+axis*16u+count*2u;heap[at]=2u;hsetf(at+1u,1.0);heap[d+53u]=1u;state[3u]=1u;dsCommit(d);}return;}if(index>=count){return;}if(p.x<r.x+112.0){dsBegin(d);let at=rec+50u+axis*16u+index*2u;heap[at]=(heap[at]+1u)%3u;if(hf(at+1u)<=0.0){hsetf(at+1u,1.0);}heap[d+53u]=1u;state[3u]=1u;dsCommit(d);}else{dsStartEdit(d,primary,1000u+axis*8u+index);}return;}
- if(row>=heap[d+103u]){return;}let at=heap[d+40u]+row*4u;let field=heap[at+2u];let fieldKind=heap[at+3u];if(fieldKind==5u){return;}heap[d+100u]=0u;if(fieldKind==2u){if(field==86u||field==88u){if(c.data.y>=2.0){dsStartEdit(d,primary,field);return;}var next=dsRead(d,primary,field);for(var j=0u;j<=heap[d+1u];j++){next=select(next+1u,0u,next==NONE);if(next>=heap[d+1u]){dsSetSelected(d,field,-1.0);return;}if(dsAlive(d,next)){dsSetSelected(d,field,f32(next));return;}}return;}var limit=4u;if(field==40u||field==41u||field==43u){limit=2u;}dsSetSelected(d,field,f32((dsRead(d,primary,field)+1u)%limit));}else{dsStartEdit(d,primary,field);}
+fn dsInspectorPick(i:u32,c:Command)->vec3<u32>{let d=nodes[i].aux.x;let n=nodes[i];let r=contentRect(n);let p=inverse(n.matrix,n.translation.xy,c.position);let role=n.action.w;let primary=heap[d+9u];let height=28.0;let rows=select(select(heap[d+103u],18u,role==1u||role==3u),5u,role==2u);
+ if(c.kind==4u){setf(cs(i)+1u,clamp(sf(cs(i)+1u)+c.data.y,0.0,max(0.0,f32(rows)*height-r.w)));return vec3<u32>(0u);}if(c.kind!=2u){if(c.kind==3u){state[2u]=NONE;}return vec3<u32>(0u);}state[0u]=i;state[2u]=i;let row=u32(max(0.0,p.y-r.y+sf(cs(i)+1u))/height);
+ if(role==2u){if(row<4u){if(p.x>r.x+r.z-78.0&&row>0u){dsCaptureState(d,row);}else{dsChangeState(d,row);}}return vec3<u32>(0u);}
+ if(role==1u){let count=heap[dsData(d)+3u];if(row<count){heap[d+100u]=row+1u;heap[d+98u]=32u;if(c.data.y>=2.0){return vec3<u32>(1u,select(primary,0u,primary==NONE),2000u+row);}}else if(row==count&&count<16u){dsBegin(d);let at=dsData(d)+64u+count*68u;heap[at]=0xffdcc064u;heap[at+1u]=7u;heap[at+4u]=66u;heap[at+5u]=114u;heap[at+6u]=117u;heap[at+7u]=115u;heap[at+8u]=104u;heap[at+9u]=48u+count/10u;heap[at+10u]=48u+count%10u;heap[dsData(d)+3u]=count+1u;heap[d+100u]=count+1u;dsCommit(d);}return vec3<u32>(0u);}
+ if(primary==NONE){return vec3<u32>(0u);}if(role==3u){if(heap[dsRec(d,primary)+1u]!=1u){return vec3<u32>(0u);}let axis=row/9u;let index=row%9u;if(axis>1u){return vec3<u32>(0u);}let rec=dsRec(d,primary);let count=heap[rec+48u+axis];if(index==8u){if(count<8u){dsBegin(d);heap[rec+48u+axis]++;let at=rec+50u+axis*16u+count*2u;heap[at]=2u;hsetf(at+1u,1.0);heap[d+53u]=1u;state[3u]=1u;dsCommit(d);}return vec3<u32>(0u);}if(index>=count){return vec3<u32>(0u);}if(p.x<r.x+112.0){dsBegin(d);let at=rec+50u+axis*16u+index*2u;heap[at]=(heap[at]+1u)%3u;if(hf(at+1u)<=0.0){hsetf(at+1u,1.0);}heap[d+53u]=1u;state[3u]=1u;dsCommit(d);}else{return vec3<u32>(1u,primary,1000u+axis*8u+index);}return vec3<u32>(0u);}
+ if(row>=heap[d+103u]){return vec3<u32>(0u);}let at=heap[d+40u]+row*4u;let field=heap[at+2u];let fieldKind=heap[at+3u];if(fieldKind==5u){return vec3<u32>(0u);}heap[d+100u]=0u;if(fieldKind==2u){if(field==86u||field==88u){if(c.data.y>=2.0){return vec3<u32>(1u,primary,field);}var next=dsRead(d,primary,field);for(var j=0u;j<=heap[d+1u];j++){next=select(next+1u,0u,next==NONE);if(next>=heap[d+1u]){return vec3<u32>(2u,field,bitcast<u32>(-1.0));}if(dsAlive(d,next)){return vec3<u32>(2u,field,bitcast<u32>(f32(next)));}}return vec3<u32>(0u);}var limit=4u;if(field==40u||field==41u||field==43u){limit=2u;}return vec3<u32>(2u,field,bitcast<u32>(f32((dsRead(d,primary,field)+1u)%limit)));}else{return vec3<u32>(1u,primary,field);}
+ return vec3<u32>(0u);
+}
+// Decode first so native compilation contains one copy of each property editor.
+fn dsInspectorPointer(i:u32,c:Command){
+ let request=dsInspectorPick(i,c);let d=nodes[i].aux.x;
+ if(request.x==1u){dsStartEdit(d,request.y,request.z);}
+ if(request.x==2u){dsSetSelected(d,request.y,bitcast<f32>(request.z));}
 }
 fn dsColorPointer(i:u32,c:Command){let n=nodes[i];let d=n.aux.x;let r=contentRect(n);let p=inverse(n.matrix,n.translation.xy,c.position);let primary=heap[d+9u];let resourceIndex=heap[d+100u];if(primary==NONE&&resourceIndex==0u){return;}var field=heap[d+98u];if(field<31u||field>33u){field=32u;heap[d+98u]=field;}
- if(c.kind==2u){if(!dsFinishEdit(d)){return;}state[0u]=i;state[2u]=i;let channel=u32(max(0.0,p.y-r.y-62.0)/32.0);if(channel>3u||p.y<r.y+62.0){return;}dsBegin(d);heap[d+102u]=channel;heap[d+18u]=12u;}
+ if(c.kind==2u){state[0u]=i;state[2u]=i;let channel=u32(max(0.0,p.y-r.y-62.0)/32.0);if(channel>3u||p.y<r.y+62.0){return;}dsBegin(d);heap[d+102u]=channel;heap[d+18u]=12u;}
  if((c.kind==1u||c.kind==2u)&&heap[d+18u]==12u){let value=u32(round(clamp((p.x-r.x-26.0)/max(1.0,r.z-65.0),0.0,1.0)*255.0));let channel=heap[d+102u];var color=0u;let at=dsData(d)+64u+(resourceIndex-1u)*68u;if(resourceIndex>0u){color=heap[at];}else{color=dsRead(d,primary,field);}color=(color&~(255u<<(channel*8u)))|(value<<(channel*8u));if(resourceIndex>0u){heap[at]=color;}else{dsPaintSelected(d,field,color);}}
  if(c.kind==3u){heap[d+18u]=0u;dsCommit(d);state[2u]=NONE;}
 }
 fn dsTimelinePointer(i:u32,c:Command){let n=nodes[i];let d=n.aux.x;let r=contentRect(n);let p=inverse(n.matrix,n.translation.xy,c.position);let primary=heap[d+9u];let duration=hf(dsData(d)+2u);let time=clamp((p.x-r.x-130.0)/max(1.0,r.z-146.0),0.0,1.0)*duration;
- if(c.kind==2u){if(!dsFinishEdit(d)){return;}state[0u]=i;state[2u]=i;heap[d+17u]&=~64u;if(p.y<r.y+30.0||primary==NONE){hsetf(d+35u,time);heap[d+18u]=8u;return;}let t=min(5u,u32((p.y-r.y-30.0)/32.0));heap[d+38u]=t;heap[d+73u]=NONE;if(p.x<r.x+130.0){return;}let at=dsTrack(d,primary,t);for(var key=0u;key<heap[at];key++){let x=r.x+130.0+hf(at+4u+key*4u)/duration*(r.z-146.0);if(abs(p.x-x)<8.0){heap[d+73u]=key;dsBegin(d);heap[d+18u]=9u;hsetf(d+51u,hf(at+5u+key*4u));hsetf(d+20u,p.y);break;}}
+ if(c.kind==2u){state[0u]=i;state[2u]=i;heap[d+17u]&=~64u;if(p.y<r.y+30.0||primary==NONE){hsetf(d+35u,time);heap[d+18u]=8u;return;}let t=min(5u,u32((p.y-r.y-30.0)/32.0));heap[d+38u]=t;heap[d+73u]=NONE;if(p.x<r.x+130.0){return;}let at=dsTrack(d,primary,t);for(var key=0u;key<heap[at];key++){let x=r.x+130.0+hf(at+4u+key*4u)/duration*(r.z-146.0);if(abs(p.x-x)<8.0){heap[d+73u]=key;dsBegin(d);heap[d+18u]=9u;hsetf(d+51u,hf(at+5u+key*4u));hsetf(d+20u,p.y);break;}}
   if(heap[d+73u]==NONE){hsetf(d+35u,time);heap[d+18u]=8u;if(c.data.y>=2.0){dsBegin(d);_=dsPutKey(d,primary,t,time,dsCurrentValue(d,primary,t),1u);dsCommit(d);}}
  }else if(c.kind==1u){if(heap[d+18u]==8u){hsetf(d+35u,time);}if(heap[d+18u]==9u&&primary!=NONE){let at=dsTrack(d,primary,heap[d+38u]);let key=heap[d+73u];var minTime=0.0;var maxTime=duration;if(key>0u){minTime=hf(at+4u+(key-1u)*4u)+.001;}if(key+1u<heap[at]){maxTime=hf(at+4u+(key+1u)*4u)-.001;}var clock=time;if((c.code&256u)!=0u){clock=round(clock*10.0)/10.0;}hsetf(at+4u+key*4u,clamp(clock,minTime,maxTime));hsetf(d+35u,clock);if((c.code&2048u)!=0u){hsetf(at+5u+key*4u,hf(d+51u)+(hf(d+20u)-p.y)*select(.01,1.0,heap[d+38u]==1u||heap[d+38u]==2u));}}}
  else if(c.kind==3u){heap[d+18u]=0u;dsCommit(d);state[2u]=NONE;}
@@ -291,46 +298,108 @@ fn dsValidateBlock(d:u32,base:u32)->bool{
  for(var j=0u;j<heap[base+3u];j++){let at=base+64u+j*68u;let len=heap[at+1u];if(len==0u||len>63u){return false;}for(var c=0u;c<len;c++){let cp=heap[at+4u+c];if(cp>0x10ffffu||(cp>=0xd800u&&cp<=0xdfffu)){return false;}}for(var other=0u;other<j;other++){let prev=base+64u+other*68u;if(heap[prev+1u]!=len){continue;}var same=true;for(var c=0u;c<len;c++){if(heap[prev+4u+c]!=heap[at+4u+c]){same=false;break;}}if(same){return false;}}}
  return true;
 }
-fn dsCommand(d:u32,command:u32,a:f32,b:f32,x:f32,y:f32){if(d==0u){return;}let primary=heap[d+9u];if(command!=38u&&heap[d+45u]!=NONE){if(!dsFinishEdit(d)){return;}}
+// Bounded command families keep native compiler graphs small. Each operation
+// retains its validation, early returns and common completion behavior.
+// The immediate wrapper is used by scalar replay. Native command/gesture roots
+// follow finishDesignerEdit in the FIFO graph, so they must not inline that large
+// preflight again at each command family or pointer route.
+fn executeDsCommand(d:u32,command:u32,a:f32,b:f32,x:f32,y:f32){
+ if(d==0u){return;}if(command!=38u&&heap[d+45u]!=NONE){if(!dsFinishEdit(d)){return;}}
+ switch min(command/8u,6u){
+ case 0u:{executeDsCommand0(d,command,a,b,x,y);}
+ case 1u:{executeDsCommand1(d,command,a,b,x,y);}
+ case 2u:{executeDsCommand2(d,command,a,b,x,y);}
+ case 3u:{executeDsCommand3(d,command,a,b,x,y);}
+ case 4u:{executeDsCommand4(d,command,a,b,x,y);}
+ case 5u:{executeDsCommand5(d,command,a,b,x,y);}
+ case 6u:{executeDsCommand6(d,command,a,b,x,y);}
+ default:{}
+ }
+}
+fn executeDsCommand0(d:u32,command:u32,a:f32,b:f32,x:f32,y:f32){if(d==0u){return;}let primary=heap[d+9u];
  switch command{
  case 0u:{if(a<0.0){dsSelect(d,NONE,false);}else{dsSelect(d,u32(a),b>0.0);}state[0u]=heap[d+3u];}
  case 1u:{heap[d+12u]=u32(max(0.0,a));heap[d+97u]=u32(max(0.0,b));heap[d+17u]&=~16u;}
  case 2u:{dsBegin(d);var parent=primary;if(parent==NONE||!dsContainer(heap[dsRec(d,parent)+1u])){parent=0u;}let k=dsNew(d,u32(a),parent,u32(max(0.0,b)));if(k==NONE){dsCancel(d);}else{dsSelect(d,k,false);dsCommit(d);}}
- case 3u:{dsDelete(d);}case 4u:{dsDuplicate(d);}case 5u:{dsUndo(d,false);}case 6u:{dsUndo(d,true);}
+ case 3u:{dsDelete(d);}
+ case 4u:{dsDuplicate(d);}
+ case 5u:{dsUndo(d,false);}
+ case 6u:{dsUndo(d,true);}
  case 7u:{let field=u32(a);if(x>0.0){let len=u32(max(0.0,b));if(len>DS_TEXT){dsReject(d,2u);return;}for(var j=0u;j<len;j++){heap[heap[d+46u]+j]=heap[heap[d+61u]+j];}heap[d+47u]=len;let color=dsParseColor(d);if(color.x!=0u){dsBegin(d);dsPaintSelected(d,field,color.y);dsCommit(d);}else{dsReject(d,2u);}}else{dsSetSelected(d,field,b);}}
+ default:{dsReject(d,8u);}}
+ if(state[0u]!=NONE&&state[0u]<frame.counts.x&&(nodes[state[0u]].info.x==6u||nodes[state[0u]].info.x==7u)&&(heap[d+17u]&16u)==0u){state[0u]=heap[d+3u];}
+}
+fn executeDsCommand1(d:u32,command:u32,a:f32,b:f32,x:f32,y:f32){if(d==0u){return;}let primary=heap[d+9u];
+ switch command{
  case 8u,9u:{if(primary==NONE){return;}dsStartEdit(d,primary,select(6u,5u,command==9u));let len=u32(max(0.0,b));if(len>DS_TEXT){dsCancel(d);dsReject(d,2u);return;}for(var j=0u;j<len;j++){heap[heap[d+46u]+j]=heap[heap[d+61u]+j];}heap[d+47u]=len;_=dsFinishEdit(d);}
  case 10u:{if(primary!=NONE){dsBegin(d);if(dsReparent(d,primary,u32(a),u32(max(0.0,b)))){dsCommit(d);}else{dsCancel(d);}}}
  case 11u:{if(primary==NONE||primary==0u){return;}dsBegin(d);let r=dsRec(d,primary);let parent=heap[r+2u];let ordinal=heap[r+3u];if(a==0.0){heap[r+3u]=heap[d+1u]*2u;}else if(a==1.0){for(var k=1u;k<heap[d+1u];k++){let c=dsRec(d,k);if(dsAlive(d,k)&&heap[c+2u]==parent){heap[c+3u]++;}}heap[r+3u]=0u;}else{for(var k=1u;k<heap[d+1u];k++){let c=dsRec(d,k);if(k!=primary&&dsAlive(d,k)&&heap[c+2u]==parent&&heap[c+3u]==select(ordinal+1u,ordinal-1u,a==3.0)){heap[r+3u]=heap[c+3u];heap[c+3u]=ordinal;break;}}}heap[d+53u]=3u;dsCommit(d);}
- case 12u:{dsGroup(d,false);}case 13u:{dsGroup(d,true);}case 14u:{dsAlign(d,min(5u,u32(max(0.0,a))),false);}case 15u:{dsAlign(d,min(1u,u32(max(0.0,a))),true);}
+ case 12u:{dsGroup(d,false);}
+ case 13u:{dsGroup(d,true);}
+ case 14u:{dsAlign(d,min(5u,u32(max(0.0,a))),false);}
+ case 15u:{dsAlign(d,min(1u,u32(max(0.0,a))),true);}
+ default:{dsReject(d,8u);}}
+ if(state[0u]!=NONE&&state[0u]<frame.counts.x&&(nodes[state[0u]].info.x==6u||nodes[state[0u]].info.x==7u)&&(heap[d+17u]&16u)==0u){state[0u]=heap[d+3u];}
+}
+fn executeDsCommand2(d:u32,command:u32,a:f32,b:f32,x:f32,y:f32){if(d==0u){return;}let primary=heap[d+9u];
+ switch command{
  case 16u,17u:{dsBegin(d);for(var k=0u;k<heap[d+1u];k++){if(dsSelected(d,k)){heap[dsRec(d,k)+4u]^=select(2u,1u,command==17u);}}heap[d+53u]=1u;state[3u]=1u;dsCommit(d);}
  case 18u:{let n=nodes[heap[d+3u]];let r=contentRect(n);dsZoom(d,select(a,hf(d+13u)*a,b>0.0),transform(n.matrix,n.translation.xy,r.xy+r.zw*.5));}
- case 19u:{dsFit(d);}case 20u:{heap[d+17u]^=3u;}case 21u:{heap[d+17u]^=4u;}case 22u:{dsCancel(d);heap[d+17u]^=16u;heap[d+53u]=1u;heap[d+12u]=0u;}
- case 23u:{heap[d+17u]^=64u;hsetf(d+37u,frame.viewport.w);}case 24u:{heap[d+17u]&=~64u;hsetf(d+35u,0.0);}case 25u:{heap[d+17u]&=~64u;hsetf(d+35u,clamp(a,0.0,hf(dsData(d)+2u)));}
+ case 19u:{dsFit(d);}
+ case 20u:{heap[d+17u]^=3u;}
+ case 21u:{heap[d+17u]^=4u;}
+ case 22u:{dsCancel(d);heap[d+17u]^=16u;heap[d+53u]=1u;heap[d+12u]=0u;}
+ case 23u:{heap[d+17u]^=64u;hsetf(d+37u,frame.viewport.w);}
+ default:{dsReject(d,8u);}}
+ if(state[0u]!=NONE&&state[0u]<frame.counts.x&&(nodes[state[0u]].info.x==6u||nodes[state[0u]].info.x==7u)&&(heap[d+17u]&16u)==0u){state[0u]=heap[d+3u];}
+}
+fn executeDsCommand3(d:u32,command:u32,a:f32,b:f32,x:f32,y:f32){if(d==0u){return;}let primary=heap[d+9u];
+ switch command{
+ case 24u:{heap[d+17u]&=~64u;hsetf(d+35u,0.0);}
+ case 25u:{heap[d+17u]&=~64u;hsetf(d+35u,clamp(a,0.0,hf(dsData(d)+2u)));}
  case 26u:{heap[d+17u]^=32u;}
  case 27u:{if(primary!=NONE){dsBegin(d);let t=min(5u,heap[d+38u]);_=dsPutKey(d,primary,t,hf(d+35u),dsCurrentValue(d,primary,t),1u);dsCommit(d);}}
  case 28u:{if(primary!=NONE){let t=dsTrack(d,primary,min(5u,heap[d+38u]));let key=heap[d+73u];if(key<heap[t]){dsBegin(d);for(var k=key+1u;k<heap[t];k++){for(var w=0u;w<4u;w++){heap[t+4u+(k-1u)*4u+w]=heap[t+4u+k*4u+w];}}heap[t]--;heap[d+73u]=NONE;dsCommit(d);}}}
  case 29u:{if(primary!=NONE){let t=dsTrack(d,primary,min(5u,heap[d+38u]));if(heap[d+73u]<heap[t]){dsBegin(d);heap[t+6u+heap[d+73u]*4u]=u32(clamp(a,0.0,8.0));dsCommit(d);}}}
  case 30u:{dsSelect(d,NONE,false);for(var k=1u;k<heap[d+1u];k++){if(dsAlive(d,k)){heap[heap[d+11u]+k]=1u;heap[d+9u]=k;}}dsSelect(d,NONE,true);}
- case 31u:{dsChangeState(d,u32(max(0.0,a)));}case 32u:{dsCaptureState(d,u32(clamp(a,1.0,3.0)));}
+ case 31u:{dsChangeState(d,u32(max(0.0,a)));}
+ default:{dsReject(d,8u);}}
+ if(state[0u]!=NONE&&state[0u]<frame.counts.x&&(nodes[state[0u]].info.x==6u||nodes[state[0u]].info.x==7u)&&(heap[d+17u]&16u)==0u){state[0u]=heap[d+3u];}
+}
+fn executeDsCommand4(d:u32,command:u32,a:f32,b:f32,x:f32,y:f32){if(d==0u){return;}let primary=heap[d+9u];
+ switch command{
+ case 32u:{dsCaptureState(d,u32(clamp(a,1.0,3.0)));}
  case 33u:{let st=heap[d+70u];if(st==0u){return;}dsBegin(d);for(var k=0u;k<heap[d+1u];k++){heap[dsStateAt(d,k,st)]=0u;}dsCommit(d);heap[d+53u]=1u;}
  case 34u:{heap[d+100u]=u32(clamp(a,0.0,f32(heap[dsData(d)+3u])));}
  case 35u:{dsBegin(d);let field=select(91u,92u,a==31.0);let resourceIndex=heap[d+100u];for(var k=0u;k<heap[d+1u];k++){if(dsSelected(d,k)){heap[dsRec(d,k)+field]=resourceIndex;}}dsCommit(d);}
- case 36u:{dsCopy(d);}case 37u:{dsPaste(d);}case 38u:{dsCancel(d);}
+ case 36u:{dsCopy(d);}
+ case 37u:{dsPaste(d);}
+ case 38u:{dsCancel(d);}
  case 39u:{if(primary!=NONE&&heap[dsRec(d,primary)+1u]==1u){let axis=u32(clamp(a,0.0,1.0));let r=dsRec(d,primary);let index=select(u32(clamp(x,0.0,7.0)),heap[r+48u+axis]-1u,b<0.0&&y==0.0);if(b<0.0){if(heap[r+48u+axis]<=1u){return;}dsBegin(d);heap[r+48u+axis]--;for(var t=index;t<7u;t++){heap[r+50u+axis*16u+t*2u]=heap[r+52u+axis*16u+t*2u];heap[r+51u+axis*16u+t*2u]=heap[r+53u+axis*16u+t*2u];}for(var k=1u;k<heap[d+1u];k++){let c=dsRec(d,k);if(dsAlive(d,k)&&heap[c+2u]==primary){let count=heap[r+48u+axis];heap[c+37u-axis]=min(heap[c+37u-axis],count-1u);heap[c+39u-axis]=min(heap[c+39u-axis],count-heap[c+37u-axis]);}}}else{if(y<0.0||(b==2.0&&y<=0.0)){return;}dsBegin(d);heap[r+48u+axis]=max(heap[r+48u+axis],index+1u);heap[r+50u+axis*16u+index*2u]=u32(clamp(b,0.0,2.0));hsetf(r+51u+axis*16u+index*2u,y);}heap[d+53u]=1u;state[3u]=1u;dsCommit(d);}}
+ default:{dsReject(d,8u);}}
+ if(state[0u]!=NONE&&state[0u]<frame.counts.x&&(nodes[state[0u]].info.x==6u||nodes[state[0u]].info.x==7u)&&(heap[d+17u]&16u)==0u){state[0u]=heap[d+3u];}
+}
+fn executeDsCommand5(d:u32,command:u32,a:f32,b:f32,x:f32,y:f32){if(d==0u){return;}let primary=heap[d+9u];
+ switch command{
  case 40u:{if(a<32.0||a>8192.0||b<32.0||b>8192.0){dsReject(d,2u);return;}dsBegin(d);hsetf(dsData(d),a);hsetf(dsData(d)+1u,b);heap[d+53u]=1u;state[3u]=1u;dsCommit(d);}
  case 41u:{if(a<.1||a>3600.0){return;}dsBegin(d);let ratio=a/hf(dsData(d)+2u);for(var k=0u;k<heap[d+1u];k++){for(var t=0u;t<6u;t++){let at=dsTrack(d,k,t);for(var j=0u;j<heap[at];j++){hsetf(at+4u+j*4u,hf(at+4u+j*4u)*ratio);}}}hsetf(dsData(d)+2u,a);hsetf(d+35u,min(hf(d+35u),a));dsCommit(d);}
  case 42u:{let source=heap[d+61u];if(!dsValidateBlock(d,source)){dsReject(d,7u);return;}dsCancel(d);for(var j=0u;j<heap[d+29u];j++){heap[dsData(d)+j]=heap[source+j];heap[heap[d+28u]+j]=heap[source+j];}heap[d+25u]=1u;heap[d+26u]=0u;heap[d+95u]=0u;heap[d+70u]=0u;heap[d+72u]=0u;heap[d+17u]&=~(16u|64u);heap[d+53u]=3u;heap[d+8u]++;hsetf(d+35u,0.0);dsSelect(d,NONE,false);state[3u]=1u;}
- case 43u:{hsetf(d+13u,1.0);hsetf(d+14u,40.0);hsetf(d+15u,40.0);}case 44u:{heap[d+17u]^=256u;}
- case 45u:{dsSetSelected(d,88u,a);}case 46u:{if(primary!=NONE){dsBegin(d);heap[dsRec(d,primary)+85u]=u32(clamp(a,0.0,3.0));let destination=select(primary,u32(max(0.0,b)),b>=0.0);if(!dsAlive(d,destination)){dsCancel(d);dsReject(d,3u);return;}heap[dsRec(d,primary)+86u]=destination;heap[d+53u]=1u;dsCommit(d);}}
+ case 43u:{hsetf(d+13u,1.0);hsetf(d+14u,40.0);hsetf(d+15u,40.0);}
+ case 44u:{heap[d+17u]^=256u;}
+ case 45u:{dsSetSelected(d,88u,a);}
+ case 46u:{if(primary!=NONE){dsBegin(d);heap[dsRec(d,primary)+85u]=u32(clamp(a,0.0,3.0));let destination=select(primary,u32(max(0.0,b)),b>=0.0);if(!dsAlive(d,destination)){dsCancel(d);dsReject(d,3u);return;}heap[dsRec(d,primary)+86u]=destination;heap[d+53u]=1u;dsCommit(d);}}
  case 47u:{if(a<0.0||a!=floor(a)){dsReject(d,2u);return;}dsBegin(d);for(var k=1u;k<heap[d+1u];k++){if(dsSelected(d,k)){heap[dsRec(d,k)+94u]=u32(a);if(b>0.0){heap[dsRec(d,k)+95u]=63u;}}}heap[d+53u]=3u;state[3u]=1u;dsCommit(d);}
+ default:{dsReject(d,8u);}}
+ if(state[0u]!=NONE&&state[0u]<frame.counts.x&&(nodes[state[0u]].info.x==6u||nodes[state[0u]].info.x==7u)&&(heap[d+17u]&16u)==0u){state[0u]=heap[d+3u];}
+}
+fn executeDsCommand6(d:u32,command:u32,a:f32,b:f32,x:f32,y:f32){if(d==0u){return;}let primary=heap[d+9u];
+ switch command{
  case 48u:{if(a<0.0||a>1.0||b<0.0||b>1.0||a!=floor(a)||b!=floor(b)||heap[d+118u]==0u){dsReject(d,2u);return;}dsBegin(d);heap[dsData(d)+5u]=u32(a);heap[dsData(d)+6u]=u32(b);state[3u]=1u;dsCommit(d);}
  case 49u:{dsBegin(d);for(var k=1u;k<heap[d+1u];k++){if(dsSelected(d,k)){heap[dsRec(d,k)+95u]=select(0u,63u,a>0.0);}}heap[d+53u]=1u;state[3u]=1u;dsCommit(d);}
  case 50u:{if(heap[d+118u]==0u||a<0.0||a>3.0||a!=floor(a)||b<0.0||b>1.0||b!=floor(b)){dsReject(d,2u);return;}dsBegin(d);let base=dsData(d);if(a<2.0){let mask=1u<<u32(a);heap[base+56u]=(heap[base+56u]&~mask)|select(0u,mask,b>0.0);}else if(a==2.0){heap[base+7u]=u32(b);}else{heap[base+56u]&=~4u;heap[base+57u]=0u;}state[3u]=1u;dsCommit(d);}
  case 51u:{if(heap[d+118u]==0u||a<0.0||a>65535.0||b<65280.0||b>65535.0||a!=floor(a)||b!=floor(b)){dsReject(d,2u);return;}dsBegin(d);let base=dsData(d);heap[base+56u]|=4u;heap[base+57u]=u32(a)|(u32(b)<<16u);state[3u]=1u;dsCommit(d);}
  case 52u:{if(a<0.0||a>127.0||a!=floor(a)||heap[d+118u]==0u){dsReject(d,2u);return;}var count=0u;for(var k=1u;k<heap[d+1u];k++){if(dsSelected(d,k)){let e=extension(nodes[dsNode(d,k)]);if(e!=0u){let info=heap[e+38u];if(info!=0u){heap[info+17u]=u32(a);for(var g=0u;g<heap[info+5u];g++){heap[heap[info+4u]+g*4u+2u]=NONE;}count++;}}}}if(count==0u){dsReject(d,2u);}}
-
- default:{dsReject(d,8u);}
- }
+ default:{dsReject(d,8u);}}
  if(state[0u]!=NONE&&state[0u]<frame.counts.x&&(nodes[state[0u]].info.x==6u||nodes[state[0u]].info.x==7u)&&(heap[d+17u]&16u)==0u){state[0u]=heap[d+3u];}
 }
 // Select a command before entering the large transactional interpreter.
@@ -346,11 +415,133 @@ fn dsKeyRequest(i:u32,key:u32,mods:u32)->vec3<f32>{let d=dsOwner(i);if(d==0u){re
  if(key>=37u&&key<=40u){let delta=select(1.0,10.0,shift)*select(-1.0,1.0,key==39u||key==40u);let axis=select(0u,1u,key==38u||key==40u);dsBegin(d);for(var k=1u;k<heap[d+1u];k++){if(dsTopSelected(d,k)){let r=dsRec(d,k);let parent=heap[r+2u];let field=select(29u+axis,8u+axis,heap[dsRec(d,parent)+1u]==3u&&(heap[d+17u]&32u)==0u);dsWrite(d,k,field,bitcast<u32>(dsNumber(d,k,field)+delta));}}dsCommit(d);}
  return vec3<f32>(-1.0,0.0,0.0);
 }
-fn dsRoute(c:Command,hit:u32)->bool{if((VIEW_FEATURES&32u)==0u){return false;}if(c.kind==15u){dsCommand(dsOwner(c.recipient),c.code,c.data.x,c.data.y,c.position.x,c.position.y);return true;}
+fn executeDsRoute(c:Command,hit:u32)->bool{if((VIEW_FEATURES&32u)==0u){return false;}if(c.kind==15u){dsCommand(dsOwner(c.recipient),c.code,c.data.x,c.data.y,c.position.x,c.position.y);return true;}
  var destination=hit;if(c.kind==1u||c.kind==3u||c.kind==8u){if(state[2u]!=NONE&&dsOwner(state[2u])!=0u&&nodes[state[2u]].info.x>=30u){destination=state[2u];}}
  if(c.kind==5u||c.kind==6u||c.kind==10u){destination=select(c.recipient,state[0u],c.recipient==NONE);}
  if(destination==NONE||destination>=frame.counts.x||nodes[destination].info.x<30u||nodes[destination].info.x>34u){return false;}let d=nodes[destination].aux.x;
  if(c.kind==8u){dsCancel(d);state[2u]=NONE;return true;}if(c.kind==5u){dsKey(destination,c.code,u32(c.data.x));return true;}if(c.kind==6u){dsEditText(d,c.code);return true;}
  if(c.kind==10u&&c.code==38u){for(var j=0u;j<min(state[40u],u32(max(0.0,c.data.x)));j++){dsEditText(d,heap[state[23u]+j]);}return true;}
- if(c.kind<=4u){if(c.kind==1u){state[1u]=hit;}switch nodes[destination].info.x{case 30u:{dsSurfacePointer(destination,c);}case 31u:{dsTreePointer(destination,c);}case 32u:{dsInspectorPointer(destination,c);}case 33u:{dsTimelinePointer(destination,c);}case 34u:{dsColorPointer(destination,c);}default:{}}return true;}return false;
+ if(c.kind<=4u){if(c.kind==1u){state[1u]=hit;}atomicStore(&scratch[44u],destination);atomicStore(&scratch[45u],nodes[destination].info.x);return true;}return false;
+}
+var<private> designerRequest:vec3<u32>;
+var<private> designerArguments:vec4<f32>;
+fn dsCommand(d:u32,command:u32,a:f32,b:f32,x:f32,y:f32){designerRequest=vec3<u32>(1u,d,command);designerArguments=vec4<f32>(a,b,x,y);}
+
+fn dsRoute(c:Command,hit:u32)->bool{
+ if((VIEW_FEATURES&32u)==0u){return false;}
+ var destination=hit;if(c.kind==1u||c.kind==3u||c.kind==8u){if(state[2u]!=NONE&&dsOwner(state[2u])!=0u&&nodes[state[2u]].info.x>=30u){destination=state[2u];}}
+ if(c.kind==5u||c.kind==6u||c.kind==10u){destination=select(c.recipient,state[0u],c.recipient==NONE);}
+ if(c.kind!=15u){if(destination==NONE||destination>=frame.counts.x||nodes[destination].info.x<30u||nodes[destination].info.x>34u){return false;}if(c.kind>6u&&c.kind!=8u&&!(c.kind==10u&&c.code==38u)){return false;}}
+ atomicStore(&scratch[36u],1u);atomicStore(&scratch[37u],atomicLoad(&scratch[9u])-1u);atomicStore(&scratch[38u],hit);return true;
+}
+@compute @workgroup_size(1)
+fn applyDesignerInput(){
+ if(atomicLoad(&scratch[36u])==0u){return;}atomicStore(&scratch[36u],0u);
+ _=executeDsRoute(inputCommand(atomicLoad(&scratch[37u])),atomicLoad(&scratch[38u]));
+ finishDesignerCommit();
+ if(designerRequest.x!=0u){for(var j=0u;j<3u;j++){atomicStore(&scratch[20u+j],designerRequest[j]);}for(var j=0u;j<4u;j++){atomicStore(&scratch[23u+j],bitcast<u32>(designerArguments[j]));}}
+}
+
+@compute @workgroup_size(1)
+fn applyDesignerCommands0(){
+ if(atomicLoad(&scratch[20u])==0u){return;}
+ let d=atomicLoad(&scratch[21u]);let op=atomicLoad(&scratch[22u]);if(min(op/8u,6u)!=0u){return;}atomicStore(&scratch[20u],0u);var args:vec4<f32>;for(var j=0u;j<4u;j++){args[j]=bitcast<f32>(atomicLoad(&scratch[23u+j]));}
+ for(var k=0u;k<max(1u,atomicLoad(&scratch[12u]));k++){designerCommitOwner=0u;executeDsCommand0(d,op,args.x,args.y,args.z,args.w);finishDesignerCommit();}
+}
+@compute @workgroup_size(1)
+fn applyDesignerCommands1(){
+ if(atomicLoad(&scratch[20u])==0u){return;}
+ let d=atomicLoad(&scratch[21u]);let op=atomicLoad(&scratch[22u]);if(min(op/8u,6u)!=1u){return;}atomicStore(&scratch[20u],0u);var args:vec4<f32>;for(var j=0u;j<4u;j++){args[j]=bitcast<f32>(atomicLoad(&scratch[23u+j]));}
+ for(var k=0u;k<max(1u,atomicLoad(&scratch[12u]));k++){designerCommitOwner=0u;executeDsCommand1(d,op,args.x,args.y,args.z,args.w);finishDesignerCommit();}
+}
+@compute @workgroup_size(1)
+fn applyDesignerCommands2(){
+ if(atomicLoad(&scratch[20u])==0u){return;}
+ let d=atomicLoad(&scratch[21u]);let op=atomicLoad(&scratch[22u]);if(min(op/8u,6u)!=2u){return;}atomicStore(&scratch[20u],0u);var args:vec4<f32>;for(var j=0u;j<4u;j++){args[j]=bitcast<f32>(atomicLoad(&scratch[23u+j]));}
+ for(var k=0u;k<max(1u,atomicLoad(&scratch[12u]));k++){designerCommitOwner=0u;executeDsCommand2(d,op,args.x,args.y,args.z,args.w);finishDesignerCommit();}
+}
+@compute @workgroup_size(1)
+fn applyDesignerCommands3(){
+ if(atomicLoad(&scratch[20u])==0u){return;}
+ let d=atomicLoad(&scratch[21u]);let op=atomicLoad(&scratch[22u]);if(min(op/8u,6u)!=3u){return;}atomicStore(&scratch[20u],0u);var args:vec4<f32>;for(var j=0u;j<4u;j++){args[j]=bitcast<f32>(atomicLoad(&scratch[23u+j]));}
+ for(var k=0u;k<max(1u,atomicLoad(&scratch[12u]));k++){designerCommitOwner=0u;executeDsCommand3(d,op,args.x,args.y,args.z,args.w);finishDesignerCommit();}
+}
+@compute @workgroup_size(1)
+fn applyDesignerCommands4(){
+ if(atomicLoad(&scratch[20u])==0u){return;}
+ let d=atomicLoad(&scratch[21u]);let op=atomicLoad(&scratch[22u]);if(min(op/8u,6u)!=4u){return;}atomicStore(&scratch[20u],0u);var args:vec4<f32>;for(var j=0u;j<4u;j++){args[j]=bitcast<f32>(atomicLoad(&scratch[23u+j]));}
+ for(var k=0u;k<max(1u,atomicLoad(&scratch[12u]));k++){designerCommitOwner=0u;executeDsCommand4(d,op,args.x,args.y,args.z,args.w);finishDesignerCommit();}
+}
+@compute @workgroup_size(1)
+fn applyDesignerCommands5(){
+ if(atomicLoad(&scratch[20u])==0u){return;}
+ let d=atomicLoad(&scratch[21u]);let op=atomicLoad(&scratch[22u]);if(min(op/8u,6u)!=5u){return;}atomicStore(&scratch[20u],0u);var args:vec4<f32>;for(var j=0u;j<4u;j++){args[j]=bitcast<f32>(atomicLoad(&scratch[23u+j]));}
+ for(var k=0u;k<max(1u,atomicLoad(&scratch[12u]));k++){designerCommitOwner=0u;executeDsCommand5(d,op,args.x,args.y,args.z,args.w);finishDesignerCommit();}
+}
+@compute @workgroup_size(1)
+fn applyDesignerCommands6(){
+ if(atomicLoad(&scratch[20u])==0u){return;}
+ let d=atomicLoad(&scratch[21u]);let op=atomicLoad(&scratch[22u]);if(min(op/8u,6u)!=6u){return;}atomicStore(&scratch[20u],0u);var args:vec4<f32>;for(var j=0u;j<4u;j++){args[j]=bitcast<f32>(atomicLoad(&scratch[23u+j]));}
+ for(var k=0u;k<max(1u,atomicLoad(&scratch[12u]));k++){designerCommitOwner=0u;executeDsCommand6(d,op,args.x,args.y,args.z,args.w);finishDesignerCommit();}
+}
+
+// Transaction validation/history is compiled once per dispatch, not inlined at
+// every mutation branch. Input preparation finishes an existing edit first.
+var<private> designerCommitOwner:u32;
+fn dsCommit(d:u32){designerCommitOwner=d;}
+var<private> designerCapturedState:vec2<u32>;
+fn dsCaptureTransition(d:u32,s:u32){designerCapturedState=vec2<u32>(d,s);}
+fn finishDesignerCommit(){
+ if(designerCommitOwner!=0u){executeDsCommit(designerCommitOwner);designerCommitOwner=0u;}
+ // Capture changes state only after validation/rollback, as in the immediate
+ // interpreter. A failed capture cannot select a state removed by rollback.
+ if(designerCapturedState.x!=0u){dsChangeState(designerCapturedState.x,designerCapturedState.y);designerCapturedState.x=0u;}
+}
+@compute @workgroup_size(1)
+fn finishDesignerEdit(){
+ var d=0u;var route=false;
+ if(atomicLoad(&scratch[36u])!=0u){
+  let c=inputCommand(atomicLoad(&scratch[37u]));
+  if(c.kind==2u){d=dsOwner(atomicLoad(&scratch[38u]));route=true;}
+ }
+ if(d==0u&&atomicLoad(&scratch[20u])!=0u&&atomicLoad(&scratch[22u])!=38u){d=atomicLoad(&scratch[21u]);}
+ if(d==0u||heap[d+45u]==NONE){return;}
+ let valid=dsFinishEdit(d);
+ finishDesignerCommit();
+ if(!valid){if(route){atomicStore(&scratch[36u],0u);}else{atomicStore(&scratch[20u],0u);}}
+}
+
+@compute @workgroup_size(1)
+fn applyDesignerSurfaceInput(){
+ if(atomicLoad(&scratch[45u])!=30u){return;}atomicStore(&scratch[45u],0u);
+ dsSurfacePointer(atomicLoad(&scratch[44u]),inputCommand(atomicLoad(&scratch[37u])));
+ finishDesignerCommit();
+}
+
+@compute @workgroup_size(1)
+fn applyDesignerTreeInput(){
+ if(atomicLoad(&scratch[45u])!=31u){return;}atomicStore(&scratch[45u],0u);
+ dsTreePointer(atomicLoad(&scratch[44u]),inputCommand(atomicLoad(&scratch[37u])));
+ finishDesignerCommit();
+}
+
+@compute @workgroup_size(1)
+fn applyDesignerInspectorInput(){
+ if(atomicLoad(&scratch[45u])!=32u){return;}atomicStore(&scratch[45u],0u);
+ dsInspectorPointer(atomicLoad(&scratch[44u]),inputCommand(atomicLoad(&scratch[37u])));
+ finishDesignerCommit();
+}
+
+@compute @workgroup_size(1)
+fn applyDesignerTimelineInput(){
+ if(atomicLoad(&scratch[45u])!=33u){return;}atomicStore(&scratch[45u],0u);
+ dsTimelinePointer(atomicLoad(&scratch[44u]),inputCommand(atomicLoad(&scratch[37u])));
+ finishDesignerCommit();
+}
+
+@compute @workgroup_size(1)
+fn applyDesignerColorInput(){
+ if(atomicLoad(&scratch[45u])!=34u){return;}atomicStore(&scratch[45u],0u);
+ dsColorPointer(atomicLoad(&scratch[44u]),inputCommand(atomicLoad(&scratch[37u])));
+ finishDesignerCommit();
 }

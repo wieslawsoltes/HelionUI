@@ -12,7 +12,14 @@ fn fontLineHeight(i:u32,size:f32)->f32 {
  let face=primaryFont(i); return (hf(face)+hf(face+1u)+hf(face+2u))*size;
 }
 fn textBaseline(i:u32,size:f32)->f32 {
- return (fontLineHeight(i,size)-fontAscent(i,size)-fontDescent(i,size))*0.5+fontAscent(i,size);
+ // Resolve the retained run once. Calling the three metric helpers here clones
+ // the directory walk four times at every native glyph-emission call site.
+ let face=primaryFont(i);var ascent=hf(face)*size;var descent=hf(face+1u)*size;
+ var height=(hf(face)+hf(face+1u)+hf(face+2u))*size;
+ let r=uiTextRun(i,nodes[i].text.z,textLength(i));
+ if(r!=0u&&heap[r+47u]!=0u){ascent=hf(r+34u)*size;descent=hf(r+35u)*size;height=(hf(r+34u)+hf(r+35u)+hf(r+51u))*size;}
+ let customHeight=hf(textStyle(i)+4u);if(customHeight>0.0){height=customHeight;}
+ return (height-ascent-descent)*0.5+ascent;
 }
 fn fontMap(face:u32,code:u32)->u32 {
  if(code>0x10ffffu || (code>=0xd800u && code<=0xdfffu)) { return 0u; }
@@ -111,7 +118,7 @@ fn nextTextCluster(offset:u32,count:u32,caret:u32)->u32 {
  var p=min(count,caret+1u); while(p<count && isCombining(heap[offset+p])) { p++; } return p;
 }
 fn textHit(i:u32,offset:u32,count:u32,size:f32,x:f32)->u32 {
- let shaped=uiTextRun(i,offset,count);if(shaped!=0u){uiSyncText(shaped);uiParagraph(shaped,size,0.0,false,0u);if(heap[pgData(shaped)+17u]!=0u){let hit=paragraphHit(shaped,x,0.0);state[cs(templateContentOwner(i))+7u]=hit.y;return hit.x;}}
+ let shaped=uiTextRun(i,offset,count);if(shaped!=0u){if(heap[pgData(shaped)+17u]!=0u){let hit=paragraphHit(shaped,x,0.0);state[cs(templateContentOwner(i))+7u]=hit.y;return hit.x;}}
  var previous=0u; var prevX=0.0; var p=nextTextCluster(offset,count,0u);
  while(previous<count) { let nextX=textCaretX(i,offset,count,p,size); if(x<(prevX+nextX)*0.5) { return previous; } previous=p; prevX=nextX; p=nextTextCluster(offset,count,p); }
  return count;

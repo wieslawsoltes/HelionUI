@@ -47,9 +47,10 @@ export class CommandStream {
     let count = Math.min(this.length, maxEvents),bulk=null;
     for(let i=0;i<count;i++){const upload=this.bulkUploads.get(this.u32[i*8+7]);if(upload){if(bulk){count=i;break;}bulk=upload;}}
     if(bulk&&!heapBuffer)throw new Error('Bulk input requires its resident heap buffer');
-    const lastSequence=count?this.u32[(count-1)*8+7]:0; let discrete = false, layout = false, query = false, hitTest = false, actionCandidate = false;
+    const lastSequence=count?this.u32[(count-1)*8+7]:0; let caretCommands = 0; let discrete = false, layout = false, query = false, hitTest = false, actionCandidate = false;
     for (let i = 0; i < count; i++) {
       const o = i * 8, k = this.u32[o], code = this.u32[o + 6];
+      if (k === Opcode.Down || (k === Opcode.Key && (code === 37 || code === 39) && (this.f32[o + 4] & 6) === 0)) caretCommands++;
       if (k !== Opcode.Move && k !== Opcode.Wheel) discrete = true;
       if (k <= Opcode.Wheel && this.u32[o + 1] === AUTO_TARGET) hitTest = true;
       if (k === Opcode.Down || k === Opcode.Up) { layout = true; query = true; }
@@ -71,6 +72,6 @@ export class CommandStream {
       queue.writeBuffer(buffer, 0, this.bytes, 0, count * 32);
       this.u32.copyWithin(0, count * 8, this.length * 8); this.length -= count; this.sentBytes += count * 32;
     }
-    return { count, discrete, bytes: count * 32+(bulk?.data.byteLength??0), layout, query, hitTest, actionCandidate, lastSequence, payloadBytes:bulk?.data.byteLength??0 };
+    return { count, caretCommands, discrete, bytes: count * 32+(bulk?.data.byteLength??0), layout, query, hitTest, actionCandidate, lastSequence, payloadBytes:bulk?.data.byteLength??0 };
   }
 }

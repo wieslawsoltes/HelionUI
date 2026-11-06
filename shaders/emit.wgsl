@@ -220,16 +220,16 @@ fn emitGridSection(i:u32,section:u32) {
 fn emitGridParts(@builtin(global_invocation_id) id:vec3<u32>) {
  let i=state[25]; if(i==NONE || i>=frame.counts.x || id.x>=130u) { return; }
  let n=nodes[i]; if(n.translation.z<=0.001 || n.rect.z<=0.0 || n.rect.w<=0.0) { return; }
- if((frame.flags.y&1024u)!=0u) {
-  if(id.x!=0u) { return; }
-  for(var section=0u;section<130u;section++) { emitGridSection(i,section); }
- } else { emitGridSection(i,id.x); }
+ let serial=(frame.flags.y&1024u)!=0u;if(serial&&id.x!=0u){return;}
+ // The diagnostic serial path and normal parallel path share one interpreter.
+ for(var section=id.x;section<select(id.x+1u,130u,serial);section++){emitGridSection(i,section);}
 }
 @compute @workgroup_size(64)
 fn emit(@builtin(global_invocation_id) id:vec3<u32>) {
  let i=id.x; if(i>=frame.counts.x) { return; } let n=nodes[i]; if(n.translation.z<=0.001 || n.rect.z<=0.0 || n.rect.w<=0.0) { return; }
- if(templateHasVisual(i)){return;}
+ if(templateHasVisual(i)||(n.info.x>=30u&&n.info.x<=35u)){return;}
  let control=templateContentOwner(i);let nativeContent=n.info.x==36u;let renderKind=select(n.info.x,nodes[control].info.x,nativeContent);
+ if(renderKind==5u||renderKind==6u||renderKind==7u||renderKind==9u||renderKind==19u||renderKind==21u||renderKind==24u||renderKind==25u){return;}
  emissionHead=i; emissionRemaining=32768u; var order=paintNode(i)*8388608u; let s=cs(control); let r=contentRect(n); let clip=n.clip;
  let foreground=decodeColor(n.paint.y); let accent=decodeColor(0xffe6d467u); var background=decodeColor(n.paint.x);
  if(state[1]==i && n.info.x==6u && (extension(n)==0u || heap[extension(n)+25u]==0u)) { background=vec4<f32>(min(vec3<f32>(1.0),background.rgb+vec3<f32>(0.025)),background.a); }
@@ -238,37 +238,120 @@ fn emit(@builtin(global_invocation_id) id:vec3<u32>) {
  dsDrawRootGrid(i,&order);
  if(n.misc.w>0.0 && !nativeContent) { box(i,n.rect,decodeColor(n.paint.z),bitcast<f32>(n.paint.w),n.misc.w,clip,&order); }
  switch renderKind {
-  case 30u,31u,32u,33u,34u,35u:{emitDesignerControl(i,&order);}
-  case 27u,28u:{emitListChrome(i,&order);}
-  case 26u:{if(sf(s)>0.5){
+case 27u,28u:{emitListChrome(i,&order);}
+case 26u:{if(sf(s)>0.5){
    let rect=presenterRect(n); let pixels=vec2<f32>(hf(n.aux.x+2u),hf(n.aux.x+3u));
    let exact=(frame.flags.y&16384u)==0u && hf(n.aux.x)==0.0 && all(n.matrix==vec4<f32>(1.0,0.0,0.0,1.0)) && all(pixels==round(rect.zw*frame.viewport.z));
    addPrimitive(i,5u,rect,vec4<f32>(1.0),vec4<f32>(pixels,f32(frame.counts.z),select(0.0,1.0,exact)),0u,clip,&order);
   }else{_=drawText(i,n.text.z,n.text.w,r.xy+vec2<f32>(24.0),n.misc.z,foreground,clip,r.z-48.0,&order);}}
-  case 24u:{emitDockWorkspace(i,&order);}
-  case 25u:{emitDockItem(i,&order);}
-  case 19u: {emitDrawing(i,&order);}
-  case 5u,21u: {
-   let end=drawText(i,n.text.z,textLength(i),r.xy,n.misc.z,foreground,clip,select(0.0,r.z,(n.text.y&4u)!=0u),&order);
-   if(n.bind.y!=0u) { _=number(i,metric(n),0u,end,n.misc.z,foreground,clip,&order); }
-  }
-  case 6u: {
-   let w=textWidth(i,n.text.z,n.text.w,n.misc.z); _=drawText(i,n.text.z,n.text.w,r.xy+vec2<f32>((r.z-w)*0.5,(r.w-fontLineHeight(i,n.misc.z))*0.5),n.misc.z,foreground,clip,0.0,&order);
-   if(state[0]==i) { box(i,n.rect,vec4<f32>(accent.rgb,0.8),max(3.0,bitcast<f32>(n.paint.w)),1.0,clip,&order); }
-  }
-  case 7u: {
-   let checked=sf(s)>0.5; let b=vec4<f32>(r.x,r.y+(r.w-18.0)*0.5,18.0,18.0);
-   box(i,b,select(decodeColor(0xff473726u),accent,checked),4.0,0.0,clip,&order);
-   if(checked) { let ink=decodeColor(0xff2b2011u); line(i,b.xy+vec2<f32>(4.0,9.0),b.xy+vec2<f32>(8.0,13.0),ink,1.6,clip,&order); line(i,b.xy+vec2<f32>(8.0,13.0),b.xy+vec2<f32>(14.0,5.0),ink,1.6,clip,&order); }
-   _=drawText(i,n.text.z,n.text.w,vec2<f32>(r.x+29.0,r.y+(r.w-fontLineHeight(i,n.misc.z))*0.5),n.misc.z,foreground,clip,0.0,&order);
-  }
-  case 8u: {
+case 8u: {
    let value=clamp(sf(s),0.0,1.0); let y=r.y+r.w*0.5;
    box(i,vec4<f32>(r.x+8.0,y-2.0,r.z-16.0,4.0),decodeColor(0xff554130u),2.0,0.0,clip,&order);
    box(i,vec4<f32>(r.x+8.0,y-2.0,(r.z-16.0)*value,4.0),accent,2.0,0.0,clip,&order);
    disc(i,vec2<f32>(r.x+8.0+(r.z-16.0)*value,y),7.0,foreground,clip,&order);
   }
-  case 9u: {
+case 10u: {
+   box(i,r,decodeColor(0xff453325u),r.w*0.5,0.0,clip,&order);
+   box(i,vec4<f32>(r.xy,r.z*clamp(boundValue(i),0.0,1.0),r.w),foreground,r.w*0.5,0.0,clip,&order);
+  }
+case 11u: {}
+case 12u: {
+   let info=n.aux.x; let b=vec4<f32>(hf(info+6u),hf(info+7u),hf(info+8u),hf(info+9u));
+   let size=max(vec2<f32>(1.0),b.zw-b.xy); let scale=min(r.z/size.x,r.w/size.y);
+   let origin=r.xy+(r.zw-size*scale)*0.5-b.xy*scale;
+   addPrimitive(i,2u,vec4<f32>(origin,vec2<f32>(scale)),foreground,vec4<f32>(0.0),info,clip,&order);
+  }
+default: {}
+}
+ if(state[7]!=0u && n.info.x!=11u) { box(i,n.rect,vec4<f32>(accent.rgb,0.35),0.0,0.5,clip,&order); }
+}
+
+@compute @workgroup_size(64)
+fn emitTextBlock(@builtin(global_invocation_id) id:vec3<u32>) {
+ let i=id.x; if(i>=frame.counts.x) { return; } let n=nodes[i]; if(n.translation.z<=0.001 || n.rect.z<=0.0 || n.rect.w<=0.0) { return; }
+ if(templateHasVisual(i)||(n.info.x>=30u&&n.info.x<=35u)){return;}
+ let control=templateContentOwner(i);let nativeContent=n.info.x==36u;let renderKind=select(n.info.x,nodes[control].info.x,nativeContent);
+ if(!(renderKind==5u||renderKind==21u)){return;}
+ emissionHead=i; emissionRemaining=32768u; var order=paintNode(i)*8388608u; let s=cs(control); let r=contentRect(n); let clip=n.clip;
+ let foreground=decodeColor(n.paint.y); let accent=decodeColor(0xffe6d467u); var background=decodeColor(n.paint.x);
+ if(state[1]==i && n.info.x==6u && (extension(n)==0u || heap[extension(n)+25u]==0u)) { background=vec4<f32>(min(vec3<f32>(1.0),background.rgb+vec3<f32>(0.025)),background.a); }
+ if(n.action.x==8u && u32(bitcast<f32>(n.action.z))==state[8]) { background=decodeColor(0xff493821u); }
+ if(!nativeContent){box(i,n.rect,background,bitcast<f32>(n.paint.w),0.0,clip,&order);}
+ dsDrawRootGrid(i,&order);
+ if(n.misc.w>0.0 && !nativeContent) { box(i,n.rect,decodeColor(n.paint.z),bitcast<f32>(n.paint.w),n.misc.w,clip,&order); }
+ switch renderKind {
+case 5u,21u: {
+   let end=drawText(i,n.text.z,textLength(i),r.xy,n.misc.z,foreground,clip,select(0.0,r.z,(n.text.y&4u)!=0u),&order);
+   if(n.bind.y!=0u) { _=number(i,metric(n),0u,end,n.misc.z,foreground,clip,&order); }
+  }
+ default:{}
+}
+ if(state[7]!=0u && n.info.x!=11u) { box(i,n.rect,vec4<f32>(accent.rgb,0.35),0.0,0.5,clip,&order); }
+}
+
+@compute @workgroup_size(64)
+fn emitButton(@builtin(global_invocation_id) id:vec3<u32>) {
+ let i=id.x; if(i>=frame.counts.x) { return; } let n=nodes[i]; if(n.translation.z<=0.001 || n.rect.z<=0.0 || n.rect.w<=0.0) { return; }
+ if(templateHasVisual(i)||(n.info.x>=30u&&n.info.x<=35u)){return;}
+ let control=templateContentOwner(i);let nativeContent=n.info.x==36u;let renderKind=select(n.info.x,nodes[control].info.x,nativeContent);
+ if(!(renderKind==6u)){return;}
+ emissionHead=i; emissionRemaining=32768u; var order=paintNode(i)*8388608u; let s=cs(control); let r=contentRect(n); let clip=n.clip;
+ let foreground=decodeColor(n.paint.y); let accent=decodeColor(0xffe6d467u); var background=decodeColor(n.paint.x);
+ if(state[1]==i && n.info.x==6u && (extension(n)==0u || heap[extension(n)+25u]==0u)) { background=vec4<f32>(min(vec3<f32>(1.0),background.rgb+vec3<f32>(0.025)),background.a); }
+ if(n.action.x==8u && u32(bitcast<f32>(n.action.z))==state[8]) { background=decodeColor(0xff493821u); }
+ if(!nativeContent){box(i,n.rect,background,bitcast<f32>(n.paint.w),0.0,clip,&order);}
+ dsDrawRootGrid(i,&order);
+ if(n.misc.w>0.0 && !nativeContent) { box(i,n.rect,decodeColor(n.paint.z),bitcast<f32>(n.paint.w),n.misc.w,clip,&order); }
+ switch renderKind {
+case 6u: {
+   let w=textWidth(i,n.text.z,n.text.w,n.misc.z); _=drawText(i,n.text.z,n.text.w,r.xy+vec2<f32>((r.z-w)*0.5,(r.w-fontLineHeight(i,n.misc.z))*0.5),n.misc.z,foreground,clip,0.0,&order);
+   if(state[0]==i) { box(i,n.rect,vec4<f32>(accent.rgb,0.8),max(3.0,bitcast<f32>(n.paint.w)),1.0,clip,&order); }
+  }
+ default:{}
+}
+ if(state[7]!=0u && n.info.x!=11u) { box(i,n.rect,vec4<f32>(accent.rgb,0.35),0.0,0.5,clip,&order); }
+}
+
+@compute @workgroup_size(64)
+fn emitCheckBox(@builtin(global_invocation_id) id:vec3<u32>) {
+ let i=id.x; if(i>=frame.counts.x) { return; } let n=nodes[i]; if(n.translation.z<=0.001 || n.rect.z<=0.0 || n.rect.w<=0.0) { return; }
+ if(templateHasVisual(i)||(n.info.x>=30u&&n.info.x<=35u)){return;}
+ let control=templateContentOwner(i);let nativeContent=n.info.x==36u;let renderKind=select(n.info.x,nodes[control].info.x,nativeContent);
+ if(!(renderKind==7u)){return;}
+ emissionHead=i; emissionRemaining=32768u; var order=paintNode(i)*8388608u; let s=cs(control); let r=contentRect(n); let clip=n.clip;
+ let foreground=decodeColor(n.paint.y); let accent=decodeColor(0xffe6d467u); var background=decodeColor(n.paint.x);
+ if(state[1]==i && n.info.x==6u && (extension(n)==0u || heap[extension(n)+25u]==0u)) { background=vec4<f32>(min(vec3<f32>(1.0),background.rgb+vec3<f32>(0.025)),background.a); }
+ if(n.action.x==8u && u32(bitcast<f32>(n.action.z))==state[8]) { background=decodeColor(0xff493821u); }
+ if(!nativeContent){box(i,n.rect,background,bitcast<f32>(n.paint.w),0.0,clip,&order);}
+ dsDrawRootGrid(i,&order);
+ if(n.misc.w>0.0 && !nativeContent) { box(i,n.rect,decodeColor(n.paint.z),bitcast<f32>(n.paint.w),n.misc.w,clip,&order); }
+ switch renderKind {
+case 7u: {
+   let checked=sf(s)>0.5; let b=vec4<f32>(r.x,r.y+(r.w-18.0)*0.5,18.0,18.0);
+   box(i,b,select(decodeColor(0xff473726u),accent,checked),4.0,0.0,clip,&order);
+   if(checked) { let ink=decodeColor(0xff2b2011u); line(i,b.xy+vec2<f32>(4.0,9.0),b.xy+vec2<f32>(8.0,13.0),ink,1.6,clip,&order); line(i,b.xy+vec2<f32>(8.0,13.0),b.xy+vec2<f32>(14.0,5.0),ink,1.6,clip,&order); }
+   _=drawText(i,n.text.z,n.text.w,vec2<f32>(r.x+29.0,r.y+(r.w-fontLineHeight(i,n.misc.z))*0.5),n.misc.z,foreground,clip,0.0,&order);
+  }
+ default:{}
+}
+ if(state[7]!=0u && n.info.x!=11u) { box(i,n.rect,vec4<f32>(accent.rgb,0.35),0.0,0.5,clip,&order); }
+}
+
+@compute @workgroup_size(64)
+fn emitTextBox(@builtin(global_invocation_id) id:vec3<u32>) {
+ let i=id.x; if(i>=frame.counts.x) { return; } let n=nodes[i]; if(n.translation.z<=0.001 || n.rect.z<=0.0 || n.rect.w<=0.0) { return; }
+ if(templateHasVisual(i)||(n.info.x>=30u&&n.info.x<=35u)){return;}
+ let control=templateContentOwner(i);let nativeContent=n.info.x==36u;let renderKind=select(n.info.x,nodes[control].info.x,nativeContent);
+ if(!(renderKind==9u)){return;}
+ emissionHead=i; emissionRemaining=32768u; var order=paintNode(i)*8388608u; let s=cs(control); let r=contentRect(n); let clip=n.clip;
+ let foreground=decodeColor(n.paint.y); let accent=decodeColor(0xffe6d467u); var background=decodeColor(n.paint.x);
+ if(state[1]==i && n.info.x==6u && (extension(n)==0u || heap[extension(n)+25u]==0u)) { background=vec4<f32>(min(vec3<f32>(1.0),background.rgb+vec3<f32>(0.025)),background.a); }
+ if(n.action.x==8u && u32(bitcast<f32>(n.action.z))==state[8]) { background=decodeColor(0xff493821u); }
+ if(!nativeContent){box(i,n.rect,background,bitcast<f32>(n.paint.w),0.0,clip,&order);}
+ dsDrawRootGrid(i,&order);
+ if(n.misc.w>0.0 && !nativeContent) { box(i,n.rect,decodeColor(n.paint.z),bitcast<f32>(n.paint.w),n.misc.w,clip,&order); }
+ switch renderKind {
+case 9u: {
    let inner=intersection(clip,vec4<f32>(r.x+11.0,r.y+3.0,r.x+r.z-11.0,r.y+r.w-3.0)); let size=n.misc.z; let len=state[s+4u];
    let caretWidth=textCaretX(i,n.text.z,len,state[s+5u],size); var scroll=sf(s+2u);
    if(caretWidth-scroll>r.z-28.0) { scroll=caretWidth-r.z+28.0; } if(caretWidth-scroll<0.0) { scroll=caretWidth; } setf(s+2u,max(0.0,scroll));
@@ -289,21 +372,52 @@ fn emit(@builtin(global_invocation_id) id:vec3<u32>) {
    if(state[0]==control && fract((frame.viewport.w-sf(41u))*0.9)<0.6) { line(i,vec2<f32>(start.x+caretWidth,start.y),vec2<f32>(start.x+caretWidth,start.y+fontLineHeight(i,size)),accent,1.0,inner,&order); }
    if(state[0]==control && !nativeContent) { box(i,n.rect,accent,max(3.0,bitcast<f32>(n.paint.w)),1.0,clip,&order); }
   }
-  case 10u: {
-   box(i,r,decodeColor(0xff453325u),r.w*0.5,0.0,clip,&order);
-   box(i,vec4<f32>(r.xy,r.z*clamp(boundValue(i),0.0,1.0),r.w),foreground,r.w*0.5,0.0,clip,&order);
-  }
-  case 11u: {} // Dedicated emitGridParts dispatch owns row/header/footer lists.
-  case 12u: {
-   let info=n.aux.x; let b=vec4<f32>(hf(info+6u),hf(info+7u),hf(info+8u),hf(info+9u));
-   let size=max(vec2<f32>(1.0),b.zw-b.xy); let scale=min(r.z/size.x,r.w/size.y);
-   let origin=r.xy+(r.zw-size*scale)*0.5-b.xy*scale;
-   addPrimitive(i,2u,vec4<f32>(origin,vec2<f32>(scale)),foreground,vec4<f32>(0.0),info,clip,&order);
-  }
-  default: {}
- }
+ default:{}
+}
  if(state[7]!=0u && n.info.x!=11u) { box(i,n.rect,vec4<f32>(accent.rgb,0.35),0.0,0.5,clip,&order); }
 }
+
+@compute @workgroup_size(64)
+fn emitDrawingNode(@builtin(global_invocation_id) id:vec3<u32>) {
+ let i=id.x; if(i>=frame.counts.x) { return; } let n=nodes[i]; if(n.translation.z<=0.001 || n.rect.z<=0.0 || n.rect.w<=0.0) { return; }
+ if(templateHasVisual(i)||(n.info.x>=30u&&n.info.x<=35u)){return;}
+ let control=templateContentOwner(i);let nativeContent=n.info.x==36u;let renderKind=select(n.info.x,nodes[control].info.x,nativeContent);
+ if(!(renderKind==19u)){return;}
+ emissionHead=i; emissionRemaining=32768u; var order=paintNode(i)*8388608u; let s=cs(control); let r=contentRect(n); let clip=n.clip;
+ let foreground=decodeColor(n.paint.y); let accent=decodeColor(0xffe6d467u); var background=decodeColor(n.paint.x);
+ if(state[1]==i && n.info.x==6u && (extension(n)==0u || heap[extension(n)+25u]==0u)) { background=vec4<f32>(min(vec3<f32>(1.0),background.rgb+vec3<f32>(0.025)),background.a); }
+ if(n.action.x==8u && u32(bitcast<f32>(n.action.z))==state[8]) { background=decodeColor(0xff493821u); }
+ if(!nativeContent){box(i,n.rect,background,bitcast<f32>(n.paint.w),0.0,clip,&order);}
+ dsDrawRootGrid(i,&order);
+ if(n.misc.w>0.0 && !nativeContent) { box(i,n.rect,decodeColor(n.paint.z),bitcast<f32>(n.paint.w),n.misc.w,clip,&order); }
+ switch renderKind {
+case 19u: {emitDrawing(i,&order);}
+ default:{}
+}
+ if(state[7]!=0u && n.info.x!=11u) { box(i,n.rect,vec4<f32>(accent.rgb,0.35),0.0,0.5,clip,&order); }
+}
+
+@compute @workgroup_size(64)
+fn emitDockNode(@builtin(global_invocation_id) id:vec3<u32>) {
+ let i=id.x; if(i>=frame.counts.x) { return; } let n=nodes[i]; if(n.translation.z<=0.001 || n.rect.z<=0.0 || n.rect.w<=0.0) { return; }
+ if(templateHasVisual(i)||(n.info.x>=30u&&n.info.x<=35u)){return;}
+ let control=templateContentOwner(i);let nativeContent=n.info.x==36u;let renderKind=select(n.info.x,nodes[control].info.x,nativeContent);
+ if(!(renderKind==24u||renderKind==25u)){return;}
+ emissionHead=i; emissionRemaining=32768u; var order=paintNode(i)*8388608u; let s=cs(control); let r=contentRect(n); let clip=n.clip;
+ let foreground=decodeColor(n.paint.y); let accent=decodeColor(0xffe6d467u); var background=decodeColor(n.paint.x);
+ if(state[1]==i && n.info.x==6u && (extension(n)==0u || heap[extension(n)+25u]==0u)) { background=vec4<f32>(min(vec3<f32>(1.0),background.rgb+vec3<f32>(0.025)),background.a); }
+ if(n.action.x==8u && u32(bitcast<f32>(n.action.z))==state[8]) { background=decodeColor(0xff493821u); }
+ if(!nativeContent){box(i,n.rect,background,bitcast<f32>(n.paint.w),0.0,clip,&order);}
+ dsDrawRootGrid(i,&order);
+ if(n.misc.w>0.0 && !nativeContent) { box(i,n.rect,decodeColor(n.paint.z),bitcast<f32>(n.paint.w),n.misc.w,clip,&order); }
+ switch renderKind {
+case 24u:{emitDockWorkspace(i,&order);}
+case 25u:{emitDockItem(i,&order);}
+ default:{}
+}
+ if(state[7]!=0u && n.info.x!=11u) { box(i,n.rect,vec4<f32>(accent.rgb,0.35),0.0,0.5,clip,&order); }
+}
+
 
 // DrawingContext is a retained, bounded command stream, not a CPU raster callback.
 fn drawingMatrix(a:vec4<f32>,b:vec4<f32>)->vec4<f32> {return vec4<f32>(a.x*b.x+a.z*b.y,a.y*b.x+a.w*b.y,a.x*b.z+a.z*b.w,a.y*b.z+a.w*b.w);}

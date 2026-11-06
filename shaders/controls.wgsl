@@ -1,8 +1,8 @@
 // Retained selectable lists, trees, dynamic labels, and explicitly bridged host actions.
-fn isList(i:u32)->bool{return i!=NONE&&i<frame.counts.x&&(nodes[i].info.x==27u||nodes[i].info.x==28u);}
+fn isList(i:u32)->bool{if((VIEW_FEATURES&8u)==0u){return false;}return i!=NONE&&i<frame.counts.x&&(nodes[i].info.x==27u||nodes[i].info.x==28u);}
 fn actionEventToken(i:u32,token:u32,argument:f32,key:u32){let d=state[9u];if(d==0u){return;}let count=heap[d];if(count>=520u){heap[d+1u]++;return;}let at=d+4u+count*6u;heap[at]=token;heap[at+1u]=i;heap[at+2u]=state[31u];heap[at+3u]=bitcast<u32>(argument);heap[at+4u]=key;heap[at+5u]=frame.counts.z;heap[d]=count+1u;}
 fn actionEvent(i:u32,argument:f32,key:u32){actionEventToken(i,nodes[i].action.y,argument,key);}
-fn notifyEditorChanges(){for(var k=0u;k<state[61u];k++){let i=heap[state[60u]+k];let d=ed(i);let revision=heap[d+5u];if(heap[d+77u]!=0u&&heap[d+78u]!=revision){heap[d+78u]=revision;actionEventToken(i,heap[d+77u],f32(revision),NONE);}}}
+fn notifyEditorChanges(){if((VIEW_FEATURES&1u)==0u){return;}for(var k=0u;k<state[61u];k++){let i=heap[state[60u]+k];let d=ed(i);let revision=heap[d+5u];if(heap[d+77u]!=0u&&heap[d+78u]!=revision){heap[d+78u]=revision;actionEventToken(i,heap[d+77u],f32(revision),NONE);}}}
 fn controlsCommand(i:u32,code:u32,length:u32){if(i>=frame.counts.x){return;}let n=nodes[i];
  if(code==1u){if((n.info.x!=5u&&n.info.x!=6u&&n.info.x!=7u&&n.info.x!=9u)||n.aux.x==0u||length>n.aux.x||length>state[40u]){state[43u]++;return;}for(var k=0u;k<length;k++){heap[n.text.z+k]=heap[state[23u]+k];}nodes[i].text.w=length;if(n.info.x==9u){state[cs(i)+4u]=length;state[cs(i)+5u]=length;state[cs(i)+6u]=length;invalidateText(i);}else{state[3u]=1u;}return;}
  if(!isList(i)){return;}let d=n.aux.x;let src=heap[d+10u];
@@ -22,7 +22,7 @@ fn layoutLists(@builtin(global_invocation_id) gid:vec3<u32>){if(gid.x>=state[44u
 fn listSelectedVisible(i:u32)->u32{let d=nodes[i].aux.x;for(var k=0u;k<heap[d+7u];k++){let item=heap[heap[d+5u]+k];if(heap[heap[d+2u]+item*8u]==heap[d+9u]){return k;}}return NONE;}
 fn listChoose(i:u32,vr:u32,activateItem:bool){let d=nodes[i].aux.x;if(vr>=heap[d+7u]){return;}let item=heap[heap[d+5u]+vr];let at=heap[d+2u]+item*8u;if((heap[at+5u]&4u)!=0u){return;}heap[d+9u]=heap[at];setf(cs(i),f32(item));if(activateItem&&nodes[i].action.x==13u){actionEvent(i,f32(item),heap[at]);}}
 fn listDrag(i:u32,p:vec2<f32>){let r=contentRect(nodes[i]);let d=nodes[i].aux.x;let full=f32(heap[d+7u])*hf(d+6u);let thumb=max(18.0,r.w*r.w/max(1.0,full));setf(cs(i)+1u,clamp((p.y-r.y-sf(28u))/max(1.0,r.w-thumb)*max(0.0,full-r.w),0.0,max(0.0,full-r.w)));}
-fn emitListChrome(i:u32,order:ptr<function,u32>){let n=nodes[i];let r=contentRect(n);let d=n.aux.x;let full=f32(heap[d+7u])*hf(d+6u);if(full<=r.w||r.w<=0.0){return;}let thumb=max(18.0,r.w*r.w/full);let y=r.y+sf(cs(i)+1u)/(full-r.w)*max(0.0,r.w-thumb);box(i,vec4<f32>(r.x+r.z-9.0,y,6.0,min(r.w,thumb)),decodeColor(0xff766049u),3.0,0.0,n.clip,order);}
+fn emitListChrome(i:u32,order:ptr<function,u32>){if((VIEW_FEATURES&8u)==0u){return;}let n=nodes[i];let r=contentRect(n);let d=n.aux.x;let full=f32(heap[d+7u])*hf(d+6u);if(full<=r.w||r.w<=0.0){return;}let thumb=max(18.0,r.w*r.w/full);let y=r.y+sf(cs(i)+1u)/(full-r.w)*max(0.0,r.w-thumb);box(i,vec4<f32>(r.x+r.z-9.0,y,6.0,min(r.w,thumb)),decodeColor(0xff766049u),3.0,0.0,n.clip,order);}
 fn listPointer(i:u32,p:vec2<f32>,up:bool){let n=nodes[i];let d=n.aux.x;let r=contentRect(n);
  if(up&&state[30u]==6u){return;}let full=f32(heap[d+7u])*hf(d+6u);
  if(!up&&full>r.w&&p.x>=r.x+r.z-12.0){let thumb=max(18.0,r.w*r.w/full);let y=r.y+sf(cs(i)+1u)/(full-r.w)*max(0.0,r.w-thumb);setf(28u,select(thumb*.5,p.y-y,p.y>=y&&p.y<=y+thumb));state[30u]=6u;listDrag(i,p);return;}

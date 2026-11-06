@@ -36,7 +36,7 @@ export function analyzeShaderDeclarations(code) {
 /** A group intentionally contains related entries, rather than reparsing the
  * entire editor/designer/control library for each unrelated native pipeline. */
 export function shaderPartition(entry) {
-  if(['shapeTextRuns','layoutTextRuns'].includes(entry))return 'typography';
+  if(['prepareTextInput','shapeTextRuns','layoutTextRuns'].includes(entry))return 'typography';
   if(['resolveTemplateLayout','resolveTemplateVisuals','rankTemplateTree'].includes(entry))return 'templates';
   if(['input','hitTest'].includes(entry))return 'input';
   if(['measure','constraints','arrange','compose'].includes(entry))return 'layout';

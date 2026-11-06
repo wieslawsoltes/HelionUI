@@ -27,7 +27,7 @@ fn forwardCommand(c:Command,i:u32){if(relay[0u]>=256u){state[43u]++;return;}let 
  if(c.kind==10u&&c.code==38u){let count=min(65536u,min(state[40u],u32(max(0.0,c.data.x))));relay[2u]=count;for(var k=0u;k<count;k++){relay[RELAY_TEXT+k]=heap[state[23u]+k];}}
 }
 fn routePresenter(c:Command,hit:u32)->bool {
- if(externalInput()){return false;}
+ if((VIEW_FEATURES&16u)==0u||externalInput()){return false;}
  let isText=c.kind==5u||c.kind==6u||(c.kind==10u&&c.code==38u);var recipient=NONE;
  if(isText&&c.recipient==NONE){if(isPresenter(state[0u])){recipient=state[0u];}}
  else if(c.kind<=4u||c.kind==8u){if(isPresenter(state[2u])){recipient=state[2u];}else if(isPresenter(hit)){recipient=hit;}else if(c.kind==1u&&isPresenter(state[1u])){recipient=state[1u];}}

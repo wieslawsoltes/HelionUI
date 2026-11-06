@@ -1,5 +1,5 @@
 // Per-control retained runs: source data is GPU-owned; no host shape/cache loop.
-fn uiTextDirectory(i:u32)->u32{let e=extension(nodes[i]);if(e==0u){return 0u;}return heap[e+39u];}
+fn uiTextDirectory(i:u32)->u32{if((VIEW_FEATURES&256u)==0u){return 0u;}let e=extension(nodes[i]);if(e==0u){return 0u;}return heap[e+39u];}
 fn uiTextRun(i:u32,offset:u32,len:u32)->u32{
  let d=uiTextDirectory(i);if(d==0u||nodes[i].info.x==11u){return 0u;}
  for(var j=0u;j<heap[d];j++){let r=heap[d+1u+j];let s=heap[r+63u];var source=heap[s+2u];var count=heap[s+3u];if(heap[s+1u]==0u){source=nodes[i].text.z;count=textLength(i);}if(source==offset&&count==len){return r;}}
@@ -66,10 +66,24 @@ fn uiCaret(r:u32,scalar:u32,size:f32)->f32{return uiCaretAffinity(r,scalar,size,
 fn uiSelectMove(i:u32,caret:u32,forward:bool)->u32{
  let offset=nodes[i].text.z;let count=textLength(i);let r=uiTextRun(i,offset,count);
  if(r==0u){return select(previousTextCluster(offset,count,caret),nextTextCluster(offset,count,caret),forward);}
- uiSyncText(r);uiParagraph(r,nodes[i].misc.z,0.0,false,0u);let p=pgData(r);if(heap[p+17u]==0u){return caret;}
+ let p=pgData(r);if(heap[p+17u]==0u){return caret;}
  let owner=templateContentOwner(i);let slot=cs(owner)+7u;let current=uiCaretAffinity(r,caret,nodes[i].misc.z,state[slot]);var best=caret;var distance=1e30;
  var chosen=state[slot];
  for(var c=0u;c<=count;c++){if(heap[heap[r+21u]+c]==0u){continue;}for(var affinity=0u;affinity<2u;affinity++){
   let x=uiCaretAffinity(r,c,nodes[i].misc.z,affinity);let delta=select(current-x,x-current,forward);if(delta>0.001&&delta<distance){distance=delta;best=c;chosen=affinity;}
  }}state[slot]=chosen;return best;
+}
+
+// Keep the full OpenType interpreter out of the input pipeline. The cursor and
+// target remain GPU-owned; dispatch order preserves edits before caret queries.
+@compute @workgroup_size(1)
+fn prepareTextInput(){
+ let e=atomicLoad(&scratch[9u]);if(e>=inputCount()){return;}
+ let c=inputCommand(e);if(!inputNeedsCaret(c)){return;}atomicStore(&scratch[10u],e+1u);
+ var i=c.recipient;
+ if(c.kind==2u&&i==NONE){let raw=atomicLoad(&scratch[HITS+e]);if(raw!=0u){i=hitNode(raw-1u);}}
+ if(c.kind==5u&&i==NONE){i=state[0u];}
+ if(i==NONE||i>=frame.counts.x||nodes[i].info.x!=9u){return;}
+ let r=uiTextRun(i,nodes[i].text.z,textLength(i));
+ if(r!=0u){uiSyncText(r);uiParagraph(r,nodes[i].misc.z,0.0,false,0u);}
 }

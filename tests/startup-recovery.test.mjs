@@ -14,7 +14,7 @@ import {createDesignerWorkbench} from '../src/designer/workbench.js';
 import {designerExamples} from '../designer/examples.js';
 import {checkFunctionCalls,checkFunctionGraph} from '../tools/check-wgsl-graph.mjs';
 const shaders=Object.fromEntries(await Promise.all((await readdir(new URL('../shaders/',import.meta.url))).filter(n=>n.endsWith('.wgsl')).map(async n=>[n.slice(0,-5),await readFile(new URL('../shaders/'+n,import.meta.url),'utf8')])));
-const program=shaderProgram(shaders,{VIEW_FEATURES:255}),groups=partitionShaderProgram(program,kernels);
+const program=shaderProgram(shaders,{VIEW_FEATURES:511}),groups=partitionShaderProgram(program,kernels);
 const original=analyzeShaderDeclarations(program.code);
 test('all core entry closures retain exact function tokens, dependencies and resource bindings',()=>{
  let checked=0;
@@ -24,11 +24,30 @@ test('all core entry closures retain exact function tokens, dependencies and res
   for(const [name,item] of parsed.functions){const prior=original.functions.get(name);assert.ok(prior,name);assert.equal(group.code.slice(item.start,item.end).trim(),program.code.slice(prior.start,prior.end).trim(),name);}
   for(const entry of group.entries){assert.deepEqual(resourcesForEntry(group.code,entry),resourcesForEntry(program.code,entry),entry);checked++;}
  }
- assert.equal(checked,kernels.length);assert.equal(groups.size,20);
+ assert.equal(checked,kernels.length);assert.equal(groups.size,54);
 });
 test('layout, raster and asset programs exclude unrelated designer/edit interpreters',()=>{
  for(const groupName of ['layout','raster','flatten'])assert.doesNotMatch(groups.get(groupName).code,/fn (?:dsCommand|editorCommand)\(/);
  assert.ok(groups.get('flatten').code.length<10000);assert.ok(groups.get('input').code.length<program.code.length*.60);
+});
+test('input and emission roots cannot re-inline the large shaping and designer interpreters',()=>{
+ assert.doesNotMatch(groups.get('input').code,/fn (?:shapeRun|executeEditorCommand|executeDsCommand\d*)\(/);
+ assert.match(groups.get('typography').code,/fn shapeRun\(/);
+ assert.doesNotMatch(groups.get('emit').code,/fn dsDraw(?:Inspector|Timeline|Surface)\(/);
+ for(let family=0;family<7;family++){
+  const code=groups.get(`applyDesignerCommands${family}`).code;
+  for(let other=0;other<7;other++)assert.equal(code.includes(`fn executeDsCommand${other}(`),family===other);
+ }
+});
+test('text measurement and control emission bound expensive interpreter call sites',()=>{
+ const body=name=>{const f=original.functions.get(name);return program.code.slice(f.start,f.end);};
+ assert.equal((body('measure').match(/naturalText\(/g)||[]).length,1);
+ assert.equal((body('emitGridParts').match(/emitGridSection\(/g)||[]).length,1);
+ assert.doesNotMatch(groups.get('input').code,/fn handleKey\(/);
+ assert.match(groups.get('applyCoreKey').code,/fn handleKey\(/);
+ for(const name of ['emit','emitButton','emitCheckBox','emitDrawingNode'])assert.doesNotMatch(groups.get(name).code,/fn emitTextBox\(/);
+ for(const family of [0,2,3,4,5,6])assert.doesNotMatch(groups.get(`applyDesignerCommands${family}`).code,/fn dsFinishEdit\(/);
+ assert.match(groups.get('finishDesignerEdit').code,/fn dsFinishEdit\(/);
 });
 test('partitioned diagnostics map every retained function definition to its original file and line',()=>{
  for(const group of groups.values())for(const [name,item] of analyzeShaderDeclarations(group.code).functions){

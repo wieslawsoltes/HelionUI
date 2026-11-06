@@ -2,7 +2,7 @@
 import {readFile} from 'node:fs/promises';
 import {scalarFunctions,translateScalarBody,noFallthrough} from './editor-kernel-host.mjs';
 import {scalarTypography} from './typography-kernel-host.mjs';
-const funcs=scalarFunctions(await readFile(new URL('../shaders/typography-ui.wgsl',import.meta.url),'utf8'));
+const funcs=scalarFunctions(await readFile(new URL('../shaders/typography-ui.wgsl',import.meta.url),'utf8')).filter(f=>f.name!=='prepareTextInput'); // FIFO dispatch synchronization is exercised by the native gate.
 const code=funcs.map(f=>noFallthrough(translateScalarBody(f.code)).replace(/\barray<u32,\s*2>\(/g,'Array.of(').replace(/\bvec2<u32>\(/g,'vec2(').replace(/atomicStore\(&scratch\[([^\]]+)\],([^;]+)\)/g,'(scratch[$1]=$2)')).join('\n');
 export function scalarUITypography(compiled){
  const p={...compiled,runs:compiled.shapedTexts},c=scalarTypography(p),heap=c.heap,float=new Float32Array(heap.buffer),state=compiled.state.slice(),stateF=new Float32Array(state.buffer),u=new Uint32Array(compiled.nodes.buffer,compiled.nodes.byteOffset,compiled.nodes.byteLength/4),f=new Float32Array(u.buffer,u.byteOffset,u.length),scratch=new Uint32Array(64);

@@ -4,8 +4,8 @@ import{analyzeShaderDeclarations}from'../src/gpu/shader-partitions.js';
 const editor=await readFile(new URL('../shaders/editor.wgsl',import.meta.url),'utf8');
 const designer=await readFile(new URL('../shaders/designer.wgsl',import.meta.url),'utf8');
 const input=await readFile(new URL('../shaders/input.wgsl',import.meta.url),'utf8');
-for(const [name,source,wrapper,callee] of [['editor shortcuts',editor,'editorKey','editorCommand'],['designer shortcuts',designer,'dsKey','dsCommand'],['control activation',input,'handleKey','activate']])test(`${name} reaches its large interpreter through one call site`,()=>{
- const f=analyzeShaderDeclarations(source).functions;assert.equal(f.get(wrapper).calls.filter(n=>n===callee).length,1);assert.equal(f.get(wrapper+'Request').calls.filter(n=>n===callee).length,0);
+for(const [name,source,wrapper,callee] of [['editor shortcuts',editor,'executeEditorKey','editorCommand'],['designer shortcuts',designer,'dsKey','dsCommand'],['control activation',input,'handleKey','activate']])test(`${name} reaches its large interpreter through one call site`,()=>{
+ const f=analyzeShaderDeclarations(source).functions;assert.equal(f.get(wrapper).calls.filter(n=>n===callee).length,1);assert.equal(f.get(wrapper.replace('executeEditor','editor')+'Request').calls.filter(n=>n===callee).length,0);
 });
 test('TextBox spaces no longer include the entire code-editor/activation interpreter',()=>{
  const f=analyzeShaderDeclarations(input).functions;assert.ok(f.get('handleKeyRequest').calls.includes('insertTextBoxCharacter'));assert.ok(!f.get('handleKeyRequest').calls.includes('insertCharacter'));assert.ok(!f.get('insertTextBoxCharacter').calls.includes('editorText'));

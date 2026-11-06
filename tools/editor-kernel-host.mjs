@@ -28,7 +28,8 @@ export function translateScalarBody(code){
   .replace(/hash=\(hash\^edChar\(d,p\)\)\*16777619/g,'hash=Math.imul(hash^edChar(d,p),16777619)>>>0');
 }
 const skipped=new Set(['isEditor','ed','edLineHeight','edCell','edTop','edTextWidth','edVisibleHeight','edReveal','editorPointer']);
-const bodies=scalarFunctions(source).filter(f=>!skipped.has(f.name));
+const deferredEditor=new Set(['editorCommand','editorKey','editorText','editorPointer','applyEditorInput','applyEditorCommands']);
+const bodies=scalarFunctions(source).filter(f=>!skipped.has(f.name)&&!deferredEditor.has(f.name)).map(f=>f.name.startsWith('executeEditor')?{...f,name:f.name.replace('executeEditor','editor'),code:f.code.replace(f.name,f.name.replace('executeEditor','editor'))}:f);
 // WGSL switch cases never fall through. JS needs explicit breaks at case blocks.
 export function noFallthrough(s){return s.replace(/}\s*(?=case\s|default\s*:)/g,'break;}');}
 const code=bodies.map(f=>noFallthrough(translateScalarBody(f.code))).join('\n');

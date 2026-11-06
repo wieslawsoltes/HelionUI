@@ -40,7 +40,7 @@ export async function validateShaderPipelines(device, shaders, constants, progre
    await createCheckedShaderModule(device, {code:fixture.fixed,sections:[]}, fixture.name+' / repaired');
    rejectedFixtures.push(fixture.name); progress(fixture.name+' / repaired accepted');
   }
-  const program = shaderProgram(shaders, {...constants, VIEW_FEATURES:255});
+  const program = shaderProgram(shaders, {...constants, VIEW_FEATURES:511});
   const programs=compilation==='monolithic'?new Map([['monolithic',program]]):partitionShaderProgram(program,kernels);
   const modules=new Map();
 

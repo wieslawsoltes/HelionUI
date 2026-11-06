@@ -5,7 +5,7 @@ import { Opcode, AUTO_TARGET } from '../src/core/schema.js';
 const capture = () => { const packets = []; return { packets, queue: { writeBuffer(buffer, offset, bytes, start, size) { packets.push(new Uint32Array(bytes.slice(start, start + size))); } } }; };
 test('32-byte ABI preserves integer and float lanes', () => {
  const s = new CommandStream(); s.push(Opcode.Down, { x: 12.5, y: -2.25, a: 1, b: 2, c: 2 });
- const { queue, packets } = capture(); assert.deepEqual(s.flush(queue, {}), { count: 1, discrete: true, bytes: 32, layout: true, query: true, hitTest: true, actionCandidate: false, lastSequence: 1, payloadBytes: 0 });
+ const { queue, packets } = capture(); assert.deepEqual(s.flush(queue, {}), { count: 1, caretCommands: 1, discrete: true, bytes: 32, layout: true, query: true, hitTest: true, actionCandidate: false, lastSequence: 1, payloadBytes: 0 });
  const u = packets[0], f = new Float32Array(u.buffer); assert.equal(u.length, 8); assert.equal(u[0], 2); assert.equal(u[1], AUTO_TARGET); assert.deepEqual([...f.slice(2, 6)], [12.5, -2.25, 1, 2]); assert.equal(u[6], 2); assert.equal(u[7], 1);
 });
 test('only consecutive moves to the same target coalesce', () => {
@@ -31,3 +31,10 @@ test('empty packets do not transfer; motion/wheel do not request layout/query en
 });
 for (const payload of [{ x: NaN }, { a: Infinity }, { b: 1e100 }, { target: -1 }, { target: 1.1 }, { c: 2 ** 32 }]) test(`reject invalid packet ${JSON.stringify(payload)}`, () => assert.throws(() => new CommandStream().push(1, payload)));
 test('reject unsupported opcodes and packet capacities', () => { assert.throws(() => new CommandStream().push(99)); assert.throws(() => new CommandStream(0)); assert.throws(() => new CommandStream(4, 2)); const s = new CommandStream(); for (const n of [0, -1, 257, 1.5, NaN]) assert.throws(() => s.flush({}, {}, n)); });
+
+test('caret dispatch budget counts ordered queries without inspecting GPU targets',()=>{
+ const stream=new CommandStream();
+ stream.push(Opcode.Down).push(Opcode.Text,{c:65}).push(Opcode.Key,{c:37}).push(Opcode.Key,{c:39,a:1}).push(Opcode.Key,{c:37,a:2}).push(Opcode.Move);
+ const packet=stream.flush({writeBuffer(){}},{});
+ assert.equal(packet.caretCommands,3);assert.equal(packet.count,6);assert.equal(packet.bytes,192);
+});

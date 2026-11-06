@@ -122,7 +122,7 @@ fn edLinesCommand(d:u32,op:u32){
 }
 fn edFold(d:u32,pos:u32){let start=edLineStart(d,pos);let f=heap[d+30u];for(var k=0u;k<heap[d+54u];k++){if(edLineStart(d,heap[f+2u*k])==start){for(var j=k+1u;j<heap[d+54u];j++){heap[f+(j-1u)*2u]=heap[f+j*2u];heap[f+(j-1u)*2u+1u]=heap[f+j*2u+1u];}heap[d+54u]--;heap[d+19u]|=4u;return;}}
  var open=start;let end=edLineEnd(d,start);while(open<end&&edChar(d,open)!=123u&&edChar(d,open)!=91u){open++;}if(open==end||heap[d+54u]>=32u){return;}let closing=select(125u,93u,edChar(d,open)==91u);let opening=edChar(d,open);var depth=1u;var close=open+1u;while(close<heap[d+4u]){if(heap[heap[d+20u]+close]!=3u&&heap[heap[d+20u]+close]!=4u){if(edChar(d,close)==opening){depth++;}if(edChar(d,close)==closing){depth--;if(depth==0u){break;}}}close++;}if(depth==0u&&edLineStart(d,close)>start){heap[f+heap[d+54u]*2u]=end+1u;heap[f+heap[d+54u]*2u+1u]=edLineEnd(d,close);heap[d+54u]++;heap[d+19u]|=4u;}}
-fn editorCommand(i:u32,op:u32,a:f32,b:f32,code:u32){
+fn executeEditorCommand(i:u32,op:u32,a:f32,b:f32,code:u32){
  if(!isEditor(i)){return;}let d=ed(i);let s=edSel(d,0u);edBegin(d);
  switch op{
  case 0u:{state[0]=i;state[24u]=i;}
@@ -154,7 +154,7 @@ fn editorCommand(i:u32,op:u32,a:f32,b:f32,code:u32){
  }
  heap[d+53u]++;heap[d+19u]|=8u;
 }
-fn editorText(i:u32,ch:u32){
+fn executeEditorText(i:u32,ch:u32){
  let d=ed(i);if(ch==13u){editorKey(i,13u,0u);return;}if(ch==0u||ch>0x10ffffu||(ch>=0xd800u&&ch<=0xdfffu)){return;}
  if(heap[d+35u]!=0u){let isReplace=heap[d+35u]==3u;let at=select(heap[d+21u],heap[d+23u],isReplace);let field=select(d+22u,d+24u,isReplace);if(heap[field]<256u&&ch>=32u){heap[at+heap[field]]=ch;heap[field]++;heap[d+19u]|=2u;}return;}
  edBegin(d);let temp=heap[d+50u];heap[temp]=ch;var count=1u;
@@ -168,7 +168,7 @@ fn editorText(i:u32,ch:u32){
 }
 // Decode first, execute once. Repeating the large transaction interpreter at
 // every shortcut branch creates many redundant native compiler call sites.
-fn editorKey(i:u32,key:u32,mods:u32){
+fn executeEditorKey(i:u32,key:u32,mods:u32){
  let request=editorKeyRequest(i,key,mods);
  if(request.x>=0.0){editorCommand(i,u32(request.x),request.y,0.0,0u);}
 }
@@ -198,7 +198,7 @@ fn editorKeyRequest(i:u32,key:u32,mods:u32)->vec2<f32>{
  if(key!=38u&&key!=40u&&key!=33u&&key!=34u){heap[d+29u]=NONE;}heap[d+53u]++;heap[d+19u]|=8u;heap[d+45u]=0u;
  return vec2<f32>(-1.0,0.0);
 }
-fn editorPointer(i:u32,p:vec2<f32>,kind:u32,mods:u32,clicks:f32){
+fn executeEditorPointer(i:u32,p:vec2<f32>,kind:u32,mods:u32,clicks:f32){
  let d=ed(i);let r=contentRect(nodes[i]);let height=edLineHeight(i);let v=heap[d+31u];let count=max(1u,heap[d+32u]);let row=u32(clamp(floor((p.y-edTop(i)+sf(cs(i)+1u))/height),0.0,f32(count-1u)));
  if(kind==2u){heap[d+60u]=0u;heap[d+73u]=0u;if(p.x>=r.x+r.z-14.0||((heap[d+6u]&8u)!=0u&&p.x>=r.x+r.z-72.0)){heap[d+60u]=2u;}}
  if(heap[d+60u]==2u){setf(cs(i)+1u,clamp((p.y-r.y)/max(1.0,r.w),0.0,1.0)*max(0.0,f32(count)*height-edVisibleHeight(i)));return;}
@@ -260,4 +260,26 @@ fn layoutEditors(@builtin(global_invocation_id) tid:vec3<u32>){
  if((heap[d+19u]&8u)!=0u){edReveal(i);heap[d+19u]&=~8u;}
  setf(cs(i)+1u,clamp(sf(cs(i)+1u),0.0,max(0.0,f32(heap[d+32u])*edLineHeight(i)-edVisibleHeight(i))));
  setf(cs(i)+2u,clamp(sf(cs(i)+2u),0.0,max(0.0,f32(heap[d+33u])*edCell(i)-edTextWidth(i)+16.0)));
+}
+var<private> editorRequest:vec4<u32>;
+var<private> editorArguments:vec2<f32>;
+fn editorCommand(i:u32,op:u32,a:f32,b:f32,code:u32){editorRequest=vec4<u32>(1u,i,op,code);editorArguments=vec2<f32>(a,b);}
+
+// One GPU job per input event; the input interpreter resumes after this pass.
+fn editorKey(i:u32,key:u32,mods:u32){atomicStore(&scratch[28u],1u);atomicStore(&scratch[29u],i);atomicStore(&scratch[30u],key);atomicStore(&scratch[31u],mods);}
+fn editorText(i:u32,ch:u32){atomicStore(&scratch[28u],2u);atomicStore(&scratch[29u],i);atomicStore(&scratch[30u],ch);}
+fn editorPointer(i:u32,p:vec2<f32>,kind:u32,mods:u32,clicks:f32){atomicStore(&scratch[28u],3u);atomicStore(&scratch[29u],i);atomicStore(&scratch[30u],kind);atomicStore(&scratch[31u],mods);atomicStore(&scratch[32u],bitcast<u32>(p.x));atomicStore(&scratch[33u],bitcast<u32>(p.y));atomicStore(&scratch[34u],bitcast<u32>(clicks));}
+@compute @workgroup_size(1)
+fn applyEditorInput(){
+ let kind=atomicLoad(&scratch[28u]);if(kind==0u){return;}atomicStore(&scratch[28u],0u);let i=atomicLoad(&scratch[29u]);let code=atomicLoad(&scratch[30u]);let mods=atomicLoad(&scratch[31u]);
+ if(kind==1u){executeEditorKey(i,code,mods);}else if(kind==2u){executeEditorText(i,code);}else{executeEditorPointer(i,vec2<f32>(bitcast<f32>(atomicLoad(&scratch[32u])),bitcast<f32>(atomicLoad(&scratch[33u]))),code,mods,bitcast<f32>(atomicLoad(&scratch[34u])));}
+ if(editorRequest.x!=0u){for(var j=0u;j<4u;j++){atomicStore(&scratch[14u+j],editorRequest[j]);}for(var j=0u;j<2u;j++){atomicStore(&scratch[18u+j],bitcast<u32>(editorArguments[j]));}}
+}
+
+@compute @workgroup_size(1)
+fn applyEditorCommands(){
+ if(atomicLoad(&scratch[14u])==0u){return;}atomicStore(&scratch[14u],0u);
+ let i=atomicLoad(&scratch[15u]);let op=atomicLoad(&scratch[16u]);let code=atomicLoad(&scratch[17u]);let a=bitcast<f32>(atomicLoad(&scratch[18u]));let b=bitcast<f32>(atomicLoad(&scratch[19u]));
+ for(var k=0u;k<max(1u,atomicLoad(&scratch[12u]));k++){executeEditorCommand(i,op,a,b,code);}
+ if(op==28u&&isEditor(i)){heap[ed(i)+78u]=heap[ed(i)+5u];}
 }

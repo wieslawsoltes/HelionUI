@@ -1,3 +1,10 @@
+// GPU-only input mailboxes in the reserved scratch header (HITS begins at 64):
+// 9 cursor; 10 prepared caret index+1; 11 effects pending; 12..13 activation;
+// 14..19 editor command; 20..26 designer command; 27 delayed capture release;
+// 28..34 editor input; 36..38 designer route; 39..43 dock pointer;
+// 44..45 designer pointer destination/kind; 46..49 core key job.
+// Flags are consumed by their stage.
+// An input event cannot advance past its effects; all stages share one queue.
 @compute @workgroup_size(128)
 fn clearFrame(@builtin(global_invocation_id) id:vec3<u32>) {
  let i=id.x;
@@ -12,6 +19,13 @@ fn clearFrame(@builtin(global_invocation_id) id:vec3<u32>) {
  if(i<8u) { atomicStore(&scratch[i],0u); }
  if(i==0u) {
   atomicStore(&scratch[8u],0u);
+  atomicStore(&scratch[9u],0u); // Input FIFO cursor, shared across dispatches.
+  atomicStore(&scratch[45u],0u);atomicStore(&scratch[46u],0u);
+  atomicStore(&scratch[39u],0u);
+  atomicStore(&scratch[27u],0u);
+  atomicStore(&scratch[28u],0u);atomicStore(&scratch[36u],0u);
+  atomicStore(&scratch[11u],0u); // Pending action interpreter.
+  atomicStore(&scratch[10u],0u); // Prepared caret command (index + 1).
   updateModal();
   if(!externalInput()){relay[0u]=0u;relay[2u]=0u;}
   atomicStore(&draws.count,0u); atomicStore(&draws.overflow,0u);
@@ -62,7 +76,13 @@ fn applyProperty(i:u32,property:u32,value:f32) {
   default: { state[43]+=1u; }
  }
 }
-fn activate(i:u32) {
+// Decode activation at every input route, but compile the large action
+// interpreter only once. Bulk spaces retain one activation per character.
+var<private> activationTarget:u32;
+var<private> activationCount:u32;
+var<private> releaseCapture:bool;
+fn activate(i:u32) { activationTarget=i;activationCount++; }
+fn applyActivation(i:u32) {
  let n=nodes[i]; let s=cs(i);
  if(n.info.x==7u) { setf(s,1.0-clamp(sf(s),0.0,1.0)); invalidateValue(i); }
  let recipient=select(n.action.y,i,n.action.y==NONE); let targetState=cs(recipient);
@@ -200,8 +220,7 @@ fn handleKeyRequest(i:u32,key:u32,modifiers:u32)->u32 {
   let shift=(modifiers&1u)!=0u; let ctrl=(modifiers&6u)!=0u; let len=state[s+4u];
   if(key==32u) { insertTextBoxCharacter(i,32u); return NONE; }
   if(key==65u && ctrl) { state[s+5u]=len; state[s+6u]=0u; }
-  else if(key==37u) { if(ctrl){state[s+5u]=0u;state[s+7u]=0u;}else{state[s+5u]=uiSelectMove(i,state[s+5u],false);} }
-  else if(key==39u) { if(ctrl){state[s+5u]=len;state[s+7u]=1u;}else{state[s+5u]=uiSelectMove(i,state[s+5u],true);} }
+  else if(key==37u || key==39u) { if(ctrl){state[s+5u]=select(0u,len,key==39u);state[s+7u]=select(0u,1u,key==39u);}else{state[s+5u]=uiSelectMove(i,state[s+5u],key==39u);} }
   else if(key==36u) { state[s+5u]=0u; state[s+7u]=0u; }
   else if(key==35u) { state[s+5u]=len; state[s+7u]=1u; }
   else if(key==8u || key==46u) {
@@ -249,26 +268,48 @@ fn handleKeyRequest(i:u32,key:u32,modifiers:u32)->u32 {
  }
  return NONE;
 }
+fn inputNeedsCaret(c:Command)->bool {
+ return c.kind==2u||(c.kind==5u&&(c.code==37u||c.code==39u)&&(u32(c.data.x)&6u)==0u);
+}
 @compute @workgroup_size(1)
 fn input() {
- for(var e=0u;e<inputCount();e++) {
-  var c=inputCommand(e);if(externalInput()){c.sequence=state[31u]+1u;}if(e>=frame.counts.y){if(c.kind==10u&&c.code==38u&&u32(max(0.0,c.data.x))>state[40u]){state[43u]++;continue;}prepareExternalText(c);} let sequenceDelta=c.sequence-state[31]; if(sequenceDelta==0u || sequenceDelta>=0x80000000u) { continue; } state[31]=c.sequence; state[13]+=1u;
+ if(atomicLoad(&scratch[27u])!=0u){state[2]=NONE;state[30]=0u;atomicStore(&scratch[27u],0u);}
+ for(var e=atomicLoad(&scratch[9u]);e<inputCount();e++) {
+  var c=inputCommand(e);
+  // Yield before a caret query. A separate compute pipeline prepares the run,
+  // then this interpreter resumes at the same command with no host readback.
+  if((VIEW_FEATURES&256u)!=0u&&inputNeedsCaret(c)&&atomicLoad(&scratch[10u])!=e+1u){atomicStore(&scratch[9u],e);return;}
+  atomicStore(&scratch[9u],e+1u);activationCount=0u;releaseCapture=false;editorRequest.x=0u;designerRequest.x=0u;
+  processInputCommand(c,e);
+  if(activationCount!=0u||editorRequest.x!=0u||designerRequest.x!=0u||releaseCapture||atomicLoad(&scratch[28u])!=0u||atomicLoad(&scratch[36u])!=0u||atomicLoad(&scratch[39u])!=0u||atomicLoad(&scratch[46u])!=0u){
+   atomicStore(&scratch[11u],1u);atomicStore(&scratch[12u],activationCount);atomicStore(&scratch[13u],activationTarget);
+   for(var j=0u;j<4u;j++){atomicStore(&scratch[14u+j],editorRequest[j]);atomicStore(&scratch[23u+j],bitcast<u32>(designerArguments[j]));}
+   for(var j=0u;j<2u;j++){atomicStore(&scratch[18u+j],bitcast<u32>(editorArguments[j]));}
+   for(var j=0u;j<3u;j++){atomicStore(&scratch[20u+j],designerRequest[j]);}
+   atomicStore(&scratch[27u],select(0u,1u,releaseCapture));return;
+  }
+ }
+ notifyEditorChanges();
+}
+fn processInputCommand(command:Command,e:u32){
+ var c=command;
+ if(externalInput()){c.sequence=state[31u]+1u;}if(e>=frame.counts.y){if(c.kind==10u&&c.code==38u&&u32(max(0.0,c.data.x))>state[40u]){state[43u]++;return;}prepareExternalText(c);} let sequenceDelta=c.sequence-state[31]; if(sequenceDelta==0u || sequenceDelta>=0x80000000u) { return; } state[31]=c.sequence; state[13]+=1u;
   var hit=c.recipient;
   if(hit==NONE&&c.kind<=4u) {let raw=atomicLoad(&scratch[HITS+e]);if(raw!=0u){hit=hitNode(raw-1u);}}
-  if(hit!=NONE && hit>=frame.counts.x) { state[43]+=1u; continue; }
-  if(dsRoute(c,hit)){continue;}
-  if(routePresenter(c,hit)){continue;}
-  if(c.kind==10u){let recipientNode=select(c.recipient,state[0],c.recipient==NONE);if(c.code==38u&&!isEditor(recipientNode)){if(recipientNode!=NONE){for(var k=0u;k<min(state[40u],u32(max(0.0,c.data.x)));k++){insertCharacter(recipientNode,heap[state[23u]+k]);}}}else{editorCommand(recipientNode,c.code,c.data.x,c.data.y,u32(c.position.x));if(isEditor(recipientNode)&&c.code==28u){heap[ed(recipientNode)+78u]=heap[ed(recipientNode)+5u];}}continue;}
-  if(c.kind==11u){dockCommand(c.recipient,c.code,u32(c.data.x),c.data.y);continue;}
-  if(c.kind==14u){controlsCommand(c.recipient,c.code,u32(max(0.0,c.data.x)));continue;}
-  if(c.kind==13u){applyDataSource(c.recipient,c.code,u32(max(0.0,c.data.x)),c.data.y,c.sequence);continue;}
-  if(c.kind==12u){modelCommand(u32(c.position.x),u32(c.position.y),c.code,c.data.x,u32(c.data.y));continue;}
-  if(c.kind==16u){templateCommand(c.recipient,c.code,u32(c.data.x),u32(c.data.y));continue;}
-  if(c.kind==9u) { animationControl(c.recipient,c.code,c.data.x);continue; }
-  if(c.kind==7u) { applyProperty(c.recipient,c.code,c.data.x); continue; }
-  if(c.kind==8u) {if(c.code==1u){state[0u]=NONE;}if(state[2]!=NONE){let captured=state[2];if(isEditor(captured)){heap[ed(captured)+60u]=0u;}else if(nodes[captured].info.x==24u||nodes[captured].info.x==25u){let host=select(captured,heap[nodes[captured].aux.x],nodes[captured].info.x==25u);let d=nodes[host].aux.x;heap[d+5u]=NONE;heap[d+10u]=NONE;heap[d+12u]=0u;}}state[2]=NONE; state[30]=0u; continue; }
-  if(c.kind==5u) { handleKey(select(c.recipient,state[0],c.recipient==NONE),c.code,u32(c.data.x)); continue; }
-  if(c.kind==6u) { let recipientNode=select(c.recipient,state[0],c.recipient==NONE); if(recipientNode!=NONE){insertCharacter(recipientNode,c.code);} continue; }
+  if(hit!=NONE && hit>=frame.counts.x) { state[43]+=1u; return; }
+  if(dsRoute(c,hit)){return;}
+  if(routePresenter(c,hit)){return;}
+  if(c.kind==10u){let recipientNode=select(c.recipient,state[0],c.recipient==NONE);if(c.code==38u&&!isEditor(recipientNode)){if(recipientNode!=NONE){for(var k=0u;k<min(state[40u],u32(max(0.0,c.data.x)));k++){insertCharacter(recipientNode,heap[state[23u]+k]);}}}else{editorCommand(recipientNode,c.code,c.data.x,c.data.y,u32(c.position.x));}return;}
+  if(c.kind==11u){dockCommand(c.recipient,c.code,u32(c.data.x),c.data.y);return;}
+  if(c.kind==14u){controlsCommand(c.recipient,c.code,u32(max(0.0,c.data.x)));return;}
+  if(c.kind==13u){applyDataSource(c.recipient,c.code,u32(max(0.0,c.data.x)),c.data.y,c.sequence);return;}
+  if(c.kind==12u){modelCommand(u32(c.position.x),u32(c.position.y),c.code,c.data.x,u32(c.data.y));return;}
+  if(c.kind==16u){templateCommand(c.recipient,c.code,u32(c.data.x),u32(c.data.y));return;}
+  if(c.kind==9u) { animationControl(c.recipient,c.code,c.data.x);return; }
+  if(c.kind==7u) { applyProperty(c.recipient,c.code,c.data.x); return; }
+  if(c.kind==8u) {if(c.code==1u){state[0u]=NONE;}if(state[2]!=NONE){let captured=state[2];if(isEditor(captured)){heap[ed(captured)+60u]=0u;}else if(nodes[captured].info.x==24u||nodes[captured].info.x==25u){let host=select(captured,heap[nodes[captured].aux.x],nodes[captured].info.x==25u);let d=nodes[host].aux.x;heap[d+5u]=NONE;heap[d+10u]=NONE;heap[d+12u]=0u;}}state[2]=NONE; state[30]=0u; return; }
+  if(c.kind==5u) { atomicStore(&scratch[46u],1u);atomicStore(&scratch[47u],select(c.recipient,state[0],c.recipient==NONE));atomicStore(&scratch[48u],c.code);atomicStore(&scratch[49u],u32(c.data.x));return; }
+  if(c.kind==6u) { let recipientNode=select(c.recipient,state[0],c.recipient==NONE); if(recipientNode!=NONE){insertCharacter(recipientNode,c.code);} return; }
   if(c.kind==1u) {
    state[1]=hit;
    if(state[2]!=NONE) {
@@ -329,11 +370,9 @@ fn input() {
    if(hit!=NONE&&hit==state[2u]&&isList(hit)){listPointer(hit,inverse(nodes[hit].matrix,nodes[hit].translation.xy,c.position),true);}
    if(state[2]!=NONE){let captured=state[2];if(nodes[captured].info.x==24u||nodes[captured].info.x==25u){dockPointer(captured,inverse(nodes[captured].matrix,nodes[captured].translation.xy,c.position),3u);}if(isEditor(captured)){heap[ed(captured)+60u]=0u;}}
    if(state[2]!=NONE && hit==state[2] && (nodes[hit].info.x==6u || nodes[hit].info.x==7u)) { activate(hit); }
-   state[2]=NONE; state[30]=0u;
+   releaseCapture=true;
   }
   setf(16u,c.position.x); setf(17u,c.position.y);
- }
- notifyEditorChanges();
 }
 @compute @workgroup_size(1)
 fn schedule() {
@@ -356,3 +395,25 @@ fn finishWork() {
 }
 @compute @workgroup_size(1)
 fn finishFrame() { draws.pad=vec2<u32>(state[6],state[7]); state[15]=atomicLoad(&scratch[3u])|atomicLoad(&draws.overflow); state[45]=min(MAX_STRIPS,atomicLoad(&scratch[1u])); }
+
+@compute @workgroup_size(1)
+fn applyInputActions(){
+ if(atomicLoad(&scratch[11u])==0u){return;}atomicStore(&scratch[11u],0u);
+ activationCount=atomicLoad(&scratch[12u]);activationTarget=atomicLoad(&scratch[13u]);
+ for(var j=0u;j<4u;j++){editorRequest[j]=atomicLoad(&scratch[14u+j]);designerArguments[j]=bitcast<f32>(atomicLoad(&scratch[23u+j]));}
+ for(var j=0u;j<2u;j++){editorArguments[j]=bitcast<f32>(atomicLoad(&scratch[18u+j]));}
+ for(var j=0u;j<3u;j++){designerRequest[j]=atomicLoad(&scratch[20u+j]);}
+ for(var activation=0u;activation<activationCount;activation++){applyActivation(activationTarget);}
+ for(var j=0u;j<4u;j++){atomicStore(&scratch[14u+j],editorRequest[j]);atomicStore(&scratch[23u+j],bitcast<u32>(designerArguments[j]));}
+ for(var j=0u;j<2u;j++){atomicStore(&scratch[18u+j],bitcast<u32>(editorArguments[j]));}
+ for(var j=0u;j<3u;j++){atomicStore(&scratch[20u+j],designerRequest[j]);}
+}
+
+// Keyboard interpretation is isolated from pointer/data routing. Any resulting
+// editor job or activation is consumed before this FIFO event can advance.
+@compute @workgroup_size(1)
+fn applyCoreKey(){
+ if(atomicLoad(&scratch[46u])==0u){return;}atomicStore(&scratch[46u],0u);
+ handleKey(atomicLoad(&scratch[47u]),atomicLoad(&scratch[48u]),atomicLoad(&scratch[49u]));
+ atomicStore(&scratch[12u],activationCount);atomicStore(&scratch[13u],activationTarget);
+}

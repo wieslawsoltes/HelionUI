@@ -25,6 +25,15 @@ import { METRICS_BYTES, TIMESTAMP_COUNT, packFrameInterval, decodePerformance, t
 import { FrameSyncLog, FrameOpportunityLog } from './frame-sync.js';
 
 const RELAY_FRAME_WORD=67588;
+// Each FIFO boundary completes its GPU jobs before input resumes. Feature
+// filtering happens once at mount, never by reading live focus/control state.
+const INPUT_STAGES = ['applyDockInput','finishDesignerEdit','applyDesignerInput',
+  'applyDesignerSurfaceInput','applyDesignerTreeInput','applyDesignerInspectorInput','applyDesignerTimelineInput','applyDesignerColorInput',
+  'applyCoreKey','applyEditorInput','applyInputActions','applyEditorCommands','finishDesignerEdit',
+  ...Array.from({length:7},(_,i)=>`applyDesignerCommands${i}`),'prepareTextInput','input'];
+const DESIGNER_EMISSION = ['Surface','Tree','Inspector','Resources','States','Tracks','Timeline','Colors','Adorner'].map(role=>`emitDesigner${role}`);
+const CONTROL_EMISSION = ['emit','emitTextBlock','emitButton','emitCheckBox','emitTextBox','emitDrawingNode','emitDockNode'];
+const ONE_GROUP = [1];
 
 export class GPUUnavailableError extends Error { constructor(message) { super(message); this.name = 'GPUUnavailableError'; } }
 export class HelionSurface {
@@ -143,6 +152,8 @@ export class HelionSurface {
     this.stageBuffer = this.buffer('Immutable dispatch parameters', stageData.byteLength, GPUBufferUsage.UNIFORM | GPUBufferUsage.COPY_DST);
     device.queue.writeBuffer(this.stageBuffer, 0, stageData); this.stats.initialUploadBytes += stageData.byteLength;
     this.shaders = gpu.shaders; this.shaderSource = gpu.source; this.pipelines = new Map([...gpu.pipelines].map(([name,p])=>[name,{...p}]));
+    this.inputStages = INPUT_STAGES.filter(name=>this.pipelines.has(name));
+    this.emissionStages = CONTROL_EMISSION.filter(name=>this.pipelines.has(name));
     this.presentPipeline = gpu.presentPipeline; this.hudFullscreenPipeline = gpu.hudFullscreenPipeline; this.blitPipeline = gpu.blitPipeline; this.metricsPipeline = gpu.metricsPipeline; this.hudPipelines = gpu.hudPipelines;
     this.context = options.offscreen?{configure(){},unconfigure(){}}:canvas.getContext('webgpu'); if (!this.context) throw new GPUUnavailableError('Could not create a WebGPU canvas context');
     this.format = gpu.format; this.context.configure({ device, format: this.format, alphaMode: 'opaque' });
@@ -338,7 +349,15 @@ export class HelionSurface {
       let pass = this.phase(encoder, 'Input / GPU scheduling', 0);
       this.dispatch(pass, 'clearFrame', [Math.ceil(Math.max(DRAW_HEADS, v.tileCols * v.tileRows) / 128)]);
       if (sharedEncoder || packet.hitTest) this.dispatch(pass, 'hitTest', [nodeGroups]);
-      if (sharedEncoder || packet.count) this.dispatch(pass, 'input', [1]);
+      // At most one caret-preparation yield and one effect yield per event.
+      // Parent intent also bounds child relay events, without mapping the FIFO.
+      this.inputBoundaryBudget = packet.caretCommands + packet.count + (sharedEncoder ? this.ownerSurface.inputBoundaryBudget : 0);
+      if (sharedEncoder || packet.count) {
+        this.dispatch(pass, 'input', [1]);
+        for (let i = 0; i < this.inputBoundaryBudget; i++) {
+          for (const entry of this.inputStages) this.dispatch(pass, entry, ONE_GROUP);
+        }
+      }
       if(this.manifest.designers?.length)this.dispatch(pass,'synchronizeDesigners',[Math.ceil(this.manifest.nodeCount/64)]);
       if(this.manifest.editors?.length)this.dispatch(pass,'analyzeEditors',[this.manifest.editors.length]);
       if(this.manifest.models?.length){this.dispatch(pass,'pullModels',[1]);this.dispatch(pass,'evaluateModels',[Math.ceil(this.manifest.modelRows/64),this.manifest.models.length]);this.dispatch(pass,'pushModels',[1]);}
@@ -378,7 +397,8 @@ export class HelionSurface {
       for (const offset of this.depthStages) this.dispatch(pass, 'compose', [nodeGroups], offset);
       if(this.manifest.editors?.length)this.dispatch(pass,'layoutEditors',[this.manifest.editors.length]);
       if(this.manifest.shapedTexts?.length)this.dispatch(pass,'layoutTextRuns',[Math.ceil(this.manifest.shapedTexts.length/32)]);
-      this.dispatch(pass, 'emit', [nodeGroups]);
+      for(const entry of this.emissionStages)this.dispatch(pass,entry,[nodeGroups]);
+      if (this.manifest.designers?.length) for (const entry of DESIGNER_EMISSION) this.dispatch(pass, entry, [nodeGroups]);
       if(this.manifest.editors?.length)this.dispatch(pass,'emitEditorParts',[5,this.manifest.editors.length]);
       if (this.manifest.tables.length) this.dispatch(pass, 'emitGridParts', [5]);
       if(this.manifest.lists?.length)this.dispatch(pass,'emitListParts',[4,this.manifest.lists.length]);

@@ -89,30 +89,24 @@ fn dsDrawTree(i:u32,d:u32,order:ptr<function,u32>){
 fn dsInspectValue(i:u32,d:u32,k:u32,field:u32,kind:u32,r:vec4<f32>,order:ptr<function,u32>){
  let clip=dsLocalClip(i,r);let fg=decodeColor(nodes[i].paint.y);let muted=decodeColor(0xffa39179u);
  if(heap[d+45u]==field&&heap[d+50u]==k){dsEditVisual(i,d,r,order);return;}
- if(kind==3u||kind==4u){let at=select(dsName(d,k),dsText(d,k),kind==4u);_=drawText(i,at,heap[dsRec(d,k)+field],r.xy+vec2<f32>(5.0,4.0),12.0,fg,clip,0.0,order);return;}
  if(kind==1u){let color=dsRead(d,k,field);box(i,vec4<f32>(r.x+4.0,r.y+6.0,12.0,12.0),decodeColor(color),2.0,0.0,clip,order);dsHexText(i,color,r.xy+vec2<f32>(22.0,5.0),10.0,fg,clip,order);return;}
- if(kind==2u&&(field==86u||field==88u)){let destination=dsRead(d,k,field);if(destination!=NONE&&dsAlive(d,destination)){_=drawText(i,dsName(d,destination),heap[dsRec(d,destination)+5u],r.xy+vec2<f32>(5.0,4.0),11.0,fg,clip,0.0,order);}else{_=dsCaption(i,heap[heap[d+110u]+85u*8u],r.xy+vec2<f32>(5.0,4.0),11.0,muted,clip,order);}glyph(i,8250u,vec2<f32>(r.x+r.z-10.0,r.y+3.0),12.0,muted,clip,order);return;}
- if(kind==2u){let at=heap[heap[d+110u]+field*8u+min(7u,dsRead(d,k,field))];_=dsCaption(i,at,r.xy+vec2<f32>(5.0,4.0),11.0,fg,clip,order);glyph(i,8250u,vec2<f32>(r.x+r.z-10.0,r.y+3.0),12.0,muted,clip,order);return;}
- var value=dsNumber(d,k,field);if(dsIntegerField(field)){value=f32(dsRead(d,k,field));}if(field==26u){value=degrees(value);}if((field==86u||field==88u)&&dsRead(d,k,field)==NONE){value=-1.0;}
- if((field==10u||field==11u)&&value<0.0){_=dsCaption(i,heap[heap[d+59u]+16u],r.xy+vec2<f32>(5.0,4.0),11.0,muted,clip,order);}else{_=dsDecimal(i,value,3u,r.xy+vec2<f32>(5.0,4.0),12.0,fg,clip,order);}
+ var offset=0u;var count=0u;var size=11.0;var color=fg;var caption=0u;
+ if(kind==3u||kind==4u){offset=select(dsName(d,k),dsText(d,k),kind==4u);count=heap[dsRec(d,k)+field];size=12.0;}
+ else if(kind==2u){
+  if(field==86u||field==88u){let destination=dsRead(d,k,field);if(destination!=NONE&&dsAlive(d,destination)){offset=dsName(d,destination);count=heap[dsRec(d,destination)+5u];}else{caption=heap[heap[d+110u]+85u*8u];color=muted;}}
+  else{caption=heap[heap[d+110u]+field*8u+min(7u,dsRead(d,k,field))];}
+ }else{
+  var value=dsNumber(d,k,field);if(dsIntegerField(field)){value=f32(dsRead(d,k,field));}if(field==26u){value=degrees(value);}if((field==86u||field==88u)&&dsRead(d,k,field)==NONE){value=-1.0;}
+  if((field==10u||field==11u)&&value<0.0){caption=heap[heap[d+59u]+16u];color=muted;}else{_=dsDecimal(i,value,3u,r.xy+vec2<f32>(5.0,4.0),12.0,fg,clip,order);return;}
+ }
+ if(caption!=0u){offset=caption+1u;count=heap[caption];}
+ if(count!=0u){_=drawText(i,offset,count,r.xy+vec2<f32>(5.0,4.0),size,color,clip,0.0,order);}
+ if(kind==2u){glyph(i,8250u,vec2<f32>(r.x+r.z-10.0,r.y+3.0),12.0,muted,clip,order);}
 }
 fn dsDrawInspector(i:u32,d:u32,order:ptr<function,u32>){
- let n=nodes[i];let r=contentRect(n);let sy=sf(cs(i)+1u);let clip=n.clip;let fg=decodeColor(n.paint.y);let muted=decodeColor(0xffa39179u);let accent=decodeColor(0xffe6d467u);let primary=heap[d+9u];let role=n.action.w;
- if(role==2u){for(var row=0u;row<4u;row++){let y=r.y+f32(row)*28.0-sy;if(y+28.0<r.y||y>r.y+r.w){continue;}if(heap[d+70u]==row){box(i,vec4<f32>(r.x,y,r.z,28.0),decodeColor(0xff513826u),3.0,0.0,clip,order);}if(row==0u){_=dsUI(i,d,14u,vec2<f32>(r.x+8.0,y+6.0),12.0,fg,clip,order);}else{let at=dsData(d)+8u+(row-1u)*16u;if(heap[at]>0u){_=dsCaption(i,at,vec2<f32>(r.x+8.0,y+6.0),12.0,fg,clip,order);}else{_=dsCaption(i,heap[heap[d+59u]+row],vec2<f32>(r.x+8.0,y+6.0),12.0,muted,clip,order);}_=dsUI(i,d,13u,vec2<f32>(r.x+r.z-73.0,y+6.0),11.0,accent,clip,order);}}
-  _=dsUI(i,d,15u,vec2<f32>(r.x+8.0,r.y+126.0),10.0,muted,clip,order);return;}
- if(role==1u){let count=heap[dsData(d)+3u];for(var row=0u;row<=count&&row<17u;row++){let y=r.y+f32(row)*28.0-sy;if(y+28.0<r.y||y>r.y+r.w){continue;}if(row==count){_=dsUI(i,d,12u,vec2<f32>(r.x+8.0,y+6.0),12.0,accent,clip,order);continue;}let at=dsData(d)+64u+row*68u;if(heap[d+100u]==row+1u){box(i,vec4<f32>(r.x,y,r.z,28.0),decodeColor(0xff4d3624u),3.0,0.0,clip,order);}box(i,vec4<f32>(r.x+7.0,y+6.0,16.0,16.0),decodeColor(heap[at]),3.0,0.0,clip,order);_=drawText(i,at+4u,heap[at+1u],vec2<f32>(r.x+30.0,y+6.0),12.0,fg,dsLocalClip(i,vec4<f32>(r.x+28.0,y,r.z-132.0,28.0)),0.0,order);
-   if(heap[d+45u]==2000u+row){dsEditVisual(i,d,vec4<f32>(r.x+r.z-107.0,y+2.0,103.0,24.0),order);}else{dsHexText(i,heap[at],vec2<f32>(r.x+r.z-106.0,y+7.0),9.0,muted,clip,order);}}
-  return;}
- if(primary==NONE){_=dsUI(i,d,8u,r.xy+vec2<f32>(8.0,14.0),12.0,muted,clip,order);return;}
- if(role==3u){let rec=dsRec(d,primary);if(heap[rec+1u]!=1u){_=dsUI(i,d,9u,r.xy+vec2<f32>(8.0,14.0),11.0,muted,clip,order);return;}
-  for(var axis=0u;axis<2u;axis++){let count=heap[rec+48u+axis];for(var j=0u;j<9u;j++){let y=r.y+f32(axis*9u+j)*28.0-sy;if(y+28.0<r.y||y>r.y+r.w){continue;}if(j==8u){_=dsUI(i,d,10u+axis,vec2<f32>(r.x+8.0,y+6.0),11.0,accent,clip,order);continue;}if(j>=count){continue;}let at=rec+50u+axis*16u+j*2u;_=dsUI(i,d,40u+axis,vec2<f32>(r.x+7.0,y+6.0),10.0,muted,clip,order);_=dsDecimal(i,f32(j),0u,vec2<f32>(r.x+55.0,y+6.0),11.0,fg,clip,order);_=dsCaption(i,heap[heap[d+59u]+select(select(17u,16u,heap[at]==1u),18u,heap[at]==2u)],vec2<f32>(r.x+72.0,y+6.0),10.0,accent,clip,order);if(heap[d+45u]==1000u+axis*8u+j){dsEditVisual(i,d,vec4<f32>(r.x+115.0,y+2.0,max(1.0,r.z-120.0),24.0),order);}else{_=dsDecimal(i,hf(at+1u),2u,vec2<f32>(r.x+120.0,y+6.0),12.0,fg,clip,order);}}}return;}
- for(var row=0u;row<heap[d+103u];row++){let y=r.y+f32(row)*28.0-sy;if(y+28.0<r.y||y>r.y+r.w){continue;}let at=heap[d+40u]+row*4u;let field=heap[at+2u];let kind=heap[at+3u];
-  if(kind==5u){box(i,vec4<f32>(r.x,y,r.z,28.0),decodeColor(0xff241d16u),0.0,0.0,clip,order);_=drawText(i,heap[at],heap[at+1u],vec2<f32>(r.x+8.0,y+7.0),11.0,accent,clip,0.0,order);continue;}
-  let width=min(118.0,r.z*.47);_=drawText(i,heap[at],heap[at+1u],vec2<f32>(r.x+8.0,y+6.0),11.0,muted,dsLocalClip(i,vec4<f32>(r.x,y,width,28.0)),0.0,order);
-  let cell=vec4<f32>(r.x+width,y+2.0,max(1.0,r.z-width-6.0),24.0);box(i,cell,decodeColor(0xff211911u),3.0,0.0,clip,order);dsInspectValue(i,d,primary,field,kind,cell,order);
- }
- let extent=f32(heap[d+103u])*28.0;if(extent>r.w){box(i,vec4<f32>(r.x+r.z-3.0,r.y+sy/extent*r.w,3.0,max(16.0,r.w*r.w/extent)),muted,2.0,0.0,clip,order);}
+ switch nodes[i].action.w{case 1u:{dsDrawInspectorRole1(i,d,order);}case 2u:{dsDrawInspectorRole2(i,d,order);}case 3u:{dsDrawInspectorRole3(i,d,order);}default:{dsDrawInspectorRole0(i,d,order);}}
 }
+
 fn dsDrawColors(i:u32,d:u32,order:ptr<function,u32>){
  let n=nodes[i];let r=contentRect(n);let clip=n.clip;let primary=heap[d+9u];let resourceIndex=heap[d+100u];let fg=decodeColor(n.paint.y);let muted=decodeColor(0xffa39179u);let accent=decodeColor(0xffe6d467u);
  if(primary==NONE&&resourceIndex==0u){_=dsUI(i,d,7u,r.xy+vec2<f32>(8.0,16.0),12.0,muted,clip,order);return;}
@@ -150,3 +144,98 @@ fn dsDrawRootGrid(i:u32,order:ptr<function,u32>){
  for(var col=1u;col<1024u;col++){let x=r.x+f32(col)*step;if(x>=r.x+r.z){break;}line(i,vec2<f32>(x,r.y),vec2<f32>(x,r.y+r.w),color,.35/scale,n.clip,order);}
  for(var row=1u;row<1024u;row++){let y=r.y+f32(row)*step;if(y>=r.y+r.w){break;}line(i,vec2<f32>(r.x,y),vec2<f32>(r.x+r.z,y),color,.35/scale,n.clip,order);}
 }
+
+// These dispatches own disjoint node list heads. Preserve the same painter keys
+// and full-quality drawing helpers without one giant native emission program.
+fn beginDesignerEmission(i:u32,order:ptr<function,u32>)->bool{
+ let n=nodes[i];if(n.translation.z<=0.001||n.rect.z<=0.0||n.rect.w<=0.0||templateHasVisual(i)){return false;}
+ emissionHead=i;emissionRemaining=32768u;*order=paintNode(i)*8388608u;
+ var background=decodeColor(n.paint.x);if(n.action.x==8u&&u32(bitcast<f32>(n.action.z))==state[8]){background=decodeColor(0xff493821u);}
+ box(i,n.rect,background,bitcast<f32>(n.paint.w),0.0,n.clip,order);dsDrawRootGrid(i,order);
+ if(n.misc.w>0.0){box(i,n.rect,decodeColor(n.paint.z),bitcast<f32>(n.paint.w),n.misc.w,n.clip,order);}return true;
+}
+fn finishDesignerEmission(i:u32,order:ptr<function,u32>){if(state[7]!=0u){box(i,nodes[i].rect,vec4<f32>(decodeColor(0xffe6d467u).rgb,0.35),0.0,0.5,nodes[i].clip,order);}}
+
+@compute @workgroup_size(64)
+fn emitDesignerSurface(@builtin(global_invocation_id) id:vec3<u32>){
+ let i=id.x;if(i>=frame.counts.x||nodes[i].info.x!=30u){return;}var order=0u;if(!beginDesignerEmission(i,&order)){return;}
+ let d=nodes[i].aux.x;if(d!=0u){dsDrawSurface(i,d,&order);}finishDesignerEmission(i,&order);
+}
+
+@compute @workgroup_size(64)
+fn emitDesignerTree(@builtin(global_invocation_id) id:vec3<u32>){
+ let i=id.x;if(i>=frame.counts.x||nodes[i].info.x!=31u){return;}var order=0u;if(!beginDesignerEmission(i,&order)){return;}
+ let d=nodes[i].aux.x;if(d!=0u){dsDrawTree(i,d,&order);}finishDesignerEmission(i,&order);
+}
+
+@compute @workgroup_size(64)
+fn emitDesignerInspector(@builtin(global_invocation_id) id:vec3<u32>){
+ let i=id.x;if(i>=frame.counts.x||nodes[i].info.x!=32u||nodes[i].action.w!=0u){return;}var order=0u;if(!beginDesignerEmission(i,&order)){return;}
+ let d=nodes[i].aux.x;if(d!=0u){dsDrawInspectorRole0(i,d,&order);}finishDesignerEmission(i,&order);
+}
+
+@compute @workgroup_size(64)
+fn emitDesignerResources(@builtin(global_invocation_id) id:vec3<u32>){
+ let i=id.x;if(i>=frame.counts.x||nodes[i].info.x!=32u||nodes[i].action.w!=1u){return;}var order=0u;if(!beginDesignerEmission(i,&order)){return;}
+ let d=nodes[i].aux.x;if(d!=0u){dsDrawInspectorRole1(i,d,&order);}finishDesignerEmission(i,&order);
+}
+
+@compute @workgroup_size(64)
+fn emitDesignerStates(@builtin(global_invocation_id) id:vec3<u32>){
+ let i=id.x;if(i>=frame.counts.x||nodes[i].info.x!=32u||nodes[i].action.w!=2u){return;}var order=0u;if(!beginDesignerEmission(i,&order)){return;}
+ let d=nodes[i].aux.x;if(d!=0u){dsDrawInspectorRole2(i,d,&order);}finishDesignerEmission(i,&order);
+}
+
+@compute @workgroup_size(64)
+fn emitDesignerTracks(@builtin(global_invocation_id) id:vec3<u32>){
+ let i=id.x;if(i>=frame.counts.x||nodes[i].info.x!=32u||nodes[i].action.w!=3u){return;}var order=0u;if(!beginDesignerEmission(i,&order)){return;}
+ let d=nodes[i].aux.x;if(d!=0u){dsDrawInspectorRole3(i,d,&order);}finishDesignerEmission(i,&order);
+}
+
+
+@compute @workgroup_size(64)
+fn emitDesignerTimeline(@builtin(global_invocation_id) id:vec3<u32>){
+ let i=id.x;if(i>=frame.counts.x||nodes[i].info.x!=33u){return;}var order=0u;if(!beginDesignerEmission(i,&order)){return;}
+ let d=nodes[i].aux.x;if(d!=0u){dsDrawTimeline(i,d,&order);}finishDesignerEmission(i,&order);
+}
+
+@compute @workgroup_size(64)
+fn emitDesignerColors(@builtin(global_invocation_id) id:vec3<u32>){
+ let i=id.x;if(i>=frame.counts.x||nodes[i].info.x!=34u){return;}var order=0u;if(!beginDesignerEmission(i,&order)){return;}
+ let d=nodes[i].aux.x;if(d!=0u){dsDrawColors(i,d,&order);}finishDesignerEmission(i,&order);
+}
+
+@compute @workgroup_size(64)
+fn emitDesignerAdorner(@builtin(global_invocation_id) id:vec3<u32>){
+ let i=id.x;if(i>=frame.counts.x||nodes[i].info.x!=35u){return;}var order=0u;if(!beginDesignerEmission(i,&order)){return;}
+ let d=nodes[i].aux.x;if(d!=0u){dsDrawAdorner(i,d,&order);}finishDesignerEmission(i,&order);
+}
+
+// Each inspector role has a bounded native compiler graph.
+fn dsDrawInspectorRole0(i:u32,d:u32,order:ptr<function,u32>){
+ let n=nodes[i];let r=contentRect(n);let sy=sf(cs(i)+1u);let clip=n.clip;let fg=decodeColor(n.paint.y);let muted=decodeColor(0xffa39179u);let accent=decodeColor(0xffe6d467u);let primary=heap[d+9u];let role=n.action.w;
+
+ if(primary==NONE){_=dsUI(i,d,8u,r.xy+vec2<f32>(8.0,14.0),12.0,muted,clip,order);return;}
+
+ for(var row=0u;row<heap[d+103u];row++){let y=r.y+f32(row)*28.0-sy;if(y+28.0<r.y||y>r.y+r.w){continue;}let at=heap[d+40u]+row*4u;let field=heap[at+2u];let kind=heap[at+3u];
+  if(kind==5u){box(i,vec4<f32>(r.x,y,r.z,28.0),decodeColor(0xff241d16u),0.0,0.0,clip,order);_=drawText(i,heap[at],heap[at+1u],vec2<f32>(r.x+8.0,y+7.0),11.0,accent,clip,0.0,order);continue;}
+  let width=min(118.0,r.z*.47);_=drawText(i,heap[at],heap[at+1u],vec2<f32>(r.x+8.0,y+6.0),11.0,muted,dsLocalClip(i,vec4<f32>(r.x,y,width,28.0)),0.0,order);
+  let cell=vec4<f32>(r.x+width,y+2.0,max(1.0,r.z-width-6.0),24.0);box(i,cell,decodeColor(0xff211911u),3.0,0.0,clip,order);dsInspectValue(i,d,primary,field,kind,cell,order);
+ }
+ let extent=f32(heap[d+103u])*28.0;if(extent>r.w){box(i,vec4<f32>(r.x+r.z-3.0,r.y+sy/extent*r.w,3.0,max(16.0,r.w*r.w/extent)),muted,2.0,0.0,clip,order);}
+}
+fn dsDrawInspectorRole1(i:u32,d:u32,order:ptr<function,u32>){
+ let n=nodes[i];let r=contentRect(n);let sy=sf(cs(i)+1u);let clip=n.clip;let fg=decodeColor(n.paint.y);let muted=decodeColor(0xffa39179u);let accent=decodeColor(0xffe6d467u);let primary=heap[d+9u];let role=n.action.w;
+ let count=heap[dsData(d)+3u];for(var row=0u;row<=count&&row<17u;row++){let y=r.y+f32(row)*28.0-sy;if(y+28.0<r.y||y>r.y+r.w){continue;}if(row==count){_=dsUI(i,d,12u,vec2<f32>(r.x+8.0,y+6.0),12.0,accent,clip,order);continue;}let at=dsData(d)+64u+row*68u;if(heap[d+100u]==row+1u){box(i,vec4<f32>(r.x,y,r.z,28.0),decodeColor(0xff4d3624u),3.0,0.0,clip,order);}box(i,vec4<f32>(r.x+7.0,y+6.0,16.0,16.0),decodeColor(heap[at]),3.0,0.0,clip,order);_=drawText(i,at+4u,heap[at+1u],vec2<f32>(r.x+30.0,y+6.0),12.0,fg,dsLocalClip(i,vec4<f32>(r.x+28.0,y,r.z-132.0,28.0)),0.0,order);
+   if(heap[d+45u]==2000u+row){dsEditVisual(i,d,vec4<f32>(r.x+r.z-107.0,y+2.0,103.0,24.0),order);}else{dsHexText(i,heap[at],vec2<f32>(r.x+r.z-106.0,y+7.0),9.0,muted,clip,order);}}
+  return;}
+fn dsDrawInspectorRole2(i:u32,d:u32,order:ptr<function,u32>){
+ let n=nodes[i];let r=contentRect(n);let sy=sf(cs(i)+1u);let clip=n.clip;let fg=decodeColor(n.paint.y);let muted=decodeColor(0xffa39179u);let accent=decodeColor(0xffe6d467u);let primary=heap[d+9u];let role=n.action.w;
+ for(var row=0u;row<4u;row++){let y=r.y+f32(row)*28.0-sy;if(y+28.0<r.y||y>r.y+r.w){continue;}if(heap[d+70u]==row){box(i,vec4<f32>(r.x,y,r.z,28.0),decodeColor(0xff513826u),3.0,0.0,clip,order);}if(row==0u){_=dsUI(i,d,14u,vec2<f32>(r.x+8.0,y+6.0),12.0,fg,clip,order);}else{let at=dsData(d)+8u+(row-1u)*16u;if(heap[at]>0u){_=dsCaption(i,at,vec2<f32>(r.x+8.0,y+6.0),12.0,fg,clip,order);}else{_=dsCaption(i,heap[heap[d+59u]+row],vec2<f32>(r.x+8.0,y+6.0),12.0,muted,clip,order);}_=dsUI(i,d,13u,vec2<f32>(r.x+r.z-73.0,y+6.0),11.0,accent,clip,order);}}
+  _=dsUI(i,d,15u,vec2<f32>(r.x+8.0,r.y+126.0),10.0,muted,clip,order);return;}
+fn dsDrawInspectorRole3(i:u32,d:u32,order:ptr<function,u32>){
+ let n=nodes[i];let r=contentRect(n);let sy=sf(cs(i)+1u);let clip=n.clip;let fg=decodeColor(n.paint.y);let muted=decodeColor(0xffa39179u);let accent=decodeColor(0xffe6d467u);let primary=heap[d+9u];let role=n.action.w;
+
+ if(primary==NONE){_=dsUI(i,d,8u,r.xy+vec2<f32>(8.0,14.0),12.0,muted,clip,order);return;}
+ let rec=dsRec(d,primary);if(heap[rec+1u]!=1u){_=dsUI(i,d,9u,r.xy+vec2<f32>(8.0,14.0),11.0,muted,clip,order);return;}
+  for(var axis=0u;axis<2u;axis++){let count=heap[rec+48u+axis];for(var j=0u;j<9u;j++){let y=r.y+f32(axis*9u+j)*28.0-sy;if(y+28.0<r.y||y>r.y+r.w){continue;}if(j==8u){_=dsUI(i,d,10u+axis,vec2<f32>(r.x+8.0,y+6.0),11.0,accent,clip,order);continue;}if(j>=count){continue;}let at=rec+50u+axis*16u+j*2u;_=dsUI(i,d,40u+axis,vec2<f32>(r.x+7.0,y+6.0),10.0,muted,clip,order);_=dsDecimal(i,f32(j),0u,vec2<f32>(r.x+55.0,y+6.0),11.0,fg,clip,order);_=dsCaption(i,heap[heap[d+59u]+select(select(17u,16u,heap[at]==1u),18u,heap[at]==2u)],vec2<f32>(r.x+72.0,y+6.0),10.0,accent,clip,order);if(heap[d+45u]==1000u+axis*8u+j){dsEditVisual(i,d,vec4<f32>(r.x+115.0,y+2.0,max(1.0,r.z-120.0),24.0),order);}else{_=dsDecimal(i,hf(at+1u),2u,vec2<f32>(r.x+120.0,y+6.0),12.0,fg,clip,order);}}}return;}
