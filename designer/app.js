@@ -33,7 +33,9 @@ async function boot(project=lastProject){
  notice('Loading real font outlines and preparing the compute designer…');
  try{
   next=await HelionSurface.mount($('designer-canvas'),createDesignerWorkbench(data,{examples:designerExamples}),{
-   fontSources:fontSources||DESIGNER_FONT_SOURCES,limits:{maxHeapWords:25165824,maxNodes:512,maxDepth:24},startupWorker:true,
+   // Keep static Latin labels in retained GPU runs too, instead of remapping
+   // glyphs and applying kerning during every display-list emission.
+   textShaping:'opentype',fontSources:fontSources||DESIGNER_FONT_SOURCES,limits:{maxHeapWords:25165824,maxNodes:512,maxDepth:24},startupWorker:true,
    // Persist only public built-in starter documents, never imported user work.
    startupCache:!fontSources&&designerExamples.some(example=>example===project)?'designer-public-examples-v1':false,
    signal:controller.signal,startupTimeoutMs:60000,pipelineTimeoutMs:30000,gpuWatchdogMs:10000,
