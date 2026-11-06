@@ -4,9 +4,9 @@ import {defineModel,field,modelBinding} from '../src/models/index.js';
 import {BUILD_VERSION} from '../src/version.js';
 import { h, HelionSurface, DEFAULT_FONT_SOURCES, clearStartupCache } from '../src/index.js';
 
-const C = { base: '#0e1720', panel: '#141f2a', inset: '#101923', line: '#2a3c4c', text: '#e0e9f0', muted: '#8c9fae', accent: '#67d4e6', green: '#9ecb88', violet: '#b5a1ed' };
+const C = { base: '#101b21', panel: '#19282e', inset: '#142229', line: '#304149', text: '#e0ebe6', muted: '#9aafa8', accent: '#80ddc2', green: '#9ecb88', violet: '#b5a1ed' };
 const text = (value, props = {}) => h('TextBlock', { text: value, fontSize: 13, foreground: C.text, ...props });
-const button = (value, action, props = {}) => h('Button', { text: value, action, fontSize: 12, height: 34, radius: 7, background: '#1c2b39', foreground: C.text, ...props });
+const button = (value, action, props = {}) => h('Button', { text: value, action, fontSize: 12, height: 34, radius: 7, background: '#22363d', foreground: C.text, ...props });
 const card = (props, ...children) => h('Grid', { padding: 18, background: C.panel, radius: 12, borderColor: C.line, borderWidth: 1, ...props }, ...children);
 const stat = (label, metric, props = {}) => card({ rows: '22 *', padding: 15, ...props },
   text(label, { foreground: C.muted, fontSize: 11 }), text('', { row: 1, fontSize: 27, foreground: C.accent, bind: { metric } }));
@@ -16,7 +16,7 @@ const compose = (property, from, to, duration, extra = {}) => ({ property, from,
 
 export function createShowcase({ rowCount = 65536 } = {}) {
   return h('Grid', { id: 'root', rows: '66 50 * 28', background: C.base, models:{tools:defineModel({open:field('bool',false)},{commands:{open:{assign:{open:true}},close:{assign:{open:false}}}})} },
-    h('Grid', { id: 'header', columns: 'auto * auto auto auto auto', padding: 16, gap: 10, background: '#121d28' },
+    h('Grid', { id: 'header', columns: 'auto * auto auto auto auto', padding: 16, gap: 10, background: '#142229' },
       h('StackPanel', { orientation: 'horizontal', gap: 10 },
         h('Path', { width: 27, height: 30, path: 'M 1 2 L 8 2 L 8 12 L 20 12 L 20 2 L 27 2 L 27 29 L 20 29 L 20 19 L 8 19 L 8 29 L 1 29 Z', foreground: C.accent }),
         text('HELION', { fontSize: 22, verticalAlignment: 'center' })),
