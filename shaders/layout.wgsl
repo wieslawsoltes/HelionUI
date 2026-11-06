@@ -79,9 +79,7 @@ fn measure(@builtin(global_invocation_id) tid:vec3<u32>) {
   case 17u: { let shape=uniformShape(n);var cell=vec2<f32>(0.0);for(var j=0u;j<n.info.w;j++){let c=child(n,j);if(visible(c)){cell=max(cell,nodes[c].available.zw);}}desired=cell*vec2<f32>(shape)+max(vec2<f32>(0.0),vec2<f32>(shape)-vec2<f32>(1.0))*vec2<f32>(axisSpacing(n,0u),axisSpacing(n,1u)); }
   case 18u: { if(n.info.w>0u){let size=nodes[child(n,0u)].available.zw;desired=size*viewboxScale(n,size,av);} }
   case 19u: { desired=vec2<f32>(hf(n.aux.x+2u),hf(n.aux.x+3u)); }
-  case 5u: { desired=naturalText(i,max(0.0,av.x)); }
-  case 6u: { desired=naturalText(i,INF)+vec2<f32>(28.0,14.0); }
-  case 7u: { desired=naturalText(i,INF)+vec2<f32>(38.0,8.0); }
+  case 5u,6u,7u: {} // Shared text measurement below.
   case 8u: { desired=vec2<f32>(160.0,32.0); }
   case 9u: { desired=vec2<f32>(200.0,max(38.0,fontLineHeight(i,n.misc.z)+14.0)); }
   case 10u: { desired=vec2<f32>(140.0,12.0); }
@@ -91,8 +89,14 @@ fn measure(@builtin(global_invocation_id) tid:vec3<u32>) {
   case 12u: { let p=n.aux.x; desired=vec2<f32>(hf(p+8u)-hf(p+6u),hf(p+9u)-hf(p+7u)); }
   default: {}
  }
- if(templateHasVisual(i)){desired=vec2<f32>(0.0);for(var j=0u;j<n.info.w;j++){desired=max(desired,nodes[child(n,j)].available.zw);}}
- if(n.info.x==21u&&n.info.w==0u){desired=naturalText(i,max(0.0,av.x));}
+ // Compile the paragraph/legacy measurement interpreter once for all text controls.
+ let emptyPresenter=n.info.x==21u&&n.info.w==0u;
+ if(n.info.x==5u||n.info.x==6u||n.info.x==7u||emptyPresenter){
+  let bounded=n.info.x==5u||emptyPresenter;
+  desired=naturalText(i,select(INF,max(0.0,av.x),bounded));
+  if(n.info.x==6u){desired+=vec2<f32>(28.0,14.0);}if(n.info.x==7u){desired+=vec2<f32>(38.0,8.0);}
+ }
+ if(templateHasVisual(i)&&!emptyPresenter){desired=vec2<f32>(0.0);for(var j=0u;j<n.info.w;j++){desired=max(desired,nodes[child(n,j)].available.zw);}}
  if(n.info.x==36u){desired=vec2<f32>(200.0,max(38.0,fontLineHeight(i,n.misc.z)+14.0));}
  desired+=pad.xy+pad.zw;
  if(n.size.x>=0.0) { desired.x=n.size.x; }

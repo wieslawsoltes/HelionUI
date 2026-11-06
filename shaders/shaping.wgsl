@@ -184,8 +184,17 @@ fn shApplyPlans(r:u32,positioning:u32){
  for(var face=0u;face<heap[r+9u];face++){let plans=heap[heap[r+11u]+face];let scriptCount=heap[plans];let t=heap[shFont(r,face)+positioning];if(t==0u){continue;}
   for(var s=0u;s<scriptCount;s++){let entry=plans+1u+s*3u;let script=heap[entry];var present=false;for(var i=0u;i<heap[r+7u];i++){let g=shGlyph(r,i);if(heap[g+4u]==face&&heap[g+17u]==script){present=true;break;}}if(!present){continue;}let plan=heap[entry+1u+positioning];let count=heap[plan];
    for(var l=0u;l<count;l++){let p=plan+1u+l*4u;let lookup=heap[p];let mask=heap[p+1u];let value=heap[p+2u];let reverse=positioning==0u&&shLookupReverse(t,lookup);
-    if(reverse){var i=heap[r+7u];while(i>0u){i--;let g=shGlyph(r,i);if(heap[g+4u]!=face||heap[g+17u]!=script||(mask!=0u&&(heap[g+7u]&mask)==0u)){continue;}otApply(r,lookup,i,face,positioning,value);if(heap[r+18u]!=0u){return;}}}
-    else{var i=0u;while(i<heap[r+7u]){if(!shStep(r)){return;}let g=shGlyph(r,i);if(heap[g+4u]!=face||heap[g+17u]!=script||(mask!=0u&&(heap[g+7u]&mask)==0u)){i++;continue;}otApply(r,lookup,i,face,positioning,value);if(heap[r+18u]!=0u){return;}let next=heap[r+49u];if(next==0xffffffffu){break;}var found=i;while(found<heap[r+7u]&&shUid(r,found)!=next){if(!shStep(r)){return;}found++;}i=found;}}
+    // One lookup interpreter call site for both traversal directions. Native
+    // shader compilers inline this large graph; duplicating it is costly.
+    var cursor=select(0u,heap[r+7u],reverse);
+    loop{
+     var i=cursor;
+     if(reverse){if(cursor==0u){break;}cursor--;i=cursor;}
+     else{if(i>=heap[r+7u]){break;}if(!shStep(r)){return;}cursor=i+1u;}
+     let g=shGlyph(r,i);if(heap[g+4u]!=face||heap[g+17u]!=script||(mask!=0u&&(heap[g+7u]&mask)==0u)){continue;}
+     otApply(r,lookup,i,face,positioning,value);if(heap[r+18u]!=0u){return;}
+     if(!reverse){let next=heap[r+49u];if(next==0xffffffffu){break;}var found=i;while(found<heap[r+7u]&&shUid(r,found)!=next){if(!shStep(r)){return;}found++;}cursor=found;}
+    }
    }
   }
  }
@@ -225,6 +234,11 @@ fn shapeRun(r:u32){
  if(heap[r+4u]==heap[r+5u]&&heap[r+36u]==heap[r+37u]){return;}
  heap[r+5u]=heap[r+4u];heap[r+37u]=heap[r+36u];heap[r+18u]=0u;heap[r+26u]=0u;heap[r+41u]=0u;heap[r+42u]=0u;heap[r+44u]=0u;heap[r+45u]&=1u;heap[r+47u]=0u;
  if(heap[r+3u]>heap[r+39u]){shFail(r,1u);return;}shNormalize(r);if(heap[r+18u]!=0u){return;}shBidi(r);shMapAndJoin(r);if(heap[r+18u]!=0u){return;}
- shApplyPlans(r,0u);if(heap[r+18u]!=0u){return;}shInitializeAdvances(r);shApplyPlans(r,1u);if(heap[r+18u]!=0u){return;}shLegacyKern(r);shHideIgnorables(r);shPositionOutput(r);if(heap[r+18u]!=0u){return;}
+ // Preserve GSUB -> advances -> GPOS ordering with one interpreter call site.
+ for(var positioning=0u;positioning<2u;positioning++){
+  if(positioning==1u){shInitializeAdvances(r);}
+  shApplyPlans(r,positioning);if(heap[r+18u]!=0u){return;}
+ }
+ shLegacyKern(r);shHideIgnorables(r);shPositionOutput(r);if(heap[r+18u]!=0u){return;}
  heap[r+5u]=heap[r+4u];heap[r+37u]=heap[r+36u];heap[r+19u]++;heap[r+47u]=1u;heap[r+27u]=heap[r+3u];for(var i=0u;i<heap[r+3u];i++){heap[heap[r+20u]+i]=heap[heap[r+2u]+i];}
 }
