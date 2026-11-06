@@ -4,6 +4,9 @@
 fn damageBounds(bounds:vec4<f32>) {
  let lo=vec2<u32>(max(vec2<f32>(0.0),floor(bounds.xy/16.0)));
  let hi=min(frame.screen.zw,vec2<u32>(max(vec2<f32>(0.0),ceil(bounds.zw/16.0))));
+ if(any(lo>=hi)) { return; }
+ atomicMin(&scratch[50u],lo.x);atomicMin(&scratch[51u],lo.y);
+ atomicMax(&scratch[52u],hi.x);atomicMax(&scratch[53u],hi.y);
  for(var y=lo.y;y<hi.y;y++) { for(var x=lo.x;x<hi.x;x++) { atomicStore(&scratch[DAMAGE+y*frame.screen.z+x],1u); } }
 }
 fn samePrimitive(a:Primitive,b:Primitive)->bool {
@@ -32,8 +35,8 @@ fn dirtyAt(x:u32,y:u32)->bool {
  return atomicLoad(&scratch[DAMAGE+(y/16u)*frame.screen.z+x/16u])!=0u;
 }
 fn dirtyRow(bounds:vec4<f32>,y:u32)->bool {
- let first=u32(max(0.0,floor(bounds.x/16.0)));
- let last=min(frame.screen.z,u32(max(0.0,ceil(bounds.z/16.0))));
+ let first=max(atomicLoad(&scratch[50u]),u32(max(0.0,floor(bounds.x/16.0))));
+ let last=min(atomicLoad(&scratch[52u]),u32(max(0.0,ceil(bounds.z/16.0))));
  for(var x=first;x<last;x++) { if(atomicLoad(&scratch[DAMAGE+(y/16u)*frame.screen.z+x])!=0u) { return true; } }
  return false;
 }
@@ -127,13 +130,17 @@ fn unclippedCoverage(p:Primitive,pixel:vec2<f32>)->f32 {
 }
 @compute @workgroup_size(1)
 fn prepareDraws() {
- indirect[6]=(min(MAX_PRIMITIVES,atomicLoad(&draws.count))+63u)/64u; indirect[7]=1u; indirect[8]=1u;
+ // Damage reduction and dispatch stay resident. A clean frame must not scan
+ // every primitive's screen-sized bounds just to discover there are no jobs.
+ let dirty=atomicLoad(&scratch[50u])<atomicLoad(&scratch[52u]) && atomicLoad(&scratch[51u])<atomicLoad(&scratch[53u]);
+ indirect[6]=select(0u,(min(MAX_PRIMITIVES,atomicLoad(&draws.count))+63u)/64u,dirty); indirect[7]=1u; indirect[8]=1u;
 }
 @compute @workgroup_size(64)
 fn buildJobs(@builtin(global_invocation_id) id:vec3<u32>) {
  let i=id.x; if(i>=min(MAX_PRIMITIVES,atomicLoad(&draws.count))) { return; } let p=draws.items[i];
  if(any(p.bounds.zw<=p.bounds.xy)) { return; }
- let start=u32(max(0.0,floor(p.bounds.y/4.0)))*4u; let end=u32(min(f32(frame.screen.y),ceil(p.bounds.w/4.0)*4.0));
+ let start=max(atomicLoad(&scratch[51u])*16u,u32(max(0.0,floor(p.bounds.y/4.0)))*4u);
+ let end=min(atomicLoad(&scratch[53u])*16u,u32(min(f32(frame.screen.y),ceil(p.bounds.w/4.0)*4.0)));
  for(var y=start;y<end;y+=4u) {
   if(!dirtyRow(p.bounds,y)) { continue; }
   let job=atomicAdd(&scratch[0u],1u); if(job<MAX_JOBS) { atomicStore(&scratch[JOBS+job*2u],i); atomicStore(&scratch[JOBS+job*2u+1u],y); } else { overflow(2u); }

@@ -46,11 +46,19 @@ export async function runFrameSyncGate(){
    ['hide',()=>surface.set('grid','visible',0)],['show',()=>surface.set('grid','visible',1)]
   ];
   for(const [name,change]of scenarios){
-   change();surface.options.parallelGrid=true;await step();const parallel=await pixels(surface,surface.output);
+   change();surface.options.damageTracking=true;surface.options.parallelGrid=true;await step();const parallel=await pixels(surface,surface.output);
+   surface.options.damageTracking=false;await step();equal(parallel,await pixels(surface,surface.output),`${name}: retained/full`);
    surface.options.parallelGrid=false;await step();const serial=await pixels(surface,surface.output);equal(parallel,serial,name);
    const state=await surface.inspect({includeNodes:false});assert(state.state[15]===0,`${name}: overflow ${state.state[15]}`);pass(`exact serial/parallel UI pixels: ${name}`);
   }
   surface.options.parallelGrid=true;surface.options.damageTracking=true;await step();const retained=await pixels(surface,surface.output);surface.options.damageTracking=false;await step();equal(retained,await pixels(surface,surface.output),'retained versus full');pass('retained damage and full raster agree after row-mode changes');
+  surface.options.damageTracking=true;await step();await step();
+  const args=surface.device.createBuffer({size:16,usage:GPUBufferUsage.COPY_DST|GPUBufferUsage.MAP_READ});
+  try{
+   const e=surface.device.createCommandEncoder();e.copyBufferToBuffer(surface.indirectBuffer,24,args,0,12);e.copyBufferToBuffer(surface.scratchBuffer,0,args,12,4);surface.device.queue.submit([e.finish()]);await args.mapAsync(GPUMapMode.READ);
+   const words=new Uint32Array(args.getMappedRange());assert(words[0]===0&&words[1]===1&&words[2]===1&&words[3]===0,'Clean frame must produce zero job dispatches and zero jobs');
+  }finally{args.destroy();}
+  equal(retained,await pixels(surface,surface.output),'clean frame retains pixels');pass('GPU damage reduction skips job construction on clean frames without a host readback');
   surface.set('grid','opacity',1);surface.set('grid','translateX',0);await step();
   const compact=await pixels(surface,surface.output);surface.setTimingDetail('stages');await step();equal(compact,await pixels(surface,surface.output),'timing mode');pass('compact/stages changes measurement boundaries, not UI pixels');
   for(const dpr of [1,1.25,2]){

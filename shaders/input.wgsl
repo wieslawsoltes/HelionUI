@@ -2,7 +2,8 @@
 // 9 cursor; 10 prepared caret index+1; 11 effects pending; 12..13 activation;
 // 14..19 editor command; 20..26 designer command; 27 delayed capture release;
 // 28..34 editor input; 36..38 designer route; 39..43 dock pointer;
-// 44..45 designer pointer destination/kind; 46..49 core key job.
+// 44..45 designer pointer destination/kind; 46..49 core key job;
+// 50..53 dirty tile rectangle (min x/y, exclusive max x/y).
 // Flags are consumed by their stage.
 // An input event cannot advance past its effects; all stages share one queue.
 @compute @workgroup_size(128)
@@ -18,6 +19,9 @@ fn clearFrame(@builtin(global_invocation_id) id:vec3<u32>) {
  if(i<512u) { atomicStore(&scratch[HITS+i],0u); }
  if(i<8u) { atomicStore(&scratch[i],0u); }
  if(i==0u) {
+  let fullDamage=(frame.flags.x&1u)!=0u || (frame.flags.y&16u)!=0u || state[15]!=0u;
+  atomicStore(&scratch[50u],select(NONE,0u,fullDamage));atomicStore(&scratch[51u],select(NONE,0u,fullDamage));
+  atomicStore(&scratch[52u],select(0u,frame.screen.z,fullDamage));atomicStore(&scratch[53u],select(0u,frame.screen.w,fullDamage));
   atomicStore(&scratch[8u],0u);
   atomicStore(&scratch[9u],0u); // Input FIFO cursor, shared across dispatches.
   atomicStore(&scratch[45u],0u);atomicStore(&scratch[46u],0u);
