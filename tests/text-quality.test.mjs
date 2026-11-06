@@ -116,3 +116,9 @@ test('untransformed Fit uses one-to-one compute texel loads; transformed preview
  assert.match(shaders.strips,/previewColor\(\(local-p.rect.xy\)/);
  for(const origin of [0,1,249,-140])for(let i=0;i<100;i++)assert.equal(Math.floor(origin+i+.5-Math.round(origin)),i);
 });
+
+test('observed physical pixels and shader scale agree when browser DPR is stale or emulated',()=>{
+ const v=resolveViewport({width:1280,height:900},DEFAULT_LIMITS,{devicePixelRatio:1,observation:{width:1280,height:900,w:2560,h:1800}});
+ assert.equal(v.w,2560);assert.equal(v.h,1800);assert.equal(v.dpr,2);
+ assert.equal(v.width*v.dpr,v.w);assert.equal(v.height*v.dpr,v.h);
+});

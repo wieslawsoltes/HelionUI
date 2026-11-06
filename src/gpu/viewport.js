@@ -29,6 +29,12 @@ export function resolveViewport(rect, limits, { pixelRatio, devicePixelRatio = 1
   const maxTiles = Math.min(Math.ceil(limits.maxDimension / 16) ** 2, limits.maxRenderTiles ?? Infinity);
   const fits = (w, h) => w <= max && h <= max && Math.ceil(w / 16) * Math.ceil(h / 16) <= maxTiles;
   let w = requestedW, h = requestedH, dpr = requestedDpr;
+  // Browser emulation / display changes can report a pixel box at a different
+  // scale than window.devicePixelRatio. Allocation and shader coordinates must
+  // use the same scale. Allow one pixel for ordinary fractional CSS rounding.
+  if (observed && (Math.abs(w - width * dpr) > 1 || Math.abs(h - height * dpr) > 1)) {
+    dpr = Math.min(w / width, h / height);
+  }
   const ratioCap = mode === 'balanced' ? Math.min(1, 2 / requestedDpr) : 1;
   if (ratioCap < 1 || !fits(w, h)) {
     // Solve the actual ceil-to-tile allocation, not just a pixel-area estimate.
