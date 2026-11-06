@@ -31,7 +31,7 @@ await writeFile(resolve(root, 'playground/authoring.bundle.js'), authoringSource
 await writeFile(resolve(out, 'helion-startup-worker.js'), workerSource);
 const escape = value => JSON.stringify(value).replace(/</g, '\\u003c');
 const index = await readFile(resolve(root, 'showcase.html'), 'utf8');
-const standalone = index.replace("location.href='./playground/index.html'","location.href='./helion-playground.html'").replace("location.href='./designer/index.html'","location.href='./helion-designer.html'").replace(launchScript('./examples/showcase.js',{path:'/showcase.html'}), () => `<script>globalThis.__HELION_SHADERS__=${escape(shaders)};</script>\n<script>globalThis.__HELION_PREPARE_WORKER_SOURCE__=${escape(workerSource)};</script>\n<script type="importmap">${escape({ imports })}</script>\n${launchScript('@helion.bundle/examples/showcase.js',{standalone:true})}`);
+const standalone = index.replace(launchScript('./examples/showcase.js',{path:'/showcase.html'}), () => `<script>globalThis.__HELION_SHADERS__=${escape(shaders)};</script>\n<script>globalThis.__HELION_PREPARE_WORKER_SOURCE__=${escape(workerSource)};</script>\n<script type="importmap">${escape({ imports })}</script>\n${launchScript('@helion.bundle/examples/showcase.js',{standalone:true})}`);
 await writeFile(resolve(out, 'helion-standalone.html'), standalone);
 // The app-export template is a data-only, independently runnable Helion app.
 // It deliberately does not embed itself or include a third-party font asset.

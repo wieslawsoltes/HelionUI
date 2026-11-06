@@ -1,4 +1,6 @@
 import {startWorkspace,navigateWorkspace} from '../src/platform/workspace.js';
+import {hostAction} from '../src/controls/index.js';
+import {defineModel,field,modelBinding} from '../src/models/index.js';
 import {BUILD_VERSION} from '../src/version.js';
 import { h, HelionSurface, DEFAULT_FONT_SOURCES, clearStartupCache } from '../src/index.js';
 
@@ -13,15 +15,15 @@ const helixPath = 'M 8 50 C 8 0 42 0 50 50 C 58 100 92 100 92 50 C 92 0 58 0 50 
 const compose = (property, from, to, duration, extra = {}) => ({ property, from, to, duration, speed: 'speed', ...extra });
 
 export function createShowcase({ rowCount = 65536 } = {}) {
-  return h('Grid', { id: 'root', rows: '66 50 * 28', background: C.base },
-    h('Grid', { id: 'header', columns: 'auto * auto auto auto', padding: 16, gap: 10, background: '#121d28' },
+  return h('Grid', { id: 'root', rows: '66 50 * 28', background: C.base, models:{tools:defineModel({open:field('bool',false)},{commands:{open:{assign:{open:true}},close:{assign:{open:false}}}})} },
+    h('Grid', { id: 'header', columns: 'auto * auto auto auto auto', padding: 16, gap: 10, background: '#121d28' },
       h('StackPanel', { orientation: 'horizontal', gap: 10 },
         h('Path', { width: 27, height: 30, path: 'M 1 2 L 8 2 L 8 12 L 20 12 L 20 2 L 27 2 L 27 29 L 20 29 L 20 19 L 8 19 L 8 29 L 1 29 Z', foreground: C.accent }),
         text('HELION', { fontSize: 22, verticalAlignment: 'center' })),
       text('GPU-RESIDENT UI LAB', { column: 1, minViewportWidth: 780, fontSize: 11, foreground: C.muted, verticalAlignment: 'center', margin: [15, 0] }),
       button('Pause / run', 'animations', { id: 'pause', column: 2, width: 112, minViewportWidth: 630 }),
       button('Bounds', 'bounds', { id: 'bounds', column: 3, width: 78, minViewportWidth: 460 }),
-      button('Theme', 'theme', { id: 'theme', column: 4, width: 72 })),
+      button('Theme', 'theme', { id: 'theme', column: 4, width: 72 }),button('Tools',{type:'model',model:'tools',command:'open'},{column:5,width:62})),
     h('Grid', { row: 1, columns: '* * * * *', padding: 8, gap: 7, maxWidth: 760 },
       ...['Data', 'Layout', 'Motion', 'Design', 'Type'].map((title, page) => button(title, { type: 'page', value: page }, { id: `tab${page}`, column: page }))),
     // All pages are uploaded once. Page switching only changes GPU visibility and invalidates layout.
@@ -127,118 +129,71 @@ export function createShowcase({ rowCount = 65536 } = {}) {
       ))),
     h('Grid', { row: 3, columns: '* auto', padding: 7, background: '#101a24' },
       text('EXPERIMENTAL / WebGPU required / no DOM renderer', { fontSize: 10, foreground: C.muted }),
-      text('HOST BYTES SENT  ', { column: 1, fontSize: 10, bind: { metric: 'upload' }, foreground: C.muted, minViewportWidth: 680 })));
+      text('HOST BYTES SENT  ', { column: 1, fontSize: 10, bind: { metric: 'upload' }, foreground: C.muted, minViewportWidth: 680 })),showcaseTools());
+}
+
+function showcaseTools(){
+ const commands=[['Fonts: local','fonts'],['Default fonts','default-fonts'],['Clear font cache','clear-cache'],['Startup','startup'],['Frame sync','frame-sync'],['GPU counters','counters'],['FPS / graphs','hud'],['Timing mode','timing'],['Vsync pacing','pacing'],['ASAP mode','asap'],['Keyboard','keyboard'],['Save JSON','save-diagnostics'],['Playground','playground'],['Designer','designer']];
+ return h('Grid',{id:'showcase-tools',rowSpan:4,rows:'38 auto *',padding:18,gap:12,background:C.base,modelBind:modelBinding('tools','open',{property:'visible'}),zIndex:100},
+  h('Grid',{columns:'* 74'},text('Tools & diagnostics',{fontSize:20,fontWeight:600}),button('Close',{type:'model',model:'tools',command:'close'},{column:1,height:30})),
+  h('WrapPanel',{row:1,itemWidth:132,itemHeight:34,gap:6},...commands.map(([label,name])=>button(label,hostAction(name),{height:30,fontSize:11}))),
+  h('ScrollViewer',{row:2,padding:14,background:C.inset},text('Diagnostics run only when requested.\n\nLocal/default font changes restart the showcase and reset its edits. Use Ctrl/Cmd+Alt+F to choose local fonts, including during startup.\n\nFrame timestamps and completion callbacks do not measure display scanout.',{id:'showcase-diagnostics',fontSize:12,wrap:true,textCapacity:768})));
 }
 
 export async function bootShowcase() {
-  const canvas = document.querySelector('#surface'), overlay = document.querySelector('#boot');
-  const fontPanel = document.querySelector('#font-panel'), fontStatus = document.querySelector('#font-status');
-  let surface = null, busy = false, diagnostic = null;
-  const showDiagnostic = data => {
-    diagnostic = data;
-    const panel = document.querySelector('#diagnostic-panel'); panel.hidden = false;
-    panel.textContent = JSON.stringify(data, null, 2);
-    const save = document.querySelector('#save-diagnostics'); if (save) save.hidden = false;
-  };
-  const controls = ['#use-default-fonts', '#apply-local-fonts'];
-  async function mountFonts(sources) {
-    if (busy) return null;
-    busy = true; controls.forEach(id => { const el = document.querySelector(id); if (el) el.disabled = true; });
-    overlay.hidden = false; overlay.classList.remove('failed');
-    document.querySelector('#boot-title').textContent = 'Preparing real font outlines';
-    document.querySelector('#boot-detail').textContent = 'Loading font faces once, then preparing resident metrics, curves and GPU coverage caching.';
-    try {
-      if (!navigator.gpu) throw new Error('WebGPU is unavailable in this browser or context. Use a WebGPU-enabled browser on localhost or HTTPS.');
-      surface?.dispose(); surface = null; globalThis.helion = null;
-      document.querySelector('#boot-detail').textContent = 'Compiling the GPU pipelines and uploading the retained font resources.';
-      surface = await HelionSurface.mount(canvas, createShowcase(), {
-        fontSources: sources, startupWorker: true, startupCache: 'showcase-full-quality-v1',
-        autoStart: false, performanceHUD: true, submissionMode: 'vsync', maxFramesInFlight: 2, onError: showError,
-        onDiagnosticsError: error => { const button = document.querySelector('#performance'); if (button) { button.textContent = 'FPS / graphs unavailable'; button.title = error.message; } },
-        onStartup: event => {
-          document.querySelector('#boot-detail').textContent = `${event.detail}\n${(event.elapsedMs / 1000).toFixed(2)} s elapsed`;
-          if (event.stage === 'ready') { overlay.hidden = true; fontPanel.hidden = true; }
-          const hudButton = document.querySelector('#performance');
-          if (hudButton && event.stage === 'hud-pipelines') hudButton.textContent = 'FPS / graphs: preparing';
-          if (hudButton && event.stage === 'hud-ready') hudButton.textContent = 'FPS / graphs';
-        }
-      });
-      globalThis.helion = surface; startWorkspace(surface);
-      const timingButton=document.querySelector('#timing-detail');if(timingButton){timingButton.textContent='Timing: frame';timingButton.setAttribute('aria-pressed','false');}
-      const pacingButton = document.querySelector('#vsync-pacing');
-      if (pacingButton) { pacingButton.textContent = 'Vsync: paced'; pacingButton.setAttribute('aria-pressed', 'true'); }
-      const modeButton = document.querySelector('#submission-mode');
-      if (modeButton) { modeButton.textContent = 'As fast as possible: off'; modeButton.setAttribute('aria-pressed', 'false'); }
-      fontStatus.textContent = surface.manifest.fonts.map(f => `${f.family} · ${f.weight} · ${f.style} · ${f.mappedScalars.toLocaleString()} mapped scalars`).join('\n');
-      document.querySelector('#performance')?.setAttribute('aria-pressed', 'true');
-      return surface;
-    } catch (error) { showError(error); return null; }
-    finally { busy = false; controls.forEach(id => { const el = document.querySelector(id); if (el) el.disabled = false; }); }
-  }
-  for (const [id,route] of [['designer-open','designer'],['playground-open','playground']]) document.getElementById(id).onclick=()=>navigateWorkspace(route,globalThis.__HELION_SHADERS__?`./helion-${route}.html`:`./${route}/`);
-  document.querySelector('#clear-startup-cache')?.addEventListener('click', async () => {
-    fontStatus.textContent = await clearStartupCache() ? 'Startup cache cleared. The next default-font mount will rebuild it.' : 'Browser storage is unavailable; no persistent cache was used.';
-  });
-  document.querySelector('#startup-stats')?.addEventListener('click', () => {
-    if (!surface) return;
-    showDiagnostic({note:'Host startup metadata only. Completion notifications are not GPU execution or scanout.',startup:surface.startup,stats:surface.stats,submissionMode:surface.submissionMode});
-  });
-  document.querySelector('#frame-sync')?.addEventListener('click',()=>{
-    if(surface)showDiagnostic({engine:BUILD_VERSION,capturedAt:new Date().toISOString(),frameSync:surface.inspectFrameSync()});
-  });
-  document.querySelector('#timing-detail')?.addEventListener('click',event=>{
-    if(!surface)return;surface.setTimingDetail(({frame:'off',off:'stages',stages:'frame'})[surface.timingDetail]);
-    event.currentTarget.textContent=`Timing: ${surface.timingDetail}`;event.currentTarget.setAttribute('aria-pressed',String(surface.timingDetail==='stages'));
-  });
-  document.querySelector('#save-diagnostics')?.addEventListener('click',()=>{
+ const $=id=>document.getElementById(id),canvas=$('surface');
+ let surface=null,busy=false,diagnostic=null;
+ const showDiagnostic=data=>{
+  diagnostic=data;if(!surface)return;
+  const output=JSON.stringify(data,null,2);
+  surface.setText('showcase-diagnostics',output.length>700?output.slice(0,630)+'\n\nPreview truncated. Save JSON for the full snapshot.':output);
+  surface.model('tools').set('open',1);
+ };
+ function showError(error){
+  $('boot').hidden=false;$('boot-detail').textContent=`${error.message}\n\nBuild: ${BUILD_VERSION}.\nUse localhost or HTTPS and a WebGPU-enabled browser. Ctrl/Cmd+Alt+F selects local fonts. No CPU-rendered fallback is used.`;console.error(error);
+ }
+ async function mountFonts(sources){
+  if(busy)return;busy=true;$('boot').hidden=false;
+  try{
+   surface?.dispose();surface=null;globalThis.helion=null;
+   surface=await HelionSurface.mount(canvas,createShowcase(),{
+    fontSources:sources,startupWorker:true,startupCache:sources===DEFAULT_FONT_SOURCES?'showcase-full-quality-v2':false,
+    autoStart:false,performanceHUD:false,submissionMode:'vsync',maxFramesInFlight:2,onError:showError,onAction:action,
+    onDiagnosticsError:error=>showDiagnostic({error:error.message}),
+    onStartup:event=>{if(event.stage==='ready')$('boot').hidden=true;else $('boot-detail').textContent=event.detail;}
+   });globalThis.helion=surface;startWorkspace(surface);return surface;
+  }catch(error){showError(error);return null;}finally{busy=false;}
+ }
+ async function action(event){
+  if(!surface)return;
+  try{switch(event.name){
+   case 'designer':case 'playground':navigateWorkspace(event.name,globalThis.__HELION_SHADERS__?`./helion-${event.name}.html`:`./${event.name}/`);return;
+   case 'fonts':$('local-fonts').click();return;
+   case 'default-fonts':await mountFonts(DEFAULT_FONT_SOURCES);return;
+   case 'clear-cache':showDiagnostic({cacheCleared:await clearStartupCache()});return;
+   case 'startup':showDiagnostic({startup:surface.startup,stats:surface.stats});return;
+   case 'frame-sync':showDiagnostic({frameSync:surface.inspectFrameSync()});return;
+   case 'hud':surface.setPerformanceHUD(!surface.hudVisible);showDiagnostic({graphs:surface.hudVisible});return;
+   case 'timing':surface.setTimingDetail(({frame:'off',off:'stages',stages:'frame'})[surface.timingDetail]);showDiagnostic({timing:surface.timingDetail});return;
+   case 'pacing':surface.setMaxFramesInFlight(surface.maxFramesInFlight===0?2:0);showDiagnostic({maxFramesInFlight:surface.maxFramesInFlight});return;
+   case 'asap':surface.setSubmissionMode(surface.submissionMode==='vsync'?'asap':'vsync');showDiagnostic({submission:surface.submissionMode});return;
+   case 'keyboard':surface.focusTextInput();return;
+   case 'save-diagnostics':{
     if(!diagnostic)return;const url=URL.createObjectURL(new Blob([JSON.stringify(diagnostic,null,2)],{type:'application/json'}));
-    const a=document.createElement('a');a.href=url;a.download='helion-frame-diagnostics.json';a.click();setTimeout(()=>URL.revokeObjectURL(url),1000);
-  });
-  document.querySelector('#performance')?.addEventListener('click', event => {
-    if (surface) { surface.setPerformanceHUD(!surface.hudVisible); event.currentTarget.setAttribute('aria-pressed', String(surface.hudVisible)); }
-  });
-  document.querySelector('#vsync-pacing')?.addEventListener('click', event => {
-    if (!surface) return;
-    surface.setMaxFramesInFlight(surface.maxFramesInFlight === 0 ? 2 : 0);
-    const paced = surface.maxFramesInFlight !== 0;
-    event.currentTarget.textContent = `Vsync: ${paced ? 'paced' : 'unbounded'}`;
-    event.currentTarget.setAttribute('aria-pressed', String(paced));
-  });
-  document.querySelector('#submission-mode')?.addEventListener('click', event => {
-    if (!surface) return;
-    surface.setSubmissionMode(surface.submissionMode === 'vsync' ? 'asap' : 'vsync');
-    const enabled = surface.submissionMode === 'asap';
-    event.currentTarget.setAttribute('aria-pressed', String(enabled));
-    event.currentTarget.textContent = `As fast as possible: ${enabled ? 'on' : 'off'}`;
-  });
-  document.querySelector('#keyboard')?.addEventListener('click', () => surface?.focusTextInput());
-  for (const id of ['#fonts', '#boot-fonts']) document.querySelector(id)?.addEventListener('click', () => { fontPanel.hidden = !fontPanel.hidden; });
-  document.querySelector('#close-fonts')?.addEventListener('click', () => { fontPanel.hidden = true; });
-  document.querySelector('#use-default-fonts')?.addEventListener('click', () => mountFonts(DEFAULT_FONT_SOURCES));
-  document.querySelector('#apply-local-fonts')?.addEventListener('click', async () => {
-    const files = Array.from(document.querySelector('#local-fonts').files || []);
-    if (!files.length || files.length > 8) { fontStatus.textContent = 'Choose 1–8 static TrueType-outline font faces first.'; return; }
-    await mountFonts(files.map(file => ({ source: file })));
-  });
-  document.querySelector('#diagnostics')?.addEventListener('click', async () => {
-    if (!surface) return;
-    try {
-      const snapshot = await surface.inspect({ includeNodes: false }); const timing = surface.profiling ? await surface.inspectPerformance() : null;
-      showDiagnostic({engine:BUILD_VERSION,capturedAt:new Date().toISOString(),frameSync:surface.inspectFrameSync(), note: 'Explicit readback, not the normal frame loop', fonts: surface.manifest.fonts, timing, timingMode: surface.gpuTiming ? 'GPU timestamps' : 'CPU encode fallback', startup: surface.startup, stats: snapshot.stats,
-        GPU: { layoutRuns: snapshot.state[11], queryRuns: snapshot.state[12], sortRuns: snapshot.state[50], events: snapshot.state[13], overflowBits: snapshot.state[15], invalidInput: snapshot.state[43], strips: snapshot.state[45], glyphCacheHits: snapshot.state[51], glyphCacheMisses: snapshot.state[52], glyphCacheBypasses: snapshot.state[53] }, errors: snapshot.errors });
-    } catch (error) { showError(error); }
-  });
-  document.querySelector('#close-diagnostics')?.addEventListener('click', () => { document.querySelector('#diagnostic-panel').hidden = true;document.querySelector('#save-diagnostics').hidden=true; });
-  function showError(error) {
-    overlay.hidden = false; overlay.classList.add('failed');
-    const shaderFailure = error?.name === 'ShaderCompilationError';
-    document.querySelector('#boot-title').textContent = shaderFailure ? 'Shader compilation failed' : 'The GPU surface could not start';
-    document.querySelector('#boot-detail').textContent = error?.message || String(error || 'Unknown initialization error');
-    document.querySelector('#boot-hint').textContent = shaderFailure
-      ? `The file, line and compiler message above identify the rejected shader. Build: ${BUILD_VERSION}.`
-      : 'Serve on localhost or HTTPS. Font downloads require network access; Font sources lets you use local TTF/TTC/WOFF1 files instead. No placeholder-font or CPU-rendered fallback is silently substituted.';
-    fontStatus.textContent = error?.message || String(error); console.error(error);
-  }
-  return mountFonts(DEFAULT_FONT_SOURCES);
+    const a=document.createElement('a');a.href=url;a.download='helion-diagnostics.json';a.click();setTimeout(()=>URL.revokeObjectURL(url),1000);return;
+   }
+   case 'counters':{
+    const snapshot=await surface.inspect({includeNodes:false}),timing=surface.profiling?await surface.inspectPerformance():null;
+    showDiagnostic({engine:BUILD_VERSION,note:'Explicit diagnostic readback only',timing,startup:surface.startup,stats:snapshot.stats,GPU:{layoutRuns:snapshot.state[11],queryRuns:snapshot.state[12],sortRuns:snapshot.state[50],events:snapshot.state[13],overflowBits:snapshot.state[15]},errors:snapshot.errors});return;
+   }
+  }}catch(error){showDiagnostic({error:error.message});}
+ }
+ $('local-fonts').addEventListener('change',async()=>{
+  const files=Array.from($('local-fonts').files||[]);if(!files.length)return;
+  if(files.length>8){showError(new Error('Choose 1–8 static TrueType-outline font faces.'));return;}
+  await mountFonts(files.map(source=>({source})));
+ });
+ document.addEventListener('keydown',event=>{if((event.ctrlKey||event.metaKey)&&event.altKey&&event.key.toLowerCase()==='f'){event.preventDefault();$('local-fonts').click();}});
+ return mountFonts(DEFAULT_FONT_SOURCES);
 }
-if (typeof document !== 'undefined' && document.querySelector('#surface')) bootShowcase();
+if(typeof document!=='undefined'&&document.querySelector('#surface'))bootShowcase();

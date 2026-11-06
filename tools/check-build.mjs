@@ -64,7 +64,10 @@ assert.ok(!authoring.includes('class HelionSurface')&&!authoring.includes('reque
 assert.ok(playground.includes(await readFile(new URL('../playground/playground.css',import.meta.url),'utf8')));
 assert.ok(!playground.includes('src="./app.js"'));
 assert.ok(playground.includes('href="./helion-standalone.html"'));
-assert.ok(html.includes("location.href='./helion-playground.html'"));
+const showcaseRuntime=Buffer.from(imports['@helion.bundle/examples/showcase.js'].split(',')[1],'base64').toString('utf8');
+assert.ok(showcaseRuntime.includes("case 'playground':navigateWorkspace"));
+assert.ok(showcaseRuntime.includes('`./helion-${event.name}.html`'));
+assert.ok(!/<(?:button|textarea|select)\b/i.test(html),'Showcase controls must be GPU-rendered');
 assert.ok(!/<(?:script|link)[^>]+(?:src|href)="https?:/.test(playground));
 assert.ok(playground.includes(`name="helion-version" content="${version}"`));
 assert.ok(!/<textarea\b/i.test(playground),'Playground must not use a visible DOM textarea editor');
@@ -92,7 +95,7 @@ for(const [name,page]of [['designer',designer],['export template',template]]){
  assert.ok(!/<(?:button|textarea|select)\b/i.test(page),name+': visible application controls must be Helion');
 }
 assert.ok(designer.includes(await readFile(new URL('../designer/designer.css',import.meta.url),'utf8')));
-assert.ok(html.includes("location.href='./helion-designer.html'"));
+assert.ok(showcaseRuntime.includes("case 'designer':case 'playground'"));
 const {makeDesignAppHTML}=await import('../src/designer/export.js');
 const {designerExamples}=await import('../designer/examples.js');
 for(const example of designerExamples){
