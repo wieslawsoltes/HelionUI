@@ -19,6 +19,7 @@ const {values: args} = parseArgs({options: {
   'compile-probe': {type:'boolean',default:false},
   'startup-budget-ms': {type:'string'},
   visits: {type:'string',default:'1'},
+  'module-delay-ms': {type:'string',default:'0'},
   standalone: {type:'boolean',default:false}, output: {type:'string',default:'gpu-results.json'}
 }});
 if (!['all','apps','gates'].includes(args.suite)) throw new Error('--suite must be all, apps or gates');
@@ -27,6 +28,8 @@ const startupBudget=args['startup-budget-ms']==null?null:Number(args['startup-bu
 if(startupBudget!=null&&(!Number.isFinite(startupBudget)||startupBudget<=0||args.suite==='gates'))throw new Error('--startup-budget-ms requires a positive number and an application suite');
 const visits=Number(args.visits);
 if(!Number.isInteger(visits)||visits<1||visits>10||(visits>1&&args.suite!=='apps'))throw new Error('--visits requires 1–10 visits and --suite apps for repeated visits');
+const moduleDelay=Number(args['module-delay-ms']);
+if(!Number.isFinite(moduleDelay)||moduleDelay<0||moduleDelay>5000||(moduleDelay>0&&(args.standalone||args.suite!=='apps'||args['compile-probe'])))throw new Error('--module-delay-ms requires 0–5000 ms and uninstrumented source apps (--suite apps)');
 const {chromium} = await import(process.env.HELION_PLAYWRIGHT_MODULE || 'playwright');
 const apps = args.standalone
   ? ['helion-standalone.html','helion-designer.html','helion-playground.html','helion-typography.html']
@@ -34,7 +37,7 @@ const apps = args.standalone
 const gates = ['gpu','editor','designer','typography','templates','framework','dynamic','quality','shaders','metrics','frame-sync'].map(name=>`tests/${name}.html?autorun`);
 const paths = [...(args.suite==='gates'?[]:apps), ...(args.suite==='apps'?[]:gates)];
 const report = {status:'RUNNING',started:new Date().toISOString(),base:args.base,standalone:args.standalone,
-  startupBudgetMs:startupBudget,visits,
+  startupBudgetMs:startupBudget,visits,simulatedModuleRequestDelayMs:moduleDelay,
   scope:'Browser startup and native GPU correctness on the recorded adapter; not cross-browser or cold-cache performance qualification.',results:[]};
 const output = resolve(args.output);
 await mkdir(dirname(output), {recursive:true});
@@ -52,6 +55,9 @@ try {
     // cache for reload measurements. The browser/OS shader cache is separate.
     if(!contexts.has(path))contexts.set(path,await browser.newContext({viewport:{width:1280,height:900}}));
     const context=contexts.get(path),page=await context.newPage();
+    if(moduleDelay>0)await page.route('**/*.js',async route=>{
+      await new Promise(resolve=>setTimeout(resolve,moduleDelay));await route.continue();
+    });
     if(args['compile-probe']){
       // Fresh browser profiles cannot clear the OS shader cache. A test-only
       // out-of-range workgroup guard changes actual native code without
@@ -93,7 +99,7 @@ try {
             startup:{status,cache,fontMs,compileMs,adapterAndShadersMs,deviceMs,shaderModulesMs,uploadAndBindingsMs,pipelineMs,pipelineConcurrency,mountMs,firstCompletedMs,
               navigationToFirstCompletedMs:startedAt+firstCompletedMs,pipelineEntries},
             viewport:s.resolution,stats:{...s.stats},idleReadbackBytes:s.stats.readbackBytes-before.readbackBytes,
-            network:performance.getEntriesByType('resource').map(r=>({url:r.name.startsWith('data:')?'embedded module':r.name,bytes:r.transferSize,durationMs:r.duration}))};
+            network:performance.getEntriesByType('resource').map(r=>({url:r.name.startsWith('data:')?'embedded module':r.name,bytes:r.transferSize,startMs:r.startTime,durationMs:r.duration,initiator:r.initiatorType}))};
         });
         if (path===''||path==='helion-standalone.html') {
           // Exercise real DOM input delivery, then explicitly inspect the result.
