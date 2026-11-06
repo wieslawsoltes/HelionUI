@@ -24,10 +24,12 @@ export async function prepareView(view, options = {}, progress = () => {}) {
   };
   if (options.signal?.aborted) throw options.signal.reason || new Error('Startup aborted');
   if (options.startupWorker === false || typeof Worker === 'undefined' || fontSources.some(f => f.signal)) return mainThread('Preparing assets on the host (worker disabled or unavailable)');
-  let worker, blobURL;
+  const workerStarted = performance.now();
+  let worker, blobURL, workerReadyMs;
   try {
     const plan = startupWorkerPlan({
       embeddedSource: globalThis.__HELION_PREPARE_WORKER_SOURCE__,
+      bundledURL: globalThis.__HELION_PREPARE_WORKER_URL__,
       moduleURL: import.meta.url,
       documentURL: globalThis.location?.href || base
     });
@@ -64,6 +66,7 @@ export async function prepareView(view, options = {}, progress = () => {}) {
         const message = event.data;
         if (!message || typeof message !== 'object') return;
         if (message.type === 'ready' && !started && !delivered) {
+          workerReadyMs = performance.now() - workerStarted;
           started = true; revoke(); // The top-level script is loaded; release the Blob URL once.
           deadline(120000, 'Startup preparation exceeded 120 seconds');
           try { worker.postMessage({ view, options: packed }); }
@@ -72,7 +75,7 @@ export async function prepareView(view, options = {}, progress = () => {}) {
         else if (message.type === 'result' && started && !delivered) {
           delivered = true; clearTimeout(timer);
           timer = setTimeout(cleanup, 2000); // Bounded optional cache write after delivery.
-          resolve({ compiled: message.compiled, stats: { ...message.stats, worker: true } });
+          resolve({ compiled: message.compiled, stats: { ...message.stats, worker: true, workerReadyMs } });
         } else if (message.type === 'stored' && delivered) cleanup();
         else if (message.type === 'error') {
           const error = new Error(message.message);

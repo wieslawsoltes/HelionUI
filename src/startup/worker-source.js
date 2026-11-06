@@ -1,7 +1,7 @@
 /** Choose a worker entry without routing an embedded script through a module
  * URL or a document import map. The generated bundle has no imports and is a
  * classic script; unbundled source retains a same-origin module worker. */
-export function startupWorkerPlan({embeddedSource, moduleURL, documentURL} = {}) {
+export function startupWorkerPlan({embeddedSource, bundledURL, moduleURL, documentURL} = {}) {
   if (documentURL) {
     const page = new URL(documentURL);
     if (page.protocol === 'file:' || page.protocol === 'data:') {
@@ -10,6 +10,13 @@ export function startupWorkerPlan({embeddedSource, moduleURL, documentURL} = {})
   }
   if (typeof embeddedSource === 'string' && embeddedSource.trim()) {
     return { type: 'classic', source: embeddedSource };
+  }
+  if (bundledURL != null) {
+    const url = new URL(bundledURL, documentURL);
+    if (!documentURL || !['http:', 'https:'].includes(url.protocol) || url.origin !== new URL(documentURL).origin) {
+      throw new Error('The bundled startup worker must use HTTP(S) and share an origin with the document');
+    }
+    return { type: 'classic', url };
   }
   let url;
   try { url = new URL('./prepare-worker.js', moduleURL); }

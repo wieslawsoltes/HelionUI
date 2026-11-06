@@ -94,7 +94,7 @@ export interface StartupOptions extends CompileOptions {
  signal?:AbortSignal; onStartup?:(event:StartupEvent)=>void;
 }
 export interface StartupStats {
- status:string; startedAt:number; worker?:boolean; workerFallback?:string; cache?:string;
+ status:string; startedAt:number; worker?:boolean; workerFallback?:string; workerReadyMs?:number; cache?:string;
  fontMs?:number; compileMs?:number; cacheReadMs?:number; cacheDigestMs?:number; cacheWriteScheduled?:boolean;
  shaderCompilation?:'partitioned'|'monolithic'; shaderPrograms?:{name:string;bytes:number;entries:string[]}[];
  adapterAndShadersMs?:number; deviceMs?:number; shaderModulesMs?:number; pipelineMs?:number; pipelineConcurrency?:number;

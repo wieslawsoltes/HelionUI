@@ -5,7 +5,7 @@ import assert from 'node:assert/strict';
 import { readFile, readdir } from 'node:fs/promises';
 import { posix } from 'node:path';
 import { buildWorkerSource, buildAuthoringSource } from './build-worker.mjs';
-import {modulePreloadScript,modulePreloadPaths} from './module-preloads.mjs';
+import {modulePreloadScript,modulePreloadPaths,startupWorkerScript} from './module-preloads.mjs';
 const html=await readFile(new URL('../dist/helion-standalone.html',import.meta.url),'utf8');
 const imports=JSON.parse(html.match(/<script type="importmap">([\s\S]*?)<\/script>/)[1]).imports;
 assert.ok(imports['@helion.bundle/examples/showcase.js']);
@@ -111,7 +111,7 @@ for(const page of launchPages){
  const original=await readFile(new URL('../'+page.file,import.meta.url),'utf8');
  assert.ok(original.includes(launchScript(page.entry,{path:page.path})),page.file+': stale source launch guard');
  const published=await readFile(new URL('../dist/'+page.file,import.meta.url),'utf8');
- assert.equal(published,original.replace('<script data-helion-launch>',modulePreloadScript(moduleGraph,page.bundle,page.file)+'\n<script data-helion-launch>'),page.file+': exact published module preloads');
+ assert.equal(published,original.replace('<script data-helion-launch>',startupWorkerScript(page.file)+'\n'+modulePreloadScript(moduleGraph,page.bundle,page.file)+'\n<script data-helion-launch>'),page.file+': exact published worker and module preloads');
  for(const path of modulePreloadPaths(moduleGraph,page.bundle,page.file))await readFile(new URL('../dist/'+posix.join(posix.dirname(page.file),path),import.meta.url));
 }
 for(const embedded of [html,playground,designer,template])assert.ok(!embedded.includes('data-helion-preloads'),'Embedded apps must not preload external source modules');

@@ -1,5 +1,5 @@
 import {launchScript, launchPages} from './launch-bootstrap.mjs';
-import {modulePreloadScript} from './module-preloads.mjs';
+import {modulePreloadScript,startupWorkerScript} from './module-preloads.mjs';
 import {gzipSync} from 'node:zlib';
 import { buildWorkerSource, buildAuthoringSource } from './build-worker.mjs';
 import { readdir, readFile, mkdir, writeFile, cp, rm } from 'node:fs/promises';
@@ -50,7 +50,7 @@ for (const dir of ['src', 'shaders', 'examples', 'docs', 'tests', 'playground', 
 // Embedded standalone/export pages already contain their modules and omit hints.
 for(const page of launchPages){
   const path=resolve(out,page.file),html=await readFile(path,'utf8');
-  await writeFile(path,html.replace('<script data-helion-launch>',modulePreloadScript(moduleGraph,page.bundle,page.file)+'\n<script data-helion-launch>'));
+  await writeFile(path,html.replace('<script data-helion-launch>',startupWorkerScript(page.file)+'\n'+modulePreloadScript(moduleGraph,page.bundle,page.file)+'\n<script data-helion-launch>'));
 }
 console.log(`Built dist/ and dist/helion-standalone.html (${Buffer.byteLength(standalone).toLocaleString()} bytes). Application code is embedded. Real fonts load at mount from configured sources or local files.`);
 

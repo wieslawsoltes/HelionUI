@@ -172,3 +172,9 @@ test('all three platform launchers quote the package directory and keep the same
 test('native host-only gate never requests GPU or downloads real font assets',async()=>{
   const source=await readFile(new URL('./host-startup-suite.js',import.meta.url),'utf8');assert.doesNotMatch(source,/requestAdapter|requestDevice|fetch\(|loadFonts\(/);assert.match(source,/diagnosticFont\(\)/);assert.match(source,/UNVERIFIED/);
 });
+test('published worker resolves beneath a repository subpath and remains same-origin',()=>{
+ const plan=startupWorkerPlan({bundledURL:'../helion-startup-worker.js',documentURL:'https://example.test/HelionUI/designer/index.html'});
+ assert.equal(plan.type,'classic');assert.equal(plan.url.href,'https://example.test/HelionUI/helion-startup-worker.js');
+ for(const bundledURL of ['https://other.test/worker.js','data:text/javascript,','file:///worker.js'])assert.throws(()=>startupWorkerPlan({bundledURL,documentURL:'https://example.test/HelionUI/'}),/share an origin/);
+ const source='self.postMessage(1)';assert.deepEqual(startupWorkerPlan({embeddedSource:source,bundledURL:'bad:',documentURL:'https://example.test/'}),{type:'classic',source});
+});

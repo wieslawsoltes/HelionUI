@@ -29,3 +29,9 @@ export function modulePreloadScript(graph,entry,page){
   const paths=JSON.stringify(modulePreloadPaths(graph,entry,page)).replace(/</g,'\\u003c');
   return `<script data-helion-preloads>(${preloadModules.toString()})(${paths});</script>`;
 }
+
+/** Published pages use the same self-contained worker as standalone exports. */
+export function startupWorkerScript(page){
+  const path=posix.relative(posix.dirname(page),'helion-startup-worker.js');
+  return `<script data-helion-worker>globalThis.__HELION_PREPARE_WORKER_URL__=${JSON.stringify(path.startsWith('.')?path:`./${path}`)};</script>`;
+}
