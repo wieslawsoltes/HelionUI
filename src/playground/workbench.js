@@ -3,10 +3,10 @@ import {DockTabs,DockSplit} from '../docking/index.js';
 import {defineModel,field,computed,expr,modelBinding} from '../models/index.js';
 export const EDITOR_FONT_SOURCES=Object.freeze([{source:'https://raw.githubusercontent.com/notofonts/noto-fonts/v20201206-phase3/hinted/ttf/NotoSansMono/NotoSansMono-Regular.ttf',family:'Noto Sans Mono',weight:400}]);
 export const WORKBENCH_STYLE=`
- Button.tool {Background: #1b2b3b; Foreground: #bed4df; CornerRadius: 5; FontSize: 11;}
- Button.tool:pointerover {Background: #28475c;}
- Button.tool:pressed {Background: #246077;}
- Button.tool:focus {BorderBrush: #51d4cf; BorderThickness: 1;}
+ Button.tool {Background: #22363d; Foreground: #d0ded8; CornerRadius: 5; FontSize: 11;}
+ Button.tool:pointerover {Background: #35554d;}
+ Button.tool:pressed {Background: #3c6e5d;}
+ Button.tool:focus {BorderBrush: #80ddc2; BorderThickness: 1;}
 `;
 const snippets=[
  {label:'h — create a view',insertText:"h('${1:TextBlock}', { text: '${2:Hello}' })$0"},
