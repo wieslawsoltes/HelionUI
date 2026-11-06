@@ -57,3 +57,22 @@ surfaces, retained edits, history, test links, mobile navigation and an actual t
 scroll. Set `HELION_PLAYWRIGHT_MODULE` to an optional Playwright installation.
 Visual review covers 1440×1000 and 390×844 viewports. Browser evidence qualifies the
 recorded browser/device only; it does not imply cross-browser performance parity.
+
+### Local verification — 2026-11-06
+
+On Chrome 156.0.8078.80 with the Apple / Metal 3 adapter, all 1,039 host tests,
+static checks, build and exact-source export checks passed. The published build
+passed four application checks plus eleven native GPU gates; all four standalone
+applications also passed. The unified published workspace passed seventeen
+navigation, retention, touch and mobile-dialog checks.
+
+A separate settled ten-second Designer capture at 1280×900 CSS pixels (native
+2560×1800 output, GPU timing disabled) submitted 1,202 frames: zero skipped
+submissions, zero frame-credit deferrals, zero long callback gaps above 1.5 times
+the observed 8.3 ms interval, and zero GPU readback bytes during capture. CPU
+encoding p95 was 0.2 ms. The pre-capture startup/warm-up had four frame-credit
+deferrals. These are host scheduling observations, not compositor scanout or
+proof that startup misses are eliminated. Sub-200 ms cold startup remains unmet.
+
+The CI dependency-install repair is committed and the local validation commands
+pass. No remote CI rerun or deployment is implied by these local results.
