@@ -197,14 +197,18 @@ export class HelionSurface {
   buffer(label, size, usage) { const b = this.device.createBuffer({ label, size: Math.max(4, align(size, 4)), usage }); this.resources.push(b); return b; }
   storage(label, data) { const b = this.buffer(label, data.byteLength, GPUBufferUsage.STORAGE | GPUBufferUsage.COPY_DST | GPUBufferUsage.COPY_SRC); this.device.queue.writeBuffer(b, 0, data); this.stats.initialUploadBytes += data.byteLength; return b; }
   rebuildBindings() {
+    // Scope this cache to one rebuild: resize/presenter replacement must bind
+    // the new textures, and different surfaces must never share mutable arenas.
+    const groups = new Map();
     for (const value of this.pipelines.values()) {
-      value.bindGroups = [0, 1].map(index => {
+      if (!groups.has(value.layout)) groups.set(value.layout, [0, 1].map(index => {
         const buffers = [this.frameBuffer, this.nodeBuffer, this.stateBuffer, this.heapBuffer, this.drawBuffers[index], this.scratchBuffer, this.indirectBuffer, this.eventBuffer];
         return this.device.createBindGroup({ layout: value.layout, entries: value.used.map(({ binding }) => ({ binding,
           resource: binding===12?(this.embedded?.surface.output??this.emptyPreview).createView():binding===13?{buffer:this.forwardedBuffer}:binding === 8 ? this.output.createView() : binding === 9 ? { buffer: this.stageBuffer, offset: 0, size: 16 } :
             { buffer: binding === 11 ? this.glyphCacheBuffer : binding === 10 ? this.drawBuffers[1 - index] : buffers[binding] }
         })) });
-      });
+      }));
+      value.bindGroups = groups.get(value.layout);
     }
     this.blitBindGroup = this.device.createBindGroup({ layout: this.blitPipeline.getBindGroupLayout(0), entries: [
       { binding: 0, resource: this.output.createView() }, { binding: 3, resource: { buffer: this.stateBuffer } }

@@ -815,3 +815,14 @@ test('runtime host: a GPU notification stall stops submissions but does not forg
   f.tick(1016);assert.equal(f.surface.stats.frames,frames);await f.complete();assert.equal(f.surface.stats.completedFrames,1);assert.equal(f.surface.faulted,true);
  }finally{f.close();}
 });
+
+test('runtime host: compatible pipelines share bindings, rebuilt for each texture allocation', async () => {
+ const f=await fixture();try{
+  const entries=[...f.surface.pipelines.values()],byBindings=new Map();
+  for(const p of entries){const key=p.used.map(x=>x.binding).join(',');const other=byBindings.get(key);if(other){assert.equal(p.layout,other.layout);assert.equal(p.bindGroups,other.bindGroups);}else byBindings.set(key,p);}
+  assert.ok(byBindings.size<entries.length,'Layout reuse should remove duplicate native objects');
+  const before=entries.map(p=>p.bindGroups);f.surface.options.pixelRatio=1.25;f.surface.resizePending=true;f.surface.render();await f.complete();
+  for(let i=0;i<entries.length;i++)assert.notEqual(entries[i].bindGroups,before[i],'Resize must replace cached bind groups');
+  for(const p of entries){for(let i=0;i<2;i++){const b=p.bindGroups[i].entries.find(e=>e.binding===4);if(b)assert.equal(b.resource.buffer,f.surface.drawBuffers[i]);const prev=p.bindGroups[i].entries.find(e=>e.binding===10);if(prev)assert.equal(prev.resource.buffer,f.surface.drawBuffers[1-i]);}}
+ }finally{f.close();}
+});

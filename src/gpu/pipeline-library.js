@@ -108,21 +108,28 @@ export async function prepareGPU(limits, options, startup, report) {
       startup.hudPipelineMs = performance.now() - started;
       return { presentPipeline, hudFullscreenPipeline, hudPipelines };
     })();
-    const pipelines = new Map();
+    const pipelines = new Map(), layouts = new Map();
     const tasks = enabled.map(entry => timed(entry, async () => {
       const module=await getModule(entry);
       const used = resourcesForEntry(program.code, entry);
-      const entries = used.map(({ binding }) => {
-        const descriptor = { binding, visibility: GPUShaderStage.COMPUTE };
-        if(binding===12)descriptor.texture={sampleType:'float',viewDimension:'2d'};
-        else if (binding === 8) descriptor.storageTexture = { access: 'write-only', format: 'rgba8unorm' };
-        else descriptor.buffer = { type: binding === 0 || binding === 9 ? 'uniform' : binding === 7 || binding === 10 ? 'read-only-storage' : 'storage', hasDynamicOffset: binding === 9 };
-        return descriptor;
-      });
-      const bindLayout = device.createBindGroupLayout({ entries, label: entry });
-      const layout = device.createPipelineLayout({ bindGroupLayouts: [bindLayout] });
-      const pipeline = await device.createComputePipelineAsync({ layout, compute: { module, entryPoint: entry }, label: entry });
-      pipelines.set(entry, { pipeline, layout: bindLayout, used, dynamic: used.some(x => x.binding === 9) });
+      // Resource roles are fixed by the ABI. Equal binding sets can share both
+      // native layout objects and, once uploaded, the same surface bind groups.
+      const key = used.map(({binding}) => binding).join(',');
+      let shared = layouts.get(key);
+      if (!shared) {
+        const entries = used.map(({ binding }) => {
+          const descriptor = { binding, visibility: GPUShaderStage.COMPUTE };
+          if(binding===12)descriptor.texture={sampleType:'float',viewDimension:'2d'};
+          else if (binding === 8) descriptor.storageTexture = { access: 'write-only', format: 'rgba8unorm' };
+          else descriptor.buffer = { type: binding === 0 || binding === 9 ? 'uniform' : binding === 7 || binding === 10 ? 'read-only-storage' : 'storage', hasDynamicOffset: binding === 9 };
+          return descriptor;
+        });
+        const bindLayout = device.createBindGroupLayout({ entries, label: `Helion bindings ${key}` });
+        const layout = device.createPipelineLayout({ bindGroupLayouts: [bindLayout] });
+        shared = {bindLayout,layout}; layouts.set(key,shared);
+      }
+      const pipeline = await device.createComputePipelineAsync({ layout:shared.layout, compute: { module, entryPoint: entry }, label: entry });
+      pipelines.set(entry, { pipeline, layout: shared.bindLayout, used, dynamic: used.some(x => x.binding === 9) });
     }));
     let blitPipeline, metricsPipeline;
     tasks.push(timed('canvas-copy', async () => { blitPipeline = await device.createRenderPipelineAsync({ label: 'UI canvas copy', layout: 'auto', vertex: { module: blitModule, entryPoint: 'vertex' }, fragment: { module: blitModule, entryPoint: 'blitFragment', targets: [{ format }] }, primitive: { topology: 'triangle-list' } }); }));
