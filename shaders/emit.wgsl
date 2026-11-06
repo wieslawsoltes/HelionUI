@@ -108,11 +108,17 @@ fn number(i:u32,value:f32,decimal:u32,p:vec2<f32>,size:f32,color:vec4<f32>,clip:
  var v=u32(round(min(abs(value),99999999.0)*select(1.0,10.0,decimal==1u)));
  var digits:array<u32,16>; var len=0u;
  loop { digits[len]=48u+v%10u; len++; v/=10u; if(v==0u && len>decimal) { break; } if(len==14u) { break; } }
- var x=p.x;
- if(value<0.0) { glyph(i,45u,vec2<f32>(x,p.y),size,color,clip,order); x+=glyphAdvance(i,45u,size); }
+ // Format into a bounded local run, then compile/execute glyph emission once.
+ // Sign, decimal point and digits retain the same painter order and advances.
+ var codes:array<u32,16>;var count=0u;
+ if(value<0.0){codes[count]=45u;count++;}
  for(var j=0u;j<len;j++) {
-  if(decimal==1u && j==len-1u) { glyph(i,46u,vec2<f32>(x,p.y),size,color,clip,order); x+=glyphAdvance(i,46u,size); }
-  let ch=digits[len-1u-j]; glyph(i,ch,vec2<f32>(x,p.y),size,color,clip,order); x+=glyphAdvance(i,ch,size);
+  if(decimal==1u&&j==len-1u){codes[count]=46u;count++;}
+  codes[count]=digits[len-1u-j];count++;
+ }
+ var x=p.x;let baseline=p.y+textBaseline(i,size);
+ for(var j=0u;j<count;j++){
+  let g=mapGlyph(i,codes[j]);emitGlyph(i,g,vec2<f32>(x,baseline),size,color,clip,order);x+=glyphWidth(g)*size;
  }
  return x;
 }
