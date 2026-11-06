@@ -1,0 +1,4854 @@
+{
+  "date": "2026-11-06",
+  "status": "PASS",
+  "browser": "156.0.8078.80",
+  "head": "2c79819ff200b8d3a34753e52901d38dc7f12212",
+  "environment": "macOS, headed Chromium sandbox enabled, no GPU-enabling flags",
+  "scope": "One Apple metal-3 adapter. Cache state uncontrolled; no cross-browser or cold-start performance claim. Deployment not performed.",
+  "hostTests": {
+    "passed": 1016,
+    "failed": 0,
+    "skipped": 0
+  },
+  "strictApiTypes": "PASS",
+  "staticChecks": "PASS",
+  "buildEmbedding": "PASS",
+  "sourceApplications": [
+    {
+      "path": "",
+      "status": "PASS",
+      "adapter": {
+        "vendor": "apple",
+        "architecture": "metal-3",
+        "device": "",
+        "description": ""
+      },
+      "startup": {
+        "status": "ready",
+        "cache": "miss",
+        "fontMs": 508.2999999523163,
+        "compileMs": 86.70000004768372,
+        "pipelineMs": 7337.800000190735,
+        "mountMs": 7381.5,
+        "firstCompletedMs": 7427.399999856949,
+        "pipelineEntries": [
+          {
+            "name": "shapeTextRuns",
+            "startMs": 35.700000047683716,
+            "elapsedMs": 53.5
+          },
+          {
+            "name": "layoutTextRuns",
+            "startMs": 35.700000047683716,
+            "elapsedMs": 66.39999985694885
+          },
+          {
+            "name": "hitTest",
+            "startMs": 89.29999995231628,
+            "elapsedMs": 23.59999990463257
+          },
+          {
+            "name": "clearFrame",
+            "startMs": 35.700000047683716,
+            "elapsedMs": 147.29999995231628
+          },
+          {
+            "name": "schedule",
+            "startMs": 183.09999990463257,
+            "elapsedMs": 1.1000001430511475
+          },
+          {
+            "name": "resolveStyles",
+            "startMs": 184.29999995231628,
+            "elapsedMs": 2.9000000953674316
+          },
+          {
+            "name": "measure",
+            "startMs": 187.29999995231628,
+            "elapsedMs": 23
+          },
+          {
+            "name": "constraints",
+            "startMs": 210.29999995231628,
+            "elapsedMs": 6
+          },
+          {
+            "name": "arrange",
+            "startMs": 216.39999985694885,
+            "elapsedMs": 7.300000190734863
+          },
+          {
+            "name": "animate",
+            "startMs": 223.70000004768372,
+            "elapsedMs": 1.6999998092651367
+          },
+          {
+            "name": "compose",
+            "startMs": 225.39999985694885,
+            "elapsedMs": 5.5
+          },
+          {
+            "name": "initializeData",
+            "startMs": 230.89999985694885,
+            "elapsedMs": 3.5
+          },
+          {
+            "name": "filterScan",
+            "startMs": 234.39999985694885,
+            "elapsedMs": 2.1000001430511475
+          },
+          {
+            "name": "scanBlocks",
+            "startMs": 236.59999990463257,
+            "elapsedMs": 2.5
+          },
+          {
+            "name": "scatterRows",
+            "startMs": 239.09999990463257,
+            "elapsedMs": 1.1000001430511475
+          },
+          {
+            "name": "sortBlocks",
+            "startMs": 240.20000004768372,
+            "elapsedMs": 1.5999999046325684
+          },
+          {
+            "name": "mergeRows",
+            "startMs": 241.79999995231628,
+            "elapsedMs": 1.5
+          },
+          {
+            "name": "resolveSelection",
+            "startMs": 243.29999995231628,
+            "elapsedMs": 1.9000000953674316
+          },
+          {
+            "name": "flatten",
+            "startMs": 245.20000004768372,
+            "elapsedMs": 2.299999952316284
+          },
+          {
+            "name": "applyInputActions",
+            "startMs": 113,
+            "elapsedMs": 152.09999990463257
+          },
+          {
+            "name": "emitGridParts",
+            "startMs": 265.09999990463257,
+            "elapsedMs": 18.5
+          },
+          {
+            "name": "damage",
+            "startMs": 283.7000000476837,
+            "elapsedMs": 2.0999999046325684
+          },
+          {
+            "name": "collectGlyphRequests",
+            "startMs": 285.7999999523163,
+            "elapsedMs": 4.200000047683716
+          },
+          {
+            "name": "prepareGlyphCache",
+            "startMs": 290,
+            "elapsedMs": 1.8999998569488525
+          },
+          {
+            "name": "finishGlyphRequests",
+            "startMs": 291.89999985694885,
+            "elapsedMs": 0.8000001907348633
+          },
+          {
+            "name": "rasterGlyphCache",
+            "startMs": 292.7000000476837,
+            "elapsedMs": 2.5999999046325684
+          },
+          {
+            "name": "prepareDraws",
+            "startMs": 295.39999985694885,
+            "elapsedMs": 1.5
+          },
+          {
+            "name": "buildJobs",
+            "startMs": 296.89999985694885,
+            "elapsedMs": 6.800000190734863
+          },
+          {
+            "name": "prepareJobs",
+            "startMs": 303.7000000476837,
+            "elapsedMs": 1.1999998092651367
+          },
+          {
+            "name": "makeStrips",
+            "startMs": 304.89999985694885,
+            "elapsedMs": 4.900000095367432
+          },
+          {
+            "name": "prepareStrips",
+            "startMs": 309.7999999523163,
+            "elapsedMs": 0.9000000953674316
+          },
+          {
+            "name": "binStrips",
+            "startMs": 310.7000000476837,
+            "elapsedMs": 2.5
+          },
+          {
+            "name": "composite",
+            "startMs": 313.2999999523163,
+            "elapsedMs": 3.9000000953674316
+          },
+          {
+            "name": "finishWork",
+            "startMs": 317.2000000476837,
+            "elapsedMs": 1.5
+          },
+          {
+            "name": "finishFrame",
+            "startMs": 318.7000000476837,
+            "elapsedMs": 1.1999998092651367
+          },
+          {
+            "name": "canvas-copy",
+            "startMs": 319.89999985694885,
+            "elapsedMs": 1.8000001907348633
+          },
+          {
+            "name": "recordMetrics",
+            "startMs": 321.7000000476837,
+            "elapsedMs": 2.0999999046325684
+          },
+          {
+            "name": "prepareTextInput",
+            "startMs": 35.39999985694885,
+            "elapsedMs": 2534.2000000476837
+          },
+          {
+            "name": "emit",
+            "startMs": 247.5,
+            "elapsedMs": 5621.299999952316
+          },
+          {
+            "name": "input",
+            "startMs": 102.09999990463257,
+            "elapsedMs": 7271.100000143051
+          },
+          {
+            "name": "compositeHud",
+            "startMs": 7435.700000047684,
+            "elapsedMs": 53.59999990463257
+          },
+          {
+            "name": "rasterHudFont",
+            "startMs": 7435.700000047684,
+            "elapsedMs": 53.59999990463257
+          },
+          {
+            "name": "buildHudText",
+            "startMs": 7435.700000047684,
+            "elapsedMs": 53.59999990463257
+          },
+          {
+            "name": "hud-copy",
+            "startMs": 7435.599999904633,
+            "elapsedMs": 100.90000009536743
+          }
+        ]
+      },
+      "viewport": {
+        "width": 1280,
+        "height": 900,
+        "dpr": 2,
+        "w": 2560,
+        "h": 1800,
+        "tileCols": 160,
+        "tileRows": 113,
+        "requestedDpr": 1,
+        "requestedW": 2560,
+        "requestedH": 1800,
+        "nativeResolution": true,
+        "devicePixelBox": true,
+        "resolutionMode": "native",
+        "maxTiles": 65536,
+        "limitedBy": null
+      },
+      "stats": {
+        "frames": 15,
+        "uploadedBytes": 960,
+        "initialUploadBytes": 34342748,
+        "readbackBytes": 0,
+        "submittedGraphs": 15,
+        "completedFrames": 14,
+        "skippedSubmissions": 24,
+        "peakFramesInFlight": 2,
+        "lastCompletionLatencyMs": 45.799999952316284,
+        "cpuLayoutEncodeMs": 0,
+        "cpuRenderEncodeMs": 0,
+        "animationFrameCallbacks": 39,
+        "rafHz": 109.00745840504894,
+        "rafSubmissions": 15,
+        "asapSubmissions": 0,
+        "completionCheckpoints": 15,
+        "cpuEncodeMs": 0.20000004768371582,
+        "cpuSubmitMs": 0,
+        "pendingAcknowledgements": 1,
+        "rafCapacityDeferrals": 24,
+        "duplicateRafCallbacks": 0
+      },
+      "idleReadbackBytes": 0
+    },
+    {
+      "path": "designer/",
+      "status": "PASS",
+      "adapter": {
+        "vendor": "apple",
+        "architecture": "metal-3",
+        "device": "",
+        "description": ""
+      },
+      "startup": {
+        "status": "ready",
+        "cache": "miss",
+        "fontMs": 320.2000000476837,
+        "compileMs": 138.29999995231628,
+        "pipelineMs": 16369.699999809265,
+        "mountMs": 16421.599999904633,
+        "firstCompletedMs": 16581.39999985695,
+        "pipelineEntries": [
+          {
+            "name": "resolveTemplateLayout",
+            "startMs": 40.5,
+            "elapsedMs": 27.200000047683716
+          },
+          {
+            "name": "resolveTemplateVisuals",
+            "startMs": 67.79999995231628,
+            "elapsedMs": 8.200000047683716
+          },
+          {
+            "name": "rankTemplateTree",
+            "startMs": 76.09999990463257,
+            "elapsedMs": 6.400000095367432
+          },
+          {
+            "name": "shapeTextRuns",
+            "startMs": 40.5,
+            "elapsedMs": 48.799999952316284
+          },
+          {
+            "name": "synchronizeDesigners",
+            "startMs": 82.5,
+            "elapsedMs": 7.099999904632568
+          },
+          {
+            "name": "animateDesigners",
+            "startMs": 89.29999995231628,
+            "elapsedMs": 2.5999999046325684
+          },
+          {
+            "name": "layoutLists",
+            "startMs": 89.59999990463257,
+            "elapsedMs": 2.4000000953674316
+          },
+          {
+            "name": "layoutTextRuns",
+            "startMs": 40.5,
+            "elapsedMs": 56.200000047683716
+          },
+          {
+            "name": "prepareTextInput",
+            "startMs": 40.200000047683716,
+            "elapsedMs": 56.59999990463257
+          },
+          {
+            "name": "emitListParts",
+            "startMs": 91.89999985694885,
+            "elapsedMs": 16.100000143051147
+          },
+          {
+            "name": "analyzeEditors",
+            "startMs": 92,
+            "elapsedMs": 17.59999990463257
+          },
+          {
+            "name": "layoutEditors",
+            "startMs": 96.70000004768372,
+            "elapsedMs": 13.299999952316284
+          },
+          {
+            "name": "pullModels",
+            "startMs": 108,
+            "elapsedMs": 2.700000047683716
+          },
+          {
+            "name": "evaluateModels",
+            "startMs": 109.59999990463257,
+            "elapsedMs": 1.9000000953674316
+          },
+          {
+            "name": "emitEditorParts",
+            "startMs": 96.79999995231628,
+            "elapsedMs": 26.200000047683716
+          },
+          {
+            "name": "pushModels",
+            "startMs": 110,
+            "elapsedMs": 13
+          },
+          {
+            "name": "clearFrame",
+            "startMs": 110.70000004768372,
+            "elapsedMs": 14
+          },
+          {
+            "name": "hitTest",
+            "startMs": 111.5,
+            "elapsedMs": 22.09999990463257
+          },
+          {
+            "name": "applyInputActions",
+            "startMs": 123,
+            "elapsedMs": 16.299999952316284
+          },
+          {
+            "name": "applyDockInput",
+            "startMs": 124.70000004768372,
+            "elapsedMs": 14.599999904632568
+          },
+          {
+            "name": "input",
+            "startMs": 123,
+            "elapsedMs": 35
+          },
+          {
+            "name": "applyEditorCommands",
+            "startMs": 139.5,
+            "elapsedMs": 23.5
+          },
+          {
+            "name": "applyEditorInput",
+            "startMs": 133.70000004768372,
+            "elapsedMs": 34.09999990463257
+          },
+          {
+            "name": "applyDesignerInput",
+            "startMs": 139.39999985694885,
+            "elapsedMs": 28.90000009536743
+          },
+          {
+            "name": "applyDesignerCommands0",
+            "startMs": 158.09999990463257,
+            "elapsedMs": 19.299999952316284
+          },
+          {
+            "name": "applyDesignerCommands2",
+            "startMs": 167.79999995231628,
+            "elapsedMs": 17.799999952316284
+          },
+          {
+            "name": "applyDesignerCommands1",
+            "startMs": 163,
+            "elapsedMs": 26
+          },
+          {
+            "name": "applyDesignerCommands3",
+            "startMs": 168.29999995231628,
+            "elapsedMs": 20.700000047683716
+          },
+          {
+            "name": "applyDesignerCommands4",
+            "startMs": 177.39999985694885,
+            "elapsedMs": 19
+          },
+          {
+            "name": "finishDesignerEdit",
+            "startMs": 189.09999990463257,
+            "elapsedMs": 16.600000143051147
+          },
+          {
+            "name": "applyDesignerCommands5",
+            "startMs": 185.59999990463257,
+            "elapsedMs": 24.40000009536743
+          },
+          {
+            "name": "applyDesignerCommands6",
+            "startMs": 189,
+            "elapsedMs": 21
+          },
+          {
+            "name": "applyDesignerSurfaceInput",
+            "startMs": 196.39999985694885,
+            "elapsedMs": 23.5
+          },
+          {
+            "name": "applyDesignerTimelineInput",
+            "startMs": 210.20000004768372,
+            "elapsedMs": 18.399999856948853
+          },
+          {
+            "name": "applyDesignerTreeInput",
+            "startMs": 205.70000004768372,
+            "elapsedMs": 23.699999809265137
+          },
+          {
+            "name": "schedule",
+            "startMs": 228.59999990463257,
+            "elapsedMs": 2
+          },
+          {
+            "name": "applyDesignerColorInput",
+            "startMs": 219.89999985694885,
+            "elapsedMs": 18.5
+          },
+          {
+            "name": "resolveStyles",
+            "startMs": 229.39999985694885,
+            "elapsedMs": 11.200000047683716
+          },
+          {
+            "name": "constraints",
+            "startMs": 238.39999985694885,
+            "elapsedMs": 6.200000047683716
+          },
+          {
+            "name": "animate",
+            "startMs": 244.59999990463257,
+            "elapsedMs": 2.1000001430511475
+          },
+          {
+            "name": "arrange",
+            "startMs": 240.59999990463257,
+            "elapsedMs": 7.400000095367432
+          },
+          {
+            "name": "flatten",
+            "startMs": 248,
+            "elapsedMs": 1.7999999523162842
+          },
+          {
+            "name": "measure",
+            "startMs": 230.59999990463257,
+            "elapsedMs": 26.200000047683716
+          },
+          {
+            "name": "compose",
+            "startMs": 246.70000004768372,
+            "elapsedMs": 10.099999904632568
+          },
+          {
+            "name": "emitDesignerTree",
+            "startMs": 256.89999985694885,
+            "elapsedMs": 818.8000001907349
+          },
+          {
+            "name": "emitDesignerSurface",
+            "startMs": 256.7999999523163,
+            "elapsedMs": 1428.5
+          },
+          {
+            "name": "emitDesignerTimeline",
+            "startMs": 1685.2999999523163,
+            "elapsedMs": 3391.2999999523163
+          },
+          {
+            "name": "applyDesignerInspectorInput",
+            "startMs": 210,
+            "elapsedMs": 5083.599999904633
+          },
+          {
+            "name": "emitDesignerAdorner",
+            "startMs": 5293.599999904633,
+            "elapsedMs": 688.1000001430511
+          },
+          {
+            "name": "damage",
+            "startMs": 5981.700000047684,
+            "elapsedMs": 2
+          },
+          {
+            "name": "collectGlyphRequests",
+            "startMs": 5983.700000047684,
+            "elapsedMs": 3.6999998092651367
+          },
+          {
+            "name": "prepareGlyphCache",
+            "startMs": 5987.399999856949,
+            "elapsedMs": 2.4000000953674316
+          },
+          {
+            "name": "finishGlyphRequests",
+            "startMs": 5989.899999856949,
+            "elapsedMs": 0.9000000953674316
+          },
+          {
+            "name": "rasterGlyphCache",
+            "startMs": 5990.799999952316,
+            "elapsedMs": 2.5999999046325684
+          },
+          {
+            "name": "prepareDraws",
+            "startMs": 5993.5,
+            "elapsedMs": 0.7999999523162842
+          },
+          {
+            "name": "buildJobs",
+            "startMs": 5994.299999952316,
+            "elapsedMs": 6.799999952316284
+          },
+          {
+            "name": "prepareJobs",
+            "startMs": 6001.099999904633,
+            "elapsedMs": 1
+          },
+          {
+            "name": "makeStrips",
+            "startMs": 6002.099999904633,
+            "elapsedMs": 5.400000095367432
+          },
+          {
+            "name": "prepareStrips",
+            "startMs": 6007.599999904633,
+            "elapsedMs": 1
+          },
+          {
+            "name": "binStrips",
+            "startMs": 6008.700000047684,
+            "elapsedMs": 2.1999998092651367
+          },
+          {
+            "name": "composite",
+            "startMs": 6010.899999856949,
+            "elapsedMs": 4.1000001430511475
+          },
+          {
+            "name": "finishWork",
+            "startMs": 6015,
+            "elapsedMs": 1
+          },
+          {
+            "name": "finishFrame",
+            "startMs": 6016,
+            "elapsedMs": 0.8999998569488525
+          },
+          {
+            "name": "canvas-copy",
+            "startMs": 6016.899999856949,
+            "elapsedMs": 1.1000001430511475
+          },
+          {
+            "name": "recordMetrics",
+            "startMs": 6018,
+            "elapsedMs": 2.299999952316284
+          },
+          {
+            "name": "emitDesignerColors",
+            "startMs": 5076.599999904633,
+            "elapsedMs": 1114.1000001430511
+          },
+          {
+            "name": "emit",
+            "startMs": 249.79999995231628,
+            "elapsedMs": 7135.799999952316
+          },
+          {
+            "name": "emitDesignerInspector",
+            "startMs": 1075.7000000476837,
+            "elapsedMs": 15334.199999809265
+          }
+        ]
+      },
+      "viewport": {
+        "width": 1280,
+        "height": 900,
+        "dpr": 2,
+        "w": 2560,
+        "h": 1800,
+        "tileCols": 160,
+        "tileRows": 113,
+        "requestedDpr": 1,
+        "requestedW": 2560,
+        "requestedH": 1800,
+        "nativeResolution": true,
+        "devicePixelBox": true,
+        "resolutionMode": "native",
+        "maxTiles": 65536,
+        "limitedBy": null
+      },
+      "stats": {
+        "frames": 21,
+        "uploadedBytes": 28472,
+        "initialUploadBytes": 69550888,
+        "readbackBytes": 0,
+        "submittedGraphs": 21,
+        "completedFrames": 19,
+        "skippedSubmissions": 20,
+        "peakFramesInFlight": 2,
+        "lastCompletionLatencyMs": 26.700000047683716,
+        "cpuLayoutEncodeMs": 0,
+        "cpuRenderEncodeMs": 0,
+        "animationFrameCallbacks": 40,
+        "rafHz": 129.65425531914767,
+        "rafSubmissions": 20,
+        "asapSubmissions": 0,
+        "completionCheckpoints": 21,
+        "cpuEncodeMs": 0,
+        "cpuSubmitMs": 0,
+        "pendingAcknowledgements": 2,
+        "rafCapacityDeferrals": 20,
+        "duplicateRafCallbacks": 0
+      },
+      "idleReadbackBytes": 0
+    },
+    {
+      "path": "playground/",
+      "status": "PASS",
+      "adapter": {
+        "vendor": "apple",
+        "architecture": "metal-3",
+        "device": "",
+        "description": ""
+      },
+      "startup": {
+        "status": "ready",
+        "cache": "disabled",
+        "fontMs": 60.90000009536743,
+        "compileMs": 47.799999952316284,
+        "pipelineMs": 18929.200000047684,
+        "mountMs": 18976.799999952316,
+        "firstCompletedMs": 19027.900000095367,
+        "pipelineEntries": [
+          {
+            "name": "resolveTemplateLayout",
+            "startMs": 30.700000047683716,
+            "elapsedMs": 26.899999856948853
+          },
+          {
+            "name": "resolveTemplateVisuals",
+            "startMs": 57.59999990463257,
+            "elapsedMs": 6.300000190734863
+          },
+          {
+            "name": "shapeTextRuns",
+            "startMs": 30.59999990463257,
+            "elapsedMs": 48.5
+          },
+          {
+            "name": "preparePresenterFrame",
+            "startMs": 79.09999990463257,
+            "elapsedMs": 2.8000001907348633
+          },
+          {
+            "name": "layoutTextRuns",
+            "startMs": 30.700000047683716,
+            "elapsedMs": 52.89999985694885
+          },
+          {
+            "name": "layoutLists",
+            "startMs": 81.90000009536743,
+            "elapsedMs": 5.799999952316284
+          },
+          {
+            "name": "analyzeEditors",
+            "startMs": 87.70000004768372,
+            "elapsedMs": 6.700000047683716
+          },
+          {
+            "name": "layoutEditors",
+            "startMs": 94.5,
+            "elapsedMs": 4
+          },
+          {
+            "name": "rankTemplateTree",
+            "startMs": 63.90000009536743,
+            "elapsedMs": 123.69999980926514
+          },
+          {
+            "name": "pullModels",
+            "startMs": 187.79999995231628,
+            "elapsedMs": 2.5
+          },
+          {
+            "name": "evaluateModels",
+            "startMs": 190.29999995231628,
+            "elapsedMs": 1.5
+          },
+          {
+            "name": "pushModels",
+            "startMs": 191.79999995231628,
+            "elapsedMs": 1.7999999523162842
+          },
+          {
+            "name": "clearFrame",
+            "startMs": 193.59999990463257,
+            "elapsedMs": 2.8000001907348633
+          },
+          {
+            "name": "hitTest",
+            "startMs": 196.40000009536743,
+            "elapsedMs": 70.5
+          },
+          {
+            "name": "emitListParts",
+            "startMs": 83.59999990463257,
+            "elapsedMs": 513.1000001430511
+          },
+          {
+            "name": "applyInputActions",
+            "startMs": 596.7000000476837,
+            "elapsedMs": 357.7999999523163
+          },
+          {
+            "name": "applyDockInput",
+            "startMs": 954.5,
+            "elapsedMs": 6.400000095367432
+          },
+          {
+            "name": "applyEditorInput",
+            "startMs": 961,
+            "elapsedMs": 20.59999990463257
+          },
+          {
+            "name": "applyEditorCommands",
+            "startMs": 981.5999999046326,
+            "elapsedMs": 16
+          },
+          {
+            "name": "schedule",
+            "startMs": 997.5999999046326,
+            "elapsedMs": 1.2000000476837158
+          },
+          {
+            "name": "resolveStyles",
+            "startMs": 998.9000000953674,
+            "elapsedMs": 3.299999952316284
+          },
+          {
+            "name": "measure",
+            "startMs": 1002.2000000476837,
+            "elapsedMs": 22.200000047683716
+          },
+          {
+            "name": "constraints",
+            "startMs": 1024.4000000953674,
+            "elapsedMs": 6.8999998569488525
+          },
+          {
+            "name": "arrange",
+            "startMs": 1031.2999999523163,
+            "elapsedMs": 7.6000001430511475
+          },
+          {
+            "name": "animate",
+            "startMs": 1039,
+            "elapsedMs": 1.7999999523162842
+          },
+          {
+            "name": "compose",
+            "startMs": 1040.7999999523163,
+            "elapsedMs": 5.799999952316284
+          },
+          {
+            "name": "initializeData",
+            "startMs": 1046.5999999046326,
+            "elapsedMs": 3.5
+          },
+          {
+            "name": "filterScan",
+            "startMs": 1050.0999999046326,
+            "elapsedMs": 2.5
+          },
+          {
+            "name": "scanBlocks",
+            "startMs": 1052.5999999046326,
+            "elapsedMs": 60.5
+          },
+          {
+            "name": "scatterRows",
+            "startMs": 1113.0999999046326,
+            "elapsedMs": 1.5
+          },
+          {
+            "name": "sortBlocks",
+            "startMs": 1114.7000000476837,
+            "elapsedMs": 2.5999999046325684
+          },
+          {
+            "name": "mergeRows",
+            "startMs": 1117.2999999523163,
+            "elapsedMs": 1.9000000953674316
+          },
+          {
+            "name": "resolveSelection",
+            "startMs": 1119.2000000476837,
+            "elapsedMs": 1.3999998569488525
+          },
+          {
+            "name": "flatten",
+            "startMs": 1120.5999999046326,
+            "elapsedMs": 2
+          },
+          {
+            "name": "prepareTextInput",
+            "startMs": 30.40000009536743,
+            "elapsedMs": 2762.5999999046326
+          },
+          {
+            "name": "emitEditorParts",
+            "startMs": 98.5,
+            "elapsedMs": 5225.299999952316
+          },
+          {
+            "name": "damage",
+            "startMs": 5323.799999952316,
+            "elapsedMs": 2.6000001430511475
+          },
+          {
+            "name": "collectGlyphRequests",
+            "startMs": 5326.5,
+            "elapsedMs": 9.099999904632568
+          },
+          {
+            "name": "prepareGlyphCache",
+            "startMs": 5335.599999904633,
+            "elapsedMs": 1.8000001907348633
+          },
+          {
+            "name": "finishGlyphRequests",
+            "startMs": 5337.400000095367,
+            "elapsedMs": 0.7999999523162842
+          },
+          {
+            "name": "rasterGlyphCache",
+            "startMs": 5338.200000047684,
+            "elapsedMs": 2.3999998569488525
+          },
+          {
+            "name": "prepareDraws",
+            "startMs": 5340.700000047684,
+            "elapsedMs": 0.5999999046325684
+          },
+          {
+            "name": "buildJobs",
+            "startMs": 5341.299999952316,
+            "elapsedMs": 7.700000047683716
+          },
+          {
+            "name": "prepareJobs",
+            "startMs": 5349,
+            "elapsedMs": 0.9000000953674316
+          },
+          {
+            "name": "makeStrips",
+            "startMs": 5349.900000095367,
+            "elapsedMs": 5
+          },
+          {
+            "name": "prepareStrips",
+            "startMs": 5354.900000095367,
+            "elapsedMs": 0.7999999523162842
+          },
+          {
+            "name": "binStrips",
+            "startMs": 5355.799999952316,
+            "elapsedMs": 2
+          },
+          {
+            "name": "composite",
+            "startMs": 5357.799999952316,
+            "elapsedMs": 4.1000001430511475
+          },
+          {
+            "name": "finishWork",
+            "startMs": 5361.900000095367,
+            "elapsedMs": 0.8999998569488525
+          },
+          {
+            "name": "finishFrame",
+            "startMs": 5362.799999952316,
+            "elapsedMs": 0.7000000476837158
+          },
+          {
+            "name": "canvas-copy",
+            "startMs": 5363.5,
+            "elapsedMs": 1.0999999046325684
+          },
+          {
+            "name": "recordMetrics",
+            "startMs": 5364.599999904633,
+            "elapsedMs": 2.700000047683716
+          },
+          {
+            "name": "emit",
+            "startMs": 1122.7000000476837,
+            "elapsedMs": 6914.599999904633
+          },
+          {
+            "name": "emitGridParts",
+            "startMs": 2793,
+            "elapsedMs": 9533.700000047684
+          },
+          {
+            "name": "input",
+            "startMs": 266.90000009536743,
+            "elapsedMs": 18692.599999904633
+          }
+        ]
+      },
+      "viewport": {
+        "width": 1280,
+        "height": 900,
+        "dpr": 2,
+        "w": 2560,
+        "h": 1800,
+        "tileCols": 160,
+        "tileRows": 113,
+        "requestedDpr": 1,
+        "requestedW": 2560,
+        "requestedH": 1800,
+        "nativeResolution": true,
+        "devicePixelBox": true,
+        "resolutionMode": "native",
+        "maxTiles": 65536,
+        "limitedBy": null
+      },
+      "stats": {
+        "frames": 24,
+        "uploadedBytes": 2216,
+        "initialUploadBytes": 29337736,
+        "readbackBytes": 0,
+        "submittedGraphs": 24,
+        "completedFrames": 22,
+        "skippedSubmissions": 14,
+        "peakFramesInFlight": 2,
+        "lastCompletionLatencyMs": 24.90000009536743,
+        "cpuLayoutEncodeMs": 0,
+        "cpuRenderEncodeMs": 0,
+        "animationFrameCallbacks": 37,
+        "rafHz": 120.24048096192472,
+        "rafSubmissions": 23,
+        "asapSubmissions": 0,
+        "completionCheckpoints": 24,
+        "cpuEncodeMs": 0.09999990463256836,
+        "cpuSubmitMs": 0,
+        "pendingAcknowledgements": 2,
+        "rafCapacityDeferrals": 14,
+        "duplicateRafCallbacks": 0
+      },
+      "idleReadbackBytes": 0
+    },
+    {
+      "path": "typography/",
+      "status": "PASS",
+      "adapter": {
+        "vendor": "apple",
+        "architecture": "metal-3",
+        "device": "",
+        "description": ""
+      },
+      "startup": {
+        "status": "ready",
+        "cache": "disabled",
+        "fontMs": 383.09999990463257,
+        "compileMs": 104.29999995231628,
+        "pipelineMs": 9200.700000047684,
+        "mountMs": 9276.300000190735,
+        "firstCompletedMs": 9374.200000047684,
+        "pipelineEntries": [
+          {
+            "name": "resolveTemplateLayout",
+            "startMs": 44.60000014305115,
+            "elapsedMs": 29
+          },
+          {
+            "name": "resolveTemplateVisuals",
+            "startMs": 73.70000004768372,
+            "elapsedMs": 7.6000001430511475
+          },
+          {
+            "name": "rankTemplateTree",
+            "startMs": 81.30000019073486,
+            "elapsedMs": 6.599999904632568
+          },
+          {
+            "name": "analyzeEditors",
+            "startMs": 87.90000009536743,
+            "elapsedMs": 7.400000095367432
+          },
+          {
+            "name": "shapeTextRuns",
+            "startMs": 44.60000014305115,
+            "elapsedMs": 58
+          },
+          {
+            "name": "layoutTextRuns",
+            "startMs": 44.60000014305115,
+            "elapsedMs": 64.5
+          },
+          {
+            "name": "clearFrame",
+            "startMs": 109.10000014305115,
+            "elapsedMs": 4.299999952316284
+          },
+          {
+            "name": "hitTest",
+            "startMs": 113.40000009536743,
+            "elapsedMs": 25.09999990463257
+          },
+          {
+            "name": "layoutEditors",
+            "startMs": 95.40000009536743,
+            "elapsedMs": 227.59999990463257
+          },
+          {
+            "name": "applyInputActions",
+            "startMs": 323,
+            "elapsedMs": 252.90000009536743
+          },
+          {
+            "name": "prepareTextInput",
+            "startMs": 44.40000009536743,
+            "elapsedMs": 3029.2999999523163
+          },
+          {
+            "name": "applyEditorCommands",
+            "startMs": 3073.800000190735,
+            "elapsedMs": 15.799999952316284
+          },
+          {
+            "name": "schedule",
+            "startMs": 3089.600000143051,
+            "elapsedMs": 1.2000000476837158
+          },
+          {
+            "name": "resolveStyles",
+            "startMs": 3090.800000190735,
+            "elapsedMs": 2.799999952316284
+          },
+          {
+            "name": "measure",
+            "startMs": 3093.600000143051,
+            "elapsedMs": 25.799999952316284
+          },
+          {
+            "name": "constraints",
+            "startMs": 3119.4000000953674,
+            "elapsedMs": 5.700000047683716
+          },
+          {
+            "name": "arrange",
+            "startMs": 3125.100000143051,
+            "elapsedMs": 7
+          },
+          {
+            "name": "animate",
+            "startMs": 3132.100000143051,
+            "elapsedMs": 1.8999998569488525
+          },
+          {
+            "name": "compose",
+            "startMs": 3134.100000143051,
+            "elapsedMs": 5.099999904632568
+          },
+          {
+            "name": "initializeData",
+            "startMs": 3139.2000000476837,
+            "elapsedMs": 3.299999952316284
+          },
+          {
+            "name": "filterScan",
+            "startMs": 3142.5,
+            "elapsedMs": 1.9000000953674316
+          },
+          {
+            "name": "scanBlocks",
+            "startMs": 3144.4000000953674,
+            "elapsedMs": 56.700000047683716
+          },
+          {
+            "name": "scatterRows",
+            "startMs": 3201.100000143051,
+            "elapsedMs": 1.5
+          },
+          {
+            "name": "sortBlocks",
+            "startMs": 3202.600000143051,
+            "elapsedMs": 2.0999999046325684
+          },
+          {
+            "name": "mergeRows",
+            "startMs": 3204.7000000476837,
+            "elapsedMs": 1.6000001430511475
+          },
+          {
+            "name": "resolveSelection",
+            "startMs": 3206.300000190735,
+            "elapsedMs": 1.1999998092651367
+          },
+          {
+            "name": "flatten",
+            "startMs": 3207.5,
+            "elapsedMs": 1.6000001430511475
+          },
+          {
+            "name": "applyEditorInput",
+            "startMs": 575.9000000953674,
+            "elapsedMs": 2666.5
+          },
+          {
+            "name": "emitGridParts",
+            "startMs": 3242.5,
+            "elapsedMs": 18.5
+          },
+          {
+            "name": "damage",
+            "startMs": 3261.100000143051,
+            "elapsedMs": 2.3999998569488525
+          },
+          {
+            "name": "collectGlyphRequests",
+            "startMs": 3263.5,
+            "elapsedMs": 3.700000047683716
+          },
+          {
+            "name": "prepareGlyphCache",
+            "startMs": 3267.2000000476837,
+            "elapsedMs": 1.7999999523162842
+          },
+          {
+            "name": "finishGlyphRequests",
+            "startMs": 3269,
+            "elapsedMs": 0.7000000476837158
+          },
+          {
+            "name": "rasterGlyphCache",
+            "startMs": 3269.7000000476837,
+            "elapsedMs": 2.799999952316284
+          },
+          {
+            "name": "prepareDraws",
+            "startMs": 3272.5,
+            "elapsedMs": 0.8000001907348633
+          },
+          {
+            "name": "buildJobs",
+            "startMs": 3273.300000190735,
+            "elapsedMs": 6.8999998569488525
+          },
+          {
+            "name": "prepareJobs",
+            "startMs": 3280.2000000476837,
+            "elapsedMs": 1
+          },
+          {
+            "name": "makeStrips",
+            "startMs": 3281.2000000476837,
+            "elapsedMs": 4.900000095367432
+          },
+          {
+            "name": "prepareStrips",
+            "startMs": 3286.100000143051,
+            "elapsedMs": 1
+          },
+          {
+            "name": "binStrips",
+            "startMs": 3287.100000143051,
+            "elapsedMs": 2.5999999046325684
+          },
+          {
+            "name": "composite",
+            "startMs": 3289.7000000476837,
+            "elapsedMs": 3.700000047683716
+          },
+          {
+            "name": "finishWork",
+            "startMs": 3293.5,
+            "elapsedMs": 0.8000001907348633
+          },
+          {
+            "name": "finishFrame",
+            "startMs": 3294.300000190735,
+            "elapsedMs": 1
+          },
+          {
+            "name": "canvas-copy",
+            "startMs": 3295.300000190735,
+            "elapsedMs": 1.2999999523162842
+          },
+          {
+            "name": "recordMetrics",
+            "startMs": 3296.600000143051,
+            "elapsedMs": 2.200000047683716
+          },
+          {
+            "name": "emitEditorParts",
+            "startMs": 102.60000014305115,
+            "elapsedMs": 5308.899999856949
+          },
+          {
+            "name": "emit",
+            "startMs": 3209.100000143051,
+            "elapsedMs": 5608.099999904633
+          },
+          {
+            "name": "input",
+            "startMs": 138.5,
+            "elapsedMs": 9106.600000143051
+          }
+        ]
+      },
+      "viewport": {
+        "width": 1280,
+        "height": 900,
+        "dpr": 2,
+        "w": 2560,
+        "h": 1800,
+        "tileCols": 160,
+        "tileRows": 113,
+        "requestedDpr": 1,
+        "requestedW": 2560,
+        "requestedH": 1800,
+        "nativeResolution": true,
+        "devicePixelBox": true,
+        "resolutionMode": "native",
+        "maxTiles": 65536,
+        "limitedBy": null
+      },
+      "stats": {
+        "frames": 26,
+        "uploadedBytes": 1664,
+        "initialUploadBytes": 48616540,
+        "readbackBytes": 0,
+        "submittedGraphs": 26,
+        "completedFrames": 24,
+        "skippedSubmissions": 12,
+        "peakFramesInFlight": 2,
+        "lastCompletionLatencyMs": 21.90000009536743,
+        "cpuLayoutEncodeMs": 0,
+        "cpuRenderEncodeMs": 0,
+        "animationFrameCallbacks": 37,
+        "rafHz": 119.80033277870217,
+        "rafSubmissions": 25,
+        "asapSubmissions": 0,
+        "completionCheckpoints": 26,
+        "cpuEncodeMs": 0,
+        "cpuSubmitMs": 0,
+        "pendingAcknowledgements": 2,
+        "rafCapacityDeferrals": 12,
+        "duplicateRafCallbacks": 0
+      },
+      "idleReadbackBytes": 0
+    }
+  ],
+  "warmStandaloneApplications": [
+    {
+      "path": "helion-standalone.html",
+      "status": "PASS",
+      "adapter": {
+        "vendor": "apple",
+        "architecture": "metal-3",
+        "device": "",
+        "description": ""
+      },
+      "startup": {
+        "status": "ready",
+        "cache": "miss",
+        "fontMs": 394.7000000476837,
+        "compileMs": 84.89999985694885,
+        "pipelineMs": 131.90000009536743,
+        "mountMs": 548.5,
+        "firstCompletedMs": 588.6000001430511,
+        "pipelineEntries": [
+          {
+            "name": "clearFrame",
+            "startMs": 28.299999952316284,
+            "elapsedMs": 24.100000143051147
+          },
+          {
+            "name": "hitTest",
+            "startMs": 52.5,
+            "elapsedMs": 31.600000143051147
+          },
+          {
+            "name": "shapeTextRuns",
+            "startMs": 28.299999952316284,
+            "elapsedMs": 62.5
+          },
+          {
+            "name": "layoutTextRuns",
+            "startMs": 28.299999952316284,
+            "elapsedMs": 69.30000019073486
+          },
+          {
+            "name": "prepareTextInput",
+            "startMs": 28.100000143051147,
+            "elapsedMs": 70.29999995231628
+          },
+          {
+            "name": "schedule",
+            "startMs": 97.60000014305115,
+            "elapsedMs": 1.8999998569488525
+          },
+          {
+            "name": "applyInputActions",
+            "startMs": 90.90000009536743,
+            "elapsedMs": 17.5
+          },
+          {
+            "name": "resolveStyles",
+            "startMs": 98.40000009536743,
+            "elapsedMs": 11.399999856948853
+          },
+          {
+            "name": "constraints",
+            "startMs": 108.40000009536743,
+            "elapsedMs": 6.700000047683716
+          },
+          {
+            "name": "animate",
+            "startMs": 115.20000004768372,
+            "elapsedMs": 1.5
+          },
+          {
+            "name": "arrange",
+            "startMs": 109.79999995231628,
+            "elapsedMs": 8.100000143051147
+          },
+          {
+            "name": "initializeData",
+            "startMs": 117.90000009536743,
+            "elapsedMs": 3.8999998569488525
+          },
+          {
+            "name": "input",
+            "startMs": 84.10000014305115,
+            "elapsedMs": 38
+          },
+          {
+            "name": "compose",
+            "startMs": 116.70000004768372,
+            "elapsedMs": 6.900000095367432
+          },
+          {
+            "name": "filterScan",
+            "startMs": 121.79999995231628,
+            "elapsedMs": 2.3000001907348633
+          },
+          {
+            "name": "scanBlocks",
+            "startMs": 122.10000014305115,
+            "elapsedMs": 3.5999999046325684
+          },
+          {
+            "name": "scatterRows",
+            "startMs": 123.60000014305115,
+            "elapsedMs": 2.0999999046325684
+          },
+          {
+            "name": "sortBlocks",
+            "startMs": 124.10000014305115,
+            "elapsedMs": 1.5999999046325684
+          },
+          {
+            "name": "measure",
+            "startMs": 99.5,
+            "elapsedMs": 26.299999952316284
+          },
+          {
+            "name": "mergeRows",
+            "startMs": 125.70000004768372,
+            "elapsedMs": 7.200000047683716
+          },
+          {
+            "name": "resolveSelection",
+            "startMs": 125.70000004768372,
+            "elapsedMs": 7.200000047683716
+          },
+          {
+            "name": "flatten",
+            "startMs": 125.70000004768372,
+            "elapsedMs": 14.400000095367432
+          },
+          {
+            "name": "damage",
+            "startMs": 133.10000014305115,
+            "elapsedMs": 11.199999809265137
+          },
+          {
+            "name": "collectGlyphRequests",
+            "startMs": 140.10000014305115,
+            "elapsedMs": 5.099999904632568
+          },
+          {
+            "name": "finishGlyphRequests",
+            "startMs": 145.20000004768372,
+            "elapsedMs": 1.5999999046325684
+          },
+          {
+            "name": "prepareGlyphCache",
+            "startMs": 144.29999995231628,
+            "elapsedMs": 3.200000047683716
+          },
+          {
+            "name": "prepareDraws",
+            "startMs": 147.5,
+            "elapsedMs": 0.7999999523162842
+          },
+          {
+            "name": "rasterGlyphCache",
+            "startMs": 146.90000009536743,
+            "elapsedMs": 5.5
+          },
+          {
+            "name": "emitGridParts",
+            "startMs": 133,
+            "elapsedMs": 21.5
+          },
+          {
+            "name": "prepareJobs",
+            "startMs": 152.40000009536743,
+            "elapsedMs": 2.0999999046325684
+          },
+          {
+            "name": "buildJobs",
+            "startMs": 148.29999995231628,
+            "elapsedMs": 7.6000001430511475
+          },
+          {
+            "name": "emit",
+            "startMs": 125.79999995231628,
+            "elapsedMs": 30.200000047683716
+          },
+          {
+            "name": "prepareStrips",
+            "startMs": 154.5,
+            "elapsedMs": 1.7000000476837158
+          },
+          {
+            "name": "finishWork",
+            "startMs": 156.20000004768372,
+            "elapsedMs": 0.7999999523162842
+          },
+          {
+            "name": "finishFrame",
+            "startMs": 157,
+            "elapsedMs": 0.7000000476837158
+          },
+          {
+            "name": "binStrips",
+            "startMs": 155.90000009536743,
+            "elapsedMs": 2
+          },
+          {
+            "name": "canvas-copy",
+            "startMs": 157.70000004768372,
+            "elapsedMs": 0.9000000953674316
+          },
+          {
+            "name": "composite",
+            "startMs": 156,
+            "elapsedMs": 3.4000000953674316
+          },
+          {
+            "name": "recordMetrics",
+            "startMs": 157.90000009536743,
+            "elapsedMs": 1.7999999523162842
+          },
+          {
+            "name": "makeStrips",
+            "startMs": 154.5,
+            "elapsedMs": 5.400000095367432
+          },
+          {
+            "name": "hud-copy",
+            "startMs": 594.2000000476837,
+            "elapsedMs": 3.0999999046325684
+          },
+          {
+            "name": "buildHudText",
+            "startMs": 594.2999999523163,
+            "elapsedMs": 4.1000001430511475
+          },
+          {
+            "name": "compositeHud",
+            "startMs": 594.2999999523163,
+            "elapsedMs": 32.30000019073486
+          },
+          {
+            "name": "rasterHudFont",
+            "startMs": 594.2999999523163,
+            "elapsedMs": 32.30000019073486
+          }
+        ]
+      },
+      "viewport": {
+        "width": 1280,
+        "height": 900,
+        "dpr": 2,
+        "w": 2560,
+        "h": 1800,
+        "tileCols": 160,
+        "tileRows": 113,
+        "requestedDpr": 1,
+        "requestedW": 2560,
+        "requestedH": 1800,
+        "nativeResolution": true,
+        "devicePixelBox": true,
+        "resolutionMode": "native",
+        "maxTiles": 65536,
+        "limitedBy": null
+      },
+      "stats": {
+        "frames": 15,
+        "uploadedBytes": 960,
+        "initialUploadBytes": 34342748,
+        "readbackBytes": 0,
+        "submittedGraphs": 15,
+        "completedFrames": 13,
+        "skippedSubmissions": 26,
+        "peakFramesInFlight": 2,
+        "lastCompletionLatencyMs": 40.90000009536743,
+        "cpuLayoutEncodeMs": 0,
+        "cpuRenderEncodeMs": 0,
+        "animationFrameCallbacks": 41,
+        "rafHz": 117.02750146284374,
+        "rafSubmissions": 15,
+        "asapSubmissions": 0,
+        "completionCheckpoints": 15,
+        "cpuEncodeMs": 0,
+        "cpuSubmitMs": 0,
+        "pendingAcknowledgements": 2,
+        "rafCapacityDeferrals": 26,
+        "duplicateRafCallbacks": 0
+      },
+      "idleReadbackBytes": 0
+    },
+    {
+      "path": "helion-designer.html",
+      "status": "PASS",
+      "adapter": {
+        "vendor": "apple",
+        "architecture": "metal-3",
+        "device": "",
+        "description": ""
+      },
+      "startup": {
+        "status": "ready",
+        "cache": "miss",
+        "fontMs": 294.7000000476837,
+        "compileMs": 101,
+        "pipelineMs": 248.59999990463257,
+        "mountMs": 520.4000000953674,
+        "firstCompletedMs": 625.7000000476837,
+        "pipelineEntries": [
+          {
+            "name": "resolveTemplateLayout",
+            "startMs": 29.09999990463257,
+            "elapsedMs": 25.90000009536743
+          },
+          {
+            "name": "resolveTemplateVisuals",
+            "startMs": 55.200000047683716,
+            "elapsedMs": 5.299999952316284
+          },
+          {
+            "name": "rankTemplateTree",
+            "startMs": 60.5,
+            "elapsedMs": 4.299999952316284
+          },
+          {
+            "name": "synchronizeDesigners",
+            "startMs": 64.90000009536743,
+            "elapsedMs": 6.8999998569488525
+          },
+          {
+            "name": "shapeTextRuns",
+            "startMs": 29,
+            "elapsedMs": 45.200000047683716
+          },
+          {
+            "name": "animateDesigners",
+            "startMs": 71.79999995231628,
+            "elapsedMs": 4.900000095367432
+          },
+          {
+            "name": "layoutTextRuns",
+            "startMs": 29,
+            "elapsedMs": 52.09999990463257
+          },
+          {
+            "name": "layoutLists",
+            "startMs": 74.20000004768372,
+            "elapsedMs": 6.8999998569488525
+          },
+          {
+            "name": "prepareTextInput",
+            "startMs": 28.700000047683716,
+            "elapsedMs": 56
+          },
+          {
+            "name": "analyzeEditors",
+            "startMs": 81.20000004768372,
+            "elapsedMs": 9.399999856948853
+          },
+          {
+            "name": "layoutEditors",
+            "startMs": 81.20000004768372,
+            "elapsedMs": 9.399999856948853
+          },
+          {
+            "name": "emitListParts",
+            "startMs": 76.70000004768372,
+            "elapsedMs": 15.599999904632568
+          },
+          {
+            "name": "pullModels",
+            "startMs": 90.59999990463257,
+            "elapsedMs": 3.3000001907348633
+          },
+          {
+            "name": "evaluateModels",
+            "startMs": 90.70000004768372,
+            "elapsedMs": 4.200000047683716
+          },
+          {
+            "name": "pushModels",
+            "startMs": 92.29999995231628,
+            "elapsedMs": 2.6000001430511475
+          },
+          {
+            "name": "emitEditorParts",
+            "startMs": 84.70000004768372,
+            "elapsedMs": 22.200000047683716
+          },
+          {
+            "name": "clearFrame",
+            "startMs": 94,
+            "elapsedMs": 16
+          },
+          {
+            "name": "hitTest",
+            "startMs": 94.90000009536743,
+            "elapsedMs": 19.199999809265137
+          },
+          {
+            "name": "applyInputActions",
+            "startMs": 106.90000009536743,
+            "elapsedMs": 12.799999952316284
+          },
+          {
+            "name": "applyDockInput",
+            "startMs": 110,
+            "elapsedMs": 9.700000047683716
+          },
+          {
+            "name": "input",
+            "startMs": 95,
+            "elapsedMs": 41.5
+          },
+          {
+            "name": "applyEditorCommands",
+            "startMs": 119.79999995231628,
+            "elapsedMs": 21.90000009536743
+          },
+          {
+            "name": "applyEditorInput",
+            "startMs": 114.09999990463257,
+            "elapsedMs": 33.30000019073486
+          },
+          {
+            "name": "applyDesignerInput",
+            "startMs": 119.70000004768372,
+            "elapsedMs": 32.200000047683716
+          },
+          {
+            "name": "applyDesignerCommands0",
+            "startMs": 136.5,
+            "elapsedMs": 20.59999990463257
+          },
+          {
+            "name": "applyDesignerCommands2",
+            "startMs": 147.40000009536743,
+            "elapsedMs": 15.299999952316284
+          },
+          {
+            "name": "applyDesignerCommands3",
+            "startMs": 152,
+            "elapsedMs": 14.599999904632568
+          },
+          {
+            "name": "applyDesignerCommands1",
+            "startMs": 141.70000004768372,
+            "elapsedMs": 29
+          },
+          {
+            "name": "applyDesignerCommands4",
+            "startMs": 157.09999990463257,
+            "elapsedMs": 18.100000143051147
+          },
+          {
+            "name": "applyDesignerCommands5",
+            "startMs": 162.79999995231628,
+            "elapsedMs": 17.600000143051147
+          },
+          {
+            "name": "applyDesignerCommands6",
+            "startMs": 166.70000004768372,
+            "elapsedMs": 13.700000047683716
+          },
+          {
+            "name": "finishDesignerEdit",
+            "startMs": 170.70000004768372,
+            "elapsedMs": 18.5
+          },
+          {
+            "name": "applyDesignerTreeInput",
+            "startMs": 180.40000009536743,
+            "elapsedMs": 20.59999990463257
+          },
+          {
+            "name": "applyDesignerInspectorInput",
+            "startMs": 180.59999990463257,
+            "elapsedMs": 23.800000190734863
+          },
+          {
+            "name": "applyDesignerTimelineInput",
+            "startMs": 189.20000004768372,
+            "elapsedMs": 15.200000047683716
+          },
+          {
+            "name": "applyDesignerSurfaceInput",
+            "startMs": 175.20000004768372,
+            "elapsedMs": 30.59999990463257
+          },
+          {
+            "name": "schedule",
+            "startMs": 204.40000009536743,
+            "elapsedMs": 9.599999904632568
+          },
+          {
+            "name": "resolveStyles",
+            "startMs": 204.40000009536743,
+            "elapsedMs": 9.599999904632568
+          },
+          {
+            "name": "applyDesignerColorInput",
+            "startMs": 201.09999990463257,
+            "elapsedMs": 14.300000190734863
+          },
+          {
+            "name": "animate",
+            "startMs": 215.40000009536743,
+            "elapsedMs": 1.6999998092651367
+          },
+          {
+            "name": "constraints",
+            "startMs": 214.09999990463257,
+            "elapsedMs": 6.6000001430511475
+          },
+          {
+            "name": "arrange",
+            "startMs": 214.09999990463257,
+            "elapsedMs": 7.5
+          },
+          {
+            "name": "compose",
+            "startMs": 217.09999990463257,
+            "elapsedMs": 11.200000047683716
+          },
+          {
+            "name": "flatten",
+            "startMs": 220.70000004768372,
+            "elapsedMs": 7.599999904632568
+          },
+          {
+            "name": "measure",
+            "startMs": 205.79999995231628,
+            "elapsedMs": 31.5
+          },
+          {
+            "name": "emitDesignerSurface",
+            "startMs": 228.29999995231628,
+            "elapsedMs": 18.299999952316284
+          },
+          {
+            "name": "emitDesignerTree",
+            "startMs": 228.40000009536743,
+            "elapsedMs": 22.699999809265137
+          },
+          {
+            "name": "emit",
+            "startMs": 221.59999990463257,
+            "elapsedMs": 34.30000019073486
+          },
+          {
+            "name": "emitDesignerInspector",
+            "startMs": 237.29999995231628,
+            "elapsedMs": 18.600000143051147
+          },
+          {
+            "name": "damage",
+            "startMs": 255.90000009536743,
+            "elapsedMs": 6.799999952316284
+          },
+          {
+            "name": "emitDesignerColors",
+            "startMs": 251.20000004768372,
+            "elapsedMs": 14.5
+          },
+          {
+            "name": "collectGlyphRequests",
+            "startMs": 262.7000000476837,
+            "elapsedMs": 3.5
+          },
+          {
+            "name": "emitDesignerTimeline",
+            "startMs": 246.59999990463257,
+            "elapsedMs": 19.600000143051147
+          },
+          {
+            "name": "finishGlyphRequests",
+            "startMs": 266.2000000476837,
+            "elapsedMs": 0.7999999523162842
+          },
+          {
+            "name": "prepareGlyphCache",
+            "startMs": 265.7000000476837,
+            "elapsedMs": 1.5
+          },
+          {
+            "name": "rasterGlyphCache",
+            "startMs": 266.2000000476837,
+            "elapsedMs": 4.299999952316284
+          },
+          {
+            "name": "prepareDraws",
+            "startMs": 267,
+            "elapsedMs": 3.5
+          },
+          {
+            "name": "emitDesignerAdorner",
+            "startMs": 255.90000009536743,
+            "elapsedMs": 14.899999856948853
+          },
+          {
+            "name": "prepareStrips",
+            "startMs": 270.7999999523163,
+            "elapsedMs": 1.2999999523162842
+          },
+          {
+            "name": "prepareJobs",
+            "startMs": 270.5,
+            "elapsedMs": 1.7999999523162842
+          },
+          {
+            "name": "buildJobs",
+            "startMs": 267.2000000476837,
+            "elapsedMs": 5.8999998569488525
+          },
+          {
+            "name": "finishWork",
+            "startMs": 273.09999990463257,
+            "elapsedMs": 0.8000001907348633
+          },
+          {
+            "name": "binStrips",
+            "startMs": 272.2000000476837,
+            "elapsedMs": 2.299999952316284
+          },
+          {
+            "name": "finishFrame",
+            "startMs": 273.90000009536743,
+            "elapsedMs": 0.6999998092651367
+          },
+          {
+            "name": "canvas-copy",
+            "startMs": 274.5,
+            "elapsedMs": 0.7999999523162842
+          },
+          {
+            "name": "makeStrips",
+            "startMs": 270.5,
+            "elapsedMs": 5.400000095367432
+          },
+          {
+            "name": "recordMetrics",
+            "startMs": 274.7000000476837,
+            "elapsedMs": 2.299999952316284
+          },
+          {
+            "name": "composite",
+            "startMs": 272.2999999523163,
+            "elapsedMs": 5
+          }
+        ]
+      },
+      "viewport": {
+        "width": 1280,
+        "height": 900,
+        "dpr": 2,
+        "w": 2560,
+        "h": 1800,
+        "tileCols": 160,
+        "tileRows": 113,
+        "requestedDpr": 1,
+        "requestedW": 2560,
+        "requestedH": 1800,
+        "nativeResolution": true,
+        "devicePixelBox": true,
+        "resolutionMode": "native",
+        "maxTiles": 65536,
+        "limitedBy": null
+      },
+      "stats": {
+        "frames": 21,
+        "uploadedBytes": 28472,
+        "initialUploadBytes": 69550888,
+        "readbackBytes": 0,
+        "submittedGraphs": 21,
+        "completedFrames": 19,
+        "skippedSubmissions": 21,
+        "peakFramesInFlight": 2,
+        "lastCompletionLatencyMs": 22,
+        "cpuLayoutEncodeMs": 0,
+        "cpuRenderEncodeMs": 0,
+        "animationFrameCallbacks": 41,
+        "rafHz": 133.77926421404683,
+        "rafSubmissions": 20,
+        "asapSubmissions": 0,
+        "completionCheckpoints": 21,
+        "cpuEncodeMs": 0.20000004768371582,
+        "cpuSubmitMs": 0,
+        "pendingAcknowledgements": 2,
+        "rafCapacityDeferrals": 21,
+        "duplicateRafCallbacks": 0
+      },
+      "idleReadbackBytes": 0
+    },
+    {
+      "path": "helion-playground.html",
+      "status": "PASS",
+      "adapter": {
+        "vendor": "apple",
+        "architecture": "metal-3",
+        "device": "",
+        "description": ""
+      },
+      "startup": {
+        "status": "ready",
+        "cache": "disabled",
+        "fontMs": 53.09999990463257,
+        "compileMs": 44.90000009536743,
+        "pipelineMs": 155.60000014305115,
+        "mountMs": 196.29999995231628,
+        "firstCompletedMs": 228.39999985694885,
+        "pipelineEntries": [
+          {
+            "name": "resolveTemplateLayout",
+            "startMs": 33.39999985694885,
+            "elapsedMs": 25.40000009536743
+          },
+          {
+            "name": "resolveTemplateVisuals",
+            "startMs": 58.799999952316284,
+            "elapsedMs": 5.700000047683716
+          },
+          {
+            "name": "rankTemplateTree",
+            "startMs": 64.5,
+            "elapsedMs": 5
+          },
+          {
+            "name": "preparePresenterFrame",
+            "startMs": 69.5,
+            "elapsedMs": 2.299999952316284
+          },
+          {
+            "name": "layoutLists",
+            "startMs": 71.79999995231628,
+            "elapsedMs": 2.4000000953674316
+          },
+          {
+            "name": "shapeTextRuns",
+            "startMs": 33.299999952316284,
+            "elapsedMs": 45
+          },
+          {
+            "name": "layoutTextRuns",
+            "startMs": 33.39999985694885,
+            "elapsedMs": 50.30000019073486
+          },
+          {
+            "name": "analyzeEditors",
+            "startMs": 78.29999995231628,
+            "elapsedMs": 6.200000047683716
+          },
+          {
+            "name": "prepareTextInput",
+            "startMs": 33.09999990463257,
+            "elapsedMs": 57.200000047683716
+          },
+          {
+            "name": "emitListParts",
+            "startMs": 74.29999995231628,
+            "elapsedMs": 16
+          },
+          {
+            "name": "layoutEditors",
+            "startMs": 83.70000004768372,
+            "elapsedMs": 6.599999904632568
+          },
+          {
+            "name": "pullModels",
+            "startMs": 90.29999995231628,
+            "elapsedMs": 3
+          },
+          {
+            "name": "evaluateModels",
+            "startMs": 90.39999985694885,
+            "elapsedMs": 4
+          },
+          {
+            "name": "pushModels",
+            "startMs": 90.39999985694885,
+            "elapsedMs": 4
+          },
+          {
+            "name": "emitEditorParts",
+            "startMs": 84.5,
+            "elapsedMs": 22.700000047683716
+          },
+          {
+            "name": "clearFrame",
+            "startMs": 93.29999995231628,
+            "elapsedMs": 17.09999990463257
+          },
+          {
+            "name": "applyDockInput",
+            "startMs": 110.39999985694885,
+            "elapsedMs": 5.6000001430511475
+          },
+          {
+            "name": "hitTest",
+            "startMs": 94.39999985694885,
+            "elapsedMs": 27.100000143051147
+          },
+          {
+            "name": "applyInputActions",
+            "startMs": 107.20000004768372,
+            "elapsedMs": 14.299999952316284
+          },
+          {
+            "name": "schedule",
+            "startMs": 121.59999990463257,
+            "elapsedMs": 6
+          },
+          {
+            "name": "resolveStyles",
+            "startMs": 127.70000004768372,
+            "elapsedMs": 3
+          },
+          {
+            "name": "input",
+            "startMs": 94.5,
+            "elapsedMs": 50.09999990463257
+          },
+          {
+            "name": "applyEditorCommands",
+            "startMs": 121.59999990463257,
+            "elapsedMs": 23
+          },
+          {
+            "name": "applyEditorInput",
+            "startMs": 116,
+            "elapsedMs": 29.5
+          },
+          {
+            "name": "animate",
+            "startMs": 145.5,
+            "elapsedMs": 2.799999952316284
+          },
+          {
+            "name": "constraints",
+            "startMs": 144.59999990463257,
+            "elapsedMs": 8.5
+          },
+          {
+            "name": "arrange",
+            "startMs": 144.59999990463257,
+            "elapsedMs": 10.600000143051147
+          },
+          {
+            "name": "compose",
+            "startMs": 148.39999985694885,
+            "elapsedMs": 6.800000190734863
+          },
+          {
+            "name": "measure",
+            "startMs": 130.70000004768372,
+            "elapsedMs": 25.5
+          },
+          {
+            "name": "initializeData",
+            "startMs": 153.09999990463257,
+            "elapsedMs": 3.799999952316284
+          },
+          {
+            "name": "filterScan",
+            "startMs": 155.20000004768372,
+            "elapsedMs": 1.7999999523162842
+          },
+          {
+            "name": "scatterRows",
+            "startMs": 156.20000004768372,
+            "elapsedMs": 1
+          },
+          {
+            "name": "scanBlocks",
+            "startMs": 155.20000004768372,
+            "elapsedMs": 2.3999998569488525
+          },
+          {
+            "name": "resolveSelection",
+            "startMs": 157.20000004768372,
+            "elapsedMs": 0.8999998569488525
+          },
+          {
+            "name": "sortBlocks",
+            "startMs": 156.89999985694885,
+            "elapsedMs": 1.4000000953674316
+          },
+          {
+            "name": "mergeRows",
+            "startMs": 157,
+            "elapsedMs": 1.3999998569488525
+          },
+          {
+            "name": "flatten",
+            "startMs": 157.59999990463257,
+            "elapsedMs": 12.799999952316284
+          },
+          {
+            "name": "damage",
+            "startMs": 158.39999985694885,
+            "elapsedMs": 15.300000190734863
+          },
+          {
+            "name": "collectGlyphRequests",
+            "startMs": 170.39999985694885,
+            "elapsedMs": 3.9000000953674316
+          },
+          {
+            "name": "finishGlyphRequests",
+            "startMs": 174.29999995231628,
+            "elapsedMs": 0.7999999523162842
+          },
+          {
+            "name": "prepareGlyphCache",
+            "startMs": 173.70000004768372,
+            "elapsedMs": 1.6999998092651367
+          },
+          {
+            "name": "prepareDraws",
+            "startMs": 175.39999985694885,
+            "elapsedMs": 1
+          },
+          {
+            "name": "rasterGlyphCache",
+            "startMs": 175.09999990463257,
+            "elapsedMs": 5.299999952316284
+          },
+          {
+            "name": "prepareJobs",
+            "startMs": 180.39999985694885,
+            "elapsedMs": 1
+          },
+          {
+            "name": "emitGridParts",
+            "startMs": 158.29999995231628,
+            "elapsedMs": 25.90000009536743
+          },
+          {
+            "name": "buildJobs",
+            "startMs": 176.39999985694885,
+            "elapsedMs": 8.300000190734863
+          },
+          {
+            "name": "emit",
+            "startMs": 158.09999990463257,
+            "elapsedMs": 26.700000047683716
+          },
+          {
+            "name": "prepareStrips",
+            "startMs": 184.29999995231628,
+            "elapsedMs": 0.7999999523162842
+          },
+          {
+            "name": "finishWork",
+            "startMs": 185.09999990463257,
+            "elapsedMs": 0.7000000476837158
+          },
+          {
+            "name": "finishFrame",
+            "startMs": 185.79999995231628,
+            "elapsedMs": 0.5999999046325684
+          },
+          {
+            "name": "binStrips",
+            "startMs": 184.70000004768372,
+            "elapsedMs": 2
+          },
+          {
+            "name": "makeStrips",
+            "startMs": 181.39999985694885,
+            "elapsedMs": 5.400000095367432
+          },
+          {
+            "name": "canvas-copy",
+            "startMs": 186.39999985694885,
+            "elapsedMs": 1
+          },
+          {
+            "name": "composite",
+            "startMs": 184.79999995231628,
+            "elapsedMs": 3.5
+          },
+          {
+            "name": "recordMetrics",
+            "startMs": 186.70000004768372,
+            "elapsedMs": 2
+          }
+        ]
+      },
+      "viewport": {
+        "width": 1280,
+        "height": 900,
+        "dpr": 2,
+        "w": 2560,
+        "h": 1800,
+        "tileCols": 160,
+        "tileRows": 113,
+        "requestedDpr": 1,
+        "requestedW": 2560,
+        "requestedH": 1800,
+        "nativeResolution": true,
+        "devicePixelBox": true,
+        "resolutionMode": "native",
+        "maxTiles": 65536,
+        "limitedBy": null
+      },
+      "stats": {
+        "frames": 25,
+        "uploadedBytes": 2280,
+        "initialUploadBytes": 29337736,
+        "readbackBytes": 0,
+        "submittedGraphs": 25,
+        "completedFrames": 23,
+        "skippedSubmissions": 13,
+        "peakFramesInFlight": 2,
+        "lastCompletionLatencyMs": 23.59999990463257,
+        "cpuLayoutEncodeMs": 0,
+        "cpuRenderEncodeMs": 0.10000014305114746,
+        "animationFrameCallbacks": 37,
+        "rafHz": 119.99999999999999,
+        "rafSubmissions": 24,
+        "asapSubmissions": 0,
+        "completionCheckpoints": 25,
+        "cpuEncodeMs": 0.10000014305114746,
+        "cpuSubmitMs": 0,
+        "pendingAcknowledgements": 2,
+        "rafCapacityDeferrals": 13,
+        "duplicateRafCallbacks": 0
+      },
+      "idleReadbackBytes": 0
+    },
+    {
+      "path": "helion-typography.html",
+      "status": "PASS",
+      "adapter": {
+        "vendor": "apple",
+        "architecture": "metal-3",
+        "device": "",
+        "description": ""
+      },
+      "startup": {
+        "status": "ready",
+        "cache": "disabled",
+        "fontMs": 249.20000004768372,
+        "compileMs": 63.700000047683716,
+        "pipelineMs": 144,
+        "mountMs": 352,
+        "firstCompletedMs": 421.5,
+        "pipelineEntries": [
+          {
+            "name": "resolveTemplateLayout",
+            "startMs": 30,
+            "elapsedMs": 25.899999856948853
+          },
+          {
+            "name": "resolveTemplateVisuals",
+            "startMs": 56,
+            "elapsedMs": 5
+          },
+          {
+            "name": "rankTemplateTree",
+            "startMs": 61,
+            "elapsedMs": 4.599999904632568
+          },
+          {
+            "name": "analyzeEditors",
+            "startMs": 65.59999990463257,
+            "elapsedMs": 7.700000047683716
+          },
+          {
+            "name": "shapeTextRuns",
+            "startMs": 30,
+            "elapsedMs": 46.89999985694885
+          },
+          {
+            "name": "prepareTextInput",
+            "startMs": 29.699999809265137,
+            "elapsedMs": 54.5
+          },
+          {
+            "name": "layoutTextRuns",
+            "startMs": 30,
+            "elapsedMs": 54.19999980926514
+          },
+          {
+            "name": "layoutEditors",
+            "startMs": 73.39999985694885,
+            "elapsedMs": 10.799999952316284
+          },
+          {
+            "name": "emitEditorParts",
+            "startMs": 76.89999985694885,
+            "elapsedMs": 19.700000047683716
+          },
+          {
+            "name": "clearFrame",
+            "startMs": 84.19999980926514,
+            "elapsedMs": 16.800000190734863
+          },
+          {
+            "name": "hitTest",
+            "startMs": 84.19999980926514,
+            "elapsedMs": 25.90000009536743
+          },
+          {
+            "name": "applyInputActions",
+            "startMs": 96.59999990463257,
+            "elapsedMs": 13.599999904632568
+          },
+          {
+            "name": "schedule",
+            "startMs": 110.19999980926514,
+            "elapsedMs": 5.5
+          },
+          {
+            "name": "resolveStyles",
+            "startMs": 115.79999995231628,
+            "elapsedMs": 2.799999952316284
+          },
+          {
+            "name": "applyEditorInput",
+            "startMs": 101,
+            "elapsedMs": 26
+          },
+          {
+            "name": "applyEditorCommands",
+            "startMs": 110.09999990463257,
+            "elapsedMs": 16.90000009536743
+          },
+          {
+            "name": "input",
+            "startMs": 84.29999995231628,
+            "elapsedMs": 49.89999985694885
+          },
+          {
+            "name": "constraints",
+            "startMs": 127,
+            "elapsedMs": 7.199999809265137
+          },
+          {
+            "name": "arrange",
+            "startMs": 127,
+            "elapsedMs": 7.199999809265137
+          },
+          {
+            "name": "initializeData",
+            "startMs": 134.19999980926514,
+            "elapsedMs": 3.1000001430511475
+          },
+          {
+            "name": "animate",
+            "startMs": 134.19999980926514,
+            "elapsedMs": 3.3000001907348633
+          },
+          {
+            "name": "measure",
+            "startMs": 118.69999980926514,
+            "elapsedMs": 21.90000009536743
+          },
+          {
+            "name": "filterScan",
+            "startMs": 137.39999985694885,
+            "elapsedMs": 3.200000047683716
+          },
+          {
+            "name": "scanBlocks",
+            "startMs": 137.5,
+            "elapsedMs": 3.0999999046325684
+          },
+          {
+            "name": "compose",
+            "startMs": 134.19999980926514,
+            "elapsedMs": 7
+          },
+          {
+            "name": "scatterRows",
+            "startMs": 140.59999990463257,
+            "elapsedMs": 1.2000000476837158
+          },
+          {
+            "name": "sortBlocks",
+            "startMs": 140.59999990463257,
+            "elapsedMs": 1.7999999523162842
+          },
+          {
+            "name": "mergeRows",
+            "startMs": 140.59999990463257,
+            "elapsedMs": 1.7999999523162842
+          },
+          {
+            "name": "resolveSelection",
+            "startMs": 141.19999980926514,
+            "elapsedMs": 1.2000000476837158
+          },
+          {
+            "name": "flatten",
+            "startMs": 141.79999995231628,
+            "elapsedMs": 15.399999856948853
+          },
+          {
+            "name": "damage",
+            "startMs": 142.59999990463257,
+            "elapsedMs": 14.599999904632568
+          },
+          {
+            "name": "collectGlyphRequests",
+            "startMs": 157.19999980926514,
+            "elapsedMs": 4
+          },
+          {
+            "name": "prepareGlyphCache",
+            "startMs": 157.29999995231628,
+            "elapsedMs": 4.099999904632568
+          },
+          {
+            "name": "finishGlyphRequests",
+            "startMs": 161.29999995231628,
+            "elapsedMs": 0.8999998569488525
+          },
+          {
+            "name": "prepareDraws",
+            "startMs": 162.19999980926514,
+            "elapsedMs": 0.7000000476837158
+          },
+          {
+            "name": "rasterGlyphCache",
+            "startMs": 161.39999985694885,
+            "elapsedMs": 5.6000001430511475
+          },
+          {
+            "name": "emitGridParts",
+            "startMs": 142.5,
+            "elapsedMs": 25.299999952316284
+          },
+          {
+            "name": "emit",
+            "startMs": 142.39999985694885,
+            "elapsedMs": 26.600000143051147
+          },
+          {
+            "name": "prepareJobs",
+            "startMs": 167,
+            "elapsedMs": 2
+          },
+          {
+            "name": "prepareStrips",
+            "startMs": 169,
+            "elapsedMs": 0.6999998092651367
+          },
+          {
+            "name": "buildJobs",
+            "startMs": 162.89999985694885,
+            "elapsedMs": 7
+          },
+          {
+            "name": "finishWork",
+            "startMs": 169.89999985694885,
+            "elapsedMs": 0.6000001430511475
+          },
+          {
+            "name": "binStrips",
+            "startMs": 169,
+            "elapsedMs": 2
+          },
+          {
+            "name": "finishFrame",
+            "startMs": 170.59999990463257,
+            "elapsedMs": 0.7000000476837158
+          },
+          {
+            "name": "canvas-copy",
+            "startMs": 171,
+            "elapsedMs": 0.8999998569488525
+          },
+          {
+            "name": "makeStrips",
+            "startMs": 167.79999995231628,
+            "elapsedMs": 5.099999904632568
+          },
+          {
+            "name": "recordMetrics",
+            "startMs": 171.29999995231628,
+            "elapsedMs": 2.299999952316284
+          },
+          {
+            "name": "composite",
+            "startMs": 169.79999995231628,
+            "elapsedMs": 3.8999998569488525
+          }
+        ]
+      },
+      "viewport": {
+        "width": 1280,
+        "height": 900,
+        "dpr": 2,
+        "w": 2560,
+        "h": 1800,
+        "tileCols": 160,
+        "tileRows": 113,
+        "requestedDpr": 1,
+        "requestedW": 2560,
+        "requestedH": 1800,
+        "nativeResolution": true,
+        "devicePixelBox": true,
+        "resolutionMode": "native",
+        "maxTiles": 65536,
+        "limitedBy": null
+      },
+      "stats": {
+        "frames": 26,
+        "uploadedBytes": 1664,
+        "initialUploadBytes": 48616540,
+        "readbackBytes": 0,
+        "submittedGraphs": 26,
+        "completedFrames": 24,
+        "skippedSubmissions": 12,
+        "peakFramesInFlight": 2,
+        "lastCompletionLatencyMs": 20.5,
+        "cpuLayoutEncodeMs": 0,
+        "cpuRenderEncodeMs": 0,
+        "animationFrameCallbacks": 37,
+        "rafHz": 119.96001332889038,
+        "rafSubmissions": 25,
+        "asapSubmissions": 0,
+        "completionCheckpoints": 26,
+        "cpuEncodeMs": 0.10000014305114746,
+        "cpuSubmitMs": 0,
+        "pendingAcknowledgements": 2,
+        "rafCapacityDeferrals": 12,
+        "duplicateRafCallbacks": 0
+      },
+      "idleReadbackBytes": 0
+    }
+  ],
+  "nativeGates": [
+    {
+      "path": "tests/gpu.html?autorun",
+      "errors": [],
+      "gate": {
+        "status": "PASS",
+        "checks": [
+          {
+            "name": "30 core compute pipelines, resident metrics and HUD presentation pipelines create",
+            "status": "PASS"
+          },
+          {
+            "name": "normal frames: 64-byte clock/viewport payload, zero explicit readbacks",
+            "status": "PASS"
+          },
+          {
+            "name": "native Measure / Arrange agrees with layout reference",
+            "status": "PASS"
+          },
+          {
+            "name": "small scene has no bounded-arena overflow",
+            "status": "PASS"
+          },
+          {
+            "name": "GPU hit testing, checkbox action and status filtering",
+            "status": "PASS"
+          },
+          {
+            "name": "GPU text editing and filtering reuse sorted order without layout",
+            "status": "PASS"
+          },
+          {
+            "name": "stable numeric GPU block/merge sorting",
+            "status": "PASS"
+          },
+          {
+            "name": "selection identity survives reverse sorting",
+            "status": "PASS"
+          },
+          {
+            "name": "column resizing stays on GPU without a layout pass",
+            "status": "PASS"
+          },
+          {
+            "name": "GPU numeric-cell editing and decimal commit",
+            "status": "PASS"
+          },
+          {
+            "name": "composition and value updates avoid layout and implicit readback",
+            "status": "PASS"
+          },
+          {
+            "name": "native sparse-strip raster/composition texture contains expected solid color",
+            "status": "PASS"
+          },
+          {
+            "name": "unchanged retained display list produces zero raster strips",
+            "status": "PASS"
+          },
+          {
+            "name": "dirty-tile output exactly matches full-frame rendering after a slider change",
+            "status": "PASS"
+          }
+        ],
+        "nativeGPU": true,
+        "adapter": {
+          "vendor": "apple",
+          "architecture": "metal-3",
+          "device": "",
+          "description": ""
+        },
+        "timingMode": "GPU timestamp queries",
+        "stats": {
+          "frames": 19,
+          "uploadedBytes": 2272,
+          "initialUploadBytes": 467304,
+          "readbackBytes": 4198824,
+          "submittedGraphs": 19,
+          "completedFrames": 19,
+          "skippedSubmissions": 0,
+          "peakFramesInFlight": 1,
+          "lastCompletionLatencyMs": 3.4000000953674316,
+          "cpuLayoutEncodeMs": 0,
+          "cpuRenderEncodeMs": 0,
+          "animationFrameCallbacks": 0,
+          "rafHz": 0,
+          "rafSubmissions": 0,
+          "asapSubmissions": 0,
+          "completionCheckpoints": 19,
+          "cpuEncodeMs": 0.09999990463256836,
+          "cpuSubmitMs": 0,
+          "pendingAcknowledgements": 0,
+          "rafCapacityDeferrals": 0,
+          "duplicateRafCallbacks": 0
+        },
+        "finished": "2026-11-06T18:38:37.150Z"
+      },
+      "status": "PASS"
+    },
+    {
+      "path": "tests/editor.html?autorun",
+      "errors": [],
+      "gate": {
+        "status": "PASS",
+        "scope": "Native WebGPU editor/model/docking correctness; not performance or complete IDE qualification",
+        "checks": [
+          "Native initial editor document and visible-line indexing",
+          "Multicaret edit, grouped undo, redo, and no normal-frame readback",
+          "Resident literal search, replacement, and history",
+          "Snippet expansion and linked multicaret editing",
+          "Typed model storage, derived expressions, and fresh CanExecute guard",
+          "Tab, float, split, close/reopen, and layout restoration preserve documents",
+          "Native editor/docking cached-damage pixels equal the full-render reference"
+        ],
+        "started": "2026-11-06T18:38:37.459Z",
+        "adapter": {},
+        "finished": "2026-11-06T18:38:37.991Z"
+      },
+      "status": "PASS"
+    },
+    {
+      "path": "tests/designer.html?autorun",
+      "errors": [],
+      "gate": {
+        "status": "PASS",
+        "scope": "Native shader/state/pointer/pixel correctness, NOT a throughput benchmark",
+        "checks": [
+          "Designer modules and native frame graph compile and execute",
+          "GPU canvas selection hits a genuine authored control",
+          "Pointer move is one undoable GPU document transaction",
+          "Inspector edit and subsequent command retain separate GPU undo transactions",
+          "Native node insertion, paint, geometry and history work without remounting",
+          "GPU hierarchy reparent and undo preserve nested content",
+          "Grid track changes repair child placement and remain undoable",
+          "Auto-key records endpoints and timeline scrubbing evaluates them on GPU",
+          "Named visual states retain overrides independently from base values",
+          "Interactive preview uses separate runtime input text, not authoring history storage",
+          "Data-only snapshot/export/restore validates the authored hierarchy",
+          "Retained-damage and full-frame designer pixels match exactly"
+        ],
+        "started": "2026-11-06T18:38:38.361Z",
+        "adapter": {},
+        "stats": {
+          "frames": 31,
+          "uploadedBytes": 74264,
+          "initialUploadBytes": 4349232,
+          "readbackBytes": 1172352,
+          "submittedGraphs": 31,
+          "completedFrames": 31,
+          "skippedSubmissions": 1,
+          "peakFramesInFlight": 2,
+          "lastCompletionLatencyMs": 3.700000047683716,
+          "cpuLayoutEncodeMs": 0,
+          "cpuRenderEncodeMs": 0,
+          "animationFrameCallbacks": 4,
+          "rafHz": 12.836970474967968,
+          "rafSubmissions": 3,
+          "asapSubmissions": 0,
+          "completionCheckpoints": 31,
+          "cpuEncodeMs": 0,
+          "cpuSubmitMs": 0,
+          "pendingAcknowledgements": 0,
+          "rafCapacityDeferrals": 1,
+          "duplicateRafCallbacks": 0
+        },
+        "finished": "2026-11-06T18:38:53.393Z"
+      },
+      "status": "PASS"
+    },
+    {
+      "path": "tests/typography.html?autorun",
+      "errors": [],
+      "gate": {
+        "status": "PASS",
+        "scope": "Native shader/paragraph/UI correctness; not performance or full Unicode/OpenType conformance.",
+        "checks": [
+          "Native GSUB, positioning and paragraph metrics agree with original fixture",
+          "Warm cache and width-only reflow reuse shaped glyphs",
+          "Canonical composition, scalar clusters and hard line breaks",
+          "Real TextBlock, native and templated TextBox and DataGrid share compute shaping",
+          "Equal-length mutation and grapheme-safe TextBox deletion",
+          "Multiple GPU caret/edit boundaries preserve FIFO in one submission without readback",
+          "Post-query DataGrid visible-row cache refresh",
+          "Cached and direct glyph-coverage paths produce identical pixels"
+        ]
+      },
+      "status": "PASS"
+    },
+    {
+      "path": "tests/templates.html?autorun",
+      "errors": [],
+      "gate": {
+        "version": "0.15.0-experimental",
+        "status": "PASS",
+        "scope": "Native compilation, template state, authoring transactions and pixels; not a throughput benchmark",
+        "checks": [
+          "Template modules and native layouts compile and execute",
+          "Per-instance part trees are arranged independently",
+          "Visual state transition writes actual part paint",
+          "Theme switching and reduced motion remain GPU commands",
+          "Native text presenter aliases resident editor content",
+          "Native contrast and density plans update without rebuilding",
+          "On-device accent foreground matches independent host calculation",
+          "Separate focus overlay preserves content border geometry",
+          "Retained-damage and full-render pixels agree",
+          "Native pooled template assignment is undoable",
+          "Designer theme commands survive project snapshots",
+          "GPU designer preference transactions undo atomically",
+          "Designer state preview executes without a document remount"
+        ]
+      },
+      "status": "PASS"
+    },
+    {
+      "path": "tests/framework.html?autorun",
+      "errors": [],
+      "gate": {
+        "status": "PASS",
+        "scope": "Native GPU correctness, not an FPS/compatibility certificate",
+        "checks": [
+          "native DockPanel all edges and LastChildFill",
+          "native WrapPanel line sizing and placement",
+          "native UniformGrid auto rows, FirstColumn and independent spacing",
+          "native Viewbox uniform composition, independent of desired geometry",
+          "GPU pseudo-state selector and timed color transition",
+          "imperative composition Set has local precedence over pseudo style",
+          "native keyframe seek/pause/hold/stop without CPU animation evaluation",
+          "compute gradient, RGBA image and transformed clip pixels",
+          "drawing retained damage agrees with complete rerasterization; no arena overflow",
+          "native constrained-star allocation releases a minimum after another column saturates"
+        ],
+        "started": "2026-11-06T18:39:05.693Z",
+        "adapter": {},
+        "finished": "2026-11-06T18:39:06.031Z"
+      },
+      "status": "PASS"
+    },
+    {
+      "path": "tests/dynamic.html?autorun",
+      "errors": [],
+      "gate": {
+        "status": "PASS",
+        "scope": "Native GPU correctness; serialized test frames and explicit readbacks, NOT frame-rate qualification",
+        "checks": [
+          "Initial ItemsSource retains exact u32 keys and custom rows",
+          "Revision-checked patches reject stale state without changing rows",
+          "Deletion, free-slot reuse, sorting and selection preserve identity",
+          "Growing string updates compact on-device without dropping live text",
+          "Whole-source capacity rejection leaves the old table intact",
+          "Dynamic text and source filtering use the retained GPU state",
+          "Tree expansion, replacement and keyed selection execute on the GPU",
+          "Embedded preview shares device and a single owning frame submission",
+          "Parent hit testing forwards transformed pointer input to the child on-device",
+          "GPU-owned focus and keyboard forwarding update only the embedded control",
+          "Fit mode derives child viewport and pixel extent on the GPU without a host rectangle",
+          "Preview resize and detach preserve workspace documents"
+        ],
+        "started": "2026-11-06T18:39:06.256Z",
+        "adapter": {},
+        "finished": "2026-11-06T18:39:06.678Z"
+      },
+      "status": "PASS"
+    },
+    {
+      "path": "tests/quality.html?autorun",
+      "errors": [],
+      "gate": {
+        "status": "PASS",
+        "scope": "Native correctness, not performance",
+        "checks": [
+          "Quadratic WGSL output agrees with the high-precision host oracle",
+          "Sharp cache/direct output agrees at DPR 1",
+          "Quality switch invalidates coverage and HUD quad/fullscreen copies agree at DPR 1",
+          "Sharp cache/direct output agrees at DPR 1.25",
+          "Quality switch invalidates coverage and HUD quad/fullscreen copies agree at DPR 1.25",
+          "Sharp cache/direct output agrees at DPR 2",
+          "Quality switch invalidates coverage and HUD quad/fullscreen copies agree at DPR 2"
+        ],
+        "started": "2026-11-06T18:39:06.973Z",
+        "math": {
+          "cases": 771,
+          "maxAbsoluteAreaError": 1.2043568775599311e-06
+        },
+        "adapter": {},
+        "resolution": {
+          "width": 760,
+          "height": 560,
+          "dpr": 2,
+          "w": 1520,
+          "h": 1120,
+          "tileCols": 95,
+          "tileRows": 70,
+          "requestedDpr": 2,
+          "requestedW": 1520,
+          "requestedH": 1120,
+          "nativeResolution": true,
+          "devicePixelBox": false,
+          "resolutionMode": "native",
+          "maxTiles": 16384,
+          "limitedBy": null
+        },
+        "performanceMeasured": false,
+        "finished": "2026-11-06T18:39:07.600Z"
+      },
+      "status": "PASS"
+    },
+    {
+      "path": "tests/shaders.html?autorun",
+      "errors": [],
+      "gate": {
+        "status": "PASS",
+        "version": "0.15.0-experimental",
+        "started": "2026-11-06T18:39:07.831Z",
+        "progress": [
+          "Reported DataGrid comparator / repaired accepted",
+          "Reported designer kind predicate / repaired accepted",
+          "Reported designer property ranges / repaired accepted",
+          "Compiling typography module",
+          "prepareTextInput",
+          "shapeTextRuns",
+          "layoutTextRuns",
+          "Compiling templates module",
+          "resolveTemplateLayout",
+          "resolveTemplateVisuals",
+          "rankTemplateTree",
+          "Compiling designer-state module",
+          "synchronizeDesigners",
+          "animateDesigners",
+          "Compiling preparePresenterFrame module",
+          "preparePresenterFrame",
+          "Compiling layoutLists module",
+          "layoutLists",
+          "Compiling emitListParts module",
+          "emitListParts",
+          "Compiling editor-analysis module",
+          "analyzeEditors",
+          "layoutEditors",
+          "Compiling emitEditorParts module",
+          "emitEditorParts",
+          "Compiling models module",
+          "pullModels",
+          "evaluateModels",
+          "pushModels",
+          "Compiling schedule module",
+          "clearFrame",
+          "Compiling input module",
+          "hitTest",
+          "input",
+          "Compiling applyInputActions module",
+          "applyInputActions",
+          "Compiling applyDockInput module",
+          "applyDockInput",
+          "Compiling applyEditorInput module",
+          "applyEditorInput",
+          "Compiling applyDesignerInput module",
+          "applyDesignerInput",
+          "Compiling applyEditorCommands module",
+          "applyEditorCommands",
+          "Compiling applyDesignerCommands0 module",
+          "applyDesignerCommands0",
+          "Compiling applyDesignerCommands1 module",
+          "applyDesignerCommands1",
+          "Compiling applyDesignerCommands2 module",
+          "applyDesignerCommands2",
+          "Compiling applyDesignerCommands3 module",
+          "applyDesignerCommands3",
+          "Compiling applyDesignerCommands4 module",
+          "applyDesignerCommands4",
+          "Compiling applyDesignerCommands5 module",
+          "applyDesignerCommands5",
+          "Compiling applyDesignerCommands6 module",
+          "applyDesignerCommands6",
+          "Compiling finishDesignerEdit module",
+          "finishDesignerEdit",
+          "Compiling applyDesignerSurfaceInput module",
+          "applyDesignerSurfaceInput",
+          "Compiling applyDesignerTreeInput module",
+          "applyDesignerTreeInput",
+          "Compiling applyDesignerInspectorInput module",
+          "applyDesignerInspectorInput",
+          "Compiling applyDesignerTimelineInput module",
+          "applyDesignerTimelineInput",
+          "Compiling applyDesignerColorInput module",
+          "applyDesignerColorInput",
+          "schedule",
+          "Compiling composition module",
+          "resolveStyles",
+          "Compiling layout module",
+          "measure",
+          "constraints",
+          "arrange",
+          "animate",
+          "compose",
+          "Compiling data module",
+          "initializeData",
+          "filterScan",
+          "scanBlocks",
+          "scatterRows",
+          "sortBlocks",
+          "mergeRows",
+          "resolveSelection",
+          "Compiling flatten module",
+          "flatten",
+          "Compiling emit module",
+          "emit",
+          "Compiling emitDesignerSurface module",
+          "emitDesignerSurface",
+          "Compiling emitDesignerTree module",
+          "emitDesignerTree",
+          "Compiling emitDesignerInspector module",
+          "emitDesignerInspector",
+          "Compiling emitDesignerTimeline module",
+          "emitDesignerTimeline",
+          "Compiling emitDesignerColors module",
+          "emitDesignerColors",
+          "Compiling emitDesignerAdorner module",
+          "emitDesignerAdorner",
+          "Compiling emitGridParts module",
+          "emitGridParts",
+          "Compiling damage module",
+          "damage",
+          "Compiling glyph-cache module",
+          "collectGlyphRequests",
+          "prepareGlyphCache",
+          "finishGlyphRequests",
+          "rasterGlyphCache",
+          "prepareDraws",
+          "Compiling raster module",
+          "buildJobs",
+          "prepareJobs",
+          "makeStrips",
+          "prepareStrips",
+          "binStrips",
+          "composite",
+          "finishWork",
+          "finishFrame"
+        ],
+        "gpuExecutionVerified": false,
+        "adapter": "Undisclosed",
+        "compilation": "partitioned",
+        "coreModules": 44,
+        "computePipelines": 79,
+        "presentationFormats": 2,
+        "presentationEntryPoints": 3,
+        "rejectedFixtures": [
+          "Reported DataGrid comparator",
+          "Reported designer kind predicate",
+          "Reported designer property ranges"
+        ],
+        "invalidComparatorRejected": true,
+        "invalidDesignerExpressionsRejected": true,
+        "renderedPixelsVerified": false,
+        "finished": "2026-11-06T18:39:28.562Z"
+      },
+      "status": "PASS"
+    },
+    {
+      "path": "tests/metrics.html",
+      "status": "PASS",
+      "gate": {
+        "status": "PASS",
+        "scope": "Native metric arithmetic/interface checks; NOT a frame-rate benchmark",
+        "checks": [
+          "0.300 ms nanosecond conversion with low-word rollover",
+          "CPU encode is independent of 14.3 ms GPU span and 0.3 ms pass sum",
+          "CPU-only mode reports missing GPU timings as unavailable",
+          "Skipped layout/data/glyph/HUD slots are ignored",
+          "Reversed active pair is invalid, not zero",
+          "Encoded but inactive layout is idle, not a fictitious execution",
+          "Compact merged phases are unavailable, never fake independent zeros",
+          "Overlapping pass ranges are unioned, not added",
+          "Direct 0.3 ms submit delta is independent of animation uptime",
+          "Long stall is retained without reporting high FPS",
+          "ASAP mode and metric epoch reset",
+          "260 queued samples preserve frame/history correspondence through wrapping",
+          "Synthetic 120 Hz host submissions and 50 Hz GPU end timestamps remain independent (not measured performance)",
+          "Actual pass timestamps agree with independent BigInt subtraction; this tiny workload is not the app benchmark"
+        ],
+        "started": "2026-11-06T18:37:08.259Z",
+        "adapter": {},
+        "finished": "2026-11-06T18:37:08.458Z"
+      }
+    },
+    {
+      "path": "tests/frame-sync.html",
+      "status": "PASS",
+      "gate": {
+        "status": "PASS",
+        "scope": "Native real-outline fixture and exact pixel regression; not a performance benchmark",
+        "started": "2026-11-06T18:37:08.720Z",
+        "checks": [
+          "native modules and both presentation pipelines create and execute",
+          "exact serial/parallel UI pixels: initial",
+          "exact serial/parallel UI pixels: fractional vertical scroll",
+          "exact serial/parallel UI pixels: integer scroll",
+          "exact serial/parallel UI pixels: selection",
+          "exact serial/parallel UI pixels: header sort",
+          "exact serial/parallel UI pixels: filter",
+          "exact serial/parallel UI pixels: empty query",
+          "exact serial/parallel UI pixels: clear query",
+          "exact serial/parallel UI pixels: fractional translation",
+          "exact serial/parallel UI pixels: opacity",
+          "exact serial/parallel UI pixels: hide",
+          "exact serial/parallel UI pixels: show",
+          "retained damage and full raster agree after row-mode changes",
+          "compact/stages changes measurement boundaries, not UI pixels",
+          "exact full/scissored HUD pixels at DPR 1",
+          "exact full/scissored HUD pixels at DPR 1.25",
+          "exact full/scissored HUD pixels at DPR 2",
+          "normal rendering keeps 64-byte frame metadata; test-only snapshots are explicit"
+        ],
+        "adapter": {},
+        "metrics": {
+          "schema": 3,
+          "source": "gpu-elapsed-ranges",
+          "submissionMode": "vsync",
+          "vsyncPacing": "bounded",
+          "timingDetail": "stages",
+          "sampleFrame": 35,
+          "rawTimestampFrame": 35,
+          "rawTimestamps": [
+            {
+              "phase": "input",
+              "meaning": "input",
+              "measured": true,
+              "startNs": "1637004567248896",
+              "endNs": "1637004567248896"
+            },
+            {
+              "phase": "layout",
+              "meaning": "layout",
+              "measured": false,
+              "startNs": "0",
+              "endNs": "0"
+            },
+            {
+              "phase": "data",
+              "meaning": "data",
+              "measured": false,
+              "startNs": "0",
+              "endNs": "0"
+            },
+            {
+              "phase": "scene",
+              "meaning": "scene",
+              "measured": true,
+              "startNs": "1637004567248896",
+              "endNs": "1637004567642112"
+            },
+            {
+              "phase": "glyph",
+              "meaning": "glyph",
+              "measured": true,
+              "startNs": "1637004567642112",
+              "endNs": "1637004567969792"
+            },
+            {
+              "phase": "sparse",
+              "meaning": "sparse",
+              "measured": true,
+              "startNs": "1637004567969792",
+              "endNs": "1637004570132480"
+            },
+            {
+              "phase": "hud",
+              "meaning": "hud",
+              "measured": true,
+              "startNs": "1637004570132480",
+              "endNs": "1637004570525696"
+            },
+            {
+              "phase": "present",
+              "meaning": "present",
+              "measured": true,
+              "startNs": "1637004567445504",
+              "endNs": "1637004570656768"
+            }
+          ],
+          "displayedSampleLag": "previous submitted sample; neither busy-time nor presentation timestamps",
+          "submitFPS": 167.1291046142578,
+          "gpuCompletionFPS": 160.33755493164062,
+          "rafHz": 0,
+          "rafBudgetMs": 0,
+          "timestampErrors": 0,
+          "current": {
+            "frame": 35,
+            "submitIntervalMs": 6.099609375,
+            "layoutMs": 0,
+            "totalMs": 3.407871961593628,
+            "gpuSpanMs": 3.407871961593628,
+            "dataMs": 0,
+            "phasesMs": {
+              "input": 0,
+              "layout": 0,
+              "data": 0,
+              "scene": 0.39321601390838623,
+              "glyph": 0.32767999172210693,
+              "sparse": 2.1626880168914795,
+              "hud": 0.39321601390838623,
+              "present": 3.21126389503479
+            },
+            "phaseMeaning": "individual pass elapsed ranges, potentially overlapping",
+            "timingDetail": "stages",
+            "measuredPhaseMask": 249,
+            "layoutExecuted": false,
+            "cpuEncodeMs": 0,
+            "uiRenderMs": 2.8835840225219727,
+            "gpuCompletionIntervalMs": 4.587520122528076,
+            "coveredMs": 3.407872200012207,
+            "overlapMs": 3.0801916122436523,
+            "gapMs": 0,
+            "computeCoveredMs": 3.2768001556396484,
+            "passSumMs": 6.488063812255859
+          },
+          "history": [
+            {
+              "frame": 29,
+              "submitIntervalMs": 0,
+              "layoutMs": 0,
+              "totalMs": 2.228224039077759,
+              "gpuSpanMs": 2.228224039077759,
+              "dataMs": 0,
+              "phasesMs": {
+                "input": 0,
+                "layout": 0,
+                "data": 0,
+                "scene": 0.39321601390838623,
+                "glyph": 0.0655359998345375,
+                "sparse": 1.376255989074707,
+                "hud": 0.39321601390838623,
+                "present": 2.1626880168914795
+              },
+              "phaseMeaning": "individual pass elapsed ranges, potentially overlapping",
+              "timingDetail": "stages",
+              "measuredPhaseMask": 249,
+              "layoutExecuted": false,
+              "cpuEncodeMs": 0.09999990463256836,
+              "uiRenderMs": 1.8350080251693726,
+              "gpuCompletionIntervalMs": -1,
+              "coveredMs": 2.228224039077759,
+              "overlapMs": 2.1626880168914795,
+              "gapMs": 0,
+              "computeCoveredMs": 2.228224039077759,
+              "passSumMs": 4.390912055969238
+            },
+            {
+              "frame": 30,
+              "submitIntervalMs": 6.7998046875,
+              "layoutMs": 0.0655359998345375,
+              "totalMs": 2.293760061264038,
+              "gpuSpanMs": 2.293760061264038,
+              "dataMs": 0,
+              "phasesMs": {
+                "input": 0,
+                "layout": 0.0655359998345375,
+                "data": 0,
+                "scene": 0.39321601390838623,
+                "glyph": 0.32767999172210693,
+                "sparse": 1.1141120195388794,
+                "hud": 0.39321601390838623,
+                "present": 2.0971519947052
+              },
+              "phaseMeaning": "individual pass elapsed ranges, potentially overlapping",
+              "timingDetail": "stages",
+              "measuredPhaseMask": 251,
+              "layoutExecuted": true,
+              "cpuEncodeMs": 0.5,
+              "uiRenderMs": 1.8350080251693726,
+              "gpuCompletionIntervalMs": 7.471104145050049,
+              "coveredMs": 2.293760061264038,
+              "overlapMs": 2.0971519947052,
+              "gapMs": 0,
+              "computeCoveredMs": 2.293760061264038,
+              "passSumMs": 4.390912055969238
+            },
+            {
+              "frame": 31,
+              "submitIntervalMs": 3.7001953125,
+              "layoutMs": 0,
+              "totalMs": 2.1626880168914795,
+              "gpuSpanMs": 2.1626880168914795,
+              "dataMs": 0,
+              "phasesMs": {
+                "input": 0,
+                "layout": 0,
+                "data": 0,
+                "scene": 0.39321601390838623,
+                "glyph": 0.32767999172210693,
+                "sparse": 1.1141120195388794,
+                "hud": 0.32767999172210693,
+                "present": 1.9660799503326416
+              },
+              "phaseMeaning": "individual pass elapsed ranges, potentially overlapping",
+              "timingDetail": "stages",
+              "measuredPhaseMask": 249,
+              "layoutExecuted": false,
+              "cpuEncodeMs": 0.09999990463256836,
+              "uiRenderMs": 1.8350080251693726,
+              "gpuCompletionIntervalMs": 3.2767999172210693,
+              "coveredMs": 2.1626880168914795,
+              "overlapMs": 1.9660799503326416,
+              "gapMs": 0,
+              "computeCoveredMs": 2.1626880168914795,
+              "passSumMs": 4.128767967224121
+            },
+            {
+              "frame": 32,
+              "submitIntervalMs": 6.7001953125,
+              "layoutMs": 0.0655359998345375,
+              "totalMs": 2.4248321056365967,
+              "gpuSpanMs": 2.4248321056365967,
+              "dataMs": 0,
+              "phasesMs": {
+                "input": 0.0655359998345375,
+                "layout": 0.0655359998345375,
+                "data": 0,
+                "scene": 0.32767999172210693,
+                "glyph": 0.131071999669075,
+                "sparse": 1.4417920112609863,
+                "hud": 0.39321601390838623,
+                "present": 2.3592960834503174
+              },
+              "phaseMeaning": "individual pass elapsed ranges, potentially overlapping",
+              "timingDetail": "stages",
+              "measuredPhaseMask": 251,
+              "layoutExecuted": true,
+              "cpuEncodeMs": 0.2999999523162842,
+              "uiRenderMs": 1.9005440473556519,
+              "gpuCompletionIntervalMs": 7.733247756958008,
+              "coveredMs": 2.4248321056365967,
+              "overlapMs": 2.3592960834503174,
+              "gapMs": 0,
+              "computeCoveredMs": 2.4248318672180176,
+              "passSumMs": 4.784128189086914
+            },
+            {
+              "frame": 33,
+              "submitIntervalMs": 4.2001953125,
+              "layoutMs": 0,
+              "totalMs": 2.3592960834503174,
+              "gpuSpanMs": 2.3592960834503174,
+              "dataMs": 0,
+              "phasesMs": {
+                "input": 0,
+                "layout": 0,
+                "data": 0,
+                "scene": 0.39321601390838623,
+                "glyph": 0.0655359998345375,
+                "sparse": 1.5073280334472656,
+                "hud": 0.39321601390838623,
+                "present": 2.3592960834503174
+              },
+              "phaseMeaning": "individual pass elapsed ranges, potentially overlapping",
+              "timingDetail": "stages",
+              "measuredPhaseMask": 249,
+              "layoutExecuted": false,
+              "cpuEncodeMs": 0.10000014305114746,
+              "uiRenderMs": 1.9660799503326416,
+              "gpuCompletionIntervalMs": 3.14572811126709,
+              "coveredMs": 2.3592958450317383,
+              "overlapMs": 2.3592963218688965,
+              "gapMs": 2.384185791015625e-07,
+              "computeCoveredMs": 2.3592960834503174,
+              "passSumMs": 4.718592166900635
+            },
+            {
+              "frame": 34,
+              "submitIntervalMs": 8.400390625,
+              "layoutMs": 0.32767999172210693,
+              "totalMs": 3.7355520725250244,
+              "gpuSpanMs": 3.7355520725250244,
+              "dataMs": 0,
+              "phasesMs": {
+                "input": 0,
+                "layout": 0.32767999172210693,
+                "data": 0,
+                "scene": 0.32767999172210693,
+                "glyph": 0.39321601390838623,
+                "sparse": 2.1626880168914795,
+                "hud": 0.39321601390838623,
+                "present": 3.14572811126709
+              },
+              "phaseMeaning": "individual pass elapsed ranges, potentially overlapping",
+              "timingDetail": "stages",
+              "measuredPhaseMask": 251,
+              "layoutExecuted": true,
+              "cpuEncodeMs": 0.39999985694885254,
+              "uiRenderMs": 2.8835840225219727,
+              "gpuCompletionIntervalMs": 11.206655502319336,
+              "coveredMs": 3.7355520725250244,
+              "overlapMs": 3.0146563053131104,
+              "gapMs": 0,
+              "computeCoveredMs": 3.604480266571045,
+              "passSumMs": 6.750208377838135
+            },
+            {
+              "frame": 35,
+              "submitIntervalMs": 6.099609375,
+              "layoutMs": 0,
+              "totalMs": 3.407871961593628,
+              "gpuSpanMs": 3.407871961593628,
+              "dataMs": 0,
+              "phasesMs": {
+                "input": 0,
+                "layout": 0,
+                "data": 0,
+                "scene": 0.39321601390838623,
+                "glyph": 0.32767999172210693,
+                "sparse": 2.1626880168914795,
+                "hud": 0.39321601390838623,
+                "present": 3.21126389503479
+              },
+              "phaseMeaning": "individual pass elapsed ranges, potentially overlapping",
+              "timingDetail": "stages",
+              "measuredPhaseMask": 249,
+              "layoutExecuted": false,
+              "cpuEncodeMs": 0,
+              "uiRenderMs": 2.8835840225219727,
+              "gpuCompletionIntervalMs": 4.587520122528076,
+              "coveredMs": 3.407872200012207,
+              "overlapMs": 3.0801916122436523,
+              "gapMs": 0,
+              "computeCoveredMs": 3.2768001556396484,
+              "passSumMs": 6.488063812255859
+            }
+          ]
+        },
+        "finished": "2026-11-06T18:37:09.191Z"
+      }
+    }
+  ],
+  "runtimeSourceSha256": {
+    "shaders/designer-render.wgsl": "bc3de3b091aa5066de47af26acdad4849a993af5c8474ca4290915c4ba1e24a4",
+    "shaders/designer.wgsl": "d2d432ba4f83019c1fce1c43c4768c50b0a9b164ef1d9cff246a2047c2e44b40",
+    "shaders/docking.wgsl": "259a48779f8292567c04336f09aaca35d0bbc23cb42c4c48e0fe926833fa7082",
+    "shaders/editor.wgsl": "45dd8242ee4b648870fa483b74f827eae3b0137f41d42374d3c469f774414cd7",
+    "shaders/emit.wgsl": "5d447318c9bb5f578f020168d9aa31b5dbbef8fbd3b713051e47a3a4d7c2cf89",
+    "shaders/input.wgsl": "b5d1736f9bf3ff235b1670e09fe602a930959c831b8a01dc7a4b1948b954ad35",
+    "shaders/shaping.wgsl": "e29db68d1e5df6dc5e0632a9093f9df4b34a9e09eb7e51853b9e4b7543a90abe",
+    "shaders/text.wgsl": "8b6b538e82a02151e67b9f035fecdf000182b60f5a907ece2822afc093cc9c99",
+    "shaders/typography-ui.wgsl": "bd67f37579795aa4bbd82d72000f33fca9a9a5b61568e994731c719d27babd1c",
+    "src/core/protocol.js": "9664a8bd0e2e1b37e0eedf4ccb860f75b06cf3207bda0cea075865198e170bb1",
+    "src/gpu/runtime.js": "4bbb596ab483330b39e48c028f1c48edc95ab17425300bc7d355fd8b1c100287",
+    "src/gpu/shader-library.js": "113ec4f86c019e33ed9a2deb9353d9273e3250662266859ece7ea2f0ee50f70c",
+    "src/gpu/shader-partitions.js": "48d34af6de3ee9f8c0c2dec1937279dd3d31bf614e7753d01d752503fd0e55b1",
+    "src/gpu/view-features.js": "3bcc3198af346730781a8419b28976580d85835fea58ffa29536b385c29d613e",
+    "src/gpu/viewport.js": "225835fd77fc5878f3580933b33975c9cf64d8ab583e5f6a6fb86a05b44bc4bc",
+    "src/index.d.ts": "d487315b3a6caa6687d5ea5fd3c7727fa4346e88aa904ae136b8d460775e49dd",
+    "src/platform/input.js": "bfdc1b120c5985335a09a81e056d3da9d3c189cbfbe8f00bcd99f5988ff219d9"
+  },
+  "finalStandaloneApplications": [
+    {
+      "path": "helion-standalone.html",
+      "status": "PASS",
+      "adapter": {
+        "vendor": "apple",
+        "architecture": "metal-3",
+        "device": "",
+        "description": ""
+      },
+      "startup": {
+        "status": "ready",
+        "cache": "miss",
+        "fontMs": 382.5,
+        "compileMs": 126.90000009536743,
+        "pipelineMs": 206.19999980926514,
+        "mountMs": 689.8999998569489,
+        "firstCompletedMs": 744.7999999523163,
+        "pipelineEntries": [
+          {
+            "name": "clearFrame",
+            "startMs": 71.39999985694885,
+            "elapsedMs": 38.700000047683716
+          },
+          {
+            "name": "hitTest",
+            "startMs": 110.19999980926514,
+            "elapsedMs": 37.700000047683716
+          },
+          {
+            "name": "shapeTextRuns",
+            "startMs": 71.39999985694885,
+            "elapsedMs": 79.5
+          },
+          {
+            "name": "layoutTextRuns",
+            "startMs": 71.39999985694885,
+            "elapsedMs": 92.10000014305115
+          },
+          {
+            "name": "schedule",
+            "startMs": 163.69999980926514,
+            "elapsedMs": 1.2000000476837158
+          },
+          {
+            "name": "resolveStyles",
+            "startMs": 164.89999985694885,
+            "elapsedMs": 5.400000095367432
+          },
+          {
+            "name": "applyInputActions",
+            "startMs": 151,
+            "elapsedMs": 19.699999809265137
+          },
+          {
+            "name": "prepareTextInput",
+            "startMs": 71.19999980926514,
+            "elapsedMs": 111.70000004768372
+          },
+          {
+            "name": "constraints",
+            "startMs": 170.69999980926514,
+            "elapsedMs": 24.700000047683716
+          },
+          {
+            "name": "arrange",
+            "startMs": 182.89999985694885,
+            "elapsedMs": 13.299999952316284
+          },
+          {
+            "name": "animate",
+            "startMs": 195.5,
+            "elapsedMs": 2.299999952316284
+          },
+          {
+            "name": "initializeData",
+            "startMs": 197.89999985694885,
+            "elapsedMs": 4.700000047683716
+          },
+          {
+            "name": "compose",
+            "startMs": 196.19999980926514,
+            "elapsedMs": 8.700000047683716
+          },
+          {
+            "name": "filterScan",
+            "startMs": 202.59999990463257,
+            "elapsedMs": 3.9000000953674316
+          },
+          {
+            "name": "input",
+            "startMs": 147.89999985694885,
+            "elapsedMs": 64.90000009536743
+          },
+          {
+            "name": "scatterRows",
+            "startMs": 206.5,
+            "elapsedMs": 6.299999952316284
+          },
+          {
+            "name": "scanBlocks",
+            "startMs": 204.89999985694885,
+            "elapsedMs": 15.5
+          },
+          {
+            "name": "sortBlocks",
+            "startMs": 212.89999985694885,
+            "elapsedMs": 7.700000047683716
+          },
+          {
+            "name": "mergeRows",
+            "startMs": 212.89999985694885,
+            "elapsedMs": 7.700000047683716
+          },
+          {
+            "name": "measure",
+            "startMs": 170.39999985694885,
+            "elapsedMs": 50.5
+          },
+          {
+            "name": "resolveSelection",
+            "startMs": 220.39999985694885,
+            "elapsedMs": 12.600000143051147
+          },
+          {
+            "name": "flatten",
+            "startMs": 220.59999990463257,
+            "elapsedMs": 25.90000009536743
+          },
+          {
+            "name": "damage",
+            "startMs": 233,
+            "elapsedMs": 15.799999952316284
+          },
+          {
+            "name": "collectGlyphRequests",
+            "startMs": 246.5,
+            "elapsedMs": 4.799999952316284
+          },
+          {
+            "name": "prepareGlyphCache",
+            "startMs": 248.79999995231628,
+            "elapsedMs": 4
+          },
+          {
+            "name": "finishGlyphRequests",
+            "startMs": 251.29999995231628,
+            "elapsedMs": 1.5
+          },
+          {
+            "name": "prepareDraws",
+            "startMs": 252.79999995231628,
+            "elapsedMs": 1.8999998569488525
+          },
+          {
+            "name": "rasterGlyphCache",
+            "startMs": 252.79999995231628,
+            "elapsedMs": 6.5
+          },
+          {
+            "name": "prepareJobs",
+            "startMs": 259.39999985694885,
+            "elapsedMs": 1.4000000953674316
+          },
+          {
+            "name": "emitGridParts",
+            "startMs": 220.89999985694885,
+            "elapsedMs": 46.5
+          },
+          {
+            "name": "buildJobs",
+            "startMs": 254.69999980926514,
+            "elapsedMs": 14.5
+          },
+          {
+            "name": "emit",
+            "startMs": 220.69999980926514,
+            "elapsedMs": 48.5
+          },
+          {
+            "name": "prepareStrips",
+            "startMs": 267.39999985694885,
+            "elapsedMs": 2.799999952316284
+          },
+          {
+            "name": "finishWork",
+            "startMs": 270.19999980926514,
+            "elapsedMs": 2.1000001430511475
+          },
+          {
+            "name": "makeStrips",
+            "startMs": 260.89999985694885,
+            "elapsedMs": 11.600000143051147
+          },
+          {
+            "name": "binStrips",
+            "startMs": 269.19999980926514,
+            "elapsedMs": 3.3000001907348633
+          },
+          {
+            "name": "finishFrame",
+            "startMs": 272.39999985694885,
+            "elapsedMs": 1.9000000953674316
+          },
+          {
+            "name": "canvas-copy",
+            "startMs": 272.5,
+            "elapsedMs": 2.6999998092651367
+          },
+          {
+            "name": "recordMetrics",
+            "startMs": 272.7999999523163,
+            "elapsedMs": 3.3999998569488525
+          },
+          {
+            "name": "composite",
+            "startMs": 269.19999980926514,
+            "elapsedMs": 8
+          },
+          {
+            "name": "buildHudText",
+            "startMs": 757.5999999046326,
+            "elapsedMs": 30.09999990463257
+          },
+          {
+            "name": "compositeHud",
+            "startMs": 757.5,
+            "elapsedMs": 54.09999990463257
+          },
+          {
+            "name": "rasterHudFont",
+            "startMs": 757.5,
+            "elapsedMs": 54.09999990463257
+          },
+          {
+            "name": "hud-copy",
+            "startMs": 757.5,
+            "elapsedMs": 54.09999990463257
+          }
+        ]
+      },
+      "viewport": {
+        "width": 1280,
+        "height": 900,
+        "dpr": 2,
+        "w": 2560,
+        "h": 1800,
+        "tileCols": 160,
+        "tileRows": 113,
+        "requestedDpr": 1,
+        "requestedW": 2560,
+        "requestedH": 1800,
+        "nativeResolution": true,
+        "devicePixelBox": true,
+        "resolutionMode": "native",
+        "maxTiles": 65536,
+        "limitedBy": null
+      },
+      "stats": {
+        "frames": 15,
+        "uploadedBytes": 960,
+        "initialUploadBytes": 34342748,
+        "readbackBytes": 0,
+        "submittedGraphs": 15,
+        "completedFrames": 13,
+        "skippedSubmissions": 20,
+        "peakFramesInFlight": 2,
+        "lastCompletionLatencyMs": 49.299999952316284,
+        "cpuLayoutEncodeMs": 0,
+        "cpuRenderEncodeMs": 0,
+        "animationFrameCallbacks": 35,
+        "rafHz": 88.88888888888891,
+        "rafSubmissions": 15,
+        "asapSubmissions": 0,
+        "completionCheckpoints": 15,
+        "cpuEncodeMs": 0.20000004768371582,
+        "cpuSubmitMs": 0.09999990463256836,
+        "pendingAcknowledgements": 2,
+        "rafCapacityDeferrals": 20,
+        "duplicateRafCallbacks": 0
+      },
+      "idleReadbackBytes": 0,
+      "interaction": {
+        "status": "PASS",
+        "check": "DOM pointer/keyboard to GPU TextBox",
+        "text": "Aurora"
+      }
+    },
+    {
+      "path": "helion-designer.html",
+      "status": "PASS",
+      "adapter": {
+        "vendor": "apple",
+        "architecture": "metal-3",
+        "device": "",
+        "description": ""
+      },
+      "startup": {
+        "status": "ready",
+        "cache": "miss",
+        "fontMs": 329.09999990463257,
+        "compileMs": 203.5,
+        "pipelineMs": 446.2000000476837,
+        "mountMs": 705.5,
+        "firstCompletedMs": 819.6000001430511,
+        "pipelineEntries": [
+          {
+            "name": "resolveTemplateLayout",
+            "startMs": 46.200000047683716,
+            "elapsedMs": 52.700000047683716
+          },
+          {
+            "name": "resolveTemplateVisuals",
+            "startMs": 99,
+            "elapsedMs": 10.5
+          },
+          {
+            "name": "rankTemplateTree",
+            "startMs": 109.5,
+            "elapsedMs": 5.5
+          },
+          {
+            "name": "synchronizeDesigners",
+            "startMs": 115.10000014305115,
+            "elapsedMs": 6.199999809265137
+          },
+          {
+            "name": "animateDesigners",
+            "startMs": 121.40000009536743,
+            "elapsedMs": 3.700000047683716
+          },
+          {
+            "name": "layoutLists",
+            "startMs": 125.10000014305115,
+            "elapsedMs": 2.5999999046325684
+          },
+          {
+            "name": "shapeTextRuns",
+            "startMs": 46.200000047683716,
+            "elapsedMs": 91.90000009536743
+          },
+          {
+            "name": "prepareTextInput",
+            "startMs": 45.5,
+            "elapsedMs": 102
+          },
+          {
+            "name": "analyzeEditors",
+            "startMs": 138.10000014305115,
+            "elapsedMs": 10.399999856948853
+          },
+          {
+            "name": "layoutTextRuns",
+            "startMs": 46.200000047683716,
+            "elapsedMs": 113.40000009536743
+          },
+          {
+            "name": "emitListParts",
+            "startMs": 127.70000004768372,
+            "elapsedMs": 31.90000009536743
+          },
+          {
+            "name": "layoutEditors",
+            "startMs": 147.60000014305115,
+            "elapsedMs": 12
+          },
+          {
+            "name": "evaluateModels",
+            "startMs": 159.70000004768372,
+            "elapsedMs": 5.599999904632568
+          },
+          {
+            "name": "pullModels",
+            "startMs": 159.60000014305115,
+            "elapsedMs": 5.799999952316284
+          },
+          {
+            "name": "pushModels",
+            "startMs": 159.70000004768372,
+            "elapsedMs": 5.700000047683716
+          },
+          {
+            "name": "emitEditorParts",
+            "startMs": 148.60000014305115,
+            "elapsedMs": 38.799999952316284
+          },
+          {
+            "name": "clearFrame",
+            "startMs": 165.40000009536743,
+            "elapsedMs": 27.899999856948853
+          },
+          {
+            "name": "applyDockInput",
+            "startMs": 193.29999995231628,
+            "elapsedMs": 12.100000143051147
+          },
+          {
+            "name": "hitTest",
+            "startMs": 165.40000009536743,
+            "elapsedMs": 46.5
+          },
+          {
+            "name": "applyInputActions",
+            "startMs": 187.40000009536743,
+            "elapsedMs": 24.5
+          },
+          {
+            "name": "applyEditorCommands",
+            "startMs": 212.10000014305115,
+            "elapsedMs": 35.89999985694885
+          },
+          {
+            "name": "input",
+            "startMs": 165.5,
+            "elapsedMs": 93.79999995231628
+          },
+          {
+            "name": "applyEditorInput",
+            "startMs": 205.40000009536743,
+            "elapsedMs": 62.09999990463257
+          },
+          {
+            "name": "applyDesignerInput",
+            "startMs": 212,
+            "elapsedMs": 65.5
+          },
+          {
+            "name": "applyDesignerCommands0",
+            "startMs": 248,
+            "elapsedMs": 46.40000009536743
+          },
+          {
+            "name": "applyDesignerCommands2",
+            "startMs": 267.5,
+            "elapsedMs": 31.799999952316284
+          },
+          {
+            "name": "applyDesignerCommands3",
+            "startMs": 277.5,
+            "elapsedMs": 27.700000047683716
+          },
+          {
+            "name": "applyDesignerCommands1",
+            "startMs": 259.40000009536743,
+            "elapsedMs": 53.89999985694885
+          },
+          {
+            "name": "applyDesignerCommands4",
+            "startMs": 294.60000014305115,
+            "elapsedMs": 32.39999985694885
+          },
+          {
+            "name": "applyDesignerCommands5",
+            "startMs": 299.2999999523163,
+            "elapsedMs": 33.90000009536743
+          },
+          {
+            "name": "applyDesignerCommands6",
+            "startMs": 305.2000000476837,
+            "elapsedMs": 28.59999990463257
+          },
+          {
+            "name": "finishDesignerEdit",
+            "startMs": 313.2999999523163,
+            "elapsedMs": 31.5
+          },
+          {
+            "name": "applyDesignerInspectorInput",
+            "startMs": 333.7999999523163,
+            "elapsedMs": 30.5
+          },
+          {
+            "name": "applyDesignerSurfaceInput",
+            "startMs": 327.10000014305115,
+            "elapsedMs": 40.89999985694885
+          },
+          {
+            "name": "applyDesignerTreeInput",
+            "startMs": 333.2000000476837,
+            "elapsedMs": 34.799999952316284
+          },
+          {
+            "name": "applyDesignerTimelineInput",
+            "startMs": 344.90000009536743,
+            "elapsedMs": 26.09999990463257
+          },
+          {
+            "name": "schedule",
+            "startMs": 368,
+            "elapsedMs": 19.5
+          },
+          {
+            "name": "resolveStyles",
+            "startMs": 368,
+            "elapsedMs": 19.5
+          },
+          {
+            "name": "applyDesignerColorInput",
+            "startMs": 364.40000009536743,
+            "elapsedMs": 26.899999856948853
+          },
+          {
+            "name": "animate",
+            "startMs": 391.40000009536743,
+            "elapsedMs": 1.7999999523162842
+          },
+          {
+            "name": "constraints",
+            "startMs": 387.60000014305115,
+            "elapsedMs": 12
+          },
+          {
+            "name": "compose",
+            "startMs": 393.2000000476837,
+            "elapsedMs": 7.299999952316284
+          },
+          {
+            "name": "arrange",
+            "startMs": 387.7000000476837,
+            "elapsedMs": 13
+          },
+          {
+            "name": "flatten",
+            "startMs": 399.60000014305115,
+            "elapsedMs": 9.299999952316284
+          },
+          {
+            "name": "measure",
+            "startMs": 371,
+            "elapsedMs": 49.40000009536743
+          },
+          {
+            "name": "emitDesignerSurface",
+            "startMs": 400.7000000476837,
+            "elapsedMs": 36.5
+          },
+          {
+            "name": "emitDesignerTree",
+            "startMs": 409,
+            "elapsedMs": 33.700000047683716
+          },
+          {
+            "name": "emit",
+            "startMs": 400.5,
+            "elapsedMs": 50.799999952316284
+          },
+          {
+            "name": "emitDesignerInspector",
+            "startMs": 420.40000009536743,
+            "elapsedMs": 44.200000047683716
+          },
+          {
+            "name": "emitDesignerTimeline",
+            "startMs": 437.2999999523163,
+            "elapsedMs": 30.200000047683716
+          },
+          {
+            "name": "emitDesignerColors",
+            "startMs": 442.7000000476837,
+            "elapsedMs": 26.700000047683716
+          },
+          {
+            "name": "damage",
+            "startMs": 464.7000000476837,
+            "elapsedMs": 4.700000047683716
+          },
+          {
+            "name": "prepareGlyphCache",
+            "startMs": 469.40000009536743,
+            "elapsedMs": 2.299999952316284
+          },
+          {
+            "name": "finishGlyphRequests",
+            "startMs": 469.5,
+            "elapsedMs": 2.200000047683716
+          },
+          {
+            "name": "prepareDraws",
+            "startMs": 471.7999999523163,
+            "elapsedMs": 2.200000047683716
+          },
+          {
+            "name": "collectGlyphRequests",
+            "startMs": 467.5,
+            "elapsedMs": 6.6000001430511475
+          },
+          {
+            "name": "rasterGlyphCache",
+            "startMs": 471.7999999523163,
+            "elapsedMs": 8.200000047683716
+          },
+          {
+            "name": "prepareJobs",
+            "startMs": 474.10000014305115,
+            "elapsedMs": 5.8999998569488525
+          },
+          {
+            "name": "emitDesignerAdorner",
+            "startMs": 451.40000009536743,
+            "elapsedMs": 30
+          },
+          {
+            "name": "prepareStrips",
+            "startMs": 480.10000014305115,
+            "elapsedMs": 2.5
+          },
+          {
+            "name": "buildJobs",
+            "startMs": 474,
+            "elapsedMs": 8.900000095367432
+          },
+          {
+            "name": "finishWork",
+            "startMs": 482.90000009536743,
+            "elapsedMs": 0.7000000476837158
+          },
+          {
+            "name": "binStrips",
+            "startMs": 481.40000009536743,
+            "elapsedMs": 2.299999952316284
+          },
+          {
+            "name": "canvas-copy",
+            "startMs": 483.7000000476837,
+            "elapsedMs": 1
+          },
+          {
+            "name": "finishFrame",
+            "startMs": 483.60000014305115,
+            "elapsedMs": 1.8999998569488525
+          },
+          {
+            "name": "composite",
+            "startMs": 482.60000014305115,
+            "elapsedMs": 4.199999809265137
+          },
+          {
+            "name": "recordMetrics",
+            "startMs": 484.7000000476837,
+            "elapsedMs": 4.5
+          },
+          {
+            "name": "makeStrips",
+            "startMs": 480.10000014305115,
+            "elapsedMs": 11.5
+          }
+        ]
+      },
+      "viewport": {
+        "width": 1280,
+        "height": 900,
+        "dpr": 2,
+        "w": 2560,
+        "h": 1800,
+        "tileCols": 160,
+        "tileRows": 113,
+        "requestedDpr": 1,
+        "requestedW": 2560,
+        "requestedH": 1800,
+        "nativeResolution": true,
+        "devicePixelBox": true,
+        "resolutionMode": "native",
+        "maxTiles": 65536,
+        "limitedBy": null
+      },
+      "stats": {
+        "frames": 20,
+        "uploadedBytes": 28408,
+        "initialUploadBytes": 69550888,
+        "readbackBytes": 0,
+        "submittedGraphs": 20,
+        "completedFrames": 19,
+        "skippedSubmissions": 19,
+        "peakFramesInFlight": 2,
+        "lastCompletionLatencyMs": 29.200000047683716,
+        "cpuLayoutEncodeMs": 0,
+        "cpuRenderEncodeMs": 0,
+        "animationFrameCallbacks": 38,
+        "rafHz": 125.04224400135178,
+        "rafSubmissions": 19,
+        "asapSubmissions": 0,
+        "completionCheckpoints": 20,
+        "cpuEncodeMs": 0.20000004768371582,
+        "cpuSubmitMs": 0.09999990463256836,
+        "pendingAcknowledgements": 1,
+        "rafCapacityDeferrals": 19,
+        "duplicateRafCallbacks": 0
+      },
+      "idleReadbackBytes": 0,
+      "interaction": null
+    },
+    {
+      "path": "helion-playground.html",
+      "status": "PASS",
+      "adapter": {
+        "vendor": "apple",
+        "architecture": "metal-3",
+        "device": "",
+        "description": ""
+      },
+      "startup": {
+        "status": "ready",
+        "cache": "disabled",
+        "fontMs": 73.59999990463257,
+        "compileMs": 65.70000004768372,
+        "pipelineMs": 205.20000004768372,
+        "mountMs": 260.7000000476837,
+        "firstCompletedMs": 317,
+        "pipelineEntries": [
+          {
+            "name": "resolveTemplateLayout",
+            "startMs": 46.60000014305115,
+            "elapsedMs": 34.5
+          },
+          {
+            "name": "resolveTemplateVisuals",
+            "startMs": 81.20000004768372,
+            "elapsedMs": 5.700000047683716
+          },
+          {
+            "name": "rankTemplateTree",
+            "startMs": 86.90000009536743,
+            "elapsedMs": 8.799999952316284
+          },
+          {
+            "name": "preparePresenterFrame",
+            "startMs": 95.79999995231628,
+            "elapsedMs": 2.3000001907348633
+          },
+          {
+            "name": "layoutLists",
+            "startMs": 98.10000014305115,
+            "elapsedMs": 3.8999998569488525
+          },
+          {
+            "name": "layoutTextRuns",
+            "startMs": 46.60000014305115,
+            "elapsedMs": 63.19999980926514
+          },
+          {
+            "name": "shapeTextRuns",
+            "startMs": 46.60000014305115,
+            "elapsedMs": 69
+          },
+          {
+            "name": "analyzeEditors",
+            "startMs": 109.79999995231628,
+            "elapsedMs": 9
+          },
+          {
+            "name": "prepareTextInput",
+            "startMs": 46.299999952316284,
+            "elapsedMs": 79
+          },
+          {
+            "name": "emitListParts",
+            "startMs": 102.10000014305115,
+            "elapsedMs": 23.199999809265137
+          },
+          {
+            "name": "layoutEditors",
+            "startMs": 115.60000014305115,
+            "elapsedMs": 9.699999809265137
+          },
+          {
+            "name": "evaluateModels",
+            "startMs": 125.40000009536743,
+            "elapsedMs": 4.099999904632568
+          },
+          {
+            "name": "pushModels",
+            "startMs": 125.40000009536743,
+            "elapsedMs": 4.200000047683716
+          },
+          {
+            "name": "pullModels",
+            "startMs": 125.29999995231628,
+            "elapsedMs": 5.400000095367432
+          },
+          {
+            "name": "emitEditorParts",
+            "startMs": 118.79999995231628,
+            "elapsedMs": 24.90000009536743
+          },
+          {
+            "name": "clearFrame",
+            "startMs": 129.5,
+            "elapsedMs": 17.799999952316284
+          },
+          {
+            "name": "hitTest",
+            "startMs": 129.60000014305115,
+            "elapsedMs": 21.799999952316284
+          },
+          {
+            "name": "applyDockInput",
+            "startMs": 147.40000009536743,
+            "elapsedMs": 11.399999856948853
+          },
+          {
+            "name": "applyInputActions",
+            "startMs": 143.70000004768372,
+            "elapsedMs": 21.799999952316284
+          },
+          {
+            "name": "schedule",
+            "startMs": 165.5,
+            "elapsedMs": 2.5
+          },
+          {
+            "name": "resolveStyles",
+            "startMs": 168.10000014305115,
+            "elapsedMs": 5.3999998569488525
+          },
+          {
+            "name": "applyEditorCommands",
+            "startMs": 158.79999995231628,
+            "elapsedMs": 25.40000009536743
+          },
+          {
+            "name": "applyEditorInput",
+            "startMs": 151.5,
+            "elapsedMs": 35.10000014305115
+          },
+          {
+            "name": "constraints",
+            "startMs": 184.20000004768372,
+            "elapsedMs": 15.799999952316284
+          },
+          {
+            "name": "input",
+            "startMs": 130.70000004768372,
+            "elapsedMs": 69.90000009536743
+          },
+          {
+            "name": "arrange",
+            "startMs": 186.60000014305115,
+            "elapsedMs": 15.199999809265137
+          },
+          {
+            "name": "animate",
+            "startMs": 200,
+            "elapsedMs": 3.799999952316284
+          },
+          {
+            "name": "initializeData",
+            "startMs": 201.79999995231628,
+            "elapsedMs": 3.700000047683716
+          },
+          {
+            "name": "measure",
+            "startMs": 173.70000004768372,
+            "elapsedMs": 33.299999952316284
+          },
+          {
+            "name": "filterScan",
+            "startMs": 203.79999995231628,
+            "elapsedMs": 3.200000047683716
+          },
+          {
+            "name": "compose",
+            "startMs": 200.60000014305115,
+            "elapsedMs": 7.599999904632568
+          },
+          {
+            "name": "scatterRows",
+            "startMs": 207.10000014305115,
+            "elapsedMs": 2.3999998569488525
+          },
+          {
+            "name": "scanBlocks",
+            "startMs": 205.5,
+            "elapsedMs": 6
+          },
+          {
+            "name": "sortBlocks",
+            "startMs": 207.10000014305115,
+            "elapsedMs": 4.3999998569488525
+          },
+          {
+            "name": "mergeRows",
+            "startMs": 208.20000004768372,
+            "elapsedMs": 11.400000095367432
+          },
+          {
+            "name": "resolveSelection",
+            "startMs": 209.5,
+            "elapsedMs": 10.100000143051147
+          },
+          {
+            "name": "flatten",
+            "startMs": 211.5,
+            "elapsedMs": 15
+          },
+          {
+            "name": "damage",
+            "startMs": 219.79999995231628,
+            "elapsedMs": 10.200000047683716
+          },
+          {
+            "name": "collectGlyphRequests",
+            "startMs": 226.5,
+            "elapsedMs": 3.799999952316284
+          },
+          {
+            "name": "finishGlyphRequests",
+            "startMs": 230.29999995231628,
+            "elapsedMs": 0.8000001907348633
+          },
+          {
+            "name": "prepareGlyphCache",
+            "startMs": 230,
+            "elapsedMs": 1.7000000476837158
+          },
+          {
+            "name": "prepareDraws",
+            "startMs": 231.70000004768372,
+            "elapsedMs": 0.7000000476837158
+          },
+          {
+            "name": "rasterGlyphCache",
+            "startMs": 231.10000014305115,
+            "elapsedMs": 5.3999998569488525
+          },
+          {
+            "name": "prepareJobs",
+            "startMs": 236.5,
+            "elapsedMs": 1.2999999523162842
+          },
+          {
+            "name": "buildJobs",
+            "startMs": 232.40000009536743,
+            "elapsedMs": 6.700000047683716
+          },
+          {
+            "name": "prepareStrips",
+            "startMs": 239.10000014305115,
+            "elapsedMs": 4.799999952316284
+          },
+          {
+            "name": "emitGridParts",
+            "startMs": 219.70000004768372,
+            "elapsedMs": 24.299999952316284
+          },
+          {
+            "name": "emit",
+            "startMs": 211.5,
+            "elapsedMs": 36.700000047683716
+          },
+          {
+            "name": "makeStrips",
+            "startMs": 237.79999995231628,
+            "elapsedMs": 10.400000095367432
+          },
+          {
+            "name": "composite",
+            "startMs": 244,
+            "elapsedMs": 4.200000047683716
+          },
+          {
+            "name": "binStrips",
+            "startMs": 244,
+            "elapsedMs": 4.900000095367432
+          },
+          {
+            "name": "finishWork",
+            "startMs": 248.20000004768372,
+            "elapsedMs": 1.0999999046325684
+          },
+          {
+            "name": "canvas-copy",
+            "startMs": 248.20000004768372,
+            "elapsedMs": 1.2000000476837158
+          },
+          {
+            "name": "finishFrame",
+            "startMs": 248.20000004768372,
+            "elapsedMs": 2.0999999046325684
+          },
+          {
+            "name": "recordMetrics",
+            "startMs": 248.90000009536743,
+            "elapsedMs": 2.5
+          }
+        ]
+      },
+      "viewport": {
+        "width": 1280,
+        "height": 900,
+        "dpr": 2,
+        "w": 2560,
+        "h": 1800,
+        "tileCols": 160,
+        "tileRows": 113,
+        "requestedDpr": 1,
+        "requestedW": 2560,
+        "requestedH": 1800,
+        "nativeResolution": true,
+        "devicePixelBox": true,
+        "resolutionMode": "native",
+        "maxTiles": 65536,
+        "limitedBy": null
+      },
+      "stats": {
+        "frames": 24,
+        "uploadedBytes": 2216,
+        "initialUploadBytes": 29337736,
+        "readbackBytes": 0,
+        "submittedGraphs": 24,
+        "completedFrames": 22,
+        "skippedSubmissions": 14,
+        "peakFramesInFlight": 2,
+        "lastCompletionLatencyMs": 18.799999952316284,
+        "cpuLayoutEncodeMs": 0,
+        "cpuRenderEncodeMs": 0.09999990463256836,
+        "animationFrameCallbacks": 37,
+        "rafHz": 121.74501183632057,
+        "rafSubmissions": 23,
+        "asapSubmissions": 0,
+        "completionCheckpoints": 24,
+        "cpuEncodeMs": 0.09999990463256836,
+        "cpuSubmitMs": 0,
+        "pendingAcknowledgements": 2,
+        "rafCapacityDeferrals": 14,
+        "duplicateRafCallbacks": 0
+      },
+      "idleReadbackBytes": 0,
+      "interaction": {
+        "status": "PASS",
+        "check": "Run app shortcut through sandbox worker to shared GPU preview",
+        "nodes": 38,
+        "frames": 3
+      }
+    },
+    {
+      "path": "helion-typography.html",
+      "status": "PASS",
+      "adapter": {
+        "vendor": "apple",
+        "architecture": "metal-3",
+        "device": "",
+        "description": ""
+      },
+      "startup": {
+        "status": "ready",
+        "cache": "disabled",
+        "fontMs": 305.7000000476837,
+        "compileMs": 91.20000004768372,
+        "pipelineMs": 185.39999985694885,
+        "mountMs": 449,
+        "firstCompletedMs": 554.7000000476837,
+        "pipelineEntries": [
+          {
+            "name": "resolveTemplateLayout",
+            "startMs": 32.40000009536743,
+            "elapsedMs": 27.200000047683716
+          },
+          {
+            "name": "resolveTemplateVisuals",
+            "startMs": 59.60000014305115,
+            "elapsedMs": 7.3999998569488525
+          },
+          {
+            "name": "rankTemplateTree",
+            "startMs": 67,
+            "elapsedMs": 7.900000095367432
+          },
+          {
+            "name": "analyzeEditors",
+            "startMs": 75,
+            "elapsedMs": 7.1000001430511475
+          },
+          {
+            "name": "layoutEditors",
+            "startMs": 82.20000004768372,
+            "elapsedMs": 4.900000095367432
+          },
+          {
+            "name": "shapeTextRuns",
+            "startMs": 32.299999952316284,
+            "elapsedMs": 61.10000014305115
+          },
+          {
+            "name": "layoutTextRuns",
+            "startMs": 32.40000009536743,
+            "elapsedMs": 63.700000047683716
+          },
+          {
+            "name": "prepareTextInput",
+            "startMs": 32.10000014305115,
+            "elapsedMs": 76.29999995231628
+          },
+          {
+            "name": "clearFrame",
+            "startMs": 93.40000009536743,
+            "elapsedMs": 15
+          },
+          {
+            "name": "emitEditorParts",
+            "startMs": 87.10000014305115,
+            "elapsedMs": 32.5
+          },
+          {
+            "name": "hitTest",
+            "startMs": 96.10000014305115,
+            "elapsedMs": 30.299999952316284
+          },
+          {
+            "name": "applyInputActions",
+            "startMs": 108.5,
+            "elapsedMs": 17.90000009536743
+          },
+          {
+            "name": "schedule",
+            "startMs": 126.5,
+            "elapsedMs": 6.1000001430511475
+          },
+          {
+            "name": "resolveStyles",
+            "startMs": 132.60000014305115,
+            "elapsedMs": 3.1999998092651367
+          },
+          {
+            "name": "applyEditorCommands",
+            "startMs": 126.40000009536743,
+            "elapsedMs": 25.200000047683716
+          },
+          {
+            "name": "applyEditorInput",
+            "startMs": 119.60000014305115,
+            "elapsedMs": 34.299999952316284
+          },
+          {
+            "name": "constraints",
+            "startMs": 151.60000014305115,
+            "elapsedMs": 7.8999998569488525
+          },
+          {
+            "name": "animate",
+            "startMs": 159.5,
+            "elapsedMs": 2.299999952316284
+          },
+          {
+            "name": "arrange",
+            "startMs": 153.90000009536743,
+            "elapsedMs": 14.599999904632568
+          },
+          {
+            "name": "input",
+            "startMs": 108.40000009536743,
+            "elapsedMs": 60.299999952316284
+          },
+          {
+            "name": "compose",
+            "startMs": 161.79999995231628,
+            "elapsedMs": 9.800000190734863
+          },
+          {
+            "name": "measure",
+            "startMs": 135.90000009536743,
+            "elapsedMs": 35.89999985694885
+          },
+          {
+            "name": "initializeData",
+            "startMs": 168.70000004768372,
+            "elapsedMs": 4
+          },
+          {
+            "name": "filterScan",
+            "startMs": 168.70000004768372,
+            "elapsedMs": 4
+          },
+          {
+            "name": "sortBlocks",
+            "startMs": 172.70000004768372,
+            "elapsedMs": 1.7000000476837158
+          },
+          {
+            "name": "scanBlocks",
+            "startMs": 171.60000014305115,
+            "elapsedMs": 3
+          },
+          {
+            "name": "scatterRows",
+            "startMs": 171.79999995231628,
+            "elapsedMs": 2.8000001907348633
+          },
+          {
+            "name": "mergeRows",
+            "startMs": 172.79999995231628,
+            "elapsedMs": 9.100000143051147
+          },
+          {
+            "name": "resolveSelection",
+            "startMs": 174.40000009536743,
+            "elapsedMs": 7.599999904632568
+          },
+          {
+            "name": "flatten",
+            "startMs": 174.60000014305115,
+            "elapsedMs": 14
+          },
+          {
+            "name": "damage",
+            "startMs": 182.10000014305115,
+            "elapsedMs": 13.299999952316284
+          },
+          {
+            "name": "collectGlyphRequests",
+            "startMs": 188.60000014305115,
+            "elapsedMs": 7.299999952316284
+          },
+          {
+            "name": "finishGlyphRequests",
+            "startMs": 195.90000009536743,
+            "elapsedMs": 0.7999999523162842
+          },
+          {
+            "name": "prepareGlyphCache",
+            "startMs": 195.40000009536743,
+            "elapsedMs": 3.299999952316284
+          },
+          {
+            "name": "prepareDraws",
+            "startMs": 198.79999995231628,
+            "elapsedMs": 1.4000000953674316
+          },
+          {
+            "name": "rasterGlyphCache",
+            "startMs": 196.79999995231628,
+            "elapsedMs": 3.5
+          },
+          {
+            "name": "prepareJobs",
+            "startMs": 200.29999995231628,
+            "elapsedMs": 5.5
+          },
+          {
+            "name": "emitGridParts",
+            "startMs": 182,
+            "elapsedMs": 24.100000143051147
+          },
+          {
+            "name": "prepareStrips",
+            "startMs": 206.10000014305115,
+            "elapsedMs": 1.5999999046325684
+          },
+          {
+            "name": "buildJobs",
+            "startMs": 200.20000004768372,
+            "elapsedMs": 9.400000095367432
+          },
+          {
+            "name": "binStrips",
+            "startMs": 207.79999995231628,
+            "elapsedMs": 2.700000047683716
+          },
+          {
+            "name": "finishWork",
+            "startMs": 210.5,
+            "elapsedMs": 1.1000001430511475
+          },
+          {
+            "name": "composite",
+            "startMs": 209.60000014305115,
+            "elapsedMs": 4.699999809265137
+          },
+          {
+            "name": "finishFrame",
+            "startMs": 211.60000014305115,
+            "elapsedMs": 2.6999998092651367
+          },
+          {
+            "name": "emit",
+            "startMs": 174.60000014305115,
+            "elapsedMs": 40.299999952316284
+          },
+          {
+            "name": "canvas-copy",
+            "startMs": 214.29999995231628,
+            "elapsedMs": 2.4000000953674316
+          },
+          {
+            "name": "makeStrips",
+            "startMs": 205.90000009536743,
+            "elapsedMs": 10.799999952316284
+          },
+          {
+            "name": "recordMetrics",
+            "startMs": 214.5,
+            "elapsedMs": 3
+          }
+        ]
+      },
+      "viewport": {
+        "width": 1280,
+        "height": 900,
+        "dpr": 2,
+        "w": 2560,
+        "h": 1800,
+        "tileCols": 160,
+        "tileRows": 113,
+        "requestedDpr": 1,
+        "requestedW": 2560,
+        "requestedH": 1800,
+        "nativeResolution": true,
+        "devicePixelBox": true,
+        "resolutionMode": "native",
+        "maxTiles": 65536,
+        "limitedBy": null
+      },
+      "stats": {
+        "frames": 26,
+        "uploadedBytes": 1664,
+        "initialUploadBytes": 48616540,
+        "readbackBytes": 0,
+        "submittedGraphs": 26,
+        "completedFrames": 24,
+        "skippedSubmissions": 12,
+        "peakFramesInFlight": 2,
+        "lastCompletionLatencyMs": 22.899999856948853,
+        "cpuLayoutEncodeMs": 0,
+        "cpuRenderEncodeMs": 0,
+        "animationFrameCallbacks": 37,
+        "rafHz": 119.99999999999999,
+        "rafSubmissions": 25,
+        "asapSubmissions": 0,
+        "completionCheckpoints": 26,
+        "cpuEncodeMs": 0.09999990463256836,
+        "cpuSubmitMs": 0,
+        "pendingAcknowledgements": 2,
+        "rafCapacityDeferrals": 12,
+        "duplicateRafCallbacks": 0
+      },
+      "idleReadbackBytes": 0,
+      "interaction": null
+    }
+  ]
+}

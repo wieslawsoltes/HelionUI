@@ -33,14 +33,15 @@ font controls. Use complete replacement files from the same version.
 
 The watchdog Illegal invocation was reproduced and its repair tested with real
 Chromium timers. The embedded worker also passed an isolated real-browser test.
-Full served app/GPU execution remains unverified in the authoring environment.
-See `docs/worker-launch-repair.md` and the validation report for exact scope.
+The current browser repair also verifies served apps and native GPU execution.
+See `docs/browser-pipeline-repair.md` for the measured adapter and exact scope,
+and `docs/worker-launch-repair.md` for the earlier worker repair.
 
 Studio now includes a Templates dock pane for assignment, theme switching, JSON
 definition editing and visual part editing. In the playground choose the new
 Control templates example. Read docs/TEMPLATES.md for the supported contract and
 explicit limits; these are original Fluent/macOS-inspired themes, not native OS
-materials. Full GPU/browser pixel validation remains unverified.
+materials. Native pixel checks cover the fixtures listed in the browser repair audit.
 
 0.14 adds Studio contrast/density/accent/motion settings and state previews. In the
 playground, choose Theme lab · contrast, density & accent. These are GPU-rendered

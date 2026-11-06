@@ -6,6 +6,13 @@
 
 JavaScript or inert HTML views compile into retained buffers. Compute shaders execute control state, logical Measure/Arrange, models, editor operations, DataGrid queries, composition, text/vector coverage and pixel compositing. The browser supplies source preparation, operating-system input/services, frame scheduling and final presentation.
 
+Browser startup repair: large input, shaping and designer compiler graphs now use
+bounded GPU stages. Retina backing pixels and shader scale agree. See the
+[pipeline audit and hardware results](docs/browser-pipeline-repair.md) and run
+`npm run check:browser` with optional Playwright and an installed WebGPU Chrome.
+Further [startup reductions and measurements](docs/browser-startup-optimization.md)
+are validated; the 200 ms navigation-to-frame target remains unmet.
+
 ## 0.15: retained shaping and paragraph layout
 
 TextBox/native template content, shaped labels, DrawingContext text, Studio's
@@ -18,8 +25,9 @@ the standalone package. Fonts load at runtime or from local selections, never
 from embedded font binaries. All previous applications remain included.
 
 See [the typography contract](docs/TYPOGRAPHY.md), [validation](docs/typography-validation.json)
-and [differential samples](docs/typography-differential.json). Native GPU execution,
-pixels and performance are unverified here. Full complex-script/Unicode/editor
+and [differential samples](docs/typography-differential.json). Native GPU checks
+are now recorded in the [browser repair audit](docs/browser-pipeline-repair.md).
+Full complex-script/Unicode/editor
 parity and variable/color fonts are not claimed. The code editor still uses fixed
 cells; its grapheme operations improved, not its entire bidi layout engine.
 
@@ -38,8 +46,9 @@ visual-state previews. Its JSON/visual-part catalog workflows remain. Playground
 includes an editable Theme Lab alongside the eleven earlier examples.
 
 Host/source/type/bundle and actual isolated browser-worker checks are recorded in
-[Current validation](docs/VALIDATION.md). **Native GPU acceptance, rendered pixels,
-full browser interactions and hardware performance remain unverified.** These are
+[Current validation](docs/VALIDATION.md). Native GPU acceptance and pixel checks
+have since passed on the adapter recorded in the browser repair audit; full browser
+coverage and portable performance are not claimed. These are
 original themes, not native OS rendering, complete accessibility or full framework
 parity. No font assets or CPU renderer are included.
 [Refinement/API/cost guide](docs/THEME-REFINEMENT.md) ·
@@ -99,8 +108,8 @@ The project includes three editable samples, a standalone designer and an embedd
 standalone-app exporter. Use Designer in the playground/showcase to open it.
 The application is Blend-inspired, **not feature-complete Microsoft Blend parity**.
 
-**The historical 0.12 designer release did not have native GPU qualification.** Current Chromium navigation is blocked by
-`ERR_BLOCKED_BY_ADMINISTRATOR`; the optional native binding is unavailable.
+**The historical 0.12 designer release did not have native GPU qualification.**
+The current browser repair includes actual designer GPU execution and pixel tests.
 [Designer API, ownership, costs and limits](docs/DESIGNER.md) ·
 [Current validation](docs/VALIDATION.md) · [Preservation](docs/designer-preservation.json)
 
