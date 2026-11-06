@@ -12,10 +12,11 @@ import {examples} from './examples.js';
 // the execution sandbox. All visible workbench controls are retained Helion UI.
 const $=id=>document.getElementById(id);
 const limits={maxHeapWords:16777216,maxNodes:512,maxDepth:24,maxRows:65536};
-let workbench=null,preview=null,sandbox=null,epoch=0,bootEpoch=0,autoRun=false;
+let workbench=null,preview=null,sandbox=null,epoch=0,bootEpoch=0,bootController=null,autoRun=false;
 let fontPromise=null,localFonts=null,bundlePromise=null,autoTimer=null,logTimer=null;
 let logs=[],nextRow=100,patchSerial=0,appOperations=Promise.resolve(),pendingOperations=0;
-let hud=false,design=[0,0],lastBootData={code:examples[0].code,css:examples[0].css};
+const defaultBootData=Object.freeze({code:examples[0].code,css:examples[0].css});
+let hud=false,design=[0,0],lastBootData=defaultBootData;
 const text=(value,max=500)=>Array.from(String(value)).slice(0,max).join('');
 function bootNotice(value){$('boot').hidden=false;$('boot-detail').textContent=value;}
 function status(value){if(workbench&&!workbench.disposed)workbench.setText('runtime-status',text(value));}
@@ -33,11 +34,11 @@ function keyboard(event){const ctrl=event.ctrlKey||event.metaKey;const key=event
  return false;
 }
 async function boot(data=lastBootData){
+ bootController?.abort();const controller=new AbortController();bootController=controller;
  const token=++bootEpoch;lastBootData=data;bootNotice('Loading the real font and preparing compute pipelines…');
  let next;
  try{
-  const faces=await fonts();if(token!==bootEpoch)return;
-  next=await HelionSurface.mount($('workbench'),createGPUShell({...data,examples}),{fonts:faces,limits,autoStart:false,startupWorker:true,maxFramesInFlight:2,submissionMode:'vsync',performanceHUD:false,profiling:true,gpuTiming:true,timingDetail:'off',onAction:action,onKey:keyboard,editorChangeEvents:false,onStartup:e=>{if(token===bootEpoch)bootNotice(e.detail);},onError:error=>{bootNotice(error.message);log('error',error.message);},onDiagnosticsError:error=>log('warning',error.message)});
+  next=await HelionSurface.mount($('workbench'),createGPUShell({...data,examples}),{fontSources:localFonts||EDITOR_FONT_SOURCES,signal:controller.signal,startupCache:!localFonts&&data===defaultBootData?'playground-public-example-v1':false,limits,autoStart:false,startupWorker:true,maxFramesInFlight:2,submissionMode:'vsync',performanceHUD:false,profiling:true,gpuTiming:true,timingDetail:'off',onAction:action,onKey:keyboard,editorChangeEvents:false,onStartup:e=>{if(token===bootEpoch)bootNotice(e.detail);},onError:error=>{bootNotice(error.message);log('error',error.message);},onDiagnosticsError:error=>log('warning',error.message)});
   if(token!==bootEpoch){next.dispose();return;}
   workbench=next;globalThis.helionWorkbench=workbench;
   if(data.dataset)workbench.dataSource('dataset').replace(data.dataset);
@@ -139,5 +140,5 @@ $('open-file').addEventListener('change',async()=>{try{const file=$('open-file')
 $('layout-file').addEventListener('change',async()=>{try{const file=$('layout-file').files[0];if(file&&workbench){if(file.size>65536)throw new RangeError('Layout file exceeds 64 KiB');await workbench.docking('workspace-dock').restore(JSON.parse(await file.text()));}}catch(error){log('error',error.message);}finally{$('layout-file').value='';}});
 $('font-files').addEventListener('change',async()=>{try{const files=[...$('font-files').files];if(!files.length)return;if(files.length>8)throw new RangeError('Choose 1–8 static faces');const data=workbench?await readWorkspace():lastBootData;stop({silent:true});workbench?.dispose();workbench=null;localFonts=files.map(source=>({source,family:'Noto Sans Mono'}));fontPromise=null;autoRun=false;hud=false;await boot(data);log('info','Font remount retained the snapshot; undo history was reset.');}catch(error){bootNotice(error.message);console.error(error);}finally{$('font-files').value='';}});
 document.addEventListener('keydown',event=>{if(!event.defaultPrevented)keyboard(event);});
-addEventListener('pagehide',()=>{bootEpoch++;stop({silent:true});clearTimeout(logTimer);workbench?.dispose();});
+addEventListener('pagehide',()=>{bootEpoch++;bootController?.abort();stop({silent:true});clearTimeout(logTimer);workbench?.dispose();});
 boot();
