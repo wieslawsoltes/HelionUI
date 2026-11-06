@@ -1,0 +1,2126 @@
+{
+  "date": "2026-11-06",
+  "baselineCommit": "3e840c8",
+  "implementationCommits": [
+    "eb46000",
+    "dddcbd0"
+  ],
+  "scope": "Single-machine observational samples, headed Chrome on Apple metal-3, native Retina allocation. No simultaneous benchmark runs. Warm driver/IDB reloads on a no-store localhost server are not cold/CDN guarantees. GPU elapsed ranges include overlap and are not exclusive GPU busy time. Host capacity deferrals are not compositor dropped frames.",
+  "publishedBaseline": {
+    "url": "https://wieslawsoltes.github.io/HelionUI/designer/index.html",
+    "runtimeSHA256": "60d1799f4005e53167683b8f308dd35eee701cd22615ea1044367828dc2571a8",
+    "matchesLocalBaseline": true
+  },
+  "fullKernelABIBindingLayouts": {
+    "before": 85,
+    "after": 27
+  },
+  "frames": {
+    "baseline": {
+      "status": "PASS",
+      "browser": "156.0.8078.80",
+      "seconds": 6,
+      "width": 1280,
+      "height": 900,
+      "dpr": 1,
+      "pointer": false,
+      "trace": true,
+      "delta": {
+        "frames": 344,
+        "completedFrames": 344,
+        "skippedSubmissions": 371,
+        "rafCapacityDeferrals": 371,
+        "animationFrameCallbacks": 715,
+        "readbackBytes": 0,
+        "uploadedBytes": 22880
+      },
+      "callbackGaps": {
+        "referenceIntervalMs": 8.299999999999727,
+        "intervals": 714,
+        "longerThanOneAndHalfIntervals": 6,
+        "note": "Relative to observed lower-quartile rAF interval; not hardware-vsync or compositor drop measurement."
+      },
+      "actualViewport": {
+        "width": 1280,
+        "height": 900,
+        "dpr": 2,
+        "w": 2560,
+        "h": 1800,
+        "tileCols": 160,
+        "tileRows": 113,
+        "requestedDpr": 1,
+        "requestedW": 2560,
+        "requestedH": 1800,
+        "nativeResolution": true,
+        "devicePixelBox": true,
+        "resolutionMode": "native",
+        "maxTiles": 65536,
+        "limitedBy": null
+      },
+      "manifest": {
+        "nodes": 483,
+        "depth": 24,
+        "templateLevels": 1,
+        "templateLayout": true,
+        "shapedTexts": 96,
+        "designers": 1
+      },
+      "captureDurationMs": 6009.799999952316,
+      "cpuEncodeMs": {
+        "count": 344,
+        "min": 0,
+        "median": 0.10000014305114746,
+        "p95": 0.20000004768371582,
+        "max": 0.3000001907348633
+      },
+      "cpuSubmitMs": {
+        "count": 344,
+        "min": 0,
+        "median": 0,
+        "p95": 0.10000014305114746,
+        "max": 0.20000004768371582
+      },
+      "submissionIntervalsMs": {
+        "count": 343,
+        "min": 8.099999904632568,
+        "median": 16.700000047683716,
+        "p95": 24.899999856948853,
+        "max": 25.90000009536743
+      },
+      "pacing": {
+        "policy": "bounded-latest-input",
+        "maxFramesInFlight": 2,
+        "vsyncLimit": 2,
+        "asapLimit": 8,
+        "unacknowledgedFrames": 1,
+        "pendingCheckpoints": 1,
+        "acknowledgementStrategy": "independent-per-submission",
+        "note": "Unacknowledged submissions include notification latency; not actual driver queue depth. Capacity deferrals are NOT compositor dropped frames."
+      },
+      "gpuTimingDetail": "frame",
+      "gpuPostCaptureHistoryMedianMs": {
+        "span": 15.532032012939453,
+        "input": 0.2949119955301285,
+        "layout": 0.32767999172210693,
+        "data": 0.0,
+        "scene": 14.286848068237305,
+        "glyph": -1.0,
+        "sparse": -1.0,
+        "hud": -1.0,
+        "present": 15.138815879821777
+      },
+      "resident": {
+        "overflow": null
+      },
+      "chromeTraceEvents": {
+        "DroppedFrame": 7,
+        "CommitPresentedFrameToCA": 348,
+        "Scheduler::MissedBeginFrameDropped": 1,
+        "Scheduler::BeginFrameDropped": 1
+      }
+    },
+    "stages": {
+      "status": "PASS",
+      "browser": "156.0.8078.80",
+      "seconds": 6,
+      "width": 1280,
+      "height": 900,
+      "dpr": 1,
+      "pointer": false,
+      "trace": false,
+      "delta": {
+        "frames": 341,
+        "completedFrames": 341,
+        "skippedSubmissions": 381,
+        "rafCapacityDeferrals": 381,
+        "animationFrameCallbacks": 722,
+        "readbackBytes": 0,
+        "uploadedBytes": 21824
+      },
+      "callbackGaps": {
+        "referenceIntervalMs": 8.200000000000728,
+        "intervals": 721,
+        "longerThanOneAndHalfIntervals": 0,
+        "note": "Relative to observed lower-quartile rAF interval; not hardware-vsync or compositor drop measurement."
+      },
+      "actualViewport": {
+        "width": 1280,
+        "height": 900,
+        "dpr": 2,
+        "w": 2560,
+        "h": 1800,
+        "tileCols": 160,
+        "tileRows": 113,
+        "requestedDpr": 1,
+        "requestedW": 2560,
+        "requestedH": 1800,
+        "nativeResolution": true,
+        "devicePixelBox": true,
+        "resolutionMode": "native",
+        "maxTiles": 65536,
+        "limitedBy": null
+      },
+      "manifest": {
+        "nodes": 483,
+        "depth": 24,
+        "templateLevels": 1,
+        "templateLayout": true,
+        "shapedTexts": 96,
+        "designers": 1
+      },
+      "captureDurationMs": 6025.100000143051,
+      "cpuEncodeMs": {
+        "count": 341,
+        "min": 0,
+        "median": 0.20000004768371582,
+        "p95": 0.3000001907348633,
+        "max": 2.700000047683716
+      },
+      "cpuSubmitMs": {
+        "count": 341,
+        "min": 0,
+        "median": 0,
+        "p95": 0.10000014305114746,
+        "max": 0.5
+      },
+      "submissionIntervalsMs": {
+        "count": 340,
+        "min": 7.599999904632568,
+        "median": 16.700000047683716,
+        "p95": 25,
+        "max": 28.399999856948853
+      },
+      "pacing": {
+        "policy": "bounded-latest-input",
+        "maxFramesInFlight": 2,
+        "vsyncLimit": 2,
+        "asapLimit": 8,
+        "unacknowledgedFrames": 2,
+        "pendingCheckpoints": 2,
+        "acknowledgementStrategy": "independent-per-submission",
+        "note": "Unacknowledged submissions include notification latency; not actual driver queue depth. Capacity deferrals are NOT compositor dropped frames."
+      },
+      "gpuTimingDetail": "stages",
+      "gpuPostCaptureHistoryMedianMs": {
+        "span": 14.614527702331543,
+        "input": 0.32767999172210693,
+        "layout": 0.32767999172210693,
+        "data": 0.0,
+        "scene": 2.8180480003356934,
+        "glyph": 0.0,
+        "sparse": 10.747903823852539,
+        "hud": 0.0,
+        "present": 13.959168434143066
+      },
+      "resident": {
+        "overflow": null
+      }
+    },
+    "damage": {
+      "status": "PASS",
+      "browser": "156.0.8078.80",
+      "seconds": 6,
+      "width": 1280,
+      "height": 900,
+      "dpr": 1,
+      "pointer": false,
+      "trace": false,
+      "delta": {
+        "frames": 725,
+        "completedFrames": 725,
+        "skippedSubmissions": 0,
+        "rafCapacityDeferrals": 0,
+        "animationFrameCallbacks": 725,
+        "readbackBytes": 0,
+        "uploadedBytes": 46400
+      },
+      "callbackGaps": {
+        "referenceIntervalMs": 8.299999999999272,
+        "intervals": 724,
+        "longerThanOneAndHalfIntervals": 0,
+        "note": "Relative to observed lower-quartile rAF interval; not hardware-vsync or compositor drop measurement."
+      },
+      "actualViewport": {
+        "width": 1280,
+        "height": 900,
+        "dpr": 2,
+        "w": 2560,
+        "h": 1800,
+        "tileCols": 160,
+        "tileRows": 113,
+        "requestedDpr": 1,
+        "requestedW": 2560,
+        "requestedH": 1800,
+        "nativeResolution": true,
+        "devicePixelBox": true,
+        "resolutionMode": "native",
+        "maxTiles": 65536,
+        "limitedBy": null
+      },
+      "manifest": {
+        "nodes": 483,
+        "depth": 24,
+        "templateLevels": 1,
+        "templateLayout": true,
+        "shapedTexts": 96,
+        "designers": 1
+      },
+      "captureDurationMs": 6046.0,
+      "cpuEncodeMs": {
+        "count": 725,
+        "min": 0,
+        "median": 0.10000014305114746,
+        "p95": 0.2999999523162842,
+        "max": 0.40000009536743164
+      },
+      "cpuSubmitMs": {
+        "count": 725,
+        "min": 0,
+        "median": 0,
+        "p95": 0.10000014305114746,
+        "max": 0.20000004768371582
+      },
+      "submissionIntervalsMs": {
+        "count": 724,
+        "min": 6.400000095367432,
+        "median": 8.300000190734863,
+        "p95": 9,
+        "max": 10.5
+      },
+      "pacing": {
+        "policy": "bounded-latest-input",
+        "maxFramesInFlight": 2,
+        "vsyncLimit": 2,
+        "asapLimit": 8,
+        "unacknowledgedFrames": 1,
+        "pendingCheckpoints": 1,
+        "acknowledgementStrategy": "independent-per-submission",
+        "note": "Unacknowledged submissions include notification latency; not actual driver queue depth. Capacity deferrals are NOT compositor dropped frames."
+      },
+      "gpuTimingDetail": "stages",
+      "gpuPostCaptureHistoryMedianMs": {
+        "span": 4.128767967224121,
+        "input": 0.32767999172210693,
+        "layout": 0.32767999172210693,
+        "data": 0.0,
+        "scene": 3.0801920890808105,
+        "glyph": 0.0,
+        "sparse": 0.0655359998345375,
+        "hud": 0.0,
+        "present": 3.8010880947113037
+      },
+      "resident": {
+        "scratch": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "draw": [
+          1485,
+          0,
+          0,
+          0
+        ],
+        "dirtyTiles": 0,
+        "totalTiles": 18080,
+        "overflow": 0
+      }
+    },
+    "narrow": {
+      "status": "PASS",
+      "browser": "156.0.8078.80",
+      "seconds": 6,
+      "width": 560,
+      "height": 950,
+      "dpr": 2,
+      "pointer": false,
+      "trace": false,
+      "delta": {
+        "frames": 461,
+        "completedFrames": 461,
+        "skippedSubmissions": 263,
+        "rafCapacityDeferrals": 263,
+        "animationFrameCallbacks": 724,
+        "readbackBytes": 0,
+        "uploadedBytes": 29504
+      },
+      "callbackGaps": {
+        "referenceIntervalMs": 8.299999999999272,
+        "intervals": 723,
+        "longerThanOneAndHalfIntervals": 0,
+        "note": "Relative to observed lower-quartile rAF interval; not hardware-vsync or compositor drop measurement."
+      },
+      "actualViewport": {
+        "width": 560,
+        "height": 950,
+        "dpr": 2,
+        "w": 1120,
+        "h": 1900,
+        "tileCols": 70,
+        "tileRows": 119,
+        "requestedDpr": 2,
+        "requestedW": 1120,
+        "requestedH": 1900,
+        "nativeResolution": true,
+        "devicePixelBox": true,
+        "resolutionMode": "native",
+        "maxTiles": 65536,
+        "limitedBy": null
+      },
+      "manifest": {
+        "nodes": 483,
+        "depth": 24,
+        "templateLevels": 1,
+        "templateLayout": true,
+        "shapedTexts": 96,
+        "designers": 1
+      },
+      "captureDurationMs": 6030.299999952316,
+      "cpuEncodeMs": {
+        "count": 461,
+        "min": 0,
+        "median": 0.20000004768371582,
+        "p95": 0.2999999523162842,
+        "max": 1
+      },
+      "cpuSubmitMs": {
+        "count": 461,
+        "min": 0,
+        "median": 0,
+        "p95": 0.10000014305114746,
+        "max": 0.20000004768371582
+      },
+      "submissionIntervalsMs": {
+        "count": 460,
+        "min": 7,
+        "median": 16.59999990463257,
+        "p95": 17.5,
+        "max": 25.09999990463257
+      },
+      "pacing": {
+        "policy": "bounded-latest-input",
+        "maxFramesInFlight": 2,
+        "vsyncLimit": 2,
+        "asapLimit": 8,
+        "unacknowledgedFrames": 2,
+        "pendingCheckpoints": 2,
+        "acknowledgementStrategy": "independent-per-submission",
+        "note": "Unacknowledged submissions include notification latency; not actual driver queue depth. Capacity deferrals are NOT compositor dropped frames."
+      },
+      "gpuTimingDetail": "stages",
+      "gpuPostCaptureHistoryMedianMs": {
+        "span": 10.61683177947998,
+        "input": 0.32767999172210693,
+        "layout": 0.32767999172210693,
+        "data": 0.0,
+        "scene": 2.6869759559631348,
+        "glyph": 0.0,
+        "sparse": 5.799936056137085,
+        "hud": 0.0,
+        "present": 10.354687690734863
+      },
+      "resident": {
+        "scratch": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          437
+        ],
+        "draw": [
+          1088,
+          0,
+          0,
+          0
+        ],
+        "dirtyTiles": 0,
+        "totalTiles": 8330,
+        "overflow": 0
+      }
+    },
+    "pointer-before": {
+      "status": "PASS",
+      "browser": "156.0.8078.80",
+      "seconds": 6,
+      "width": 560,
+      "height": 950,
+      "dpr": 2,
+      "pointer": true,
+      "trace": false,
+      "delta": {
+        "frames": 656,
+        "completedFrames": 656,
+        "skippedSubmissions": 69,
+        "rafCapacityDeferrals": 69,
+        "animationFrameCallbacks": 725,
+        "readbackBytes": 0,
+        "uploadedBytes": 54272
+      },
+      "callbackGaps": {
+        "referenceIntervalMs": 8.199999999999818,
+        "intervals": 724,
+        "longerThanOneAndHalfIntervals": 0,
+        "note": "Relative to observed lower-quartile rAF interval; not hardware-vsync or compositor drop measurement."
+      },
+      "actualViewport": {
+        "width": 560,
+        "height": 950,
+        "dpr": 2,
+        "w": 1120,
+        "h": 1900,
+        "tileCols": 70,
+        "tileRows": 119,
+        "requestedDpr": 2,
+        "requestedW": 1120,
+        "requestedH": 1900,
+        "nativeResolution": true,
+        "devicePixelBox": true,
+        "resolutionMode": "native",
+        "maxTiles": 65536,
+        "limitedBy": null
+      },
+      "manifest": {
+        "nodes": 483,
+        "depth": 24,
+        "templateLevels": 1,
+        "templateLayout": true,
+        "shapedTexts": 96,
+        "designers": 1
+      },
+      "captureDurationMs": 6040.0,
+      "cpuEncodeMs": {
+        "count": 656,
+        "min": 0,
+        "median": 0.19999980926513672,
+        "p95": 0.2999999523162842,
+        "max": 1
+      },
+      "cpuSubmitMs": {
+        "count": 656,
+        "min": 0,
+        "median": 0,
+        "p95": 0.10000014305114746,
+        "max": 0.20000004768371582
+      },
+      "submissionIntervalsMs": {
+        "count": 655,
+        "min": 6.900000095367432,
+        "median": 8.300000190734863,
+        "p95": 16.90000009536743,
+        "max": 17.59999990463257
+      },
+      "pacing": {
+        "policy": "bounded-latest-input",
+        "maxFramesInFlight": 2,
+        "vsyncLimit": 2,
+        "asapLimit": 8,
+        "unacknowledgedFrames": 2,
+        "pendingCheckpoints": 2,
+        "acknowledgementStrategy": "independent-per-submission",
+        "note": "Unacknowledged submissions include notification latency; not actual driver queue depth. Capacity deferrals are NOT compositor dropped frames."
+      },
+      "gpuTimingDetail": "off",
+      "gpuPostCaptureHistoryMedianMs": {},
+      "resident": {
+        "scratch": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "draw": [
+          1088,
+          0,
+          0,
+          0
+        ],
+        "dirtyTiles": 0,
+        "totalTiles": 8330,
+        "overflow": 0
+      }
+    },
+    "pointer-after": {
+      "status": "PASS",
+      "browser": "156.0.8078.80",
+      "seconds": 6,
+      "width": 560,
+      "height": 950,
+      "dpr": 2,
+      "pointer": true,
+      "trace": false,
+      "delta": {
+        "frames": 722,
+        "completedFrames": 722,
+        "skippedSubmissions": 0,
+        "rafCapacityDeferrals": 0,
+        "animationFrameCallbacks": 722,
+        "readbackBytes": 0,
+        "uploadedBytes": 57792
+      },
+      "callbackGaps": {
+        "referenceIntervalMs": 8.299999999999272,
+        "intervals": 721,
+        "longerThanOneAndHalfIntervals": 0,
+        "note": "Relative to observed lower-quartile rAF interval; not hardware-vsync or compositor drop measurement."
+      },
+      "actualViewport": {
+        "width": 560,
+        "height": 950,
+        "dpr": 2,
+        "w": 1120,
+        "h": 1900,
+        "tileCols": 70,
+        "tileRows": 119,
+        "requestedDpr": 2,
+        "requestedW": 1120,
+        "requestedH": 1900,
+        "nativeResolution": true,
+        "devicePixelBox": true,
+        "resolutionMode": "native",
+        "maxTiles": 65536,
+        "limitedBy": null
+      },
+      "manifest": {
+        "nodes": 483,
+        "depth": 24,
+        "templateLevels": 1,
+        "templateLayout": true,
+        "shapedTexts": 96,
+        "designers": 1
+      },
+      "captureDurationMs": 6015.099999904633,
+      "cpuEncodeMs": {
+        "count": 722,
+        "min": 0,
+        "median": 0.10000014305114746,
+        "p95": 0.2999999523162842,
+        "max": 0.40000009536743164
+      },
+      "cpuSubmitMs": {
+        "count": 722,
+        "min": 0,
+        "median": 0,
+        "p95": 0.09999990463256836,
+        "max": 0.10000014305114746
+      },
+      "submissionIntervalsMs": {
+        "count": 721,
+        "min": 7,
+        "median": 8.300000190734863,
+        "p95": 9.099999904632568,
+        "max": 9.600000143051147
+      },
+      "pacing": {
+        "policy": "bounded-latest-input",
+        "maxFramesInFlight": 2,
+        "vsyncLimit": 2,
+        "asapLimit": 8,
+        "unacknowledgedFrames": 1,
+        "pendingCheckpoints": 1,
+        "acknowledgementStrategy": "independent-per-submission",
+        "note": "Unacknowledged submissions include notification latency; not actual driver queue depth. Capacity deferrals are NOT compositor dropped frames."
+      },
+      "gpuTimingDetail": "off",
+      "gpuPostCaptureHistoryMedianMs": {},
+      "resident": {
+        "scratch": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "draw": [
+          1088,
+          0,
+          0,
+          0
+        ],
+        "dirtyTiles": 0,
+        "totalTiles": 8330,
+        "overflow": 0
+      }
+    },
+    "final-trace": {
+      "status": "PASS",
+      "browser": "156.0.8078.80",
+      "seconds": 6,
+      "width": 1280,
+      "height": 900,
+      "dpr": 1,
+      "pointer": false,
+      "trace": true,
+      "delta": {
+        "frames": 721,
+        "completedFrames": 722,
+        "skippedSubmissions": 0,
+        "rafCapacityDeferrals": 0,
+        "animationFrameCallbacks": 721,
+        "readbackBytes": 0,
+        "uploadedBytes": 46144
+      },
+      "callbackGaps": {
+        "referenceIntervalMs": 8.199999999999818,
+        "intervals": 720,
+        "longerThanOneAndHalfIntervals": 0,
+        "note": "Relative to observed lower-quartile rAF interval; not hardware-vsync or compositor drop measurement."
+      },
+      "actualViewport": {
+        "width": 1280,
+        "height": 900,
+        "dpr": 2,
+        "w": 2560,
+        "h": 1800,
+        "tileCols": 160,
+        "tileRows": 113,
+        "requestedDpr": 1,
+        "requestedW": 2560,
+        "requestedH": 1800,
+        "nativeResolution": true,
+        "devicePixelBox": true,
+        "resolutionMode": "native",
+        "maxTiles": 65536,
+        "limitedBy": null
+      },
+      "manifest": {
+        "nodes": 483,
+        "depth": 24,
+        "templateLevels": 1,
+        "templateLayout": true,
+        "shapedTexts": 96,
+        "designers": 1
+      },
+      "captureDurationMs": 6012.800000190735,
+      "cpuEncodeMs": {
+        "count": 721,
+        "min": 0,
+        "median": 0.10000014305114746,
+        "p95": 0.20000004768371582,
+        "max": 0.40000009536743164
+      },
+      "cpuSubmitMs": {
+        "count": 721,
+        "min": 0,
+        "median": 0,
+        "p95": 0.10000014305114746,
+        "max": 0.20000004768371582
+      },
+      "submissionIntervalsMs": {
+        "count": 720,
+        "min": 7.200000047683716,
+        "median": 8.299999952316284,
+        "p95": 9.299999952316284,
+        "max": 9.599999904632568
+      },
+      "pacing": {
+        "policy": "bounded-latest-input",
+        "maxFramesInFlight": 2,
+        "vsyncLimit": 2,
+        "asapLimit": 8,
+        "unacknowledgedFrames": 0,
+        "pendingCheckpoints": 0,
+        "acknowledgementStrategy": "independent-per-submission",
+        "note": "Unacknowledged submissions include notification latency; not actual driver queue depth. Capacity deferrals are NOT compositor dropped frames."
+      },
+      "gpuTimingDetail": "frame",
+      "gpuPostCaptureHistoryMedianMs": {
+        "span": 3.866623878479004,
+        "input": 0.32767999172210693,
+        "layout": 0.32767999172210693,
+        "data": 0.0,
+        "scene": 2.8835840225219727,
+        "glyph": -1.0,
+        "sparse": -1.0,
+        "hud": -1.0,
+        "present": 3.2767999172210693
+      },
+      "resident": {
+        "scratch": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "draw": [
+          1485,
+          0,
+          0,
+          0
+        ],
+        "dirtyTiles": 0,
+        "totalTiles": 18080,
+        "overflow": 0
+      },
+      "chromeTraceEvents": {
+        "DroppedFrame": 2,
+        "CommitPresentedFrameToCA": 729,
+        "Scheduler::MissedBeginFrameDropped": 0,
+        "Scheduler::BeginFrameDropped": 0
+      }
+    },
+    "final-narrow": {
+      "status": "PASS",
+      "browser": "156.0.8078.80",
+      "seconds": 6,
+      "width": 560,
+      "height": 950,
+      "dpr": 2,
+      "pointer": true,
+      "trace": true,
+      "delta": {
+        "frames": 723,
+        "completedFrames": 724,
+        "skippedSubmissions": 0,
+        "rafCapacityDeferrals": 0,
+        "animationFrameCallbacks": 723,
+        "readbackBytes": 0,
+        "uploadedBytes": 57728
+      },
+      "callbackGaps": {
+        "referenceIntervalMs": 8.199999999999818,
+        "intervals": 722,
+        "longerThanOneAndHalfIntervals": 0,
+        "note": "Relative to observed lower-quartile rAF interval; not hardware-vsync or compositor drop measurement."
+      },
+      "actualViewport": {
+        "width": 560,
+        "height": 950,
+        "dpr": 2,
+        "w": 1120,
+        "h": 1900,
+        "tileCols": 70,
+        "tileRows": 119,
+        "requestedDpr": 2,
+        "requestedW": 1120,
+        "requestedH": 1900,
+        "nativeResolution": true,
+        "devicePixelBox": true,
+        "resolutionMode": "native",
+        "maxTiles": 65536,
+        "limitedBy": null
+      },
+      "manifest": {
+        "nodes": 483,
+        "depth": 24,
+        "templateLevels": 1,
+        "templateLayout": true,
+        "shapedTexts": 96,
+        "designers": 1
+      },
+      "captureDurationMs": 6028.0,
+      "cpuEncodeMs": {
+        "count": 723,
+        "min": 0,
+        "median": 0.10000014305114746,
+        "p95": 0.2999999523162842,
+        "max": 0.6000001430511475
+      },
+      "cpuSubmitMs": {
+        "count": 723,
+        "min": 0,
+        "median": 0,
+        "p95": 0.10000014305114746,
+        "max": 0.10000014305114746
+      },
+      "submissionIntervalsMs": {
+        "count": 722,
+        "min": 6.6000001430511475,
+        "median": 8.299999952316284,
+        "p95": 9.100000143051147,
+        "max": 9.799999952316284
+      },
+      "pacing": {
+        "policy": "bounded-latest-input",
+        "maxFramesInFlight": 2,
+        "vsyncLimit": 2,
+        "asapLimit": 8,
+        "unacknowledgedFrames": 0,
+        "pendingCheckpoints": 0,
+        "acknowledgementStrategy": "independent-per-submission",
+        "note": "Unacknowledged submissions include notification latency; not actual driver queue depth. Capacity deferrals are NOT compositor dropped frames."
+      },
+      "gpuTimingDetail": "off",
+      "gpuPostCaptureHistoryMedianMs": {},
+      "resident": {
+        "scratch": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "draw": [
+          1088,
+          0,
+          0,
+          0
+        ],
+        "dirtyTiles": 0,
+        "totalTiles": 8330,
+        "overflow": 0
+      },
+      "chromeTraceEvents": {
+        "DroppedFrame": 0,
+        "CommitPresentedFrameToCA": 724,
+        "Scheduler::MissedBeginFrameDropped": 0,
+        "Scheduler::BeginFrameDropped": 1
+      }
+    }
+  },
+  "startup": {
+    "startup-before": {
+      "status": "PASS",
+      "browser": "156.0.8078.80",
+      "base": "http://127.0.0.1:8082/",
+      "started": "2026-11-06T20:04:33.192Z",
+      "scope": "Browser startup and native GPU correctness on the recorded adapter; not cross-browser or cold-cache performance qualification.",
+      "results": [
+        {
+          "path": "",
+          "visit": 1,
+          "status": "PASS",
+          "correctnessStatus": "PASS",
+          "startup": {
+            "status": "ready",
+            "cache": "miss",
+            "fontMs": 342.2000000476837,
+            "compileMs": 84.5,
+            "adapterAndShadersMs": 19.799999952316284,
+            "deviceMs": 7,
+            "shaderModulesMs": 4.699999809265137,
+            "uploadAndBindingsMs": 16.59999990463257,
+            "pipelineMs": 164.40000009536743,
+            "pipelineConcurrency": 8,
+            "mountMs": 558.5,
+            "firstCompletedMs": 603.5999999046326,
+            "navigationToFirstCompletedMs": 729.5999999046326
+          }
+        },
+        {
+          "path": "",
+          "visit": 2,
+          "status": "PASS",
+          "correctnessStatus": "PASS",
+          "startup": {
+            "status": "ready",
+            "cache": "hit",
+            "fontMs": 0,
+            "compileMs": 0,
+            "adapterAndShadersMs": 12.200000047683716,
+            "deviceMs": 0.8000001907348633,
+            "shaderModulesMs": 2.799999952316284,
+            "uploadAndBindingsMs": 6.699999809265137,
+            "pipelineMs": 133.60000014305115,
+            "pipelineConcurrency": 8,
+            "mountMs": 176.89999985694885,
+            "firstCompletedMs": 199.79999995231628,
+            "navigationToFirstCompletedMs": 263.59999990463257
+          }
+        },
+        {
+          "path": "",
+          "visit": 3,
+          "status": "PASS",
+          "correctnessStatus": "PASS",
+          "startup": {
+            "status": "ready",
+            "cache": "hit",
+            "fontMs": 0,
+            "compileMs": 0,
+            "adapterAndShadersMs": 15.5,
+            "deviceMs": 0.5999999046325684,
+            "shaderModulesMs": 1.9000000953674316,
+            "uploadAndBindingsMs": 6.400000095367432,
+            "pipelineMs": 160,
+            "pipelineConcurrency": 8,
+            "mountMs": 207,
+            "firstCompletedMs": 238.79999995231628,
+            "navigationToFirstCompletedMs": 315.90000009536743
+          }
+        },
+        {
+          "path": "designer/",
+          "visit": 1,
+          "status": "PASS",
+          "correctnessStatus": "PASS",
+          "startup": {
+            "status": "ready",
+            "cache": "miss",
+            "fontMs": 317.59999990463257,
+            "compileMs": 130.70000004768372,
+            "adapterAndShadersMs": 14.700000047683716,
+            "deviceMs": 0.7000000476837158,
+            "shaderModulesMs": 1.7999999523162842,
+            "uploadAndBindingsMs": 19.100000143051147,
+            "pipelineMs": 262.90000009536743,
+            "pipelineConcurrency": 8,
+            "mountMs": 600.4000000953674,
+            "firstCompletedMs": 742.1000001430511,
+            "navigationToFirstCompletedMs": 818.3000001907349
+          }
+        },
+        {
+          "path": "designer/",
+          "visit": 2,
+          "status": "PASS",
+          "correctnessStatus": "PASS",
+          "startup": {
+            "status": "ready",
+            "cache": "hit",
+            "fontMs": 0,
+            "compileMs": 0,
+            "adapterAndShadersMs": 14.200000047683716,
+            "deviceMs": 0.5,
+            "shaderModulesMs": 1.8999998569488525,
+            "uploadAndBindingsMs": 9.299999952316284,
+            "pipelineMs": 245.5,
+            "pipelineConcurrency": 8,
+            "mountMs": 297.7999999523163,
+            "firstCompletedMs": 359.7999999523163,
+            "navigationToFirstCompletedMs": 457.5
+          }
+        },
+        {
+          "path": "designer/",
+          "visit": 3,
+          "status": "PASS",
+          "correctnessStatus": "PASS",
+          "startup": {
+            "status": "ready",
+            "cache": "hit",
+            "fontMs": 0,
+            "compileMs": 0,
+            "adapterAndShadersMs": 13.399999856948853,
+            "deviceMs": 0.5,
+            "shaderModulesMs": 1.7999999523162842,
+            "uploadAndBindingsMs": 9.599999904632568,
+            "pipelineMs": 256.60000014305115,
+            "pipelineConcurrency": 8,
+            "mountMs": 307.89999985694885,
+            "firstCompletedMs": 363.7999999523163,
+            "navigationToFirstCompletedMs": 433.5
+          }
+        },
+        {
+          "path": "playground/",
+          "visit": 1,
+          "status": "PASS",
+          "correctnessStatus": "PASS",
+          "startup": {
+            "status": "ready",
+            "cache": "miss",
+            "fontMs": 438.2000000476837,
+            "compileMs": 40.60000014305115,
+            "adapterAndShadersMs": 13.400000095367432,
+            "deviceMs": 0.5,
+            "shaderModulesMs": 1.9000000953674316,
+            "uploadAndBindingsMs": 8.200000047683716,
+            "pipelineMs": 173.5,
+            "pipelineConcurrency": 8,
+            "mountMs": 560.7000000476837,
+            "firstCompletedMs": 595.2000000476837,
+            "navigationToFirstCompletedMs": 658
+          }
+        },
+        {
+          "path": "playground/",
+          "visit": 2,
+          "status": "PASS",
+          "correctnessStatus": "PASS",
+          "startup": {
+            "status": "ready",
+            "cache": "hit",
+            "fontMs": 0,
+            "compileMs": 0,
+            "adapterAndShadersMs": 24.100000143051147,
+            "deviceMs": 6.599999904632568,
+            "shaderModulesMs": 2.3000001907348633,
+            "uploadAndBindingsMs": 5.5,
+            "pipelineMs": 163.79999995231628,
+            "pipelineConcurrency": 8,
+            "mountMs": 225.39999985694885,
+            "firstCompletedMs": 247,
+            "navigationToFirstCompletedMs": 325.60000014305115
+          }
+        },
+        {
+          "path": "playground/",
+          "visit": 3,
+          "status": "PASS",
+          "correctnessStatus": "PASS",
+          "startup": {
+            "status": "ready",
+            "cache": "hit",
+            "fontMs": 0,
+            "compileMs": 0,
+            "adapterAndShadersMs": 17.09999990463257,
+            "deviceMs": 0.5,
+            "shaderModulesMs": 2.3999998569488525,
+            "uploadAndBindingsMs": 5.699999809265137,
+            "pipelineMs": 172.5,
+            "pipelineConcurrency": 8,
+            "mountMs": 222.19999980926514,
+            "firstCompletedMs": 245.5,
+            "navigationToFirstCompletedMs": 328.40000009536743
+          }
+        },
+        {
+          "path": "typography/",
+          "visit": 1,
+          "status": "PASS",
+          "correctnessStatus": "PASS",
+          "startup": {
+            "status": "ready",
+            "cache": "miss",
+            "fontMs": 321.90000009536743,
+            "compileMs": 66.09999990463257,
+            "adapterAndShadersMs": 14.600000143051147,
+            "deviceMs": 0.5999999046325684,
+            "shaderModulesMs": 2.0999999046325684,
+            "uploadAndBindingsMs": 7.099999904632568,
+            "pipelineMs": 142.59999990463257,
+            "pipelineConcurrency": 8,
+            "mountMs": 475,
+            "firstCompletedMs": 550.0999999046326,
+            "navigationToFirstCompletedMs": 611.0999999046326
+          }
+        },
+        {
+          "path": "typography/",
+          "visit": 2,
+          "status": "PASS",
+          "correctnessStatus": "PASS",
+          "startup": {
+            "status": "ready",
+            "cache": "hit",
+            "fontMs": 0,
+            "compileMs": 0,
+            "adapterAndShadersMs": 18.899999856948853,
+            "deviceMs": 6.199999809265137,
+            "shaderModulesMs": 2.4000000953674316,
+            "uploadAndBindingsMs": 6.099999904632568,
+            "pipelineMs": 148.40000009536743,
+            "pipelineConcurrency": 8,
+            "mountMs": 205.79999995231628,
+            "firstCompletedMs": 264.90000009536743,
+            "navigationToFirstCompletedMs": 329.60000014305115
+          }
+        },
+        {
+          "path": "typography/",
+          "visit": 3,
+          "status": "PASS",
+          "correctnessStatus": "PASS",
+          "startup": {
+            "status": "ready",
+            "cache": "hit",
+            "fontMs": 0,
+            "compileMs": 0,
+            "adapterAndShadersMs": 13.599999904632568,
+            "deviceMs": 0.5999999046325684,
+            "shaderModulesMs": 1.9000000953674316,
+            "uploadAndBindingsMs": 6.200000047683716,
+            "pipelineMs": 142.5,
+            "pipelineConcurrency": 8,
+            "mountMs": 188,
+            "firstCompletedMs": 246.79999995231628,
+            "navigationToFirstCompletedMs": 326.7000000476837
+          }
+        }
+      ]
+    },
+    "startup-after": {
+      "status": "PASS",
+      "browser": "156.0.8078.80",
+      "base": "http://127.0.0.1:8080/",
+      "started": "2026-11-06T20:05:14.607Z",
+      "scope": "Browser startup and native GPU correctness on the recorded adapter; not cross-browser or cold-cache performance qualification.",
+      "results": [
+        {
+          "path": "",
+          "visit": 1,
+          "status": "PASS",
+          "correctnessStatus": "PASS",
+          "startup": {
+            "status": "ready",
+            "cache": "miss",
+            "fontMs": 334.7000000476837,
+            "compileMs": 78.09999990463257,
+            "adapterAndShadersMs": 15.100000143051147,
+            "deviceMs": 2.4000000953674316,
+            "shaderModulesMs": 3.799999952316284,
+            "uploadAndBindingsMs": 8.799999952316284,
+            "pipelineMs": 143,
+            "pipelineConcurrency": 8,
+            "mountMs": 509.7000000476837,
+            "firstCompletedMs": 564.8000001907349,
+            "navigationToFirstCompletedMs": 680.1000001430511
+          }
+        },
+        {
+          "path": "",
+          "visit": 2,
+          "status": "PASS",
+          "correctnessStatus": "PASS",
+          "startup": {
+            "status": "ready",
+            "cache": "hit",
+            "fontMs": 0,
+            "compileMs": 0,
+            "adapterAndShadersMs": 11.200000047683716,
+            "deviceMs": 0.5,
+            "shaderModulesMs": 1.9000000953674316,
+            "uploadAndBindingsMs": 5.599999904632568,
+            "pipelineMs": 120.79999995231628,
+            "pipelineConcurrency": 8,
+            "mountMs": 160.59999990463257,
+            "firstCompletedMs": 183.19999980926514,
+            "navigationToFirstCompletedMs": 243.89999985694885
+          }
+        },
+        {
+          "path": "",
+          "visit": 3,
+          "status": "PASS",
+          "correctnessStatus": "PASS",
+          "startup": {
+            "status": "ready",
+            "cache": "hit",
+            "fontMs": 0,
+            "compileMs": 0,
+            "adapterAndShadersMs": 21.40000009536743,
+            "deviceMs": 0.40000009536743164,
+            "shaderModulesMs": 2,
+            "uploadAndBindingsMs": 5.799999952316284,
+            "pipelineMs": 124.80000019073486,
+            "pipelineConcurrency": 8,
+            "mountMs": 174.09999990463257,
+            "firstCompletedMs": 196.09999990463257,
+            "navigationToFirstCompletedMs": 263.7999999523163
+          }
+        },
+        {
+          "path": "designer/",
+          "visit": 1,
+          "status": "PASS",
+          "correctnessStatus": "PASS",
+          "startup": {
+            "status": "ready",
+            "cache": "miss",
+            "fontMs": 297.7000000476837,
+            "compileMs": 98.59999990463257,
+            "adapterAndShadersMs": 13.200000047683716,
+            "deviceMs": 0.3000001907348633,
+            "shaderModulesMs": 1.7999999523162842,
+            "uploadAndBindingsMs": 8.900000095367432,
+            "pipelineMs": 229,
+            "pipelineConcurrency": 8,
+            "mountMs": 526.2999999523163,
+            "firstCompletedMs": 643.5999999046326,
+            "navigationToFirstCompletedMs": 709.7999999523163
+          }
+        },
+        {
+          "path": "designer/",
+          "visit": 2,
+          "status": "PASS",
+          "correctnessStatus": "PASS",
+          "startup": {
+            "status": "ready",
+            "cache": "hit",
+            "fontMs": 0,
+            "compileMs": 0,
+            "adapterAndShadersMs": 13.299999952316284,
+            "deviceMs": 0.40000009536743164,
+            "shaderModulesMs": 2,
+            "uploadAndBindingsMs": 10,
+            "pipelineMs": 228.40000009536743,
+            "pipelineConcurrency": 8,
+            "mountMs": 279.89999985694885,
+            "firstCompletedMs": 350.09999990463257,
+            "navigationToFirstCompletedMs": 420.89999985694885
+          }
+        },
+        {
+          "path": "designer/",
+          "visit": 3,
+          "status": "PASS",
+          "correctnessStatus": "PASS",
+          "startup": {
+            "status": "ready",
+            "cache": "hit",
+            "fontMs": 0,
+            "compileMs": 0,
+            "adapterAndShadersMs": 12,
+            "deviceMs": 0.5,
+            "shaderModulesMs": 2.1000001430511475,
+            "uploadAndBindingsMs": 8.299999952316284,
+            "pipelineMs": 240.29999995231628,
+            "pipelineConcurrency": 8,
+            "mountMs": 290.59999990463257,
+            "firstCompletedMs": 357.7000000476837,
+            "navigationToFirstCompletedMs": 435
+          }
+        },
+        {
+          "path": "playground/",
+          "visit": 1,
+          "status": "PASS",
+          "correctnessStatus": "PASS",
+          "startup": {
+            "status": "ready",
+            "cache": "miss",
+            "fontMs": 259.5,
+            "compileMs": 39.299999952316284,
+            "adapterAndShadersMs": 13,
+            "deviceMs": 0.39999985694885254,
+            "shaderModulesMs": 2,
+            "uploadAndBindingsMs": 7,
+            "pipelineMs": 151,
+            "pipelineConcurrency": 8,
+            "mountMs": 371.09999990463257,
+            "firstCompletedMs": 402.7999999523163,
+            "navigationToFirstCompletedMs": 465.40000009536743
+          }
+        },
+        {
+          "path": "playground/",
+          "visit": 2,
+          "status": "PASS",
+          "correctnessStatus": "PASS",
+          "startup": {
+            "status": "ready",
+            "cache": "hit",
+            "fontMs": 0,
+            "compileMs": 0,
+            "adapterAndShadersMs": 13.799999952316284,
+            "deviceMs": 0.40000009536743164,
+            "shaderModulesMs": 1.7999999523162842,
+            "uploadAndBindingsMs": 5.699999809265137,
+            "pipelineMs": 147.70000004768372,
+            "pipelineConcurrency": 8,
+            "mountMs": 192.29999995231628,
+            "firstCompletedMs": 225.20000004768372,
+            "navigationToFirstCompletedMs": 289.7000000476837
+          }
+        },
+        {
+          "path": "playground/",
+          "visit": 3,
+          "status": "PASS",
+          "correctnessStatus": "PASS",
+          "startup": {
+            "status": "ready",
+            "cache": "hit",
+            "fontMs": 0,
+            "compileMs": 0,
+            "adapterAndShadersMs": 20.700000047683716,
+            "deviceMs": 0.5,
+            "shaderModulesMs": 1.7999999523162842,
+            "uploadAndBindingsMs": 7.1000001430511475,
+            "pipelineMs": 153.5,
+            "pipelineConcurrency": 8,
+            "mountMs": 207.30000019073486,
+            "firstCompletedMs": 240.70000004768372,
+            "navigationToFirstCompletedMs": 310.7999999523163
+          }
+        },
+        {
+          "path": "typography/",
+          "visit": 1,
+          "status": "PASS",
+          "correctnessStatus": "PASS",
+          "startup": {
+            "status": "ready",
+            "cache": "miss",
+            "fontMs": 310.09999990463257,
+            "compileMs": 64.30000019073486,
+            "adapterAndShadersMs": 14.299999952316284,
+            "deviceMs": 0.39999985694885254,
+            "shaderModulesMs": 2.1000001430511475,
+            "uploadAndBindingsMs": 7.700000047683716,
+            "pipelineMs": 158.19999980926514,
+            "pipelineConcurrency": 8,
+            "mountMs": 460.60000014305115,
+            "firstCompletedMs": 530.3000001907349,
+            "navigationToFirstCompletedMs": 594.6000001430511
+          }
+        },
+        {
+          "path": "typography/",
+          "visit": 2,
+          "status": "PASS",
+          "correctnessStatus": "PASS",
+          "startup": {
+            "status": "ready",
+            "cache": "hit",
+            "fontMs": 0,
+            "compileMs": 0,
+            "adapterAndShadersMs": 21.700000047683716,
+            "deviceMs": 0.5,
+            "shaderModulesMs": 2.0999999046325684,
+            "uploadAndBindingsMs": 5.800000190734863,
+            "pipelineMs": 155.19999980926514,
+            "pipelineConcurrency": 8,
+            "mountMs": 209.10000014305115,
+            "firstCompletedMs": 276.40000009536743,
+            "navigationToFirstCompletedMs": 365
+          }
+        },
+        {
+          "path": "typography/",
+          "visit": 3,
+          "status": "PASS",
+          "correctnessStatus": "PASS",
+          "startup": {
+            "status": "ready",
+            "cache": "hit",
+            "fontMs": 0,
+            "compileMs": 0,
+            "adapterAndShadersMs": 20.699999809265137,
+            "deviceMs": 0.5999999046325684,
+            "shaderModulesMs": 2.0999999046325684,
+            "uploadAndBindingsMs": 6.299999952316284,
+            "pipelineMs": 163.79999995231628,
+            "pipelineConcurrency": 8,
+            "mountMs": 217,
+            "firstCompletedMs": 291.5,
+            "navigationToFirstCompletedMs": 403.90000009536743
+          }
+        }
+      ]
+    },
+    "published-startup": {
+      "status": "FAIL",
+      "browser": "156.0.8078.80",
+      "base": "http://127.0.0.1:8080/dist/",
+      "started": "2026-11-06T20:07:24.879Z",
+      "scope": "Browser startup and native GPU correctness on the recorded adapter; not cross-browser or cold-cache performance qualification.",
+      "results": [
+        {
+          "path": "",
+          "visit": 1,
+          "status": "FAIL",
+          "correctnessStatus": "PASS",
+          "startup": {
+            "status": "ready",
+            "cache": "miss",
+            "fontMs": 339.09999990463257,
+            "compileMs": 94.70000004768372,
+            "adapterAndShadersMs": 38,
+            "deviceMs": 2.9000000953674316,
+            "shaderModulesMs": 5.799999952316284,
+            "uploadAndBindingsMs": 10.400000095367432,
+            "pipelineMs": 165.20000004768372,
+            "pipelineConcurrency": 8,
+            "mountMs": 573.4000000953674,
+            "firstCompletedMs": 608.9000000953674,
+            "navigationToFirstCompletedMs": 709
+          }
+        },
+        {
+          "path": "",
+          "visit": 2,
+          "status": "FAIL",
+          "correctnessStatus": "PASS",
+          "startup": {
+            "status": "ready",
+            "cache": "hit",
+            "fontMs": 0,
+            "compileMs": 0,
+            "adapterAndShadersMs": 11.700000047683716,
+            "deviceMs": 0.5,
+            "shaderModulesMs": 1.9000000953674316,
+            "uploadAndBindingsMs": 6.700000047683716,
+            "pipelineMs": 133.29999995231628,
+            "pipelineConcurrency": 8,
+            "mountMs": 174.80000019073486,
+            "firstCompletedMs": 197.30000019073486,
+            "navigationToFirstCompletedMs": 251.30000019073486
+          }
+        },
+        {
+          "path": "",
+          "visit": 3,
+          "status": "FAIL",
+          "correctnessStatus": "PASS",
+          "startup": {
+            "status": "ready",
+            "cache": "hit",
+            "fontMs": 0,
+            "compileMs": 0,
+            "adapterAndShadersMs": 12.299999952316284,
+            "deviceMs": 0.39999985694885254,
+            "shaderModulesMs": 1.9000000953674316,
+            "uploadAndBindingsMs": 7.699999809265137,
+            "pipelineMs": 141,
+            "pipelineConcurrency": 8,
+            "mountMs": 184.59999990463257,
+            "firstCompletedMs": 211.70000004768372,
+            "navigationToFirstCompletedMs": 276.7000000476837
+          }
+        },
+        {
+          "path": "designer/",
+          "visit": 1,
+          "status": "FAIL",
+          "correctnessStatus": "PASS",
+          "startup": {
+            "status": "ready",
+            "cache": "miss",
+            "fontMs": 292.2999999523163,
+            "compileMs": 134.20000004768372,
+            "adapterAndShadersMs": 17.299999952316284,
+            "deviceMs": 0.39999985694885254,
+            "shaderModulesMs": 1.8999998569488525,
+            "uploadAndBindingsMs": 11.5,
+            "pipelineMs": 265.10000014305115,
+            "pipelineConcurrency": 8,
+            "mountMs": 566.5,
+            "firstCompletedMs": 642.8999998569489,
+            "navigationToFirstCompletedMs": 712.6999998092651
+          }
+        },
+        {
+          "path": "designer/",
+          "visit": 2,
+          "status": "FAIL",
+          "correctnessStatus": "PASS",
+          "startup": {
+            "status": "ready",
+            "cache": "hit",
+            "fontMs": 0,
+            "compileMs": 0,
+            "adapterAndShadersMs": 19.299999952316284,
+            "deviceMs": 0.5999999046325684,
+            "shaderModulesMs": 3.200000047683716,
+            "uploadAndBindingsMs": 9.700000047683716,
+            "pipelineMs": 264.90000009536743,
+            "pipelineConcurrency": 8,
+            "mountMs": 330.59999990463257,
+            "firstCompletedMs": 389.7000000476837,
+            "navigationToFirstCompletedMs": 469.2000000476837
+          }
+        },
+        {
+          "path": "designer/",
+          "visit": 3,
+          "status": "FAIL",
+          "correctnessStatus": "PASS",
+          "startup": {
+            "status": "ready",
+            "cache": "hit",
+            "fontMs": 0,
+            "compileMs": 0,
+            "adapterAndShadersMs": 16.200000047683716,
+            "deviceMs": 0.5,
+            "shaderModulesMs": 1.8999998569488525,
+            "uploadAndBindingsMs": 9.100000143051147,
+            "pipelineMs": 243.19999980926514,
+            "pipelineConcurrency": 8,
+            "mountMs": 297.90000009536743,
+            "firstCompletedMs": 354.90000009536743,
+            "navigationToFirstCompletedMs": 418.7000000476837
+          }
+        },
+        {
+          "path": "playground/",
+          "visit": 1,
+          "status": "FAIL",
+          "correctnessStatus": "PASS",
+          "startup": {
+            "status": "ready",
+            "cache": "miss",
+            "fontMs": 273.40000009536743,
+            "compileMs": 54.90000009536743,
+            "adapterAndShadersMs": 15,
+            "deviceMs": 1,
+            "shaderModulesMs": 1.9000000953674316,
+            "uploadAndBindingsMs": 9.600000143051147,
+            "pipelineMs": 191.30000019073486,
+            "pipelineConcurrency": 8,
+            "mountMs": 437.2000000476837,
+            "firstCompletedMs": 464.7000000476837,
+            "navigationToFirstCompletedMs": 536.4000000953674
+          }
+        },
+        {
+          "path": "playground/",
+          "visit": 2,
+          "status": "FAIL",
+          "correctnessStatus": "PASS",
+          "startup": {
+            "status": "ready",
+            "cache": "hit",
+            "fontMs": 0,
+            "compileMs": 0,
+            "adapterAndShadersMs": 18.899999856948853,
+            "deviceMs": 0.39999985694885254,
+            "shaderModulesMs": 3,
+            "uploadAndBindingsMs": 6.5,
+            "pipelineMs": 171.20000004768372,
+            "pipelineConcurrency": 8,
+            "mountMs": 229,
+            "firstCompletedMs": 252.39999985694885,
+            "navigationToFirstCompletedMs": 347.69999980926514
+          }
+        },
+        {
+          "path": "playground/",
+          "visit": 3,
+          "status": "FAIL",
+          "correctnessStatus": "PASS",
+          "startup": {
+            "status": "ready",
+            "cache": "hit",
+            "fontMs": 0,
+            "compileMs": 0,
+            "adapterAndShadersMs": 19.600000143051147,
+            "deviceMs": 0.39999985694885254,
+            "shaderModulesMs": 2.0999999046325684,
+            "uploadAndBindingsMs": 6.799999952316284,
+            "pipelineMs": 168.09999990463257,
+            "pipelineConcurrency": 8,
+            "mountMs": 221,
+            "firstCompletedMs": 243.40000009536743,
+            "navigationToFirstCompletedMs": 319.2000000476837
+          }
+        },
+        {
+          "path": "typography/",
+          "visit": 1,
+          "status": "FAIL",
+          "correctnessStatus": "PASS",
+          "startup": {
+            "status": "ready",
+            "cache": "miss",
+            "fontMs": 264.7999999523163,
+            "compileMs": 66.29999995231628,
+            "adapterAndShadersMs": 13.599999904632568,
+            "deviceMs": 0.5,
+            "shaderModulesMs": 2.5,
+            "uploadAndBindingsMs": 7.799999952316284,
+            "pipelineMs": 158.29999995231628,
+            "pipelineConcurrency": 8,
+            "mountMs": 423.7000000476837,
+            "firstCompletedMs": 485.60000014305115,
+            "navigationToFirstCompletedMs": 548.6000001430511
+          }
+        },
+        {
+          "path": "typography/",
+          "visit": 2,
+          "status": "FAIL",
+          "correctnessStatus": "PASS",
+          "startup": {
+            "status": "ready",
+            "cache": "hit",
+            "fontMs": 0,
+            "compileMs": 0,
+            "adapterAndShadersMs": 24.90000009536743,
+            "deviceMs": 0.40000009536743164,
+            "shaderModulesMs": 2.1999998092651367,
+            "uploadAndBindingsMs": 6,
+            "pipelineMs": 151.89999985694885,
+            "pipelineConcurrency": 8,
+            "mountMs": 210.69999980926514,
+            "firstCompletedMs": 271.89999985694885,
+            "navigationToFirstCompletedMs": 339.59999990463257
+          }
+        },
+        {
+          "path": "typography/",
+          "visit": 3,
+          "status": "FAIL",
+          "correctnessStatus": "PASS",
+          "startup": {
+            "status": "ready",
+            "cache": "hit",
+            "fontMs": 0,
+            "compileMs": 0,
+            "adapterAndShadersMs": 16.5,
+            "deviceMs": 0.40000009536743164,
+            "shaderModulesMs": 2.200000047683716,
+            "uploadAndBindingsMs": 6,
+            "pipelineMs": 158.59999990463257,
+            "pipelineConcurrency": 8,
+            "mountMs": 208.29999995231628,
+            "firstCompletedMs": 269.89999985694885,
+            "navigationToFirstCompletedMs": 339.19999980926514
+          }
+        }
+      ]
+    },
+    "standalone": {
+      "status": "PASS",
+      "browser": "156.0.8078.80",
+      "base": "http://127.0.0.1:8080/dist/",
+      "started": "2026-11-06T20:07:58.619Z",
+      "scope": "Browser startup and native GPU correctness on the recorded adapter; not cross-browser or cold-cache performance qualification.",
+      "results": [
+        {
+          "path": "helion-standalone.html",
+          "visit": 1,
+          "status": "PASS",
+          "correctnessStatus": "PASS",
+          "startup": {
+            "status": "ready",
+            "cache": "miss",
+            "fontMs": 340.2000000476837,
+            "compileMs": 91.69999980926514,
+            "adapterAndShadersMs": 4.5,
+            "deviceMs": 0.5999999046325684,
+            "shaderModulesMs": 1.7999999523162842,
+            "uploadAndBindingsMs": 10.200000047683716,
+            "pipelineMs": 160.90000009536743,
+            "pipelineConcurrency": 8,
+            "mountMs": 524,
+            "firstCompletedMs": 573.2000000476837,
+            "navigationToFirstCompletedMs": 653.9000000953674
+          }
+        },
+        {
+          "path": "helion-designer.html",
+          "visit": 1,
+          "status": "PASS",
+          "correctnessStatus": "PASS",
+          "startup": {
+            "status": "ready",
+            "cache": "miss",
+            "fontMs": 297,
+            "compileMs": 134.09999990463257,
+            "adapterAndShadersMs": 4.1000001430511475,
+            "deviceMs": 1.2999999523162842,
+            "shaderModulesMs": 2.5,
+            "uploadAndBindingsMs": 10,
+            "pipelineMs": 253,
+            "pipelineConcurrency": 8,
+            "mountMs": 553.0999999046326,
+            "firstCompletedMs": 635.6999998092651,
+            "navigationToFirstCompletedMs": 724
+          }
+        },
+        {
+          "path": "helion-playground.html",
+          "visit": 1,
+          "status": "PASS",
+          "correctnessStatus": "PASS",
+          "startup": {
+            "status": "ready",
+            "cache": "miss",
+            "fontMs": 251.39999985694885,
+            "compileMs": 43,
+            "adapterAndShadersMs": 3.3999998569488525,
+            "deviceMs": 1.5,
+            "shaderModulesMs": 2.200000047683716,
+            "uploadAndBindingsMs": 8.600000143051147,
+            "pipelineMs": 164.5,
+            "pipelineConcurrency": 8,
+            "mountMs": 364.90000009536743,
+            "firstCompletedMs": 396.59999990463257,
+            "navigationToFirstCompletedMs": 475.59999990463257
+          }
+        },
+        {
+          "path": "helion-typography.html",
+          "visit": 1,
+          "status": "PASS",
+          "correctnessStatus": "PASS",
+          "startup": {
+            "status": "ready",
+            "cache": "miss",
+            "fontMs": 265.59999990463257,
+            "compileMs": 73.29999995231628,
+            "adapterAndShadersMs": 4.800000190734863,
+            "deviceMs": 0.7999999523162842,
+            "shaderModulesMs": 2,
+            "uploadAndBindingsMs": 8.100000143051147,
+            "pipelineMs": 145.5,
+            "pipelineConcurrency": 8,
+            "mountMs": 421.7999999523163,
+            "firstCompletedMs": 483.2999999523163,
+            "navigationToFirstCompletedMs": 559.2000000476837
+          }
+        }
+      ]
+    }
+  },
+  "validation": {
+    "hostTests": 1029,
+    "hostFailures": 0,
+    "staticJSModules": 200,
+    "staticWGSL": 31,
+    "computeEntries": 85,
+    "buildEmbedding": "PASS",
+    "nativeGates": [
+      {
+        "path": "tests/gpu.html?autorun",
+        "status": "PASS",
+        "checks": [
+          {
+            "name": "30 core compute pipelines, resident metrics and HUD presentation pipelines create",
+            "status": "PASS"
+          },
+          {
+            "name": "normal frames: 64-byte clock/viewport payload, zero explicit readbacks",
+            "status": "PASS"
+          },
+          {
+            "name": "native Measure / Arrange agrees with layout reference",
+            "status": "PASS"
+          },
+          {
+            "name": "small scene has no bounded-arena overflow",
+            "status": "PASS"
+          },
+          {
+            "name": "GPU hit testing, checkbox action and status filtering",
+            "status": "PASS"
+          },
+          {
+            "name": "GPU text editing and filtering reuse sorted order without layout",
+            "status": "PASS"
+          },
+          {
+            "name": "stable numeric GPU block/merge sorting",
+            "status": "PASS"
+          },
+          {
+            "name": "selection identity survives reverse sorting",
+            "status": "PASS"
+          },
+          {
+            "name": "column resizing stays on GPU without a layout pass",
+            "status": "PASS"
+          },
+          {
+            "name": "GPU numeric-cell editing and decimal commit",
+            "status": "PASS"
+          },
+          {
+            "name": "composition and value updates avoid layout and implicit readback",
+            "status": "PASS"
+          },
+          {
+            "name": "native sparse-strip raster/composition texture contains expected solid color",
+            "status": "PASS"
+          },
+          {
+            "name": "unchanged retained display list produces zero raster strips",
+            "status": "PASS"
+          },
+          {
+            "name": "dirty-tile output exactly matches full-frame rendering after a slider change",
+            "status": "PASS"
+          }
+        ]
+      },
+      {
+        "path": "tests/editor.html?autorun",
+        "status": "PASS",
+        "checks": [
+          "Native initial editor document and visible-line indexing",
+          "Multicaret edit, grouped undo, redo, and no normal-frame readback",
+          "Resident literal search, replacement, and history",
+          "Snippet expansion and linked multicaret editing",
+          "Typed model storage, derived expressions, and fresh CanExecute guard",
+          "Tab, float, split, close/reopen, and layout restoration preserve documents",
+          "Native editor/docking cached-damage pixels equal the full-render reference"
+        ]
+      },
+      {
+        "path": "tests/designer.html?autorun",
+        "status": "PASS",
+        "checks": [
+          "Designer modules and native frame graph compile and execute",
+          "GPU canvas selection hits a genuine authored control",
+          "Pointer move is one undoable GPU document transaction",
+          "Inspector edit and subsequent command retain separate GPU undo transactions",
+          "Native node insertion, paint, geometry and history work without remounting",
+          "GPU hierarchy reparent and undo preserve nested content",
+          "Grid track changes repair child placement and remain undoable",
+          "Auto-key records endpoints and timeline scrubbing evaluates them on GPU",
+          "Named visual states retain overrides independently from base values",
+          "Interactive preview uses separate runtime input text, not authoring history storage",
+          "Data-only snapshot/export/restore validates the authored hierarchy",
+          "Retained-damage and full-frame designer pixels match exactly"
+        ]
+      },
+      {
+        "path": "tests/typography.html?autorun",
+        "status": "PASS",
+        "checks": [
+          "Native GSUB, positioning and paragraph metrics agree with original fixture",
+          "Warm cache and width-only reflow reuse shaped glyphs",
+          "Canonical composition, scalar clusters and hard line breaks",
+          "Real TextBlock, native and templated TextBox and DataGrid share compute shaping",
+          "Equal-length mutation and grapheme-safe TextBox deletion",
+          "Multiple GPU caret/edit boundaries preserve FIFO in one submission without readback",
+          "Post-query DataGrid visible-row cache refresh",
+          "Cached and direct glyph-coverage paths produce identical pixels"
+        ]
+      },
+      {
+        "path": "tests/templates.html?autorun",
+        "status": "PASS",
+        "checks": [
+          "Template modules and native layouts compile and execute",
+          "Per-instance part trees are arranged independently",
+          "Visual state transition writes actual part paint",
+          "Theme switching and reduced motion remain GPU commands",
+          "Native text presenter aliases resident editor content",
+          "Native contrast and density plans update without rebuilding",
+          "On-device accent foreground matches independent host calculation",
+          "Separate focus overlay preserves content border geometry",
+          "Retained-damage and full-render pixels agree",
+          "Native pooled template assignment is undoable",
+          "Designer theme commands survive project snapshots",
+          "GPU designer preference transactions undo atomically",
+          "Designer state preview executes without a document remount"
+        ]
+      },
+      {
+        "path": "tests/framework.html?autorun",
+        "status": "PASS",
+        "checks": [
+          "native DockPanel all edges and LastChildFill",
+          "native WrapPanel line sizing and placement",
+          "native UniformGrid auto rows, FirstColumn and independent spacing",
+          "native Viewbox uniform composition, independent of desired geometry",
+          "GPU pseudo-state selector and timed color transition",
+          "imperative composition Set has local precedence over pseudo style",
+          "native keyframe seek/pause/hold/stop without CPU animation evaluation",
+          "compute gradient, RGBA image and transformed clip pixels",
+          "drawing retained damage agrees with complete rerasterization; no arena overflow",
+          "native constrained-star allocation releases a minimum after another column saturates"
+        ]
+      },
+      {
+        "path": "tests/dynamic.html?autorun",
+        "status": "PASS",
+        "checks": [
+          "Initial ItemsSource retains exact u32 keys and custom rows",
+          "Revision-checked patches reject stale state without changing rows",
+          "Deletion, free-slot reuse, sorting and selection preserve identity",
+          "Growing string updates compact on-device without dropping live text",
+          "Whole-source capacity rejection leaves the old table intact",
+          "Dynamic text and source filtering use the retained GPU state",
+          "Tree expansion, replacement and keyed selection execute on the GPU",
+          "Embedded preview shares device and a single owning frame submission",
+          "Parent hit testing forwards transformed pointer input to the child on-device",
+          "GPU-owned focus and keyboard forwarding update only the embedded control",
+          "Fit mode derives child viewport and pixel extent on the GPU without a host rectangle",
+          "Preview resize and detach preserve workspace documents"
+        ]
+      },
+      {
+        "path": "tests/quality.html?autorun",
+        "status": "PASS",
+        "checks": [
+          "Quadratic WGSL output agrees with the high-precision host oracle",
+          "Sharp cache/direct output agrees at DPR 1",
+          "Quality switch invalidates coverage and HUD quad/fullscreen copies agree at DPR 1",
+          "Sharp cache/direct output agrees at DPR 1.25",
+          "Quality switch invalidates coverage and HUD quad/fullscreen copies agree at DPR 1.25",
+          "Sharp cache/direct output agrees at DPR 2",
+          "Quality switch invalidates coverage and HUD quad/fullscreen copies agree at DPR 2"
+        ]
+      },
+      {
+        "path": "tests/shaders.html?autorun",
+        "status": "PASS",
+        "checks": null
+      },
+      {
+        "path": "tests/metrics.html?autorun",
+        "status": "PASS",
+        "checks": [
+          "0.300 ms nanosecond conversion with low-word rollover",
+          "CPU encode is independent of 14.3 ms GPU span and 0.3 ms pass sum",
+          "CPU-only mode reports missing GPU timings as unavailable",
+          "Skipped layout/data/glyph/HUD slots are ignored",
+          "Reversed active pair is invalid, not zero",
+          "Encoded but inactive layout is idle, not a fictitious execution",
+          "Compact merged phases are unavailable, never fake independent zeros",
+          "Overlapping pass ranges are unioned, not added",
+          "Direct 0.3 ms submit delta is independent of animation uptime",
+          "Long stall is retained without reporting high FPS",
+          "ASAP mode and metric epoch reset",
+          "260 queued samples preserve frame/history correspondence through wrapping",
+          "Synthetic 120 Hz host submissions and 50 Hz GPU end timestamps remain independent (not measured performance)",
+          "Actual pass timestamps agree with independent BigInt subtraction; this tiny workload is not the app benchmark"
+        ]
+      },
+      {
+        "path": "tests/frame-sync.html?autorun",
+        "status": "PASS",
+        "checks": [
+          "native modules and both presentation pipelines create and execute",
+          "exact serial/parallel UI pixels: initial",
+          "exact serial/parallel UI pixels: fractional vertical scroll",
+          "exact serial/parallel UI pixels: integer scroll",
+          "exact serial/parallel UI pixels: selection",
+          "exact serial/parallel UI pixels: header sort",
+          "exact serial/parallel UI pixels: filter",
+          "exact serial/parallel UI pixels: empty query",
+          "exact serial/parallel UI pixels: clear query",
+          "exact serial/parallel UI pixels: fractional translation",
+          "exact serial/parallel UI pixels: opacity",
+          "exact serial/parallel UI pixels: hide",
+          "exact serial/parallel UI pixels: show",
+          "retained damage and full raster agree after row-mode changes",
+          "GPU damage reduction skips job construction on clean frames without a host readback",
+          "compact/stages changes measurement boundaries, not UI pixels",
+          "exact full/scissored HUD pixels at DPR 1",
+          "exact full/scissored HUD pixels at DPR 1.25",
+          "exact full/scissored HUD pixels at DPR 2",
+          "normal rendering keeps 64-byte frame metadata; test-only snapshots are explicit"
+        ]
+      }
+    ]
+  },
+  "typographyAlternatingFollowup": [
+    {
+      "side": "before",
+      "visit": 1,
+      "navigationMs": 724.4000000953674,
+      "pipelineMs": 170.90000009536743,
+      "uploadMs": 11.299999952316284,
+      "cache": "miss",
+      "errors": []
+    },
+    {
+      "side": "after",
+      "visit": 1,
+      "navigationMs": 435.09999990463257,
+      "pipelineMs": 149.89999985694885,
+      "uploadMs": 11.399999856948853,
+      "cache": "miss",
+      "errors": []
+    },
+    {
+      "side": "before",
+      "visit": 2,
+      "navigationMs": 322.2999999523163,
+      "pipelineMs": 143.69999980926514,
+      "uploadMs": 5.799999952316284,
+      "cache": "hit",
+      "errors": []
+    },
+    {
+      "side": "after",
+      "visit": 2,
+      "navigationMs": 317.90000009536743,
+      "pipelineMs": 143.70000004768372,
+      "uploadMs": 6.5,
+      "cache": "hit",
+      "errors": []
+    },
+    {
+      "side": "before",
+      "visit": 3,
+      "navigationMs": 325.59999990463257,
+      "pipelineMs": 168.40000009536743,
+      "uploadMs": 6.400000095367432,
+      "cache": "hit",
+      "errors": []
+    },
+    {
+      "side": "after",
+      "visit": 3,
+      "navigationMs": 289,
+      "pipelineMs": 131.19999980926514,
+      "uploadMs": 5.700000047683716,
+      "cache": "hit",
+      "errors": []
+    },
+    {
+      "side": "before",
+      "visit": 4,
+      "navigationMs": 320.60000014305115,
+      "pipelineMs": 135.79999995231628,
+      "uploadMs": 5.5,
+      "cache": "hit",
+      "errors": []
+    },
+    {
+      "side": "after",
+      "visit": 4,
+      "navigationMs": 319.59999990463257,
+      "pipelineMs": 135.79999995231628,
+      "uploadMs": 6.700000047683716,
+      "cache": "hit",
+      "errors": []
+    }
+  ]
+}

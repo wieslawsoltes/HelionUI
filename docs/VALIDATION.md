@@ -1,8 +1,8 @@
 # Validation — 0.15.0-experimental
 
 The current implementation and limits are in [TYPOGRAPHY.md](TYPOGRAPHY.md).
-The latest browser record is [startup-followup-results.json](startup-followup-results.json),
-with context in the [startup follow-up](startup-followup.md). Correctness
+The latest browser record is [frame-pacing-results.json](frame-pacing-results.json),
+with context in the [frame-pacing and startup follow-up](frame-pacing-optimization.md). Correctness
 passes; the 200 ms startup budget fails. The initial repair is recorded in the
 [pipeline audit](browser-pipeline-repair.md).
 The earlier typography record is [typography-validation.json](typography-validation.json).
@@ -11,7 +11,7 @@ retain their original scope; they are not current GPU qualification.
 
 ## Checks actually performed
 
-**1,028 host tests pass**, with zero failures or skips. Static/source checks,
+**1,029 host tests pass**, with zero failures or skips. Static/source checks,
 strict TypeScript API checks, builds and standalone source-embedding checks pass.
 Host tests include initial data packing, CPU-executed WGSL bodies, paragraph
 line/caret/layout math, native-buffer metadata, retained cache invalidation,
