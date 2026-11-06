@@ -104,7 +104,8 @@ try {
         });
         if (path==='showcase.html'||path==='helion-standalone.html') {
           // Exercise real DOM input delivery, then explicitly inspect the result.
-          await page.locator('#surface').click({position:{x:180,y:255}});
+          const position=await page.evaluate(async()=>{const s=globalThis.helion,{nodes}=await s.inspect(),f=new Float32Array(nodes.buffer),at=s.id('search')*72;return{x:f[at+52]+Math.min(180,f[at+54]/2),y:f[at+53]+f[at+55]/2};});
+          await page.locator('#surface').click({position});
           await page.keyboard.type('Aurora');
           await page.waitForFunction(()=>globalThis.helion.commands.length===0);
           item.interaction=await page.evaluate(async()=>{

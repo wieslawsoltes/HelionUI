@@ -1,3 +1,5 @@
+> **Current workspace:** [Unified GPU navigation, neutral theme, responsive docking and touch scrolling](RESPONSIVE-WORKSPACE.md).
+
 > **0.10 supplement:** [Dynamic DataGrid sources, fully Helion playground, embedded GPU preview, explicit action bridges and current limits](DYNAMIC-WORKSPACE.md). This supplement supersedes older playground-shell, immutable-source, single-surface transfer and frame-loop descriptions below. Historical sections retain their version-specific scope.
 
 # Helion UI 0.9 — compute editor, docking, and model workbench
