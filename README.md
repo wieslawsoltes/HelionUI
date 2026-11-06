@@ -128,11 +128,10 @@ npm start
 Node.js 20 or newer. No runtime `npm install` is required. Open:
 
 ```text
-http://127.0.0.1:8080/designer/
-http://127.0.0.1:8080/playground/
+http://127.0.0.1:8080/
 ```
 
-The original showcase is at the server root. Serve on localhost or HTTPS in a permitted WebGPU browser. A GPU/font error produces a bootstrap error notice, not a hidden CPU renderer.
+The root opens the unified Helion workspace: Overview, Showcase, Playground, Designer, Typography, and Tests. Tools load on first use; switching pauses hidden GPU producers and retains edits in this tab. Save/export before closing or reloading. Direct routes remain available at `/showcase.html`, `/playground/`, `/designer/`, and `/typography/`. Serve on localhost or HTTPS in a permitted WebGPU browser. A GPU/font error produces a bootstrap error notice, not a hidden CPU renderer.
 
 The playground has eleven editable examples, a GPU docking workspace, six editors, a virtualized Explorer/example picker, a live keyed dataset and embedded preview. Ctrl/Cmd+Enter runs, Ctrl/Cmd+S saves, Ctrl/Cmd+O opens, and Ctrl/Cmd+Alt+F opens the local-font picker. Auto-run, ASAP and the performance overlay are off by default. GPU timestamp collection starts off and can be enabled from settings.
 

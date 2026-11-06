@@ -2,27 +2,14 @@
 <html lang="en">
 <head>
 <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<meta name="helion-version" content="0.15.0-experimental">
-<meta name="theme-color" content="#0e1720"><title>Helion — GPU-resident UI lab</title>
-<style>
-*{box-sizing:border-box}html,body{margin:0;width:100%;height:100%;overflow:hidden;background:#0e1720;color:#e0e9f0;font-family:system-ui,sans-serif}#surface{display:block;width:100%;height:100%;touch-action:none;outline:none}[hidden]{display:none!important}#boot{position:fixed;inset:0;display:grid;place-content:center;padding:32px;background:#0e1720;z-index:5}#boot>section{max-width:650px}.eyebrow{letter-spacing:.22em;font-size:11px;color:#67d4e6}h1{font-weight:500;font-size:clamp(28px,5vw,44px);letter-spacing:-.04em;line-height:1.15}#boot-detail{color:#aec0d0;line-height:1.65;white-space:pre-wrap;max-height:45vh;overflow:auto;font-size:14px}#boot-hint{color:#8297aa;line-height:1.6;font-size:13px}.rule{width:55px;height:3px;background:#67d4e6;margin:30px 0}.failed .rule{background:#f49286}.bridge{flex-wrap:wrap;justify-content:flex-end;max-width:calc(100vw - 20px);position:fixed;right:10px;bottom:34px;display:flex;gap:5px;z-index:3}.bridge button{border:1px solid #3c5265;background:#152533;color:#b6c7d5;border-radius:6px;font:11px system-ui;padding:7px 9px;cursor:pointer;opacity:.6}.bridge button:focus,.bridge button:hover{opacity:1}#diagnostic-panel{position:fixed;right:14px;bottom:76px;max-width:calc(100vw - 28px);max-height:65vh;overflow:auto;background:#14232f;border:1px solid #405b70;padding:18px;border-radius:10px;font:12px/1.6 monospace;z-index:4;box-shadow:0 14px 50px #0006}@media(max-width:600px){.bridge button{font-size:10px}#diagnostics,#close-diagnostics{display:none}}
-#font-panel{position:fixed;z-index:8;top:50%;left:50%;transform:translate(-50%,-50%);width:min(620px,calc(100vw - 32px));max-height:90vh;overflow:auto;background:#14232f;border:1px solid #405b70;border-radius:12px;padding:24px;box-shadow:0 20px 80px #000a;font:14px/1.6 system-ui}#font-status{white-space:pre-wrap;color:#b6c7d5;font:12px/1.6 monospace}#font-panel button,#boot-fonts{background:#1c3846;color:#e0e9f0;border:1px solid #4a6b7b;border-radius:6px;padding:9px 12px;cursor:pointer;font:13px system-ui}#font-panel button:disabled{opacity:.4;cursor:wait}#local-fonts{display:block;margin:16px 0;max-width:100%}#close-fonts{float:right}#font-panel .note{color:#a2b5c5;font-size:12px}.font-actions{display:flex;flex-wrap:wrap;gap:8px}
-</style>
+<meta name="helion-version" content="0.15.0-experimental"><meta name="theme-color" content="#101b21">
+<meta name="description" content="Helion: a GPU-resident UI workspace. Explore the showcase, Playground, Designer, Typography, and tests.">
+<title>Helion — GPU workspace</title><link rel="stylesheet" href="./site/app.css">
 </head>
 <body>
-<canvas id="surface" aria-label="Helion experimental GPU UI. Visual controls are not exposed as an accessibility tree."></canvas>
-<div id="boot"><section><p class="eyebrow">HELION / EXPERIMENT 001</p><h1 id="boot-title">An interface that stays<br>on the device.</h1><div class="rule"></div><p id="boot-detail">Preparing retained buffers and compiling the compute pipelines.</p><p id="boot-hint">WebGPU is required. The showcase uses synthetic data and real Noto Sans faces downloaded once at startup. Fonts and pipelines prepare in parallel. Local fonts can be selected instead. This browser-only startup panel disappears when the GPU surface is ready.</p><button id="boot-fonts">Font sources / local files</button></section></div>
-<!-- These explicit browser-boundary affordances are not part of the GPU control tree. -->
-<div class="bridge"><button id="designer-open" onclick="location.href='./designer/index.html'" title="Open the compute visual designer">Designer ↗</button><button id="playground-open" onclick="location.href='./playground/index.html'" title="Write and run live JavaScript apps">Playground ↗</button><button id="fonts" title="Load real fonts and restart the showcase">Fonts</button><button id="startup-stats" title="Read host startup timings without GPU readback">Startup</button><button id="performance" aria-pressed="true" title="Toggle GPU-resident submission, layout and full-span timing graphs">FPS / graphs</button><button id="submission-mode" aria-pressed="false" title="Off: rAF-driven, two-frame pipeline; newest input retained when full. On: run a yielding, bounded throughput loop; higher power use, not uncapped physical presentation.">As fast as possible: off</button><button id="vsync-pacing" aria-pressed="true" title="Default: two independently acknowledged frames. Toggle only to compare against unbounded queued submission. Does not change ASAP mode.">Vsync: paced</button><button id="timing-detail" aria-pressed="false" title="Frame: GPU frame timestamps. Off: zero GPU timestamp writes, live FPS and CPU timings remain. Stages: detailed GPU ranges. Switching does not remount.">Timing: frame</button><button id="frame-sync" title="Inspect submissions AND deferred rAF opportunities without GPU readback">Frame sync</button><button id="save-diagnostics" hidden title="Save the last explicitly captured diagnostic snapshot as JSON">Save JSON</button><button id="keyboard" title="Open the browser keyboard for the focused GPU text control">Keyboard</button><button id="diagnostics" title="Explicitly read GPU diagnostic counters">Read GPU counters</button><button id="close-diagnostics" title="Close diagnostic output">Close</button></div>
-<pre id="diagnostic-panel" hidden></pre>
-<section id="font-panel" hidden aria-labelledby="font-panel-title">
-<button id="close-fonts" aria-label="Close font sources">Close</button><h2 id="font-panel-title">Font sources</h2>
-<p>The default downloads three pinned Noto Sans faces: Regular, Semibold and Italic. Font files are not embedded in this app. A versioned, lossless initial-scene cache speeds up repeat visits; it contains no live edits.</p>
-<p class="note">Choose local static TrueType-outline TTF, TTC or WOFF1 faces to work without font downloads. The browser reads these files locally; this app does not upload them. WOFF2, CFF and variable fonts are rejected explicitly. Applying fonts restarts the showcase and resets GPU edits.</p>
-<label for="local-fonts">Local faces (1–8 files)</label><input id="local-fonts" type="file" accept=".ttf,.otf,.ttc,.woff" multiple>
-<div class="font-actions"><button id="apply-local-fonts">Apply local faces</button><button id="use-default-fonts">Load default Noto Sans</button><button id="clear-startup-cache">Clear startup cache</button></div>
-<pre id="font-status">No local font files selected.</pre>
-</section>
+<canvas id="hub-canvas" tabindex="0" aria-label="Helion workspace navigation, overview, and test directory. All visible controls render on the GPU; a semantic accessibility tree is not yet available."></canvas>
+<div id="workspaces" hidden></div>
+<div id="boot" role="status"><section><strong>helion / workspace</strong><p id="boot-detail">Preparing the GPU interface…</p></section></div>
 <script data-helion-launch>(function launchApplication(entry, {version, standalone = false, path = '/'} = {}) {
   const notice = document.getElementById('boot');
   const detail = document.getElementById('boot-detail') || notice;
@@ -65,5 +52,5 @@
     console.error(error);
     return false;
   });
-})("./examples/showcase.js",{"version":"0.15.0-experimental","path":"/"});</script>
+})("./site/app.js",{"version":"0.15.0-experimental","path":"/"});</script>
 </body></html>

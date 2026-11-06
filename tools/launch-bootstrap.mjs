@@ -5,8 +5,9 @@ import {launchApplication} from '../src/platform/launch.js';
 import {BUILD_VERSION} from '../src/version.js';
 
 export const launchPages = [
+  {file:'index.html',entry:'./site/app.js',bundle:'site/app.js',path:'/'},
   {file:'typography/index.html',entry:'./app.js',bundle:'typography/app.js',path:'/typography/'},
-  {file:'index.html',entry:'./examples/showcase.js',bundle:'examples/showcase.js',path:'/'},
+  {file:'showcase.html',entry:'./examples/showcase.js',bundle:'examples/showcase.js',path:'/showcase.html'},
   {file:'playground/index.html',entry:'./app.js',bundle:'playground/app.js',path:'/playground/'},
   {file:'designer/index.html',entry:'./app.js',bundle:'designer/app.js',path:'/designer/'},
   {file:'designer/runner.html',entry:'./runner.js',bundle:'designer/runner.js',path:'/designer/runner.html'}

@@ -30,8 +30,8 @@ const authoringSource = await buildAuthoringSource(root);
 await writeFile(resolve(root, 'playground/authoring.bundle.js'), authoringSource);
 await writeFile(resolve(out, 'helion-startup-worker.js'), workerSource);
 const escape = value => JSON.stringify(value).replace(/</g, '\\u003c');
-const index = await readFile(resolve(root, 'index.html'), 'utf8');
-const standalone = index.replace("location.href='./playground/index.html'","location.href='./helion-playground.html'").replace("location.href='./designer/index.html'","location.href='./helion-designer.html'").replace(launchScript('./examples/showcase.js',{path:'/'}), () => `<script>globalThis.__HELION_SHADERS__=${escape(shaders)};</script>\n<script>globalThis.__HELION_PREPARE_WORKER_SOURCE__=${escape(workerSource)};</script>\n<script type="importmap">${escape({ imports })}</script>\n${launchScript('@helion.bundle/examples/showcase.js',{standalone:true})}`);
+const index = await readFile(resolve(root, 'showcase.html'), 'utf8');
+const standalone = index.replace("location.href='./playground/index.html'","location.href='./helion-playground.html'").replace("location.href='./designer/index.html'","location.href='./helion-designer.html'").replace(launchScript('./examples/showcase.js',{path:'/showcase.html'}), () => `<script>globalThis.__HELION_SHADERS__=${escape(shaders)};</script>\n<script>globalThis.__HELION_PREPARE_WORKER_SOURCE__=${escape(workerSource)};</script>\n<script type="importmap">${escape({ imports })}</script>\n${launchScript('@helion.bundle/examples/showcase.js',{standalone:true})}`);
 await writeFile(resolve(out, 'helion-standalone.html'), standalone);
 // The app-export template is a data-only, independently runnable Helion app.
 // It deliberately does not embed itself or include a third-party font asset.
@@ -41,8 +41,8 @@ const exportTemplate=runner.replace(launchScript('./runner.js',{path:'/designer/
 <script type="importmap">${escape({imports})}</script>
 ${launchScript('@helion.bundle/designer/runner.js',{standalone:true})}`);
 await writeFile(resolve(root,'designer/export-template.html'),exportTemplate);
-for (const file of ['index.html', 'README.md', 'LICENSE', 'NOTICE', 'START-HERE.md', 'serve-helion.py', 'start-helion.command', 'start-helion.sh', 'start-helion.cmd']) await cp(resolve(root, file), resolve(out, file));
-for (const dir of ['src', 'shaders', 'examples', 'docs', 'tests', 'playground', 'designer', 'typography']) await cp(resolve(root, dir), resolve(out, dir), { recursive: true });
+for (const file of ['index.html', 'showcase.html', 'README.md', 'LICENSE', 'NOTICE', 'START-HERE.md', 'serve-helion.py', 'start-helion.command', 'start-helion.sh', 'start-helion.cmd']) await cp(resolve(root, file), resolve(out, file));
+for (const dir of ['site', 'src', 'shaders', 'examples', 'docs', 'tests', 'playground', 'designer', 'typography']) await cp(resolve(root, dir), resolve(out, dir), { recursive: true });
 // Published routes share a few cacheable modules; standalone exports retain
 // their exact, independent source graph and embedded startup worker.
 const published=await publishedBundles(root,out);

@@ -33,7 +33,7 @@ if(!Number.isFinite(moduleDelay)||moduleDelay<0||moduleDelay>5000||(moduleDelay>
 const {chromium} = await import(process.env.HELION_PLAYWRIGHT_MODULE || 'playwright');
 const apps = args.standalone
   ? ['helion-standalone.html','helion-designer.html','helion-playground.html','helion-typography.html']
-  : ['', 'designer/', 'playground/', 'typography/'];
+  : ['showcase.html', 'designer/', 'playground/', 'typography/'];
 const gates = ['gpu','editor','designer','typography','templates','framework','dynamic','quality','shaders','metrics','frame-sync'].map(name=>`tests/${name}.html?autorun`);
 const paths = [...(args.suite==='gates'?[]:apps), ...(args.suite==='apps'?[]:gates)];
 const report = {status:'RUNNING',started:new Date().toISOString(),base:args.base,standalone:args.standalone,
@@ -102,7 +102,7 @@ try {
             viewport:s.resolution,stats:{...s.stats},idleReadbackBytes:s.stats.readbackBytes-before.readbackBytes,
             network:performance.getEntriesByType('resource').map(r=>({url:r.name.startsWith('data:')?'embedded module':r.name,bytes:r.transferSize,startMs:r.startTime,durationMs:r.duration,initiator:r.initiatorType}))};
         });
-        if (path===''||path==='helion-standalone.html') {
+        if (path==='showcase.html'||path==='helion-standalone.html') {
           // Exercise real DOM input delivery, then explicitly inspect the result.
           await page.locator('#surface').click({position:{x:180,y:255}});
           await page.keyboard.type('Aurora');

@@ -1,3 +1,4 @@
+import {startWorkspace,navigateWorkspace} from '../src/platform/workspace.js';
 import {decodeExportTemplate} from '../src/designer/export-template.js';
 import {boundedWait} from '../src/startup/lifecycle.js';
 import {BUILD_VERSION} from '../src/version.js';
@@ -42,12 +43,12 @@ async function boot(project=lastProject){
    autoStart:false,submissionMode:'vsync',maxFramesInFlight:2,performanceHUD:false,
    profiling:true,gpuTiming:true,timingDetail:'off',textQuality:'sharp',resolutionMode:'native',
    onAction:event=>enqueue(()=>action(event)),onKey:keyboard,
-   onStartup:event=>{if(token===epoch)notice(event.detail||event.stage);},
+   onStartup:event=>{if(token===epoch){if(event.stage==='ready')$('boot').hidden=true;else notice(event.detail||event.stage);}},
    onError:error=>{if(token===epoch){notice(error.message);log(error.message);}},onDiagnosticsError:error=>log(error.message)
   });if(token!==epoch){next.dispose();return;}
   surface=next;globalThis.helionDesigner=surface;surface.render(performance.now());await boundedWait(surface.whenSubmittedWorkDone(),{signal:controller.signal,timeoutMs:15000,stage:'first designer frame'});
   if(token!==epoch)return;if(surface.faulted)throw new Error(surface.errors.join('\n'));
-  surface.start();$('boot').hidden=true;status('Ready · GPU design document · click Assets to create · Ctrl/Cmd+S saves');
+  startWorkspace(surface);$('boot').hidden=true;status('Ready · GPU design document · click Assets to create · Ctrl/Cmd+S saves');
   if(data.templates?.length&&data.templates[selectedTemplate])surface.editor('template-json').replaceDocument(JSON.stringify(data.templates[selectedTemplate],null,2));
   log(`Opened ${data.title}. Pointer manipulation, history, keyframes, properties and rendering remain device-owned.`);
   if(partSession&&!partSession.baseline){partSession.baseline=await snapshot();pane('templates-pane');status('Template part editor · Save parts commits to the original project; Back cancels');}
@@ -76,7 +77,7 @@ async function finishTemplateParts(commit){if(!partSession)throw new Error('No v
  partSession=null;await replace(project);pane('templates-pane');status(commit?'Visual template parts committed · original project restored; history restarted':'Template edit cancelled · original project restored');}
 async function action(event){if(!surface)return;
  switch(event.name){
-  case 'typography':location.href=globalThis.__HELION_SHADERS__?'./helion-typography.html':'../typography/';return;
+  case 'typography':navigateWorkspace('typography',globalThis.__HELION_SHADERS__?'./helion-typography.html':'../typography/');return;
   case 'template-copy':return copyTemplate();
   case 'template-remove':return removeTemplate();
   case 'template-json':if(partSession)throw new Error('Save or cancel parts before editing catalog JSON');return readTemplate(event.value);
@@ -96,7 +97,7 @@ async function action(event){if(!surface)return;
   case 'export-html':{const s=await snapshot();download(baseName(s.project)+'.html',makeDesignAppHTML(await template(),s.project),'text/html');status('Exported standalone app · fonts load at runtime or through local selection');return;}
   case 'reopen':for(const id of DESIGNER_PANES)surface.docking('designer-dock').command('reopen',id);return;
   case 'help':pane('help-pane');return;
-  case 'playground':location.href=(globalThis.__HELION_DESIGN_EXPORT_TEMPLATE__||globalThis.__HELION_DESIGN_EXPORT_GZIP__)?'./helion-playground.html':'../playground/';return;
+  case 'playground':navigateWorkspace('playground',(globalThis.__HELION_DESIGN_EXPORT_TEMPLATE__||globalThis.__HELION_DESIGN_EXPORT_GZIP__)?'./helion-playground.html':'../playground/');return;
   case 'fonts':$('font-files').click();return;
   case 'hud':surface.setPerformanceHUD(event.value>.5);return;
   case 'asap':surface.setSubmissionMode(event.value>.5?'asap':'vsync');return;

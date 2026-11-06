@@ -1,3 +1,4 @@
+import {startWorkspace,navigateWorkspace} from '../src/platform/workspace.js';
 import {BUILD_VERSION} from '../src/version.js';
 import { h, HelionSurface, DEFAULT_FONT_SOURCES, clearStartupCache } from '../src/index.js';
 
@@ -152,7 +153,7 @@ export async function bootShowcase() {
       document.querySelector('#boot-detail').textContent = 'Compiling the GPU pipelines and uploading the retained font resources.';
       surface = await HelionSurface.mount(canvas, createShowcase(), {
         fontSources: sources, startupWorker: true, startupCache: 'showcase-full-quality-v1',
-        performanceHUD: true, submissionMode: 'vsync', maxFramesInFlight: 2, onError: showError,
+        autoStart: false, performanceHUD: true, submissionMode: 'vsync', maxFramesInFlight: 2, onError: showError,
         onDiagnosticsError: error => { const button = document.querySelector('#performance'); if (button) { button.textContent = 'FPS / graphs unavailable'; button.title = error.message; } },
         onStartup: event => {
           document.querySelector('#boot-detail').textContent = `${event.detail}\n${(event.elapsedMs / 1000).toFixed(2)} s elapsed`;
@@ -162,7 +163,7 @@ export async function bootShowcase() {
           if (hudButton && event.stage === 'hud-ready') hudButton.textContent = 'FPS / graphs';
         }
       });
-      globalThis.helion = surface;
+      globalThis.helion = surface; startWorkspace(surface);
       const timingButton=document.querySelector('#timing-detail');if(timingButton){timingButton.textContent='Timing: frame';timingButton.setAttribute('aria-pressed','false');}
       const pacingButton = document.querySelector('#vsync-pacing');
       if (pacingButton) { pacingButton.textContent = 'Vsync: paced'; pacingButton.setAttribute('aria-pressed', 'true'); }
@@ -174,6 +175,7 @@ export async function bootShowcase() {
     } catch (error) { showError(error); return null; }
     finally { busy = false; controls.forEach(id => { const el = document.querySelector(id); if (el) el.disabled = false; }); }
   }
+  for (const [id,route] of [['designer-open','designer'],['playground-open','playground']]) document.getElementById(id).onclick=()=>navigateWorkspace(route,globalThis.__HELION_SHADERS__?`./helion-${route}.html`:`./${route}/`);
   document.querySelector('#clear-startup-cache')?.addEventListener('click', async () => {
     fontStatus.textContent = await clearStartupCache() ? 'Startup cache cleared. The next default-font mount will rebuild it.' : 'Browser storage is unavailable; no persistent cache was used.';
   });

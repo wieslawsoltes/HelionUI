@@ -1,3 +1,4 @@
+import {startWorkspace,navigateWorkspace} from '../src/platform/workspace.js';
 import {BUILD_VERSION} from '../src/version.js';
 import {HelionSurface,loadFonts,FluentTheme} from '../src/index.js';
 import {AppSandbox,validatePlaygroundView} from '../src/playground/sandbox.js';
@@ -38,14 +39,14 @@ async function boot(data=lastBootData){
  const token=++bootEpoch;lastBootData=data;bootNotice('Loading the real font and preparing compute pipelines…');
  let next;
  try{
-  next=await HelionSurface.mount($('workbench'),createGPUShell({...data,examples}),{fontSources:localFonts||EDITOR_FONT_SOURCES,signal:controller.signal,startupCache:!localFonts&&data===defaultBootData?'playground-public-example-v1':false,limits,autoStart:false,startupWorker:true,maxFramesInFlight:2,submissionMode:'vsync',performanceHUD:false,profiling:true,gpuTiming:true,timingDetail:'off',onAction:action,onKey:keyboard,editorChangeEvents:false,onStartup:e=>{if(token===bootEpoch)bootNotice(e.detail);},onError:error=>{bootNotice(error.message);log('error',error.message);},onDiagnosticsError:error=>log('warning',error.message)});
+  next=await HelionSurface.mount($('workbench'),createGPUShell({...data,examples}),{fontSources:localFonts||EDITOR_FONT_SOURCES,signal:controller.signal,startupCache:!localFonts&&data===defaultBootData?'playground-public-example-v1':false,limits,autoStart:false,startupWorker:true,maxFramesInFlight:2,submissionMode:'vsync',performanceHUD:false,profiling:true,gpuTiming:true,timingDetail:'off',onAction:action,onKey:keyboard,editorChangeEvents:false,onStartup:e=>{if(token===bootEpoch){if(e.stage==='ready')$('boot').hidden=true;else bootNotice(e.detail);}},onError:error=>{bootNotice(error.message);log('error',error.message);},onDiagnosticsError:error=>log('warning',error.message)});
   if(token!==bootEpoch){next.dispose();return;}
   workbench=next;globalThis.helionWorkbench=workbench;
   if(data.dataset)workbench.dataSource('dataset').replace(data.dataset);
   workbench.render(performance.now());await workbench.whenSubmittedWorkDone();
   if(token!==bootEpoch)return;if(workbench.faulted)throw new Error(workbench.errors.join('\n'));
   if(data.layout)await workbench.docking('workspace-dock').restore(data.layout);
-  workbench.start();$('boot').hidden=true;status('Ready · all visible controls use Helion · Ctrl/Cmd+Enter runs');
+  startWorkspace(workbench);$('boot').hidden=true;status('Ready · all visible controls use Helion · Ctrl/Cmd+Enter runs');
   log('info','One canvas, one frame producer. Preview input and compositing stay on the GPU.');
  }catch(error){next?.dispose();if(token===bootEpoch){workbench=null;bootNotice(`${error.message}\n\nBuild: ${BUILD_VERSION}.\nUse Ctrl/Cmd+Alt+F to select local static fonts, or reload to retry. WebGPU is required.`);console.error(error);}}
 }
@@ -111,8 +112,8 @@ async function action(event){
   case 'save-layout':download('helion-layout.json',JSON.stringify(await workbench.docking('workspace-dock').snapshot(),null,2));return;
   case 'load-layout':$('layout-file').click();return;
   case 'help':showPane('help-pane');return;
-  case 'typography':location.href=globalThis.__HELION_AUTHORING_SOURCE__?'./helion-typography.html':'../typography/';return;
-  case 'designer':location.href=globalThis.__HELION_AUTHORING_SOURCE__?'./helion-designer.html':'../designer/';return;
+  case 'typography':navigateWorkspace('typography',globalThis.__HELION_AUTHORING_SOURCE__?'./helion-typography.html':'../typography/');return;
+  case 'designer':navigateWorkspace('designer',globalThis.__HELION_AUTHORING_SOURCE__?'./helion-designer.html':'../designer/');return;
   case 'example':{const example=examples[event.key];if(!example)return;stop({silent:true});await loadDocuments({code:example.code,css:example.css});log('info','Loaded '+example.name+'. Press Run.');return;}
   case 'document':{const ids=['source-pane','style-pane','notes-pane','data-editor-pane','data-pane','model-pane','console-pane','help-pane','preview-pane'];if(ids[event.key])showPane(ids[event.key]);return;}
   case 'clear-log':logs=[];flushLogs();return;

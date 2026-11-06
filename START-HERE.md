@@ -22,8 +22,8 @@ extracted app folder. For standalone packages open:
 
 ## Source checkout
 
-Run `npm start` in the `helion-ui` directory. Open `/designer/`, `/playground/`,
-`/typography/`, or `/`. No runtime npm installation is required. `npm run build` produces the
+Run `npm start` in the `helion-ui` directory. Open `/` for the unified landing page, tool navigation, and tests directory.
+Direct tools remain at `/showcase.html`, `/designer/`, `/playground/`, and `/typography/`. No runtime npm installation is required. Run `npm ci` before development checks/builds. `npm run build` produces the
 static site and four standalone HTML apps. `npm test`, `npm run check`, and
 `npm run check:build` perform the host/source/bundle checks.
 

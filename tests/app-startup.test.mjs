@@ -2,10 +2,11 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import vm from 'node:vm';
 import {readFile} from 'node:fs/promises';
+import {startWorkspace} from '../src/platform/workspace.js';
 
 function fixture(source,end,extra){
   const mounts=[],errors=[],canvas={},notice={hidden:false};
-  const context=vm.createContext({AbortController,performance:{now:()=>0},BUILD_VERSION:'test',
+  const context=vm.createContext({AbortController,startWorkspace,performance:{now:()=>0},BUILD_VERSION:'test',
     $:id=>id==='boot'?notice:canvas,bootNotice(){},log(){},status(){},action(){},keyboard(){},key(){},
     console:{error:e=>errors.push(e)},fail:e=>errors.push(e),
     HelionSurface:{async mount(canvas,view,options){mounts.push({canvas,view,options});return{render(){},async whenSubmittedWorkDone(){},start(){},dispose(){},faulted:false};}},
