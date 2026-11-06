@@ -16,3 +16,12 @@ test('development server serves modules, WGSL, HEAD and explicit errors',async()
  try { const response=await fetch(base+'/');assert.equal(response.status,200);assert.match(await response.text(),/HELION/i);const js=await fetch(base+'/src/index.js');assert.match(js.headers.get('content-type'),/javascript/);assert.match(await js.text(),/HelionSurface/);const head=await fetch(base+'/shaders/common.wgsl',{method:'HEAD'});assert.equal(head.status,200);assert.equal(await head.text(),'');assert.equal((await fetch(base+'/missing')).status,404);assert.equal((await fetch(base+'/%zz')).status,400);assert.equal((await fetch(base+'/',{method:'POST'})).status,405);assert.equal((await fetch(base+'/..%2f..%2fetc%2fpasswd')).status,403); }
  finally {await new Promise(r=>server.close(r));}
 });
+test('resource discovery memoizes shared callees without leaking bindings across entries or sources',()=>{
+ const source='fn leaf() { heap[0]=relay[0]; } fn left() { leaf(); nodes[0]; } fn right() { leaf(); glyphCache[0]; } fn root() { left(); right(); } fn other() { commands[0]; }';
+ assert.deepEqual(resourcesForEntry(source,'root').map(x=>x.binding),[1,3,11,13]);
+ assert.deepEqual(resourcesForEntry(source,'other').map(x=>x.binding),[7]);
+ assert.deepEqual(resourcesForEntry(source,'left').map(x=>x.binding),[1,3,13]);
+ assert.deepEqual(resourcesForEntry('fn leaf() { state[0]; }','leaf').map(x=>x.binding),[2]);
+ assert.deepEqual(resourcesForEntry(source,'leaf').map(x=>x.binding),[3,13]);
+ assert.throws(()=>resourcesForEntry('fn a(){ b(); } fn b(){ a(); }','a'),/Recursive/);
+});

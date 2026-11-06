@@ -1,3 +1,4 @@
+import {shaderDeclarations} from './shader-partitions.js';
 const parts = ['common','templates','designer', 'curve-coverage', 'unicode','shaping','shaping-bidi','paragraph','typography-ui','text', 'editor', 'models', 'docking', 'controls', 'presenter', 'layout', 'input', 'data-source', 'data', 'flatten', 'emit','designer-render', 'editor-render', 'strips', 'glyph-cache'];
 let shaderLoad;
 export async function loadShaders() {
@@ -30,32 +31,38 @@ export function shaderProgram(shaders, constants = {}) {
 }
 export function shaderSource(shaders, constants = {}) { return shaderProgram(shaders, constants).code; }
 /** Static call-graph resource discovery for this controlled WGSL source set. No source evaluation. */
+const resourceNames = ['frame', 'nodes', 'state', 'heap', 'draws', 'scratch', 'indirect', 'commands', 'targetImage', 'stage', 'previousDraws', 'glyphCache', 'previewImage', 'relay'];
+const resourceBits = new Map(resourceNames.map((name, binding) => [name, 1 << binding]));
+const resourcePattern = new RegExp(`\\b(?:${resourceNames.join('|')})\\b`, 'g');
 let analyzedSource, analyzedFunctions, analyzedEntries;
 export function resourcesForEntry(source, entry) {
   if (source !== analyzedSource) {
-  const functions = new Map(); const rx = /\bfn\s+(\w+)\s*\(/g; let match;
-  // Ignore comments so resource names in prose do not create accidental storage usages.
-  const clean = source.replace(/\/\*[\s\S]*?\*\//g, '').replace(/\/\/[^\n]*/g, '');
-  while ((match = rx.exec(clean))) {
-    const start = clean.indexOf('{', rx.lastIndex); if (start < 0) throw new SyntaxError('Missing function body');
-    let depth = 1, end = start + 1;
-    for (; end < clean.length && depth; end++) { if (clean[end] === '{') depth++; else if (clean[end] === '}') depth--; }
-    if (depth) throw new SyntaxError('Unbalanced WGSL function'); functions.set(match[1], clean.slice(start, end)); rx.lastIndex = end;
-  }
-  analyzedSource = source; analyzedFunctions = functions; analyzedEntries = new Map();
+    const functions = new Map();
+    for (const [name, item] of shaderDeclarations(source).functions) {
+      let direct = 0;
+      for (const resource of item.body.match(resourcePattern) ?? []) direct |= resourceBits.get(resource);
+      functions.set(name, {direct, calls:[...new Set(item.calls)], mask:null});
+    }
+    analyzedSource = source; analyzedFunctions = functions; analyzedEntries = new Map();
   }
   if (analyzedEntries.has(entry)) return analyzedEntries.get(entry);
   const functions = analyzedFunctions;
   if (!functions.has(entry)) throw new ReferenceError(`Shader entry not found: ${entry}`);
-  const visited = new Set(); let used = '';
-  const walk = name => { if (visited.has(name)) return; visited.add(name); const body = functions.get(name); used += body;
-    for (const call of body.matchAll(/\b(\w+)\s*\(/g)) if (functions.has(call[1])) walk(call[1]);
+  // Each shared helper is analyzed once, not once per entry and call path.
+  // Fourteen ABI bindings fit in a bit mask; no concatenated shader-body copies.
+  const active = new Set();
+  const walk = name => {
+    const f = functions.get(name); if (f.mask !== null) return f.mask;
+    if (active.has(name)) throw new SyntaxError(`Recursive WGSL function ${name}`);
+    active.add(name); let mask = f.direct;
+    for (const call of f.calls) if (functions.has(call)) mask |= walk(call);
+    active.delete(name); f.mask = mask; return mask;
   };
-  walk(entry);
-  const result = ['frame', 'nodes', 'state', 'heap', 'draws', 'scratch', 'indirect', 'commands', 'targetImage', 'stage', 'previousDraws', 'glyphCache', 'previewImage', 'relay']
-    .flatMap((name, binding) => new RegExp(`\\b${name}\\b`).test(used) ? [Object.freeze({ name, binding })] : []);
+  const mask = walk(entry);
+  const result = resourceNames.flatMap((name, binding) => mask & (1 << binding) ? [Object.freeze({name, binding})] : []);
   analyzedEntries.set(entry, Object.freeze(result)); return result;
 }
+
 export const kernels = ['prepareTextInput','shapeTextRuns','layoutTextRuns',
   'resolveTemplateLayout','resolveTemplateVisuals','rankTemplateTree','synchronizeDesigners','animateDesigners','preparePresenterFrame','layoutLists','emitListParts','analyzeEditors','layoutEditors','emitEditorParts','pullModels','evaluateModels','pushModels', 'clearFrame', 'hitTest', 'input', 'applyCoreKey', 'applyInputActions', 'applyDockInput', 'applyEditorInput', 'applyDesignerInput', 'applyEditorCommands', 'applyDesignerCommands0', 'applyDesignerCommands1', 'applyDesignerCommands2', 'applyDesignerCommands3', 'applyDesignerCommands4', 'applyDesignerCommands5', 'applyDesignerCommands6', 'finishDesignerEdit', 'applyDesignerSurfaceInput', 'applyDesignerTreeInput', 'applyDesignerInspectorInput', 'applyDesignerTimelineInput', 'applyDesignerColorInput', 'schedule', 'resolveStyles', 'measure', 'constraints', 'arrange', 'animate', 'compose', 'initializeData', 'filterScan', 'scanBlocks', 'scatterRows', 'sortBlocks', 'mergeRows', 'resolveSelection', 'flatten', 'emit', 'emitTextBlock','emitButton','emitCheckBox','emitTextBox','emitDrawingNode','emitDockNode', 'emitDesignerSurface', 'emitDesignerTree', 'emitDesignerInspector','emitDesignerResources','emitDesignerStates','emitDesignerTracks', 'emitDesignerTimeline', 'emitDesignerColors', 'emitDesignerAdorner', 'emitGridParts', 'damage', 'collectGlyphRequests', 'prepareGlyphCache', 'finishGlyphRequests', 'rasterGlyphCache', 'prepareDraws', 'buildJobs', 'prepareJobs', 'makeStrips', 'prepareStrips', 'binStrips', 'composite', 'finishWork', 'finishFrame'];
 

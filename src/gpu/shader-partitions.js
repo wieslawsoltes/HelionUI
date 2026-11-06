@@ -4,23 +4,37 @@
  * still checks types, uniformity and interfaces. No frame-loop work is added.
  */
 function commentMask(code) {
-  let out='', block=0, line=false;
-  for(let i=0;i<code.length;i++) {
-    const a=code[i], b=code[i+1];
-    if(line){if(a==='\n'){line=false;out+='\n';}else out+=' ';continue;}
-    if(block){if(a==='/'&&b==='*'){block++;out+='  ';i++;}else if(a==='*'&&b==='/'){block--;out+='  ';i++;}else out+=a==='\n'?'\n':' ';continue;}
-    if(a==='/'&&b==='*'){block=1;out+='  ';i++;}else if(a==='/'&&b==='/'){line=true;out+='  ';i++;}else out+=a;
+  const chunks = []; let at = 0; const comments = /\/[/*]/g; let match;
+  while ((match = comments.exec(code))) {
+    const start = match.index; chunks.push(code.slice(at, start));
+    let end;
+    if (match[0] === '//') {
+      const newline = code.indexOf('\n', comments.lastIndex); end = newline < 0 ? code.length : newline;
+    } else {
+      const delimiters = /\/\*|\*\//g; delimiters.lastIndex = comments.lastIndex;
+      let depth = 1, delimiter;
+      while (depth && (delimiter = delimiters.exec(code))) depth += delimiter[0] === '/*' ? 1 : -1;
+      if (depth) throw new SyntaxError('Unterminated WGSL block comment');
+      end = delimiters.lastIndex;
+    }
+    chunks.push(code.slice(start, end).replace(/[^\n]/g, ' ')); at = end; comments.lastIndex = end;
   }
-  if(block)throw new SyntaxError('Unterminated WGSL block comment');
-  return out;
+  chunks.push(code.slice(at)); return chunks.join('');
 }
+let cachedSource, cachedAnalysis;
+/** One preparation graph shared by partitioning and ABI resource discovery. */
+export function shaderDeclarations(code) {
+  if (cachedSource !== code) { const analysis = analyzeShaderDeclarations(code); cachedSource = code; cachedAnalysis = analysis; }
+  return cachedAnalysis;
+}
+
 export function analyzeShaderDeclarations(code) {
   const clean=commentMask(code), declarations=[], functions=new Map();
   let begin=0, depth=0;
   const append=end=>{
     const text=clean.slice(begin,end), match=/\bfn\s+(\w+)\s*\(/.exec(text);
     const item={start:begin,end,name:match?.[1]??null};
-    if(match){if(functions.has(item.name))throw new SyntaxError(`Duplicate WGSL function ${item.name}`);item.calls=[...text.slice(text.indexOf('{')+1).matchAll(/\b(\w+)\s*\(/g)].map(m=>m[1]);functions.set(item.name,item);}
+    if(match){if(functions.has(item.name))throw new SyntaxError(`Duplicate WGSL function ${item.name}`);item.body=text.slice(text.indexOf('{')+1);item.calls=[...item.body.matchAll(/\b(\w+)\s*\(/g)].map(m=>m[1]);functions.set(item.name,item);}
     declarations.push(item);begin=end;
   };
   for(let i=0;i<clean.length;i++) {
@@ -51,7 +65,7 @@ export function shaderPartition(entry) {
   return entry;
 }
 export function partitionShaderProgram(program, entries) {
-  const analysis=analyzeShaderDeclarations(program.code), result=new Map(), groups=new Map();
+  const analysis=shaderDeclarations(program.code), result=new Map(), groups=new Map();
   const lineStarts=[0];for(let i=0;i<program.code.length;i++)if(program.code[i]==='\n')lineStarts.push(i+1);
   const lineAt=offset=>{let a=0,b=lineStarts.length;while(a+1<b){const m=(a+b)>>1;if(lineStarts[m]<=offset)a=m;else b=m;}return a+1;};
   for(const entry of entries){if(!analysis.functions.has(entry))throw new ReferenceError(`Shader entry not found: ${entry}`);const group=shaderPartition(entry);if(!groups.has(group))groups.set(group,[]);groups.get(group).push(entry);}
