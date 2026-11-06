@@ -30,6 +30,7 @@
     "check": "node tools/check.mjs",
     "check:build": "node tools/check-build.mjs",
     "check:native": "node tools/check-native.mjs",
+    "check:browser": "node tools/browser-test.mjs",
     "build:typography": "node tools/package-typography.mjs"
   },
   "engines": {
